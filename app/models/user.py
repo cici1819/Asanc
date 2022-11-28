@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .project_member import project_member
 
 
 class User(db.Model, UserMixin):
@@ -10,9 +11,35 @@ class User(db.Model, UserMixin):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(30), nullable=False)
+    last_name = db.Column(db.String(30), nullable=False)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    avatar_color = db.Column(db.String(255),nullable=True)
+
+    project_u = db.relationship(
+        "Project", back_populates="user_p", cascade='all, delete'
+    )
+
+    task_owner_u = db.relationship(
+        "Task", back_populates = "user_owner_t", primaryjoin='Task.owner_id==User.id',cascade='all, delete'
+    )
+
+    task_assignee_u = db.relationship(
+    "Task", back_populates="user_assignee_t",
+    primaryjoin='Task.assignee_id==User.id',
+    cascade='all, delete'
+    )
+
+    user_project_member = db.relationship(
+        "Project",
+        secondary=project_member,
+        back_populates="project_project_member",
+        cascade="all, delete"
+    )
+
+
 
     @property
     def password(self):
@@ -26,8 +53,15 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict(self):
-        return {
+        user_dict = {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'firstName': self.first_name,
+            'lastName': self.last_name,
+            'avatar_color':self.avatar_color,
         }
+        return user_dict
+
+    def __repr__(self):
+        return f'<User model: id={self.id}, username={self.username}, email={self.email}, avatar_color={self.avatar_color},first_name={self.first_name},last_name={self.last_name}>'
