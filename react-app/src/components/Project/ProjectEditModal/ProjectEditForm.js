@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 // import { useHistory } from "react-router-dom";
 import { useParams } from "react-router";
-import { editOneProject, getCurrUserProjects, getOneProject } from "../../../store/projectReducer";
+import { editOneProject, getOneProject } from "../../../store/projectReducer";
 import './ProjectEdit.css';
 
 
@@ -12,30 +12,32 @@ function ProjectEdit({ setShowProjectEditModal }) {
     // const history = useHistory();
     const currentProject = useSelector(state => state.projects.singleProject)
 
-    const [title, setTitle] = useState(currentProject.title);
-    const [icon, setIcon] = useState(currentProject.icon);
-    const [description, setDescription] = useState(currentProject.description);
+    const [title, setTitle] = useState(currentProject?.title);
+    const [icon, setIcon] = useState(currentProject?.icon);
+    const [description, setDescription] = useState(currentProject?.description);
     const [hasSubmitted, setHasSubmitted] = useState("");
     const [validationErrors, setValidationErrors] = useState([]);
 
     // const sessionUser = useSelector(state => state.session.user)
-
+    useEffect(() => {
+        dispatch(getOneProject(projectId))
+    }, [dispatch,projectId]);
 
     useEffect(() => {
         const errors = [];
-        if (!icon.includes('.com') && !icon.includes('.jpg') && !icon.includes('.png') && !icon.includes('.jpeg')) {
+        if (!icon?.includes('.com') && !icon?.includes('.jpg') && !icon?.includes('.png') && !icon?.includes('.jpeg')) {
             errors.push('Please provide a valid image URL!')
         }
-        if (title.length > 50) {
+        if (title?.length > 50) {
             errors.push("Title should be less than 50 characters")
         }
-        if (title.length < 3) {
+        if (title?.length < 3) {
             errors.push("Title should be more than 2 characters")
         }
-        if (description.length < 5) {
+        if (description?.length < 5) {
             errors.push("description should be more than 5 characters")
         }
-        if (description.length > 255) {
+        if (description?.length > 255) {
             errors.push("description should be less than 255 characters")
         }
         setValidationErrors(errors);
@@ -51,8 +53,6 @@ function ProjectEdit({ setShowProjectEditModal }) {
         editedProjectPayload.projectId = projectId
         // console.log("!!!!!editedServerPayload", editedServerPayload)
         await dispatch(editOneProject(editedProjectPayload))
-        await dispatch(getCurrUserProjects())
-        await dispatch(getOneProject(projectId))
         await setShowProjectEditModal(false);
 
 

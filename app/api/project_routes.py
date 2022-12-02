@@ -24,8 +24,9 @@ def validation_errors_to_error_messages(validation_errors):
 @project_routes.route('/current', methods=["GET"])
 @login_required
 def current_projects():
+    print("````````````````````")
     all_projects = Project.query.order_by(Project.created_at.desc()).all()
-    # print(all_projects)
+
     dicts= [project.to_dict_tasks() for project in all_projects]
     # print(dicts)
     user = current_user
@@ -43,8 +44,15 @@ def current_projects():
     return json.dumps({"Projects" :to_return})
 
 
+# @project_routes.route('/<int:project_id>')
+# @login_required
+# def single_project(project_id):
+#     project = Project.query.get(project_id);
+
+#     return project.to_dict_tasks()
+
 @project_routes.route('/<int:project_id>')
-@login_required
+# @login_required
 def single_project(project_id):
     project = Project.query.get(project_id);
 

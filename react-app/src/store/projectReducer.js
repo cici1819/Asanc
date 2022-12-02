@@ -49,10 +49,13 @@ export const getCurrUserProjects = () => async (dispatch) => {
 
 export const getOneProject = (projectId) => async (dispatch) => {
     console.log("running$$$$$$$$$getOneProjectThunk")
-    const response = await fetch(`api/projects/${projectId}`)
+    console.log("Thunk projectId",projectId)
+    const response = await fetch(`/api/projects/${projectId}`)
+    console.log("get one project thunk response",
+    response)
     if (response.ok) {
         const project = await response.json();
-        console.log("get one project thunk response", project)
+
         dispatch(loadOneProject(project))
         return project
     }
@@ -159,13 +162,11 @@ const projectReducer = (state = initialState, action) => {
             // console.log("delete@@@@@@@@@@@@@@@@22",newState.allProjects)
             delete newState.allProjects[action.projectId]
             // console.log("delete***************,projectId", projectId)
-
             newState.singleProject = {};
             return newState;
 
-
         default:
-            return state
+            return state;
 
     }
 }

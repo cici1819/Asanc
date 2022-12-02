@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm/LoginForm';
 import SignUpForm from './components/auth/SignupForm/SignUpForm';
+import MainPage from './components/MainPage';
+import HomePage from './components/HomePage';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
@@ -34,6 +36,13 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
+        <ProtectedRoute path='/home' exact={true} >
+          <HomePage />
+        </ProtectedRoute>
+        <ProtectedRoute path='/home/:projectId/list' exact={true} >
+          <MainPage />
+        </ProtectedRoute>
+
         <ProtectedRoute path='/users' exact={true} >
           <UsersList />
         </ProtectedRoute>
@@ -41,7 +50,6 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path='/' exact={true} >
-          <h1>My Home Page</h1>
         </Route>
       </Switch>
     </BrowserRouter>

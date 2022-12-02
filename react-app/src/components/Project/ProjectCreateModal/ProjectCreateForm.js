@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 // import { useParams } from "react-router";
-import { createOneProject, getCurrUserProjects  } from "../../../store/projectReducer";
+import { createOneProject, getCurrUserProjects } from "../../../store/projectReducer";
 import './ProjectCreate.css';
 
 
@@ -38,7 +38,7 @@ function ProjectCreate({ setShowModal }) {
             errors.push("description should be less than 255 characters")
         }
         setValidationErrors(errors);
-    }, [icon, title,description])
+    }, [icon, title, description])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -64,7 +64,7 @@ function ProjectCreate({ setShowModal }) {
                 setErrors([]);
                 await dispatch(getCurrUserProjects())
                 await setShowModal(false);
-                await history.push(`/projects/${createdProject.id}`)
+                await history.push(`/projects/${createdProject.id}/list`)
             }
         }
 
@@ -107,7 +107,7 @@ function ProjectCreate({ setShowModal }) {
                                 <input type="text"
                                     value={title}
                                     onChange={(e) => setTitle(e.target.value)}
-                                     />
+                                />
                             </div>
                             <div className="s-input-title2">
                                 Project Icon
@@ -116,7 +116,7 @@ function ProjectCreate({ setShowModal }) {
                                 <input type="text"
                                     value={icon}
                                     onChange={(e) => setIcon(e.target.value)}
-                                     />
+                                />
                             </div>
                             <div className="s-input-title3">
                                 Project Description
@@ -150,4 +150,4 @@ function ProjectCreate({ setShowModal }) {
 
 
 
-export default ServerCreate;
+export default ProjectCreate;

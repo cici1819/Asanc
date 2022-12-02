@@ -1,34 +1,27 @@
 import React, { useState } from "react";
-import LogoutButton from "../auth/LogoutButton";
 import CurrentUserProject from "../Project/CurrentUserProject";
 import ProjectCreateModal from "../Project/ProjectCreateModal";
-import ProjectEditModal from "../Project/ProjectEditModal";
-import ProjectDeleteModal from "../Project/ProjectDeleteModal";
-import ProjectSetting from "../Project/ProjectSetting/ProjectSettingSelect";
+
 import { useHistory } from "react-router-dom";
-import logo from "../../img/asanc-logo.jpg"
+import SideBar from "../SideBar/SideBar";
+import projectlogo from "../../img/project-icon.png"
 
-function MainPage(props) {
-    const [showProjectEditModal, setShowProjectEditModal] = useState(false)
-    const [showProjectDeleteModal, setShowProjectDeleteModal] = useState(false);
-    const history = useHistory();
-
+function HomePage({show}) {
 
     return (
         <div className="home-page-container">
 
-           
+            <div className="home-page-sideBar">
+                <SideBar show = {show} />
+            </div>
 
+            <div>
+                <CurrentUserProject />
 
-
-
-
-
-
-
-
-
-
+            </div>
+            <div className="home-page-projectcreateModal">
+              <ProjectCreateModal />
+            </div>
 
         </div>
 
@@ -67,3 +60,6 @@ function MainPage(props) {
 
 
 }
+
+
+export default HomePage

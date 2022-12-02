@@ -6,6 +6,7 @@ import "./ProjectSettingSelect.css"
 const ProjectSetting = ({ setShowProjectEditModal, setShowProjectDeleteModal }) => {
     const sessionUser = useSelector((state) => state.session.user);
     const projects = useSelector(state => state.projects.allProjects)
+    const projectsArr = Object.values(projects)
     const { projectId } = useParams()
     // let [showMenu, setShowMenu] = useState(false)
     // const dispatch = useDispatch()
@@ -32,10 +33,10 @@ const ProjectSetting = ({ setShowProjectEditModal, setShowProjectDeleteModal }) 
     }
 
 
-    let name
+    let title
     let sessionUserIsOwner = false
     if (projects) {
-        let currentProject = projects.find(project => project?.id == projectId)
+        let currentProject = projectsArr.find(project => project?.id == projectId)
         if (currentProject){
             title = currentProject?.title
             // console.log("current Project ",currentProject)

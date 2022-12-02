@@ -23,4 +23,4 @@ function ProjectDeleteModal({ project, showProjectDeleteModal, setShowProjectDel
 }
 
 
-export default ServerDeleteModal;
+export default ProjectDeleteModal;

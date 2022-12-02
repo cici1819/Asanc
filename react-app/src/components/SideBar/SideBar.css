@@ -1,0 +1,50 @@
+.sideBar-top-container{
+    background-color: rgb(37,38,40);
+    height:65px ;
+    width: 100vw;
+    display: flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items: center;
+    gap:40px;
+    position: fixed;
+    top:0;
+}
+.sideBar-top-left{
+    display: flex;
+    flex-direction:row;
+    justify-content: flex-start;
+    align-items: center;
+    gap:40px;
+    margin-left:5%;
+}
+.home-l-t{
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    gap:5px;
+
+}
+.home-title{
+    color:white;
+    font-size:25px;
+}
+
+.sideBar-open-icon{
+    color: white;
+    font-size: 25px;
+}
+
+.home-logo {
+    width: 40px;
+    height: 40px;
+}
+.currentUser-profile img{
+ width:40px;
+ height: 40px;
+ border-radius: 50%;
+}
+.currentUser-profile{
+    position:absolute;
+    right: 5%;
+}

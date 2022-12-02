@@ -32,7 +32,10 @@ function CurrentUserProject() {
         <>
             <div className="single-project-container">
                 <div className="c-project-list">
-                    {projects?.map((project) => {
+                    <div className="c-p-l-title">
+                        My Projects
+                    </div>
+                    {projectsArr?.map((project) => {
                         <div key={project?.id}></div>
                         return (
                             <SingleProject project={project} key={project?.id} />

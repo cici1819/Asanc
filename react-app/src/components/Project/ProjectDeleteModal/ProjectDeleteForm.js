@@ -2,23 +2,24 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from "react-router";
 import { deleteOneProject, getCurrUserProjects, getOneProject } from "../../../store/projectReducer";
-import './ServerDelete.css';
+import './ProjectDelete.css';
 
 
 function ProjectDelete({ setShowProjectDeleteModal }) {
     const dispatch = useDispatch();
+    const history = useHistory() ;
     const [showError, setShowError] = useState('')
     const [projectTitle, setProjectTitle] = useState('');
     const [hasSubmitted, setHasSubmitted] = useState("");
     const { projectId } = useParams();
-    // console.log('serverId!!!!!!!!!', serverId)
+    const currentProject = useSelector(state => state.projects.singleProject)
 
     useEffect(() => {
         dispatch(getOneProject(projectId))
     }, [dispatch, projectId]);
 
     useEffect(() => {
-        if (currentProject.title !== projectTitle) {
+        if (currentProject?.title !== projectTitle) {
             setShowError('Please provide the correct project title')
         } else {
             setShowError('')
@@ -27,7 +28,7 @@ function ProjectDelete({ setShowProjectDeleteModal }) {
     }, [projectTitle])
 
 
-    const currentProject = useSelector(state => state.projects.singleProject)
+
 
     // console.log('currentServer!!!!!!!!', currentServer)
     // currentServer[`${serverId}`]
@@ -36,7 +37,7 @@ function ProjectDelete({ setShowProjectDeleteModal }) {
     const handleDelete = async (e) => {
         setHasSubmitted(true);
 
-        if (currentProject.title !== projectTitle) {
+        if (currentProject?.title !== projectTitle) {
             return;
         }
         await dispatch(deleteOneProject(projectId))
@@ -45,7 +46,7 @@ function ProjectDelete({ setShowProjectDeleteModal }) {
 
         await setShowProjectDeleteModal(false);
 
-        // await history.push("/channels/@me")
+        await history.push("/home")
 
     }
 
@@ -79,8 +80,8 @@ function ProjectDelete({ setShowProjectDeleteModal }) {
                         <span className='delete-project-check'>Enter Project Title</span>
                         <input
 
-                            value={ProjectTitle}
-                            onChange={(e) => setServerName(e.target.value)}
+                            value={projectTitle}
+                            onChange={(e) => setProjectTitle(e.target.value)}
 
                         />
                     </div>
