@@ -6,13 +6,13 @@ import { useHistory } from "react-router-dom";
 import SideBar from "../SideBar/SideBar";
 import projectlogo from "../../img/project-icon.png"
 
-function HomePage({show}) {
+function HomePage({show,toggle}) {
 
     return (
         <div className="home-page-container">
 
             <div className="home-page-sideBar">
-                <SideBar show = {show} />
+                <SideBar show={show} toggle={toggle} />
             </div>
 
             <div>

@@ -62,9 +62,8 @@ function ProjectCreate({ setShowModal }) {
             if (createdProject) {
                 setValidationErrors([]);
                 setErrors([]);
-                await dispatch(getCurrUserProjects())
                 await setShowModal(false);
-                await history.push(`/projects/${createdProject.id}/list`)
+                await history.push(`/home/${createdProject.id}/list`)
             }
         }
 

@@ -14,6 +14,35 @@ import { authenticate } from './store/session';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+  const [showSidebar, setShowSidebar] = useState();
+	const toggleSidebar = () => {
+		setShowSidebar(!showSidebar);
+		localStorage.setItem('sidebar', !showSidebar)
+	}
+
+	// const sessionUser = useSelector((state) => state.session.user);
+
+
+
+	useEffect(() => {
+		(async () => {
+			await dispatch(authenticate());
+			if (!localStorage.getItem("sidebar")) {
+				localStorage.setItem("sidebar", true);
+				setShowSidebar(true);
+			} else {
+				if (localStorage.getItem("sidebar") === 'false'){
+					setShowSidebar(false);
+				} else {
+					setShowSidebar(true);
+				}
+			}
+
+				setLoaded(true);
+
+
+		})();
+  }, [dispatch]);
 
   useEffect(() => {
     (async () => {
@@ -28,7 +57,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -37,10 +66,10 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/home' exact={true} >
-          <HomePage />
+          <HomePage show={showSidebar} toggle={toggleSidebar} />
         </ProtectedRoute>
         <ProtectedRoute path='/home/:projectId/list' exact={true} >
-          <MainPage />
+          <MainPage show={showSidebar} toggle={toggleSidebar}/>
         </ProtectedRoute>
 
         <ProtectedRoute path='/users' exact={true} >

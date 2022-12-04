@@ -4,7 +4,7 @@ import ProjectDeleteModal from "../Project/ProjectDeleteModal";
 import ProjectSetting from "../Project/ProjectSetting/ProjectSettingSelect";
 import SideBar from "../SideBar/SideBar";
 import CurrentProjectUserInfo from "../Project/UsersInOneProject";
-function MainPage({ show }) {
+function MainPage({ show,toggle }) {
     const [showProjectEditModal, setShowProjectEditModal] = useState(false)
     const [showProjectDeleteModal, setShowProjectDeleteModal] = useState(false);
 
@@ -12,7 +12,7 @@ function MainPage({ show }) {
     return (
         <>
             <div className="home-page-sideBar">
-                <SideBar show={show} />
+                <SideBar show={show} toggle={ toggle}/>
             </div>
             <div className="mainPage-project-setting">
                 <ProjectSetting setShowProjectEditModal={setShowProjectEditModal}
