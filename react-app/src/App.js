@@ -5,7 +5,6 @@ import LoginForm from './components/auth/LoginForm/LoginForm';
 import SignUpForm from './components/auth/SignupForm/SignUpForm';
 import MainPage from './components/MainPage';
 import HomePage from './components/HomePage';
-import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';

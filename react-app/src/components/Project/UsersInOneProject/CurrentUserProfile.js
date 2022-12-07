@@ -33,8 +33,6 @@ function CurrentUserInfo({ currentUser }) {
             </div>
             {showUser && <div className='single-member-container' >
 
-                <div className='currentUser-name'>{currentUser?.username} 's Profile</div>
-
                 <div className="c-user-profile">
                     <div className="c-u-p-id">
                         <span>
@@ -46,6 +44,9 @@ function CurrentUserInfo({ currentUser }) {
                         <span className="c-user-p-4">
                             {currentUser?.id}
                         </span>
+                    </div>
+                    <div className="c-user-p-4">
+                     Username : {currentUser?.username}
                     </div>
                     <div className="c-u-p-name">
                         <div className="c-user-p-1">

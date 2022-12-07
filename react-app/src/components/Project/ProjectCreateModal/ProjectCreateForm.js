@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { useHistory } from "react-router-dom";
 // import { useParams } from "react-router";
-import { createOneProject, getCurrUserProjects } from "../../../store/projectReducer";
+import { createOneProject } from "../../../store/projectReducer";
 import './ProjectCreate.css';
 
 

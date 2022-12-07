@@ -45,7 +45,7 @@ const SideBar = ({ show, toggle }) => {
                     <div className="sideBar-open-icon" onClick={toggle}>
                         <i className="fa-solid fa-bars"></i>
                     </div>
-                    <NavLink className="home-l-t" to="/home" exact={true}>
+                    <NavLink className="home-l-t" to="/home">
                         <img src={logo} alt="asanc logo" className="home-logo" style={{ backgroundColor: "rgb(37, 38, 40)" }} />
                         <span className="home-title">Asanc</span>
                     </NavLink>
@@ -61,13 +61,13 @@ const SideBar = ({ show, toggle }) => {
                 <div className={sidebarClass}>
 
                     <div className="sideBar-Midddle">
-                        <NavLink className="sideBar-home" to="/home" exact={true}>
+                        <NavLink className="sideBar-home" to="/home">
                             <span className="home-icon">
                                 <i class="fa-light fa-house-blank"></i>
                             </span>
                             <span>Home</span>
                         </NavLink>
-                        <Link className="sideBar-mytask" to="/tasks" exact={true}>
+                        <Link className="sideBar-mytask" to="/tasks">
                             <span className="my-task-icon">
                                 <i className="fa-regular fa-circle-check"></i>
                             </span>
@@ -80,16 +80,16 @@ const SideBar = ({ show, toggle }) => {
                                 My Projects
                             </div>
                             <div id="add-project-button" >
-                            <ProjectCreateModal location="sideBar"/>
+                                <ProjectCreateModal location="sideBar" />
                             </div>
 
                         </div>
                         <div className="sideBar-user-project">
                             <div className="c-project-list">
                                 {projectsArr?.map((project) => {
-                                    <div key={project?.id}></div>
+
                                     return (
-                                        <Link className="sideBar-myproject" to={`/home/${project?.id}/list`}>
+                                        <Link className="sideBar-myproject" to={`/home/${project?.id}/list`} key={project?.id}>
                                             <i className="fa-solid fa-square" ></i>
                                             <span>
                                                 {project.title}

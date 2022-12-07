@@ -1,0 +1,51 @@
+.single-project-container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    padding-left: 30px;
+    overflow-x: hidden;
+    align-items: flex-start;
+
+    /* background-color: aqua; */
+    width: cal(100vw -300px -260px);
+    height:380px ;
+    overflow: auto;
+    position: absolute;
+    left:300px;
+    right:260px;
+    top:240px;
+    border: 0.5px solid rgba(237,234,233,0.8);
+    border-radius: 8px;
+    box-shadow: 0px,0px,10px,rgba(175,171,172);
+
+}
+.single-project-container:hover{
+    cursor:hand;
+    border: 0.5px solid rgba(175,171,172,1);
+}
+.c-p-l-title{
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.icon-lists{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap:20px;
+    background-color: aqua;
+    margin-top: 20px;
+}
+.HomePage-create{
+    width: 60px;
+    height: 60px;
+    border: 1px dotted rgb(175,171,172) ;
+    border-radius: 10px;
+}
+
+.single-project-icon{
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+}
