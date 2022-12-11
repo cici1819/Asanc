@@ -47,10 +47,10 @@ class Task(db.Model):
         "description": self.description,
         "status": self.status,
         "priority": self.priority,
-        "section_id": self.section_id,
-        "owner_id":self.owner_id,
-        "assignee_id":self.assignee_id,
-        "project_id":self.project_id,
+        "sectionId": self.section_id,
+        "ownerId":self.owner_id,
+        "assigneeId":self.assignee_id,
+        "projectId":self.project_id,
         "end_date":self.end_date.strftime("%Y-%m-%d") if self.end_date else None,
         "completed": self.completed,
         "created_at": str(self.created_at),
@@ -59,4 +59,4 @@ class Task(db.Model):
         return task_dict
 
     def __repr__(self):
-        return f'<Task model: id={self.id}, title={self.title}, description={self.description},status={self.status},priority={self.priority},section_id={self.section_id},owner_id={self.owner_id},assignee_id={self.assignee_id},project_id={self.project_id},end_date={self.end_date},created_at={self.created_at},updated_at={self.updated_at}>'
+        return f'<Task model: id={self.id}, title={self.title}, description={self.description},status={self.status},priority={self.priority},sectionId={self.section_id},ownerId={self.owner_id},assigneeId={self.assignee_id},projectId={self.project_id},end_date={self.end_date},created_at={self.created_at},updated_at={self.updated_at}>'

@@ -39,7 +39,7 @@ def add_section():
     if form.validate_on_submit():
         new_section = Section(
             title=form.data["title"],
-            project_id=form.data["project_id"],
+            project_id=form.data["projectId"],
             created_at = datetime.today(),
             updated_at =datetime.today()
         )
@@ -73,7 +73,7 @@ def update_section(section_id):
         data = form.data
         section = Section.query.get(section_id)
         section.title = data['title']
-        section.project_id = data['project_id']
+        section.projectId = data['projectId']
         db.session.commit()
         return json.dumps(section.to_dict_task())
     else:

@@ -4,6 +4,7 @@ import ProjectDeleteModal from "../Project/ProjectDeleteModal";
 import ProjectSetting from "../Project/ProjectSetting/ProjectSettingSelect";
 import SideBar from "../SideBar/SideBar";
 import CurrentProjectUserInfo from "../Project/UsersInOneProject";
+import SectionListInProject from "../Section/SectionListInProject";
 function MainPage({ show,toggle }) {
     const [showProjectEditModal, setShowProjectEditModal] = useState(false)
     const [showProjectDeleteModal, setShowProjectDeleteModal] = useState(false);
@@ -28,6 +29,9 @@ function MainPage({ show,toggle }) {
             </div>
             <div className="main-page-currentProjectUser">
                 <CurrentProjectUserInfo />
+            </div>
+            <div className="mian-page-sectionList">
+                <SectionListInProject />
             </div>
         </>
 

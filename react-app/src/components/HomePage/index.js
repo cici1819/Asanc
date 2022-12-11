@@ -41,8 +41,6 @@ function HomePage({ show, toggle }) {
     const dateNumber = today.getDate()
     return (
         <div className="home-page-container">
-
-
             <div className="home-page-sideBar">
                 <SideBar show={show} toggle={toggle} />
             </div>

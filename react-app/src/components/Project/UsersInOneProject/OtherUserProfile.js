@@ -36,20 +36,10 @@ function UserInOneProjectInfo({ user }) {
             <div>
                 {showUser && <div className='member-container' >
 
-                    <div className='User-name'>{user?.username} 's Profile</div>
+                
 
                     <div className="p-user-profile">
-                        <div className="u-p-id">
-                            <span>
-                                User Id :
-                            </span>
-                            <span className="user-p-3">
-                                <i className="fa-light fa-hashtag"></i>
-                            </span>
-                            <span className="user-p-4">
-                                {user?.id}
-                            </span>
-                        </div>
+
                         <div className="u-p-name">
                             <div className="user-p-1">
                                 First Name: {user?.firstName}

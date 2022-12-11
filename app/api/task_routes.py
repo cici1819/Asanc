@@ -53,12 +53,12 @@ def create_task():
         task = Task(
         title = form.data['title'],
         description=form.data['description'],
-        assignee_id=form.data['assignee_id'],
-        section_id=form.data['section_id'],
-        owner_id=user_id,
+        assigneeId=form.data['assigneeId'],
+        sectionId=form.data['sectionId'],
+        ownerId=user_id,
         status= form.data['status'],
         priority=form.data['priority'],
-        project_id = form.data['project_id'],
+        projectId = form.data['projectId'],
         end_date = form.data['end_date'],
         completed = form.data['completed'],
         created_at = datetime.today(),
@@ -81,7 +81,7 @@ def edit_task(task_id):
         task = Task.query.get(task_id)
         task.title = form.data['title']
         task.description=form.data['description']
-        task.assignee_id=form.data['assignee_id']
+        task.assigneeId=form.data['assigneeId']
         task.status= form.data['status']
         task.priority=form.data['priority']
         task.end_date = form.data['end_date']
