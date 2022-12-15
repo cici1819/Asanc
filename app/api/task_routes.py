@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import Task, db
+from app.models import Task, db, User
 from app.forms import TaskForm
 from datetime import date, datetime
 import json
@@ -48,7 +48,6 @@ def create_task():
     form = TaskForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     user_id = current_user.get_id()
-    print("***********task-form data",form.data)
     if form.validate_on_submit():
         task = Task(
         title = form.data['title'],
@@ -60,7 +59,7 @@ def create_task():
         priority=form.data['priority'],
         projectId = form.data['projectId'],
         end_date = form.data['end_date'],
-        completed = form.data['completed'],
+        completed = False,
         created_at = datetime.today(),
         updated_at = datetime.today(),
         )
@@ -81,14 +80,17 @@ def edit_task(task_id):
         task = Task.query.get(task_id)
         task.title = form.data['title']
         task.description=form.data['description']
-        task.assigneeId=form.data['assigneeId']
         task.status= form.data['status']
         task.priority=form.data['priority']
         task.end_date = form.data['end_date']
         task.completed = form.data['completed']
+        # Get the user object by assigneeId
+        user =  User.query.get(form.data['assigneeId'])
+        task.user_assignee_t = user
         db.session.add(task)
         db.session.commit()
-        return task.to_dict()
+        res = task.to_dict()
+        return res
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
@@ -101,3 +103,11 @@ def delete_task(task_id):
   db.session.delete(task)
   db.session.commit()
   return {'Message':'Successfully deleted'}
+
+@task_routes.route('/<int:task_id>/complete')
+@login_required
+def toggleComplete(task_id):
+    task = Task.query.get(task_id)
+    task.completed = not task.completed
+    db.session.commit()
+    return task.to_dict()

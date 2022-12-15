@@ -4,7 +4,7 @@ import { addSectionToProject } from "../../../store/sectionReducer";
 import { getOneProject } from "../../../store/projectReducer";
 import './SectionCreate.css';
 
-const SectionCreate = ({ projectId, sessionUserIsOwner }) => {
+const SectionCreate = ({ projectId}) => {
     const dispatch = useDispatch();
     const [title, setTitle] = useState("");
     const [titleInput, setTitleInput] = useState(false);
@@ -55,9 +55,9 @@ const SectionCreate = ({ projectId, sessionUserIsOwner }) => {
 
     return (
         <>
-            {!titleInput && sessionUserIsOwner && <div onClick={handleCreateInput} className="addSection-main-container"><i className="fa-solid fa-plus" id="create-phase-plus"></i>
+            {!titleInput&&<div onClick={handleCreateInput} className="addSection-main-container"><i className="fa-solid fa-plus" id="create-phase-plus"></i>
                 <span> Add section</span></div>}
-            {titleInput && sessionUserIsOwner && <div>
+            {titleInput  && <div>
                 <div>
                     {errors.length > 0 && (<div>
 

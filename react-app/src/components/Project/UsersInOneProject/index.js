@@ -19,17 +19,6 @@ function CurrentProjectUserInfo() {
     //  console.log('usersInCurrentProject!!!!!!!!', usersInCurrentProject)
     console.log("singleProject in CurrentProjectUserInfo$$$$$$$$$$$$", singleProject)
 
-
-    // useEffect(() => {
-    //     dispatch(getOneProject(projectId))
-    //         // .then((res) => {
-    //         // console.log ("CurrentProjectUserInfo components res",res)
-    //         // let usersInCurrentProject = res.users
-    //         // let usersArr = Object.values(usersInCurrentProject)
-    //         // setUserInOneProject(usersArr)
-
-    // }, [dispatch, projectId]);
-
     useEffect(() => {
         dispatch(getOneProject(projectId))
     }, [dispatch, projectId]);
@@ -50,7 +39,7 @@ function CurrentProjectUserInfo() {
 
     if (otherUsers.length===0) {
         return (<>
-              
+
         </>)
     } else {
         return (

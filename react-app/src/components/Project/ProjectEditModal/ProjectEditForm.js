@@ -6,11 +6,11 @@ import { editOneProject, getOneProject } from "../../../store/projectReducer";
 import './ProjectEdit.css';
 
 
-function ProjectEdit({ setShowProjectEditModal }) {
+function ProjectEdit({ setShowProjectEditModal ,currentProject}) {
     const dispatch = useDispatch();
     const { projectId } = useParams();
     // const history = useHistory();
-    const currentProject = useSelector(state => state.projects.singleProject)
+    // const currentProject = useSelector(state => state.projects.singleProject)
 
     const [title, setTitle] = useState(currentProject?.title);
     const [icon, setIcon] = useState(currentProject?.icon);
@@ -19,9 +19,9 @@ function ProjectEdit({ setShowProjectEditModal }) {
     const [validationErrors, setValidationErrors] = useState([]);
 
     // const sessionUser = useSelector(state => state.session.user)
-    useEffect(() => {
-        dispatch(getOneProject(projectId))
-    }, [dispatch,projectId]);
+    // useEffect(() => {
+    //     dispatch(getOneProject(projectId))
+    // }, [dispatch,projectId]);
 
     useEffect(() => {
         const errors = [];

@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from "react-router";
-import { deleteOneProject, getCurrUserProjects, getOneProject } from "../../../store/projectReducer";
+import { deleteOneProject, getCurrUserProjects, getOneProject} from "../../../store/projectReducer";
 import './ProjectDelete.css';
 
 
-function ProjectDelete({ setShowProjectDeleteModal }) {
+function ProjectDelete({ setShowProjectDeleteModal, currentProject }) {
     const dispatch = useDispatch();
     const history = useHistory() ;
     const [showError, setShowError] = useState('')
     const [projectTitle, setProjectTitle] = useState('');
     const [hasSubmitted, setHasSubmitted] = useState("");
     const { projectId } = useParams();
-    const currentProject = useSelector(state => state.projects.singleProject)
+    // const currentProject = useSelector(state => state.projects.singleProject)
 
-    useEffect(() => {
-        dispatch(getOneProject(projectId))
-    }, [dispatch, projectId]);
+    // useEffect(() => {
+    //     dispatch(getOneProject(projectId))
+    // }, [dispatch, projectId]);
 
     useEffect(() => {
         if (currentProject?.title !== projectTitle) {
@@ -27,12 +27,6 @@ function ProjectDelete({ setShowProjectDeleteModal }) {
 
     }, [projectTitle])
 
-
-
-
-    // console.log('currentServer!!!!!!!!', currentServer)
-    // currentServer[`${serverId}`]
-    // console.log('showError!!!!', showError)
 
     const handleDelete = async (e) => {
         setHasSubmitted(true);

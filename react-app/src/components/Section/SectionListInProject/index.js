@@ -2,9 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom"
 import { getOneProject } from "../../../store/projectReducer"
-import TaskInSection from "../../Task/TaskInSection";
 import './SectionListInProject.css'
-import SectionSetting from "../SingleSection";
+import SingleSection from "../SingleSection";
 import SectionCreate from "../SectionCreate";
 
 
@@ -13,14 +12,7 @@ function SectionListInProject() {
     const { projectId } = useParams();
     const sessionUser = useSelector((state) => state.session.user);
     const project = useSelector(state => state.projects?.singleProject);
-    // const [newSection, setNewSection] = useState("")
 
-
-    // const handleSectionAdd = (e) => {
-    //     e.preventDefault();
-    //     dispatch(addSectionToProject(projectId, newSection));
-    //     setNewSection("");
-    // }
 
     useEffect(() => {
         dispatch(getOneProject(projectId))
@@ -49,29 +41,21 @@ function SectionListInProject() {
 
     return (
         <div className="section-in-project-container">
-            <div>
+            <div className="section-part">
                 {sectionArr.length > 0 && sectionArr.map((section) => (
                     <div className="single-section-in-project" key={section.id}>
                         <div className="single-section-in-project-left">
                             <div className="single-section-in-project-title">
-                                <SectionSetting title={section.title} sessionUserIsOwner={sessionUserIsOwner} section={section} project={project}
+                                <SingleSection title={section.title} sessionUserIsOwner={sessionUserIsOwner} section={section} project={project} sessionUser={sessionUser}
                                 />
-
-
-                                <TaskInSection section={section} project={project} sessionUser={sessionUser} />
-
                             </div>
                         </div>
-
                     </div>
-
-
-
                 ))}
 
             </div >
-            <div>
-                <SectionCreate projectId={projectId} project={project} sessionUserIsOwner={sessionUserIsOwner}/>
+            <div className="section-create-div">
+                {sessionUserIsOwner && <SectionCreate projectId={projectId} project={project} />}
             </div>
 
         </div >

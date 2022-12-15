@@ -1,9 +1,12 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updatedSection } from "../../store/sectionReducer"
-import SectionDeleteModal from "../Section/SectionDeleteModal";
-const SectionSetting = ({ title, sessionUserIsOwner, section, project }) => {
+import { updatedSection } from "../../../store/sectionReducer"
+import { getOneProject } from "../../../store/projectReducer"
+import SectionDeleteModal from "../SectionDeleteModal";
+import TaskInSection from "../../Task/TaskInSection";
+import "./SingleSection.css"
+const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUser }) => {
     const dispatch = useDispatch();
     const [sectionTitle, setSectionTitle] = useState(title);
     const [timer, setTimer] = useState(null)
@@ -12,7 +15,8 @@ const SectionSetting = ({ title, sessionUserIsOwner, section, project }) => {
     const projectId = project.id
     const [showMenu, setShowMenu] = useState(false)
     const [showSectionDeleteModal, setShowSectionDeleteModal] = useState(false);
-
+    const [newTask, setNewTask] = useState('')
+    const ref = useRef(null)
 
     const openMenu = () => {
         if (showMenu) return;
@@ -53,11 +57,11 @@ const SectionSetting = ({ title, sessionUserIsOwner, section, project }) => {
             const payload = {
                 sectionId: sectionId, title: title, projectId: projectId
             };
-            dispatch(updatedSection(payload))
-            // if (editedSection) {
-            //      dispatch()
-            // }
-        }, 500)
+           const editedSection= dispatch(updatedSection(payload))
+            if (editedSection) {
+                dispatch(getOneProject(projectId))
+            }
+        }, 1000)
 
         setTimer(newTimer)
 
@@ -67,9 +71,12 @@ const SectionSetting = ({ title, sessionUserIsOwner, section, project }) => {
     const handleChange = (e) => {
         e.preventDefault();
         setSectionTitle(e.target.value);
-
+       
     }
 
+    const handleEdit = () => {
+        ref.current.focus();
+    }
 
     return (
         <>
@@ -78,19 +85,24 @@ const SectionSetting = ({ title, sessionUserIsOwner, section, project }) => {
                 {errors[0]}
 
             </div>)}
+            <div className='add-task-in-section-icon' onClick={() => setNewTask("newTask")}>
+                <i className="fa-duotone fa-plus"></i>
+            </div>
+            {/* <div>
+                {newTask === "newTask" && <TaskCreate project={project} section={section} sessionUser={sessionUser}/>}
+            </div> */}
             {sessionUserIsOwner ?
                 (<>
                     <input className='edit-section-input'
                         type='text'
                         value={sectionTitle}
-                        placeholder="Untitled Project"
+                        placeholder="Untitled Section"
                         onBlur={handleInputBlur}
                         onChange={handleChange}
+                        ref={ref}
 
                     />
-                    <span className='add-task-in-section-icon'>
-                        <i className="fa-duotone fa-plus"></i>
-                    </span>
+
                     <div className='open-section-setting' onClick={openMenu}>
                         <i className="fa-solid fa-ellipsis"></i>
                     </div>
@@ -98,12 +110,7 @@ const SectionSetting = ({ title, sessionUserIsOwner, section, project }) => {
                         <>
                             <div className='section-setting-dropMenu delete-ele'>
                                 <div className='server-edit-div delete-ele'
-                                    onClick={() => {
-
-                                        // console.log("loginon click running````````````")
-                                        // setShowServerEditModal(true)
-                                    }
-                                    }>
+                                    onClick={handleEdit}>
 
                                     <span className='s-e-icon delete-ele'>
                                         <i className="fa-solid fa-pencil delete-ele"></i>
@@ -133,17 +140,10 @@ const SectionSetting = ({ title, sessionUserIsOwner, section, project }) => {
                                 </div>
 
                                 <div className='delete-ele delete-modal'>
-                                    {<SectionDeleteModal section={section} showSectionDeleteModal={showSectionDeleteModal} setShowSectionDeleteModal={setShowSectionDeleteModal} sessionUserIsOwner={sessionUserIsOwner} project={project} />}
+                                    {<SectionDeleteModal section={section} showSectionDeleteModal={showSectionDeleteModal} setShowSectionDeleteModal={setShowSectionDeleteModal} project={project} />}
                                 </div>
 
-
-
-
-
-
                             </div>
-
-
 
                         </>
 
@@ -159,12 +159,13 @@ const SectionSetting = ({ title, sessionUserIsOwner, section, project }) => {
                         readOnly
                     />
 
-
                 )}
-
+            <div>
+                <TaskInSection section={section} project={project} sessionUser={sessionUser} />
+            </div>
 
         </>
     )
 }
 
-export default SectionSetting
+export default SingleSection

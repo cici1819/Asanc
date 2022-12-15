@@ -44,29 +44,32 @@ function HomePage({ show, toggle }) {
             <div className="home-page-sideBar">
                 <SideBar show={show} toggle={toggle} />
             </div>
-            <div className='top-title'>
-                <div className='home-date'>{`${day}, ${month} ${dateNumber}`}</div>
-                <div className="home-hello">Welcome, {`${sessionUser?.firstName}`}</div>
-            </div>
-            <div className="single-project-container">
-                <CurrentUserProject />
-                <div className="home-page-projectcreateModal">
-                    <span className="create-title">
-                        Create Project
-                    </span>
-                    <div className="HomePage-create">
-                        <div className="create-icon-homePage">
-                            <ProjectCreateModal />
+            <div className="home-page-main">
+                <div className='top-title'>
+                    <div className='home-date'>{`${day}, ${month} ${dateNumber}`}</div>
+                    <div className="home-hello">Welcome, {`${sessionUser?.firstName}`}</div>
+                </div>
+                <div className="single-project-container">
+                    <CurrentUserProject />
+                    <div className="home-page-projectcreateModal">
+                        <span className="create-title">
+                            Create Project
+                        </span>
+                        <div className="HomePage-create">
+                            <div className="create-icon-homePage">
+                                <ProjectCreateModal />
+                            </div>
                         </div>
+
                     </div>
 
                 </div>
 
-            </div>
-            <div>
-                <div>
+                <div className="collaborator-div">
                     <CurrentUserCollaborators />
                 </div>
+
+
 
             </div>
 

@@ -8,16 +8,16 @@ class Task(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100))
+    title = db.Column(db.String(100),default="New Task",nullable=False)
     description = db.Column(db.String(255))
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
-    assignee_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
+    assignee_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")),nullable=False)
     project_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("projects.id")),nullable=False)
     section_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("sections.id")),nullable=False)
     status = db.Column(db.String(100))
     priority = db.Column(db.String(100))
     end_date = db.Column(db.DateTime(timezone = False))
-    completed = db.Column(db.Boolean, default=False, nullable=False)
+    completed = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.now())
 
