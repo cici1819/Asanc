@@ -11,7 +11,7 @@ class Task(db.Model):
     title = db.Column(db.String(100),default="New Task",nullable=False)
     description = db.Column(db.String(255))
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
-    assignee_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")),nullable=False)
+    assignee_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     project_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("projects.id")),nullable=False)
     section_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("sections.id")),nullable=False)
     status = db.Column(db.String(100))

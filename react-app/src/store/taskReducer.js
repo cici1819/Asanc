@@ -76,8 +76,8 @@ export const thunkGetOneTask = (taskId) => async (dispatch) => {
 
 
 export const thunkCreateTask = (data) => async (dispatch) => {
-    // console.log("CREATE TASKS THUNK:", data)
-    const { title, description, assigneeId, ownerId, sectionId, status, priority, projectId, end_date:dueDate, completed } = data
+    console.log("CREATE TASKS THUNK:", data)
+    const { title, description, assigneeId, ownerId, sectionId, status, priority, projectId, end_date: dueDate, completed } = data
 
     try {
         const response = await fetch(`/api/tasks/new`, {
@@ -85,9 +85,9 @@ export const thunkCreateTask = (data) => async (dispatch) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ title, description, assigneeId, ownerId, sectionId, status, priority, projectId, end_date:dueDate, completed })
+            body: JSON.stringify({ title, description, assigneeId, ownerId, sectionId, status, priority, projectId, end_date: dueDate, completed })
         })
-        // console.log("CREATE TASK THUNK RESPONSE", response)
+        console.log("CREATE TASK THUNK RESPONSE", response)
         if (response.ok) {
             const newTask = await response.json();
             dispatch(createOneTask(newTask));
@@ -100,8 +100,8 @@ export const thunkCreateTask = (data) => async (dispatch) => {
 }
 
 export const thunkUpdateTask = (data) => async (dispatch) => {
-    const { title, description, assigneeId, sectionId, status, priority, projectId, end_date:dueDate, completed,taskId } = data
-    console.log("thunkUpdateTask'''''''''",data)
+    const { title, description, assigneeId, sectionId, status, priority, projectId, end_date: dueDate, completed, taskId } = data
+    console.log("thunkUpdateTask'''''''''", data)
     try {
         const response = await fetch(`/api/tasks/${taskId}`, {
             method: "PUT",
@@ -116,7 +116,7 @@ export const thunkUpdateTask = (data) => async (dispatch) => {
         if (response.ok) {
             const updatedTask = await response.json();
             dispatch(updateOneTask(updatedTask));
-            console.log("QQQQQQQQQQQQQ",updatedTask)
+            console.log("QQQQQQQQQQQQQ", updatedTask)
             return updatedTask
         }
 
@@ -138,17 +138,17 @@ export const thunkDeleteTask = (taskId) => async (dispatch) => {
 }
 
 export const toggleCompleteTask = (taskId) => async () => {
-	const response = await fetch(`/api/tasks/${taskId}/complete`, {
-		headers: {
-			"Content-Type": "application/json",
-		},
-	});
+    const response = await fetch(`/api/tasks/${taskId}/complete`, {
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
 
-	if (response.ok) {
-		return response.json();
-	} else {
-		return response;
-	}
+    if (response.ok) {
+        return response.json();
+    } else {
+        return response;
+    }
 };
 
 

@@ -5,6 +5,7 @@ import { updatedSection } from "../../../store/sectionReducer"
 import { getOneProject } from "../../../store/projectReducer"
 import SectionDeleteModal from "../SectionDeleteModal";
 import TaskInSection from "../../Task/TaskInSection";
+import TaskCreate from '../../Task/TaskCreate';
 import "./SingleSection.css"
 const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUser }) => {
     const dispatch = useDispatch();
@@ -71,7 +72,7 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
     const handleChange = (e) => {
         e.preventDefault();
         setSectionTitle(e.target.value);
-       
+
     }
 
     const handleEdit = () => {
@@ -88,9 +89,9 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
             <div className='add-task-in-section-icon' onClick={() => setNewTask("newTask")}>
                 <i className="fa-duotone fa-plus"></i>
             </div>
-            {/* <div>
+            <div>
                 {newTask === "newTask" && <TaskCreate project={project} section={section} sessionUser={sessionUser}/>}
-            </div> */}
+            </div>
             {sessionUserIsOwner ?
                 (<>
                     <input className='edit-section-input'

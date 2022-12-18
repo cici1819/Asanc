@@ -1,14 +1,15 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ProjectEditModal from "../Project/ProjectEditModal";
 import ProjectDeleteModal from "../Project/ProjectDeleteModal";
 import ProjectSetting from "../Project/ProjectSetting/ProjectSettingSelect";
 import SideBar from "../SideBar/SideBar";
-import { useParams } from 'react-router-dom';
+import { useParams,useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneProject } from "../../store/projectReducer";
 import CurrentProjectUserInfo from "../Project/UsersInOneProject";
 import SectionListInProject from "../Section/SectionListInProject";
-function MainPage({ show,toggle }) {
+import './MainPage.css'
+function MainPage({ show, toggle }) {
     const [showProjectEditModal, setShowProjectEditModal] = useState(false)
     const [showProjectDeleteModal, setShowProjectDeleteModal] = useState(false);
     const { projectId } = useParams();
@@ -19,29 +20,34 @@ function MainPage({ show,toggle }) {
     }, [dispatch, projectId]);
 
     return (
-        <>
+        <div className="main-page-wapper">
             <div className="home-page-sideBar">
-                <SideBar show={show} toggle={ toggle}/>
+                <SideBar show={show} toggle={toggle} />
             </div>
-            <div className="mainPage-project-setting">
-                <ProjectSetting setShowProjectEditModal={setShowProjectEditModal}
-                    setShowProjectDeleteModal={setShowProjectDeleteModal} currentProject={currentProject}
-               />
 
-                <ProjectEditModal showProjectEditModal={showProjectEditModal}
-                    setShowProjectEditModal={setShowProjectEditModal} currentProject={currentProject}
-                />
-                <ProjectDeleteModal showProjectDeleteModal={showProjectDeleteModal}
-                    setShowProjectDeleteModal={setShowProjectDeleteModal} currentProject={currentProject}
-                />
+            <div className="main-page-content">
+
+                <div className="mainPage-project-setting">
+                    <ProjectSetting setShowProjectEditModal={setShowProjectEditModal}
+                        setShowProjectDeleteModal={setShowProjectDeleteModal} currentProject={currentProject}
+                    />
+
+                    <ProjectEditModal showProjectEditModal={showProjectEditModal}
+                        setShowProjectEditModal={setShowProjectEditModal} currentProject={currentProject}
+                    />
+                    <ProjectDeleteModal showProjectDeleteModal={showProjectDeleteModal}
+                        setShowProjectDeleteModal={setShowProjectDeleteModal} currentProject={currentProject}
+                    />
+                </div>
+                <div className="main-page-currentProjectUser">
+                    <CurrentProjectUserInfo />
+                </div>
+                <div className="mian-page-sectionList">
+                    <SectionListInProject />
+                </div>
             </div>
-            <div className="main-page-currentProjectUser">
-                <CurrentProjectUserInfo  />
-            </div>
-            <div className="mian-page-sectionList">
-                <SectionListInProject/>
-            </div>
-        </>
+
+        </div>
 
     )
 

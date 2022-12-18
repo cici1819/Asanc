@@ -4,14 +4,13 @@
     left:300px;
     right:300px;
     width: 100vw - 300px -300px;
-    background-color: aqua;
     display: flex;
     flex-direction: column;
     gap:15px;
     align-items: center;
+    font-size: 25px;
+    font-weight: 600;
 
 }
 
-.home-date{
-    
-}
+

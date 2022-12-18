@@ -47,22 +47,23 @@ def  section_tasks(section_id):
 def create_task():
     form = TaskForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    user_id = current_user.get_id()
+    user_id = current_user.id
     if form.validate_on_submit():
         task = Task(
         title = form.data['title'],
         description=form.data['description'],
-        assigneeId=form.data['assigneeId'],
-        sectionId=form.data['sectionId'],
-        ownerId=user_id,
+        section_id=form.data['sectionId'],
+        owner_id=user_id,
         status= form.data['status'],
         priority=form.data['priority'],
-        projectId = form.data['projectId'],
+        project_id = form.data['projectId'],
         end_date = form.data['end_date'],
         completed = False,
         created_at = datetime.today(),
         updated_at = datetime.today(),
         )
+        user =  User.query.get(form.data['assigneeId'])
+        task.user_assignee_t = user
         db.session.add(task)
         db.session.commit()
         return task.to_dict()

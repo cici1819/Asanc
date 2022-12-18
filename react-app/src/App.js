@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import CurrentUserTasks from './components/Task/CurrentUserTasks';
 import LoginForm from './components/auth/LoginForm/LoginForm';
 import SignUpForm from './components/auth/SignupForm/SignUpForm';
 import MainPage from './components/MainPage';
@@ -69,6 +70,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/home/:projectId/list' exact={true} >
           <MainPage show={showSidebar} toggle={toggleSidebar}/>
+        </ProtectedRoute>
+        <ProtectedRoute path='/tasks' exact={true} >
+          <CurrentUserTasks show={showSidebar} toggle={toggleSidebar}/>
         </ProtectedRoute>
 
         <ProtectedRoute path='/users' exact={true} >

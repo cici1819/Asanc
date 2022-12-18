@@ -78,7 +78,7 @@ def upgrade():
     sa.Column('title', sa.String(length=100), nullable=False),
     sa.Column('description', sa.String(length=255), nullable=True),
     sa.Column('owner_id', sa.Integer(), nullable=False),
-    sa.Column('assignee_id', sa.Integer(), nullable=False),
+    sa.Column('assignee_id', sa.Integer(), nullable=True),
     sa.Column('project_id', sa.Integer(), nullable=False),
     sa.Column('section_id', sa.Integer(), nullable=False),
     sa.Column('status', sa.String(length=100), nullable=True),

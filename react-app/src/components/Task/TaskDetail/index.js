@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import { getOneSection } from "../../../store/sectionReducer"
 import TaskSideDetail from '../TaskSideDetail';
 import { getOneProject } from "../../../store/projectReducer"
@@ -23,10 +23,10 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
     const [status, setStatus] = useState(task.status);
     const [assigneeId, setAssingeeId] = useState(task.assigneeId);
     const dateDiv = useRef();
-    // const [properDate, setProperDate] = useState();
+    const [properDate, setProperDate] = useState();
+    const project = useSelector(state => state.projects.singleProject)
 
     const [showDateForm, setShowDateForm] = useState(false);
-    // const [serverDate, setServerDate] = useState();
     const [completed, setCompleted] = useState(task.completed)
     const [dueDate, setDueDate] = useState(task.end_date);
     // const [showTaskDetail, setShowTaskDetail] = useState(false);
@@ -104,7 +104,7 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
 
 
     const handleTitleChange = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         setTaskTitle(e.target.value)
     }
 
@@ -160,11 +160,23 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
     useEffect(() => {
         if (task.end_date) {
             setDueDate(task.end_date);
+            let newDueDate = new Date(task.end_date);
+            const date = newDueDate.getDate() + 1
+            const newDate = newDueDate.setDate(date)
+            const adjustedNewDate = new Date(newDate)
+            setProperDate(adjustedNewDate);
 
         } else {
             setDueDate(null);
-
+            setProperDate(new Date());
         }
+
+        if (task.title) {
+            setTaskTitle(task.title);
+        } else {
+            setTaskTitle("");
+        }
+
         if (task.priority) {
             setPriority(task.priority);
         } else {
@@ -198,7 +210,7 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
         const delayDispatch = setTimeout(async () => {
             if (didMount.current) {
                 const payload = {
-                    title: taskTitle, description, assigneeId: assigneeId, ownerId, sectionId, status: status, priority: priority, projectId, end_date: dueDate, completed, taskId
+                    title: taskTitle, description, assigneeId, ownerId, sectionId, status: status, priority: priority, projectId, end_date: dueDate, completed, taskId
                 };
 
                 const res = await dispatch(taskAction.thunkUpdateTask(payload));
@@ -208,12 +220,12 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
                 setSaveState("save changes");
                 setTimeout(() => {
                     setSaveState("");
-                }, 6000);
+                }, 1000);
 
             } else {
                 didMount.current = true;
             }
-        }, 5000);
+        }, 1000);
 
         return () => clearTimeout(delayDispatch);
     }, [taskTitle, description, assigneeId, priority, status, dueDate]);
@@ -256,10 +268,12 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
             errors.push("Title should between 3 and 50 characters")
         } else if (description.length > 255) {
             errors.push("Description should be less than 255 characters")
+        } else if (!assigneeId) {
+            errors.push("Please provided a valid assignee")
         }
 
         setErrors(errors);
-    }, [taskTitle])
+    }, [taskTitle, description, assigneeId])
 
 
 
@@ -272,15 +286,23 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
 
     return (
         <>
-            {errors.length > 0 && (<div>
 
-                <ul>
-                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul>
+            <div onClick={() => {
+                setShowTaskSideDetail(true);
 
-            </div>)}
+            }}>
+
+                <span>Details</span>
+                <span>
+                    <i className="fa-solid fa-chevron-right"></i>
+                </span>
+            </div>
+            <div>
+                <TaskSideDetail setShowTaskSideDetail={setShowTaskSideDetail} taskId={taskId} users={users} section={section} sessionUser={sessionUser} project={project} showTaskSideDetail={showTaskSideDetail} task={task} />
+            </div>
             {taskSettingUser ?
                 (<>
+
                     <div className='task-detail-content'>
                         <div className="task-complete">
                             <button
@@ -297,6 +319,13 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
                                 {task.completed ? "Completed" : "Mark Complete"}
                             </button>{'  '}
                         </div>
+                        {errors.length > 0 && (<div>
+
+                            <ul>
+                                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                            </ul>
+
+                        </div>)}
                         <div>
                             <input className='edit-task-title'
                                 type='text'
@@ -307,21 +336,6 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
 
                             />
                         </div>
-
-                        <div onClick={() => {
-                            setShowTaskSideDetail(true);
-
-                        }}>
-
-                            <span>Details</span>
-                            <span>
-                                <i className="fa-solid fa-chevron-right"></i>
-                            </span>
-                        </div>
-                        <div>
-                            <TaskSideDetail setShowTaskSideDetail={setShowTaskSideDetail} task={task} users={users} section={section} sessionUser={sessionUser} projectId={projectId} showTaskSideDetail={showTaskSideDetail} />
-                        </div>
-
 
                         <div>
                             <Select className='assignee-select'
@@ -350,10 +364,10 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
                                     {dueDate ? dueDate : "No due date"}
                                     <div id="task-detail-date-calendar">
                                         <Calendar
-                                            // value={properDate}
+                                            value={properDate}
                                             tileDisabled={tileDisabled}
                                             onChange={(date) => {
-                                                // setProperDate(date);
+                                                setProperDate(date);
                                                 // setServerDate(date.toString());
                                                 handleDueDateChange(date)
                                             }}
@@ -461,6 +475,7 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
 
 
                 )}
+
 
 
         </>
