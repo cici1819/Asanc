@@ -22,8 +22,9 @@ function User() {
 
   return (
     <ul>
+      <h2>{user.firstName}'s profile</h2>
       <li>
-        <strong>User Id</strong> {userId}
+        <strong>User id</strong> {userId}
       </li>
       <li>
         <strong>Username</strong> {user.username}

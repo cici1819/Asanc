@@ -1,0 +1,50 @@
+.single-project-container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    padding-left: 30px;
+    overflow-x: hidden;
+    align-items: flex-start;
+
+    /* background-color: aqua; */
+    width:80vw;
+    height:35vh ;
+    /* overflow: auto; */
+    position: relative;
+    margin-bottom: 50px;
+
+    border: 3px solid rgba(237,234,233,0.8);
+    border-radius: 8px;
+    box-shadow: 10px,5px,5px,rgb(89, 5, 26);
+
+}
+.single-project-container:hover{
+    cursor:hand;
+    border: 3px solid rgba(175,171,172,1);
+}
+.c-p-l-title{
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.icon-lists{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap:20px;
+    background-color: aqua;
+    margin-top: 20px;
+}
+.HomePage-create{
+    width: 60px;
+    height: 60px;
+    border: 1px dotted rgb(175,171,172) ;
+    border-radius: 10px;
+}
+
+.single-project-icon{
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+}

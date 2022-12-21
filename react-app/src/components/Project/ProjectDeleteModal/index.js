@@ -3,7 +3,7 @@ import { Modal } from '../../../context/Modal';
 import { useSelector } from 'react-redux';
 import ProjectDelete from './ProjectDeleteForm';
 
-function ProjectDeleteModal({ project, showProjectDeleteModal, setShowProjectDeleteModal }) {
+function ProjectDeleteModal({ currentProject, showProjectDeleteModal, setShowProjectDeleteModal }) {
     const sessionUser = useSelector((state) => state.session.user);
     if (!sessionUser) {
         return null;
@@ -14,7 +14,7 @@ function ProjectDeleteModal({ project, showProjectDeleteModal, setShowProjectDel
 
             {showProjectDeleteModal && (
                 <Modal onClose={() => setShowProjectDeleteModal(false)}>
-                    <ProjectDelete setShowProjectDeleteModal={setShowProjectDeleteModal} project={project} />
+                    <ProjectDelete setShowProjectDeleteModal={setShowProjectDeleteModal} currentProject={currentProject} />
                 </Modal>
             )}
 
@@ -23,4 +23,4 @@ function ProjectDeleteModal({ project, showProjectDeleteModal, setShowProjectDel
 }
 
 
-export default ServerDeleteModal;
+export default ProjectDeleteModal;

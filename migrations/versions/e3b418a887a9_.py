@@ -37,6 +37,7 @@ def upgrade():
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
     op.create_table('projects',
+<<<<<<< HEAD
         sa.Column('id', sa.Integer(), nullable=False),
         sa.Column('title', sa.String(length=50), nullable=False),
         sa.Column('owner_id', sa.Integer(), nullable=False),
@@ -47,6 +48,18 @@ def upgrade():
         sa.Column('updated_at', sa.DateTime(), nullable=True),
         sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
         sa.PrimaryKeyConstraint('id')
+=======
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('title', sa.String(length=50), nullable=False),
+    sa.Column('owner_id', sa.Integer(), nullable=False),
+    sa.Column('description', sa.String(length=255), nullable=False),
+    sa.Column('color', sa.String(length=255)),
+    sa.Column('icon', sa.String(length=255), nullable=False),
+    sa.Column('created_at', sa.DateTime(), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), nullable=True),
+    sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id')
+>>>>>>> c644ffe5499c6dc02f92864d00d2a0036c30466a
     )
     if environment == "production":
         op.execute(f"ALTER TABLE projects SET SCHEMA {SCHEMA};")
@@ -63,12 +76,23 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE sections SET SCHEMA {SCHEMA};")
 
+<<<<<<< HEAD
     op.create_table('project_members',
         sa.Column('users_id', sa.Integer(), nullable=False),
         sa.Column('projects_id', sa.Integer(), nullable=False),
         sa.ForeignKeyConstraint(['projects_id'], ['projects.id'], ),
         sa.ForeignKeyConstraint(['users_id'], ['users.id'], ),
         sa.PrimaryKeyConstraint('users_id', 'projects_id')
+=======
+    op.create_table('sections',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('title', sa.String(length=50), nullable=True),
+    sa.Column('created_at', sa.DateTime(), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), nullable=True),
+    sa.Column('project_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['project_id'], ['projects.id'], ),
+    sa.PrimaryKeyConstraint('id')
+>>>>>>> c644ffe5499c6dc02f92864d00d2a0036c30466a
     )
     if environment == "production":
         op.execute(f"ALTER TABLE project_members SET SCHEMA {SCHEMA};")
@@ -76,6 +100,7 @@ def upgrade():
 
 
     op.create_table('tasks',
+<<<<<<< HEAD
         sa.Column('id', sa.Integer(), nullable=False),
         sa.Column('title', sa.String(length=100), nullable=True),
         sa.Column('description', sa.String(length=255), nullable=True),
@@ -94,6 +119,26 @@ def upgrade():
         sa.ForeignKeyConstraint(['project_id'], ['projects.id'], ),
         sa.ForeignKeyConstraint(['section_id'], ['sections.id'], ),
         sa.PrimaryKeyConstraint('id')
+=======
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('title', sa.String(length=100), nullable=False),
+    sa.Column('description', sa.String(length=255), nullable=True),
+    sa.Column('owner_id', sa.Integer(), nullable=False),
+    sa.Column('assignee_id', sa.Integer(), nullable=True),
+    sa.Column('project_id', sa.Integer(), nullable=False),
+    sa.Column('section_id', sa.Integer(), nullable=False),
+    sa.Column('status', sa.String(length=100), nullable=True),
+    sa.Column('priority', sa.String(length=100), nullable=True),
+    sa.Column('end_date', sa.DateTime(), nullable=True),
+    sa.Column('completed', sa.Boolean(), nullable=False),
+    sa.Column('created_at', sa.DateTime(), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), nullable=True),
+    sa.ForeignKeyConstraint(['assignee_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['project_id'], ['projects.id'], ),
+    sa.ForeignKeyConstraint(['section_id'], ['sections.id'], ),
+    sa.PrimaryKeyConstraint('id')
+>>>>>>> c644ffe5499c6dc02f92864d00d2a0036c30466a
     )
     if environment == "production":
         op.execute(f"ALTER TABLE tasks SET SCHEMA {SCHEMA};")

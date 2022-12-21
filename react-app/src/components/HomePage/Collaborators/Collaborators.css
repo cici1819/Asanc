@@ -1,0 +1,78 @@
+.h-users-logo{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.home-page-members-container{
+
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    padding-left: 30px;
+    overflow-x: hidden;
+    align-items: flex-start;
+    width: 80vw;
+    height:35vh ;
+    overflow-y: auto;
+    border: 0.8px solid rgba(237,234,233,0.8);
+    border-radius: 8px;
+    box-shadow: 0px,0px,10px,rgba(175,171,172);
+
+
+}
+
+.home-page-members-container:hover{
+    cursor:hand;
+    border: 0.5px solid rgba(175,171,172,1);
+
+}
+
+.h-users-title{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+
+.h-u-s1{
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.h-u-s2{
+    padding-left: 10px;
+    color: rgb(88,88,89);
+    font-size: 15px;
+
+    /* background-color: antiquewhite; */
+    margin-top: 7px;
+}
+
+.members-list-card{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap:25px;
+
+}
+
+.h-user-s-card{
+    width: 180px;
+    height: 200px;
+    border: 1px dashed rgba(215,213,213,1);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+}
+.h-user-s-card:hover{
+    border: 1px solid rgb(175,171,172);
+}

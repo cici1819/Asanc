@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import Task, db
+from app.models import Task, db, User
 from app.forms import TaskForm
 from datetime import date, datetime
 import json
+from operator import itemgetter
 from flask_login import current_user, login_user, logout_user, login_required
 
 task_routes = Blueprint('tasks', __name__)
@@ -47,23 +48,29 @@ def  section_tasks(section_id):
 def create_task():
     form = TaskForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    user_id = current_user.get_id()
-    print("***********task-form data",form.data)
+    assigneeId = itemgetter('assigneeId')(request.json)
+    user_id = current_user.id
     if form.validate_on_submit():
         task = Task(
         title = form.data['title'],
         description=form.data['description'],
-        assignee_id=form.data['assignee_id'],
-        section_id=form.data['section_id'],
+        section_id=form.data['sectionId'],
         owner_id=user_id,
         status= form.data['status'],
         priority=form.data['priority'],
-        project_id = form.data['project_id'],
-        end_date = form.data['end_date'],
-        completed = form.data['completed'],
+        project_id = form.data['projectId'],
+        end_date = datetime.today(),
+        completed = False,
         created_at = datetime.today(),
         updated_at = datetime.today(),
         )
+        if task.user_assignee_t == 'null':
+            task.assignee_id = user_id
+        else:
+            task.assignee_id = assigneeId
+
+        user =  User.query.get(request.json['assigneeId'])
+        task.user_assignee_t = user
         db.session.add(task)
         db.session.commit()
         return task.to_dict()
@@ -77,18 +84,36 @@ def create_task():
 def edit_task(task_id):
     form = TaskForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    end_date = itemgetter('end_date')(request.json)
+    assigneeId= itemgetter('assigneeId')(request.json)
     if form.validate_on_submit():
         task = Task.query.get(task_id)
         task.title = form.data['title']
         task.description=form.data['description']
-        task.assignee_id=form.data['assignee_id']
         task.status= form.data['status']
         task.priority=form.data['priority']
-        task.end_date = form.data['end_date']
+        task.end_date = datetime.strptime(end_date, '%Y-%m-%d')
         task.completed = form.data['completed']
+        # Get the user object by assigneeId
+        # user =  User.query.get(form.data['assigneeId'])
+        # print("^^^^^^^^^^^^^^^^^^end_date",end_date)
+        if end_date == 'null':
+            task.end_date = db.null()
+        else:
+            task.end_date =datetime.strptime(end_date, '%Y-%m-%d')
+
+        if task.user_assignee_t == 'null':
+            task.assignee_id = task.owner_id
+        else:
+            task.assignee_id = assigneeId
+
+
+        user =  User.query.get(request.json['assigneeId'])
+        task.user_assignee_t = user
         db.session.add(task)
         db.session.commit()
-        return task.to_dict()
+        res = task.to_dict()
+        return res
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
@@ -101,3 +126,11 @@ def delete_task(task_id):
   db.session.delete(task)
   db.session.commit()
   return {'Message':'Successfully deleted'}
+
+@task_routes.route('/<int:task_id>/complete')
+@login_required
+def toggleComplete(task_id):
+    task = Task.query.get(task_id)
+    task.completed = not task.completed
+    db.session.commit()
+    return task.to_dict()

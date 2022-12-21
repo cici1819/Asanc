@@ -12,7 +12,7 @@ class Project(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey(
     add_prefix_for_prod('users.id')), nullable=False)
     description = db.Column(db.String(255), nullable=False)
-    color = db.Column(db.String(255), default="rgb(240, 106, 106)",nullable=False)
+    color = db.Column(db.String(255), default="rgb(240, 106, 106)")
     icon = db.Column(db.String(255), default = "https://thumbnail.imgbin.com/18/11/8/business-essential-icon-project-icon-vkR5utvD_t.jpg",nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.now())

@@ -3,10 +3,11 @@ import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
 import "./ProjectSettingSelect.css"
 
-const ProjectSetting = ({ setShowProjectEditModal, setShowProjectDeleteModal }) => {
+const ProjectSetting = ({ setShowProjectEditModal, setShowProjectDeleteModal, currentProject}) => {
     const sessionUser = useSelector((state) => state.session.user);
-    const projects = useSelector(state => state.projects.allProjects)
-    const { projectId } = useParams()
+    // const projects = useSelector(state => state.projects.allProjects)
+    // const projectsArr = Object.values(projects)
+    // const { projectId } = useParams()
     // let [showMenu, setShowMenu] = useState(false)
     // const dispatch = useDispatch()
     let [showMenu, setShowMenu] = useState(false)
@@ -32,17 +33,17 @@ const ProjectSetting = ({ setShowProjectEditModal, setShowProjectDeleteModal }) 
     }
 
 
-    let name
+    let title
     let sessionUserIsOwner = false
-    if (projects) {
-        let currentProject = projects.find(project => project?.id == projectId)
+
+        // let currentProject = projectsArr.find(project => project?.id == projectId)
         if (currentProject){
             title = currentProject?.title
             // console.log("current Project ",currentProject)
             sessionUserIsOwner = currentProject.owner_id==sessionUser.id
             // console.log ("owned by -------?" , sessionUserIsOwner)
         }
-    }
+    
 
     return (
         <>

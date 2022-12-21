@@ -14,12 +14,9 @@ function ProjectCreateModal() {
     return (
         <>
             <div className='add-project' >
-                <div className='project-create-icon' >
-                    <span>
-                        My Projects
-                    </span>
+                <span className=''>
                     <i className="fa-regular fa-plus" id="create-server-plus" onClick={() => setShowModal(true)}> </i>
-                </div>
+                </span>
                 {showModal && (
                     <Modal onClose={() => setShowModal(false)}>
                         <ProjectCreate setShowModal={setShowModal} />
