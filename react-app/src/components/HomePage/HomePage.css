@@ -22,7 +22,7 @@
     top: 66px;
     width: 100vw;
     height: 100vh;
-    position: fixed;
+    /* position: fixed; */
     overflow:auto;
 }
 
@@ -35,7 +35,7 @@
     left:300px;
     width: 100vw;
     height: 100vh;
-    position: fixed;
+    /* position: fixed; */
     overflow: auto;
 }
 .title-closed {

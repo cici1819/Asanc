@@ -44,9 +44,9 @@ function CurrentUserProject() {
                                     to={`/home/${project?.id}/list`}>
 
                                     <img className={`single-project-icon`} src={project?.icon} style={{ backgroundColor: project?.color }}alt='single-project-icon' />
-                                    <span className="single-project-title2">
+                                    <div className="single-project-title2">
                                         {project?.title}
-                                    </span>
+                                    </div>
 
 
                                 </NavLink>
