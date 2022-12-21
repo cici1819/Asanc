@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCurrUserProjects } from "../../store/projectReducer";
 import LogoutButton from "../auth/LogoutButton";
 import logo from "../../img/asanc-logo.png"
-import userLogo from "../../img/user-logo.png"
 import "./SideBar.css"
 import ProjectCreateModal from "../Project/ProjectCreateModal";
 import { NavLink, Link } from "react-router-dom";

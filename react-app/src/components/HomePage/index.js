@@ -39,41 +39,46 @@ function HomePage({ show, toggle }) {
     const day = days[today.getDay()]
     const month = months[today.getMonth()]
     const dateNumber = today.getDate()
-    return (
-        <div className="home-page-container">
-            <div className="home-page-sideBar">
-                <SideBar show={show} toggle={toggle} />
-            </div>
-            <div className="home-page-main">
-                <div className='top-title'>
-                    <div className='home-date'>{`${day}, ${month} ${dateNumber}`}</div>
-                    <div className="home-hello">Welcome, {`${sessionUser?.firstName}`}</div>
-                </div>
-                <div className="single-project-container">
-                    <CurrentUserProject />
-                    <div className="home-page-projectcreateModal">
-                        <span className="create-title">
-                            Create Project
-                        </span>
-                        <div className="HomePage-create">
-                            <div className="create-icon-homePage">
-                                <ProjectCreateModal />
-                            </div>
-                        </div>
+    const homePageClass = show ? "homePage-open" : "homePage-closed"
+    const titleClass = show ? "title-open" : "title-closed"
+    return (<>
+        <div className="home-page-sideBar">
+            <SideBar show={show} toggle={toggle} />
+        </div>
 
+
+        <div className={homePageClass}>
+            <div className={titleClass}>
+                <div className='home-date'>{`${day}, ${month} ${dateNumber}`}</div>
+                <div className="home-hello">Welcome, {`${sessionUser?.firstName}`}</div>
+            </div>
+            <div className="single-project-container">
+                <CurrentUserProject />
+                <div className="home-page-projectcreateModal">
+                    <span className="create-title">
+                        Create Project
+                    </span>
+                    <div className="HomePage-create">
+                        <div className="create-icon-homePage">
+                            <ProjectCreateModal />
+                        </div>
                     </div>
 
                 </div>
 
-                <div className="collaborator-div">
-                    <CurrentUserCollaborators />
-                </div>
-
-
-
             </div>
 
+            <div className="collaborator-div">
+                <CurrentUserCollaborators />
+            </div>
+
+
+
         </div>
+
+
+    </>
+
 
 
 

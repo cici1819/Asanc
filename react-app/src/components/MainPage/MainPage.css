@@ -1,14 +1,17 @@
 .main-page-content {
     background-color: aqua;
-    margin-left: 300px;
-    width: 60vw;
-    position: absolute;
-    margin-top: -80vh;
+    height: 100vh;
+    position: fixed;
+    width: 100vw;
+
 
 }
 
 .main-page-wapper{
     height: 100vh;
     width: 100vw;
+    position: absolute;
+    top:66px;
+    left:240px;
 
 }

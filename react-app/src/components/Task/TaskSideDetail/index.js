@@ -1,10 +1,12 @@
 import React from 'react'
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { getOneSection } from "../../../store/sectionReducer"
 import { getOneProject } from "../../../store/projectReducer"
 import * as taskAction from "../../../store/taskReducer"
 import Select from 'react-select';
 import { components } from 'react-select';
+// import 'node_modules/react-select/dist/react-select.css';
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
 import TextareaAutosize from "react-textarea-autosize";
@@ -12,11 +14,13 @@ import userLogo from "../../../img/user-logo.png"
 import './TaskSideDetail.css'
 
 
-const TaskSideDetail = ({ task, taskId, users, section, sessionUser, project, setShowTaskSideDetail, showTaskSideDetail }) => {
-    // const task = useSelector(state => state.tasks.singleTask)
-    console.log("task in sideBar 2222222222222",task)
-    const defaultAssigneeObj = users?.find(user => user?.id == task?.assigneeId)
-    const defaultAssiObj = users?.find(user => user?.id == task?.ownerId)
+
+const TaskSideDetail = ({ task,taskId, users, section, sessionUser, project, setShowTaskSideDetail, showTaskSideDetail }) => {
+    // console.log("*******************%%%%%%%%%%%%%%% task in sideBar", task)
+    console.log("showTaskDetail", showTaskSideDetail)
+    const [assignee, setAssingee] = useState(task.assignee)
+    const [defaultValue, setDefaultValue] = useState({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
+    // const defaultAssiObj = users?.find(user => user?.id == task?.ownerId)
     const taskOwnerObj = users?.find(user => user?.id == task?.ownerId)
     const [saveState, setSaveState] = useState("");
     const didMount = useRef(false);
@@ -32,8 +36,10 @@ const TaskSideDetail = ({ task, taskId, users, section, sessionUser, project, se
     const [completed, setCompleted] = useState(task?.completed)
     const [dueDate, setDueDate] = useState(task?.end_date);
     const [priority, setPriority] = useState(task?.priority);
+    // const [timer, setTimer] = useState(null)
+     let newTask = useSelector(state=>state.tasks.singleTask)
 
-
+     console.log("@@@@@@@@@@@@@@~~~~~~~new task",newTask)
 
     const [errors, setErrors] = useState([]);
     const projectId = project?.id
@@ -43,22 +49,28 @@ const TaskSideDetail = ({ task, taskId, users, section, sessionUser, project, se
     ///////////////////////////////////////////////////////////////
 
     const closeDiv = (e) => {
-        if (e.target?.className.includes('sdetail')) return;
+        // if (e.target?.className.includes('sdetail')) return;
         setShowTaskSideDetail(false);
     };
 
+    // useEffect(() => {
+    //     if (!showTaskSideDetail) return;
+
+    //     document.addEventListener('click', closeDiv);
+
+    //     return () => document.removeEventListener("click", closeDiv);
+    // }, [showTaskSideDetail]);
+
+    // useEffect(() => {
+    //     const loadTask = dispatch(taskAction.loadOneTask(taskId))
+    //     console.log("###############", loadTask)
+    // }, [taskId])
     useEffect(() => {
-        if (!showTaskSideDetail) return;
+        dispatch(taskAction.thunkGetOneTask(taskId))
+        // dispatch(getOneProject(projectId))
+        //  console.log("dispatch+++++++++++++++++",)
+    }, [dispatch, taskId])
 
-        document.addEventListener('click', closeDiv);
-
-        return () => document.removeEventListener("click", closeDiv);
-    }, [showTaskSideDetail]);
-
-    useEffect(() => {
-       const loadTask= dispatch(taskAction.loadOneTask(taskId))
-        console.log("###############",loadTask)
-    }, [taskId])
 
     // assignee select///////////////////////////////////////////////////
     let options = [];
@@ -70,8 +82,8 @@ const TaskSideDetail = ({ task, taskId, users, section, sessionUser, project, se
         options.push({ value: value, label: label, color: color, img: userLogo })
     }
 
-    const defaultValueObj = { value: defaultAssigneeObj?.id, label: `${defaultAssigneeObj?.firstName}  ` + defaultAssigneeObj?.lastName, color: defaultAssigneeObj?.avatar_color, img: userLogo }
-    const defaultAssiValueObj = { value: defaultAssiObj?.id, label: `${defaultAssiObj?.firstName}  ` + defaultAssiObj?.lastName, color: defaultAssiObj?.avatar_color, img: userLogo }
+    // defaultValue = { value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo }
+    // const defaultAssiValueObj = { value: defaultAssiObj?.id, label: `${defaultAssiObj?.firstName}  ` + defaultAssiObj?.lastName, color: defaultAssiObj?.avatar_color, img: userLogo }
 
     const { SingleValue, Option } = components;
     const IconSingleValue = (props) => (
@@ -145,8 +157,21 @@ const TaskSideDetail = ({ task, taskId, users, section, sessionUser, project, se
     };
 
     const handleAssigneeChange = (e) => {
-        setAssingeeId(e.value)
+        const assinId = parseInt(e.value)
+        // console.log("###############,typeOf",typeof(assinId),assinId)
+        setAssingeeId(assinId)
+        setDefaultValue(e)
+        // const payload = {
+        //     title: taskTitle, description, assigneeId: assinId, ownerId, sectionId, status, priority, projectId, end_date: dueDate, completed, taskId
+        // }
+        // dispatch(taskAction.thunkUpdateTask(payload))
+        // clearTimeout(timer)
+        // const newTimer = setTimeout(() => {
+        //     dispatch(getOneSection(sectionId))
 
+        // },500)
+
+        // setTimer(newTimer)
     }
 
     const handleDueDateChange = (date) => {
@@ -179,6 +204,17 @@ const TaskSideDetail = ({ task, taskId, users, section, sessionUser, project, se
             setProperDate(new Date());
 
 
+        }
+        if (task?.assigneeId) {
+            setAssingeeId(task.assigneeId);
+        }
+
+        if (task?.assignee) {
+
+            setAssingee(task.assignee);
+            setDefaultValue({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
+            // console.log("@@@@@@@@@@@@@@", defaultValue)
+            // console.log("*****************", assignee)
         }
 
         if (task?.title) {
@@ -226,19 +262,19 @@ const TaskSideDetail = ({ task, taskId, users, section, sessionUser, project, se
                 const res = await dispatch(taskAction.thunkUpdateTask(payload));
                 if (res) {
 
-                    //    await dispatch(taskAction.thunkGetOneTask(taskId))
+                    // await dispatch(taskAction.thunkGetOneTask(taskId))
 
                     await dispatch(getOneProject(projectId))
                 }
                 setSaveState("save changes");
                 setTimeout(() => {
                     setSaveState("");
-                }, 1000);
+                }, 2000);
 
             } else {
                 didMount.current = true;
             }
-        }, 500);
+        }, 1000);
 
         return () => clearTimeout(delayDispatch);
     }, [taskTitle, description, assigneeId, priority, status, dueDate, taskId]);
@@ -288,26 +324,25 @@ const TaskSideDetail = ({ task, taskId, users, section, sessionUser, project, se
 
 
     return (
-        <div className='task-side-detail-content sdetail'>
+        <div className='task-side-detail-content'>
 
-            <div className='close-s-div' onClick={closeDiv}>
-                <i className="fa-solid fa-right-to-bracket"></i>
-            </div>
-
-            {showTaskSideDetail && taskSettingUser &&
+            {taskSettingUser &&
                 (<>
+                    <div className='close-s-div' onClick={closeDiv}>
+                        <i className="fa-solid fa-right-to-bracket"></i>
+                    </div>
+                    <div className='s-detail-content'>
 
-                    <div className='s-detail-content sdetail'>
-                        <div className="s-complete sdetail">
+                        <div className="s-complete">
                             <button
                                 onClick={toggleCompleted}
                                 className={
                                     task.completed
-                                        ? "s-complete-button-completed sdetail"
-                                        : "s-complete-button sdetail"
+                                        ? "s-complete-button-completed"
+                                        : "s-complete-button"
                                 }>
 
-                                <i className="fa-solid fa-circle-check sdetail" id="s-check-icon">
+                                <i className="fa-solid fa-circle-check" id="s-check-icon">
 
                                 </i>
                                 {task.completed ? "Completed" : "Mark Complete"}
@@ -315,13 +350,13 @@ const TaskSideDetail = ({ task, taskId, users, section, sessionUser, project, se
                         </div>
                         {errors.length > 0 && (<div>
 
-                            <ul className='t-s-error-list sdetail'>
+                            <ul className='t-s-error-list'>
                                 {errors.map((error, idx) => <li key={idx} className="t-s-e sdetail">{error}</li>)}
                             </ul>
 
                         </div>)}
                         <div>
-                            <input className='s-task-title sdetail'
+                            <input className='s-task-title'
                                 type='text'
                                 value={taskTitle}
                                 placeholder="Write a task name"
@@ -331,40 +366,46 @@ const TaskSideDetail = ({ task, taskId, users, section, sessionUser, project, se
                         </div>
 
 
-                        <div className='assignee-s-d sdetail'>
-                            {defaultValueObj ? (<Select className='s-assignee-select sdetail'
+                        <div className='assignee-s-d'>
+                            <Select className='s-assignee-select'
 
                                 styles={customStyles}
                                 components={{ SingleValue: IconSingleValue, Option: IconOption }}
                                 options={options}
-                                defaultValue={defaultValueObj}
-                                onChange={handleAssigneeChange} />) : (<Select className='s-assignee-select sdetail'
+                                defaultValue={defaultValue}
+                                onChange={handleAssigneeChange}
+                                // value={options.filter(function (option) {
+                                //     return option.value === defaultValue.value;
+                                // })}
+                                value={defaultValue}
+                            />
+                            {/* (<Select className='s-assignee-select'
 
-                                    styles={customStyles}
-                                    components={{ SingleValue: IconSingleValue, Option: IconOption }}
-                                    options={options}
-                                    defaultValue={defaultAssiValueObj}
-                                    onChange={handleAssigneeChange} />)
-                                // isSearchable={false}
+                                styles={customStyles}
+                                components={{ SingleValue: IconSingleValue, Option: IconOption }}
+                                options={options}
+                                defaultValue={defaultAssiValueObj}
+                                onChange={handleAssigneeChange} />)
+                                // isSearchable={false} */}
 
-                            }
+
                         </div>
 
 
-                        <div className='s-date-setting sdetail'>
-                            <span className='s-dueDate-title sdetail'>Due date</span>
+                        <div className='s-date-setting'>
+                            <span className='s-dueDate-title'>Due date</span>
                             {showDateForm ? (
                                 <div
-                                    className="s-date-open sdetail"
+                                    className="s-date-open"
                                     ref={dateDiv}
                                     onClick={() => setShowDateForm(true)}>
 
-                                    <div className="s-calendar-icon sdetail">
-                                        <i className="fa-light fa-calendar-day sdetail" id="s-canlendar-i"></i>
+                                    <div className="s-calendar-icon">
+                                        <i className="fa-light fa-calendar-day" id="s-canlendar-i"></i>
                                     </div>
                                     {dueDate ? dueDate : "No due date"}
-                                    <div id="s-date-calendar" className='calender sdetail'>
-                                        <Calendar className="s-calendar sdetail"
+                                    <div id="s-date-calendar" className='calender'>
+                                        <Calendar className="s-calendar"
                                             value={properDate}
                                             tileDisabled={tileDisabled}
                                             onChange={(date) => {
@@ -376,12 +417,12 @@ const TaskSideDetail = ({ task, taskId, users, section, sessionUser, project, se
                                 </div>
                             ) : (
                                 <div
-                                    className="s-date-div sdetail"
+                                    className="s-date-div"
 
                                     onClick={() => setShowDateForm(true)}>
 
-                                    <div id="s-showDate-icon sdetail">
-                                        <i className="fa-regular fa-calendar-days sdetail"></i>
+                                    <div id="s-showDate-icon">
+                                        <i className="fa-regular fa-calendar-days"></i>
                                     </div>
                                     {dueDate ? (
                                         <div>
@@ -394,38 +435,38 @@ const TaskSideDetail = ({ task, taskId, users, section, sessionUser, project, se
                                 </div>
                             )}
                         </div>
-                        <div className=' t-s-p sdetail'>
-                            <span className='t-stp sdetail'>
+                        <div className=' t-s-p'>
+                            <span className='t-stp'>
                                 Projects
                             </span>
-                            <span><img className={`single-project-icon sdetail`} src={project?.icon} style={{ backgroundColor: project?.color }} alt='single-project-icon' /></span>
-                            <span className='t-p-t sdetail'>{project.title}</span>
+                            <span><img className={`single-project-icon`} src={project?.icon} style={{ backgroundColor: project?.color }} alt='single-project-icon' /></span>
+                            <span className='t-p-t'>{project.title}</span>
                         </div>
 
-                        <div className="s-priority sdetail">
-                            <div className="s-p-title sdetail">Priority</div>
-                            <div className="s-p-content sdetail">
-                                <select value={priority} onChange={handlePriorityChange} className="s-p sdetail">
-                                    <option className="s-p-1 sdetail" value="Null">---</option>
-                                    <option className="s-p-2 sdetail" value="Low">Low</option>
-                                    <option className="s-p-3 sdetail" value="Medium">Medium</option>
-                                    <option className="s-p-4 sdetail" value="High">High</option>
+                        <div className="s-priority">
+                            <div className="s-p-title">Priority</div>
+                            <div className="s-p-content">
+                                <select value={priority} onChange={handlePriorityChange} className="s-p">
+                                    <option className="s-p-1" value="Null">---</option>
+                                    <option className="s-p-2" value="Low">Low</option>
+                                    <option className="s-p-3" value="Medium">Medium</option>
+                                    <option className="s-p-4" value="High">High</option>
                                 </select>
                             </div>
                         </div>
-                        <div className="s-status sdetail">
-                            <div className="s-s-title sdetail">Status</div>
-                            <div className="s-s-labels sdetail">
+                        <div className="s-status">
+                            <div className="s-s-title">Status</div>
+                            <div className="s-s-labels">
                                 <select value={status} onChange={handleStatusChange} className="s-s sdetail">
-                                    <option className="s-s-1 sdetail" value="Null">---</option>
-                                    <option className="s-s-2 sdetail" value="On Track">On Track</option>
-                                    <option className="s-s-3 sdetail" value="At Risk">At Risk</option>
-                                    <option className="s-s-4 sdetail" value="Off Track">Off Track</option>
+                                    <option className="s-s-1" value="Null">---</option>
+                                    <option className="s-s-2" value="On Track">On Track</option>
+                                    <option className="s-s-3" value="At Risk">At Risk</option>
+                                    <option className="s-s-4" value="Off Track">Off Track</option>
                                 </select>
                             </div>
                         </div>
-                        <div className="side-description sdetail">
-                            <TextareaAutosize className='edit-s-discription sdetail'
+                        <div className="side-description">
+                            <TextareaAutosize className='edit-s-discription'
                                 type='text'
                                 value={description}
                                 placeholder="Description"
@@ -433,9 +474,9 @@ const TaskSideDetail = ({ task, taskId, users, section, sessionUser, project, se
 
                             />
                         </div>
-                        <div className='s-owner-info sdetail'>
-                            <span className='s-o-logo sdetail'> <img className='s-o-i sdetail' src={userLogo} style={{ height: '30px', width: '30px', borderRadius: '50%', backgroundColor: taskOwnerObj.avatar_color }} /> </span>
-                            <span className='s-o-name sdetail'>{taskOwnerObj.firstName} {taskOwnerObj.lastName} created this task</span>
+                        <div className='s-owner-info'>
+                            <span className='s-o-logo'> <img className='s-o-i' src={userLogo} style={{ height: '30px', width: '30px', borderRadius: '50%', backgroundColor: taskOwnerObj.avatar_color }} /> </span>
+                            <span className='s-o-name'>{taskOwnerObj.firstName} {taskOwnerObj.lastName} created this task</span>
                         </div>
 
 
@@ -447,11 +488,13 @@ const TaskSideDetail = ({ task, taskId, users, section, sessionUser, project, se
 
 
 
-            {showTaskSideDetail && !taskSettingUser && (
+            {!taskSettingUser && (
                 <div>
-
+                    <div className='close-s-div' onClick={closeDiv}>
+                        <i className="fa-solid fa-right-to-bracket"></i>
+                    </div>
                     <div>
-                        <input className='s-r-task-input sdetail'
+                        <input className='s-r-task-input'
                             type='text'
                             value={taskTitle}
                             onChange={handleTitleChange}
@@ -460,19 +503,19 @@ const TaskSideDetail = ({ task, taskId, users, section, sessionUser, project, se
                     </div>
                     <div>
 
-                        <MySelect className='s-r-select sdetail'
+                        <MySelect className='s-r-select'
 
                             styles={customStyles}
                             components={{ SingleValue: IconSingleValue }}
-                            defaultValue={defaultValueObj}
+                            defaultValue={defaultValue}
                             isReadOnly={true}
                             isSearchable={false} />
                     </div>
 
-                    <div className='s-r-dueDate sdetail'>
-                        <span className='s-dueDate-title sdetail'>Due Date</span>
+                    <div className='s-r-dueDate'>
+                        <span className='s-dueDate-title'>Due Date</span>
                         {dueDate ? (
-                            <div className='s-r-d-date sdetail'>
+                            <div className='s-r-d-date'>
                                 {dueDate}
 
                             </div>
@@ -480,26 +523,26 @@ const TaskSideDetail = ({ task, taskId, users, section, sessionUser, project, se
                             "No due date"
                         )}
                     </div>
-                    <div className='s-r-p sdetail'>
-                        <span className='s-r-p-title sdetail'>Priority</span>
-                        <span className='s-r-p sdetail'>{priority}</span>
+                    <div className='s-r-p'>
+                        <span className='s-r-p-title'>Priority</span>
+                        <span className='s-r-p'>{priority}</span>
                     </div>
-                    <div className='s-r-status sdetail'>
-                        <span className='s-r-s-title sdetail'>Status</span>
-                        <span className='s-r-s sdetail'>{status}</span>
+                    <div className='s-r-status'>
+                        <span className='s-r-s-title'>Status</span>
+                        <span className='s-r-s'>{status}</span>
                     </div>
-                    <div className='t-s-d sdetail'>
-                        <spans className="t-s-t detail"> Description</spans>
+                    <div className='t-s-d'>
+                        <spans className="t-s-t"> Description</spans>
                         {description ? (
-                            <div className='t-s-d-c sdetail'><p className='d-p sdetail'>{description}</p></div>
+                            <div className='t-s-d-c'><p className='d-p'>{description}</p></div>
 
                         ) : (
                             "No description"
                         )}
                     </div>
-                    <div className='s-owner-info sdetail'>
-                        <span className='s-o-logo sdetail'> <img className='s-o-i sdetail' src={userLogo} style={{ height: '30px', width: '30px', borderRadius: '50%', backgroundColor: taskOwnerObj?.avatar_color }} /> </span>
-                        <span className='s-o-name sdetail'>{taskOwnerObj?.firstName} {taskOwnerObj?.lastName} created this task</span>
+                    <div className='s-owner-info'>
+                        <span className='s-o-logo'> <img className='s-o-i' src={userLogo} style={{ height: '30px', width: '30px', borderRadius: '50%', backgroundColor: taskOwnerObj?.avatar_color }} /> </span>
+                        <span className='s-o-name'>{taskOwnerObj?.firstName} {taskOwnerObj?.lastName} created this task</span>
                     </div>
                 </div>
 

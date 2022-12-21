@@ -40,6 +40,7 @@ class Task(db.Model):
         "Project",back_populates = "task_p"
     )
 
+
     def to_dict(self):
         task_dict =  {
         "id": self.id,
@@ -55,6 +56,12 @@ class Task(db.Model):
         "completed": self.completed,
         "created_at": str(self.created_at),
         "updated_at": str(self.updated_at),
+        'assignee': {
+                 "id":self.user_assignee_t.id,
+                'firstName': self.user_assignee_t.first_name,
+                'lastName':self.user_assignee_t.last_name ,
+                'avatar_color':self.user_assignee_t.avatar_color,
+            } if self.assignee_id else None
         }
         return task_dict
 

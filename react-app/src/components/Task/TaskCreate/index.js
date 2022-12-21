@@ -11,23 +11,26 @@ import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
 import userLogo from "../../../img/user-logo.png"
 import './TaskCreate.css'
+// import { use } from 'express/lib/router';
 
 
-const TaskCreate = ({ section, sessionUser, project }) => {
+const TaskCreate = ({ section, sessionUser, project, setShowNewTask, showNewTask }) => {
     const [saveState, setSaveState] = useState("");
     const didMount = useRef(false);
     const dispatch = useDispatch();
     const [taskTitle, setTaskTitle] = useState('');
     const [description, setDescription] = useState('');
     const [status, setStatus] = useState('');
-    const [assigneeId, setAssingeeId] = useState('');
+    const [assigneeId, setAssigneeId] = useState('');
+    const [assignee, setAssignee] = useState({ value: sessionUser.id, label: `${sessionUser.firstName}  ` + sessionUser.lastName, color: sessionUser.avatar_color, img: userLogo });
+    const [defaultValue, setDefaultValue] = useState({ value: sessionUser.id, label: `${sessionUser.firstName}  ` + sessionUser.lastName, color: sessionUser.avatar_color, img: userLogo })
     const dateDiv = useRef();
     const [properDate, setProperDate] = useState();
     let newTask = useSelector(state => state.tasks.singleTask)
     // console.log("+++++++++++++,newTask", newTask)
     const [showDateForm, setShowDateForm] = useState(false);
     const [completed, setCompleted] = useState(false)
-    const [dueDate, setDueDate] = useState('');
+    const [dueDate, setDueDate] = useState( new Date().toISOString().split('T')[0]);
     // const [showTaskDetail, setShowTaskDetail] = useState(false);
     const [priority, setPriority] = useState('');
     const [showTaskSideDetail, setShowTaskSideDetail] = useState(false);
@@ -49,7 +52,7 @@ const TaskCreate = ({ section, sessionUser, project }) => {
         options.push({ value: value, label: label, color: color, img: userLogo })
     }
 
-    const defaultValueObj = { value: sessionUser.id, label: `${sessionUser.firstName}  ` + sessionUser.lastName, color: sessionUser.avatar_color, img: userLogo }
+
 
 
     const { SingleValue, Option } = components;
@@ -96,28 +99,29 @@ const TaskCreate = ({ section, sessionUser, project }) => {
 
 
     const handleTitleChange = (e) => {
-        // e.preventDefault();
+        //  e.preventDefault();
         setTaskTitle(e.target.value)
     }
 
-    // const handleTitleBlur = (e) => {
-    //     e.preventDefault()
-    //     let taskTitle = e.target.value;
-    //     const payload = {
-    //         title: taskTitle,
-    //         description,
-    //         assigneeId: sessionUser.id,
-    //         ownerId,
-    //         sectionId,
-    //         status: status,
-    //         priority: priority,
-    //         projectId,
-    //         end_date: new Date().toISOString().split('T')[0],
-    //         completed
-    //     };
-    //    newTask= dispatch(taskAction.thunkCreateTask(payload));
-    //     setErrors([])
-    // }
+    const handleTitleBlur = (e) => {
+        e.preventDefault()
+        let taskTitle = e.target.value;
+        const payload = {
+            title: taskTitle,
+            description,
+            assigneeId: sessionUser.id,
+            ownerId,
+            sectionId,
+            status: status,
+            priority: priority,
+            projectId,
+            completed,
+            end_date: new Date().toISOString().split('T')[0],
+        };
+        newTask = dispatch(taskAction.thunkCreateTask(payload));
+        // setErrors([])
+        // setNewTask("")
+    }
 
 
 
@@ -131,26 +135,11 @@ const TaskCreate = ({ section, sessionUser, project }) => {
     };
 
     const handleAssigneeChange = (e) => {
-        setAssingeeId(e.value)
-        // const payload = {
-        //             title: taskTitle,
-        //             description,
-        //             assigneeId: assigneeId,
-        //             ownerId,
-        //             sectionId,
-        //             status: status,
-        //             priority: priority,
-        //             projectId,
-        //             end_date: new Date().toISOString().split('T')[0],
-        //             completed
-        // };
-        // newTask = dispatch(taskAction.thunkCreateTask(payload));
-        // if (newTask) {
-        //     taskId = newTask.id
-        //     dispatch(getOneSection(sectionId))
-        //     dispatch(taskAction.loadOneTask(taskId))
-        // }
-        // setErrors([])
+        const assinId = parseInt(e.value)
+        console.log("###############,typeOf", typeof (assinId), assinId)
+        setAssigneeId(assinId)
+        setDefaultValue(e);
+
 
     }
 
@@ -159,7 +148,24 @@ const TaskCreate = ({ section, sessionUser, project }) => {
         setDueDate(dateStr);
 
     }
+    let taskId
+    const handleCanelCreat =  () => {
+        if (newTask.id) {
+            taskId = newTask.id
+             dispatch(taskAction.thunkDeleteTask(taskId)).then(setShowNewTask(""))
+            // await dispatch(getOneProject(projectId))
+        } else {
+            setShowNewTask("")
+        }
+    }
 
+    // useEffect(() => {
+    //     if (!showNewTask) return;
+
+    //     document.addEventListener('click', );
+
+    //     return () => document.removeEventListener("click", closeDiv);
+    // }, [showTaskSideDetail]);
     ////////////////////////////////////////////////////////////////////
     // canlendar
 
@@ -190,55 +196,57 @@ const TaskCreate = ({ section, sessionUser, project }) => {
     };
     //////////////////////////////////////////////////////////////////////////////
 
-    let taskId
+
     let task
     useEffect(() => {
 
+        if (newTask) {
+            taskId = newTask.id
+            const delayDispatch = setTimeout(async () => {
+                if (didMount.current) {
+                    const payload = {
+                        title: taskTitle,
+                        description,
+                        assigneeId: assigneeId,
+                        taskId,
+                        ownerId,
+                        sectionId,
+                        status: status,
+                        priority: priority,
+                        projectId,
+                        end_date: dueDate,
+                        completed
+                    };
 
-        const delayDispatch = setTimeout(async () => {
-            if (didMount.current) {
-                const payload = {
-                    title: taskTitle,
-                    description,
-                    assigneeId: assigneeId,
-                    ownerId,
-                    sectionId,
-                    status: status,
-                    priority: priority,
-                    projectId,
-                    end_date: dueDate,
-                    completed
-                };
+                    task = await dispatch(taskAction.thunkUpdateTask(payload));
+                    console.log("task+++++++++++++++", task)
+                    if (task) {
+                        taskId = task.id
+                        console.log("88888888888", taskId)
 
-                newTask = await dispatch(taskAction.thunkCreateTask(payload));
-                console.log("task+++++++++++++++", task)
-                if (newTask) {
-                    taskId = task.id
-                    // console.log("88888888888",taskId)
-                    task = dispatch(taskAction.thunkGetOneTask(taskId))
-                    // console.log("^^^^^^^^^^^^^^^^newTask",newTask)
-                    //    await dispatch(getOneProject(projectId))
+                    }
+                    setSaveState("save changes");
+                    setTimeout(() => {
+                        setSaveState("");
+                    }, 1000);
+
+                } else {
+                    didMount.current = true;
+                    return null
                 }
-                setSaveState("save changes");
-                setTimeout(() => {
-                    setSaveState("");
-                }, 2000);
 
-            } else {
-                didMount.current = true;
-                return null
-            }
+            }, 500)
+            return () => clearTimeout(delayDispatch);
+        }
 
-        }, 3000)
-        return () => clearTimeout(delayDispatch);
 
     }, [taskTitle, description, assigneeId, priority, status, taskId, dueDate, task]);
 
     useEffect(() => {
         dispatch(taskAction.thunkGetOneTask(taskId))
-        dispatch(getOneProject(projectId))
+        // dispatch(getOneProject(projectId))
         //  console.log("dispatch+++++++++++++++++",)
-    }, [dispatch, taskId])
+    }, [dispatch, taskId, task])
 
     useEffect(async () => {
         if (task) {
@@ -248,9 +256,9 @@ const TaskCreate = ({ section, sessionUser, project }) => {
             setTaskTitle(task?.title);
             setDescription(task?.description);
             if (task?.assigneeId) {
-                setAssingeeId(task?.assigneeId);
+                setAssigneeId(task?.assigneeId);
             } else {
-                setAssingeeId(task?.ownerId);
+                setAssigneeId(task?.ownerId);
             }
             if (task?.end_date) {
                 setDueDate(task?.end_date);
@@ -265,6 +273,14 @@ const TaskCreate = ({ section, sessionUser, project }) => {
                 setProperDate(new Date());
 
             }
+            if (task?.assignee) {
+                // console.log(`------- task details page - task.assignee:`);
+                setAssignee(task.assignee);
+                // console.log(`------- task details page - task.assignee:`);
+                setDefaultValue({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
+                // console.log("%%%%%%%%%%%%% in task detail", assignee)
+                // console.log("***************$$$$$$ in task detail",defaultValue)
+            }
             if (task.priority) {
                 setPriority(task?.priority);
             } else {
@@ -278,7 +294,7 @@ const TaskCreate = ({ section, sessionUser, project }) => {
         }
 
 
-    }, [task])
+    }, [task, newTask])
 
     ////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -296,11 +312,11 @@ const TaskCreate = ({ section, sessionUser, project }) => {
 
 
 
-    const deleteTask = async () => {
-        console.log("%%%%%%%%%%%", taskId)
-        await dispatch(taskAction.thunkDeleteTask(taskId));
-        await dispatch(getOneProject(projectId))
-    };
+    // const deleteTask = async () => {
+    //     console.log("%%%%%%%%%%%", taskId)
+    //     await dispatch(taskAction.thunkDeleteTask(taskId));
+    //     await dispatch(getOneProject(projectId))
+    // };
 
 
     ////////////////////////////////////////////////////////////////////////////////////
@@ -320,12 +336,13 @@ const TaskCreate = ({ section, sessionUser, project }) => {
             errors.push("Title should between 3 and 50 characters")
         } else if (description?.length > 255) {
             errors.push("Description should be less than 255 characters")
-        } else if (!assigneeId) {
-            errors.push("Please provided a valid assignee")
         }
+        // else if (!assigneeId) {
+        //     errors.push("Please provided a valid assignee")
+        // }
 
         setErrors(errors);
-    }, [taskTitle, description, assigneeId])
+    }, [taskTitle, description])
 
 
 
@@ -338,25 +355,28 @@ const TaskCreate = ({ section, sessionUser, project }) => {
 
     return (
         <>
+            {/* <div>
+                <button onClick={handleCanelCreat}>
+                    Cancel Create
+                </button>
+
+            </div> */}
+            {newTask.id && <>
+                <div onClick={() => {
+                    setShowTaskSideDetail(true);
+
+                }}>
+                    <span>Details</span>
+                    <span>
+                        <i className="fa-solid fa-chevron-right"></i>
+                    </span>
+                </div>
+                {showTaskSideDetail && <div>
+                    <TaskSideDetail setShowTaskSideDetail={setShowTaskSideDetail} taskId={newTask.id} users={users} section={section} sessionUser={sessionUser} project={project} showTaskSideDetail={showTaskSideDetail} task={newTask} />
+                </div>}
+            </>}
 
 
-            {task &&
-                <>
-                    <div onClick={() => {
-                        setShowTaskSideDetail(true);
-
-                    }}>
-
-                        <span>Details</span>
-                        <span>
-                            <i className="fa-solid fa-chevron-right"></i>
-                        </span>
-                    </div>
-                    <div>
-                        <TaskSideDetail setShowTaskSideDetail={setShowTaskSideDetail} taskId={taskId} users={users} section={section} sessionUser={sessionUser} project={project} showTaskSideDetail={showTaskSideDetail} task={task} />
-                    </div>
-                </>
-            }
 
             <div className='task-detail-content'>
                 <div className="task-complete">
@@ -387,7 +407,7 @@ const TaskCreate = ({ section, sessionUser, project }) => {
                         value={taskTitle}
                         placeholder="New Task"
                         onChange={handleTitleChange}
-                    // onBlur={handleTitleBlur}
+                        onBlur={handleTitleBlur}
 
                     />
                 </div>
@@ -401,8 +421,10 @@ const TaskCreate = ({ section, sessionUser, project }) => {
                         styles={customStyles}
                         components={{ SingleValue: IconSingleValue, Option: IconOption }}
                         options={options}
-                        defaultValue={defaultValueObj}
+                        defaultValue={defaultValue}
                         onChange={handleAssigneeChange}
+                        value={defaultValue}
+                        placeholder="No assignee"
                     // isSearchable={false}
                     />
                 </div>
@@ -476,7 +498,7 @@ const TaskCreate = ({ section, sessionUser, project }) => {
                     </div>
                 </div>
                 <div className="task-delete"
-                    onClick={deleteTask}>
+                    onClick={handleCanelCreat}>
 
                     <i className="fa-sharp fa-solid fa-circle-xmark"></i>
 

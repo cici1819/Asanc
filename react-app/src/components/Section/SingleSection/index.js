@@ -16,7 +16,7 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
     const projectId = project.id
     const [showMenu, setShowMenu] = useState(false)
     const [showSectionDeleteModal, setShowSectionDeleteModal] = useState(false);
-    const [newTask, setNewTask] = useState('')
+    const [showNewTask, setShowNewTask] = useState('')
     const ref = useRef(null)
 
     const openMenu = () => {
@@ -58,7 +58,7 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
             const payload = {
                 sectionId: sectionId, title: title, projectId: projectId
             };
-           const editedSection= dispatch(updatedSection(payload))
+            const editedSection = dispatch(updatedSection(payload))
             if (editedSection) {
                 dispatch(getOneProject(projectId))
             }
@@ -86,11 +86,11 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
                 {errors[0]}
 
             </div>)}
-            <div className='add-task-in-section-icon' onClick={() => setNewTask("newTask")}>
+            <div className='add-task-in-section-icon' onClick={() => setShowNewTask("newTask")}>
                 <i className="fa-duotone fa-plus"></i>
             </div>
             <div>
-                {newTask === "newTask" && <TaskCreate project={project} section={section} sessionUser={sessionUser}/>}
+                {showNewTask === "newTask" && sessionUserIsOwner && <TaskCreate project={project} section={section} sessionUser={sessionUser} setShowNewTask={setShowNewTask} showNewTask={showNewTask} />}
             </div>
             {sessionUserIsOwner ?
                 (<>
@@ -103,6 +103,10 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
                         ref={ref}
 
                     />
+                    <div>
+                        <TaskInSection section={section} project={project} sessionUser={sessionUser} />
+                    </div>
+
 
                     <div className='open-section-setting' onClick={openMenu}>
                         <i className="fa-solid fa-ellipsis"></i>
@@ -153,17 +157,21 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
 
                 )
                 : (
-                    <input className='read-section-input'
-                        type='text'
-                        value={sectionTitle}
-                        onChange={(e) => handleChange(e)}
-                        readOnly
-                    />
+                    <>
+                        <input className='read-section-input'
+                            type='text'
+                            value={sectionTitle}
+                            onChange={(e) => handleChange(e)}
+                            readOnly
+                        />
+                        <div>
+                            <TaskInSection section={section} project={project} sessionUser={sessionUser} />
+                        </div>
+                    </>
+
 
                 )}
-            <div>
-                <TaskInSection section={section} project={project} sessionUser={sessionUser} />
-            </div>
+
 
         </>
     )

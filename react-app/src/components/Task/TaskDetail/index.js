@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { getOneSection } from "../../../store/sectionReducer"
+import { getOneSection } from "../../../store/sectionReducer"
 import TaskSideDetail from '../TaskSideDetail';
 import { getOneProject } from "../../../store/projectReducer"
 import * as taskAction from "../../../store/taskReducer"
@@ -14,18 +14,20 @@ import './SingleTask.css'
 
 
 const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
-    const defaultAssigneeObj = users.find(user => user?.id == task.assigneeId)
+    // const defaultAssigneeObj = users.find(user => user?.id == task.assigneeId)
+    const [assignee, setAssingee] = useState(task.assignee)
     const [saveState, setSaveState] = useState("");
+    const [defaultValue, setDefaultValue] = useState({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
     const didMount = useRef(false);
     const dispatch = useDispatch();
     const [taskTitle, setTaskTitle] = useState(task.title);
     const [description, setDescription] = useState(task.description);
     const [status, setStatus] = useState(task.status);
-    const [assigneeId, setAssingeeId] = useState(task.assigneeId);
+    const [assigneeId, setAssingeeId] = useState(task?.assigneeId);
     const dateDiv = useRef();
     const [properDate, setProperDate] = useState();
     const project = useSelector(state => state.projects.singleProject)
-
+    const [timer, setTimer] = useState(null)
     const [showDateForm, setShowDateForm] = useState(false);
     const [completed, setCompleted] = useState(task.completed)
     const [dueDate, setDueDate] = useState(task.end_date);
@@ -44,12 +46,11 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
         let assigneeObj = users[i];
         let value = assigneeObj.id;
         let label = `${assigneeObj.firstName} ` + assigneeObj.lastName
-        let color = assigneeObj.avatar_color
+        let color = assigneeObj?.avatar_color
         options.push({ value: value, label: label, color: color, img: userLogo })
     }
 
-    const defaultValueObj = { value: defaultAssigneeObj.id, label: `${defaultAssigneeObj.firstName}  ` + defaultAssigneeObj.lastName, color: defaultAssigneeObj.avatar_color, img: userLogo }
-
+    // defaultValue = { value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo }
 
     const { SingleValue, Option } = components;
     const IconSingleValue = (props) => (
@@ -122,16 +123,21 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
     };
 
     const handleAssigneeChange = (e) => {
-        setAssingeeId(e.value)
+        const assinId = parseInt(e.value)
+        // console.log("###############,typeOf",typeof(assinId),assinId)
+        console.log(`---------- handleAssigneeChange - e:`, e);
+        setAssingeeId(assinId)
+        setDefaultValue(e);
+
         // const payload = {
-        //     title: taskTitle, discription, assigneeId: e.value, ownerId, sectionId, status, priority, projectId, end_date: dueDate, completed, taskId
+        //     title: taskTitle, description, assigneeId: assinId, ownerId, sectionId, status, priority, projectId, end_date: dueDate, completed, taskId
         // }
         // dispatch(taskAction.thunkUpdateTask(payload))
         // clearTimeout(timer)
         // const newTimer = setTimeout(() => {
-        //     dispatch(getOneProject(projectId))
+        //     dispatch(getOneSection(sectionId))
 
-        // }, 2000)
+        // }, 500)
 
         // setTimer(newTimer)
     }
@@ -169,6 +175,19 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
         } else {
             setDueDate(null);
             setProperDate(new Date());
+        }
+        if (task?.assignee) {
+            console.log(`------- task details page - task.assignee:`);
+            setAssingee(task.assignee);
+            console.log(`------- task details page - task.assignee:`);
+            setDefaultValue({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
+            // console.log("%%%%%%%%%%%%% in task detail", assignee)
+            // console.log("***************$$$$$$ in task detail",defaultValue)
+        }
+
+
+        if (task?.assigneeId) {
+            setAssingeeId(task.assigneeId);
         }
 
         if (task.title) {
@@ -215,17 +234,18 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
 
                 const res = await dispatch(taskAction.thunkUpdateTask(payload));
                 if (res) {
+                    await dispatch(taskAction.loadOneTask(taskId))
                     await dispatch(getOneProject(projectId))
                 }
                 setSaveState("save changes");
                 setTimeout(() => {
                     setSaveState("");
-                }, 1000);
+                }, 2000);
 
             } else {
                 didMount.current = true;
             }
-        }, 1000);
+        }, 500);
 
         return () => clearTimeout(delayDispatch);
     }, [taskTitle, description, assigneeId, priority, status, dueDate]);
@@ -268,9 +288,10 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
             errors.push("Title should between 3 and 50 characters")
         } else if (description.length > 255) {
             errors.push("Description should be less than 255 characters")
-        } else if (!assigneeId) {
-            errors.push("Please provided a valid assignee")
         }
+        // else if (!assigneeId) {
+        //     errors.push("Please provided a valid assignee")
+        // }
 
         setErrors(errors);
     }, [taskTitle, description, assigneeId])
@@ -287,19 +308,21 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
     return (
         <>
 
-            <div onClick={() => {
+            {task && <div onClick={() => {
                 setShowTaskSideDetail(true);
 
-            }}>
+            }} className="task-side-open">
 
-                <span>Details</span>
-                <span>
+                <span className='open-title'>Details</span>
+                <span className='open-icon'>
                     <i className="fa-solid fa-chevron-right"></i>
                 </span>
             </div>
-            <div>
+            }
+            {showTaskSideDetail && <div className='task-side-div'>
                 <TaskSideDetail setShowTaskSideDetail={setShowTaskSideDetail} taskId={taskId} users={users} section={section} sessionUser={sessionUser} project={project} showTaskSideDetail={showTaskSideDetail} task={task} />
-            </div>
+            </div>}
+
             {taskSettingUser ?
                 (<>
 
@@ -343,8 +366,12 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
                                 styles={customStyles}
                                 components={{ SingleValue: IconSingleValue, Option: IconOption }}
                                 options={options}
-                                defaultValue={defaultValueObj}
+                                defaultValue={defaultValue}
                                 onChange={handleAssigneeChange}
+                                // value={options.filter(function (option) {
+                                //     return option.value === defaultValue.value;
+                                // })}
+                                value = {defaultValue}
                             // isSearchable={false}
                             />
                         </div>
@@ -446,7 +473,7 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
 
                                     styles={customStyles}
                                     components={{ SingleValue: IconSingleValue }}
-                                    defaultValue={defaultValueObj}
+                                    defaultValue={defaultValue}
                                     isReadOnly={true}
                                     isSearchable={false}
 
