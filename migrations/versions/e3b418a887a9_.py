@@ -57,7 +57,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('users_id', 'projects_id')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE project_memebers SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE project_members SET SCHEMA {SCHEMA};")
 
     op.create_table('sections',
     sa.Column('id', sa.Integer(), nullable=False),
