@@ -119,7 +119,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask, showNewTask
             end_date: new Date().toISOString().split('T')[0],
         };
         newTask = dispatch(taskAction.thunkCreateTask(payload));
-        // setErrors([])
+         setErrors([])
         // setNewTask("")
     }
 
@@ -228,7 +228,9 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask, showNewTask
                     setSaveState("save changes");
                     setTimeout(() => {
                         setSaveState("");
-                    }, 1000);
+                         setShowNewTask("")
+                         setErrors([])
+                    }, 3000);
 
                 } else {
                     didMount.current = true;
@@ -236,7 +238,9 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask, showNewTask
                 }
 
             }, 500)
+
             return () => clearTimeout(delayDispatch);
+
         }
 
 
@@ -244,9 +248,10 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask, showNewTask
 
     useEffect(() => {
         dispatch(taskAction.thunkGetOneTask(taskId))
-        // dispatch(getOneProject(projectId))
+        dispatch(getOneProject(projectId))
+// ("")        setShowNewTask
         //  console.log("dispatch+++++++++++++++++",)
-    }, [dispatch, taskId, task])
+    }, [dispatch, taskId, task,newTask])
 
     useEffect(async () => {
         if (task) {
