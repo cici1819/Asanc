@@ -53,18 +53,6 @@ const TaskSideDetail = ({ task,taskId, users, section, sessionUser, project, set
         setShowTaskSideDetail(false);
     };
 
-    // useEffect(() => {
-    //     if (!showTaskSideDetail) return;
-
-    //     document.addEventListener('click', closeDiv);
-
-    //     return () => document.removeEventListener("click", closeDiv);
-    // }, [showTaskSideDetail]);
-
-    // useEffect(() => {
-    //     const loadTask = dispatch(taskAction.loadOneTask(taskId))
-    //     console.log("###############", loadTask)
-    // }, [taskId])
     useEffect(() => {
         dispatch(taskAction.thunkGetOneTask(taskId))
         // dispatch(getOneProject(projectId))
@@ -146,7 +134,8 @@ const TaskSideDetail = ({ task,taskId, users, section, sessionUser, project, set
 
     };
     const handleDescriptionChange = e => {
-        setDescription(e.target.value)
+
+         setDescription(e.target.value)
     }
 
 
@@ -307,9 +296,8 @@ const TaskSideDetail = ({ task,taskId, users, section, sessionUser, project, set
             errors.push("Title should be between 3 to 50 characters")
         } else if (description?.length > 255) {
             errors.push("Description should be less than 255 characters")
-        } else if (!assigneeId) {
-            errors.push("Please provided a valid assignee")
         }
+
 
         setErrors(errors);
     }, [taskTitle, description, assigneeId])
@@ -466,7 +454,8 @@ const TaskSideDetail = ({ task,taskId, users, section, sessionUser, project, set
                             </div>
                         </div>
                         <div className="side-description">
-                            <TextareaAutosize className='edit-s-discription'
+                        <TextareaAutosize className='edit-s-discription'
+                                maxLength={255}
                                 type='text'
                                 value={description}
                                 placeholder="Description"
