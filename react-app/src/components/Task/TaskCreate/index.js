@@ -14,7 +14,7 @@ import './TaskCreate.css'
 // import { use } from 'express/lib/router';
 
 
-const TaskCreate = ({ section, sessionUser, project, setShowNewTask, showNewTask }) => {
+const TaskCreate = ({ section, sessionUser, project }) => {
     const [saveState, setSaveState] = useState("");
     const didMount = useRef(false);
     const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask, showNewTask
     const [showDateForm, setShowDateForm] = useState(false);
     const [completed, setCompleted] = useState(false)
     const [dueDate, setDueDate] = useState( new Date().toISOString().split('T')[0]);
-    // const [showTaskDetail, setShowTaskDetail] = useState(false);
+    const [showTaskDetail, setShowTaskDetail] = useState(false);
     const [priority, setPriority] = useState('');
     const [showTaskSideDetail, setShowTaskSideDetail] = useState(false);
 
@@ -120,7 +120,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask, showNewTask
         };
         newTask = dispatch(taskAction.thunkCreateTask(payload));
          setErrors([])
-        // setNewTask("")
+        //  setShowNewTask("")
     }
 
 
@@ -152,11 +152,13 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask, showNewTask
     const handleCanelCreat =  () => {
         if (newTask.id) {
             taskId = newTask.id
-             dispatch(taskAction.thunkDeleteTask(taskId)).then(setShowNewTask(""))
+            dispatch(taskAction.thunkDeleteTask(taskId))
+                // .then(setShowNewTask(""))
             // await dispatch(getOneProject(projectId))
-        } else {
-            setShowNewTask("")
         }
+        // else {
+        //     setShowNewTask("")
+        // }
     }
 
     // useEffect(() => {
@@ -228,9 +230,9 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask, showNewTask
                     setSaveState("save changes");
                     setTimeout(() => {
                         setSaveState("");
-                         setShowNewTask("")
+                        //   setShowNewTask("")
                          setErrors([])
-                    }, 3000);
+                    }, 1000);
 
                 } else {
                     didMount.current = true;

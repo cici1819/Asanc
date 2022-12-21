@@ -16,7 +16,7 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
     const projectId = project.id
     const [showMenu, setShowMenu] = useState(false)
     const [showSectionDeleteModal, setShowSectionDeleteModal] = useState(false);
-    const [showNewTask, setShowNewTask] = useState('')
+    // const [showNewTask, setShowNewTask] = useState('')
     const ref = useRef(null)
 
     const openMenu = () => {
@@ -79,6 +79,33 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
         ref.current.focus();
     }
 
+
+    // const handelAddOneTask = () => {
+
+    //     console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ onClick")
+
+    //     //
+    //     return (<>
+    //         <div>
+    //          {sessionUserIsOwner && <TaskCreate project={project} section={section} sessionUser={sessionUser} />}
+    //         </div>
+    //     </>)
+
+
+    // }
+    const [taskList, setTaskList] = useState([]);
+    const onAddBtnClick = event => {
+
+        setTaskList(taskList.concat(
+            <div>
+            <TaskCreate project={project} section={section} sessionUser={sessionUser} />
+            </div>)
+
+        );
+
+
+    };
+
     return (
         <>
             {errors.length > 0 && (<div>
@@ -86,12 +113,16 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
                 {errors[0]}
 
             </div>)}
-            <div className='add-task-in-section-icon' onClick={() => setShowNewTask("newTask")}>
+            {sessionUserIsOwner && <div className='add-task-in-section-icon' onClick={onAddBtnClick}>
                 <i className="fa-duotone fa-plus"></i>
-            </div>
-            <div>
+            </div>}
+            {taskList}
+
+
+
+            {/* <div>
                 {showNewTask === "newTask" && sessionUserIsOwner && <TaskCreate project={project} section={section} sessionUser={sessionUser} setShowNewTask={setShowNewTask} showNewTask={showNewTask} />}
-            </div>
+            </div> */}
             {sessionUserIsOwner ?
                 (<>
                     <input className='edit-section-input'
@@ -104,7 +135,7 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
 
                     />
                     <div>
-                        <TaskInSection section={section} project={project} sessionUser={sessionUser} />
+                        <TaskInSection section={section} project={project} sessionUser={sessionUser} sessionUserIsOwner={sessionUserIsOwner} />
                     </div>
 
 
