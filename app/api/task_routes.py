@@ -48,7 +48,8 @@ def  section_tasks(section_id):
 def create_task():
     form = TaskForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    assigneeId = itemgetter('assigneeId')(request.json)
+    assigneeId= itemgetter('assigneeId')(request.json)
+    end_date = itemgetter('end_date')(request.json)
     user_id = current_user.id
     if form.validate_on_submit():
         task = Task(
@@ -59,15 +60,21 @@ def create_task():
         status= form.data['status'],
         priority=form.data['priority'],
         project_id = form.data['projectId'],
-        end_date = datetime.today(),
+        # assignee_id = assigneeId,
+        # end_date = datetime.strptime(end_date,'%Y-%m-%d'),
         completed = False,
         created_at = datetime.today(),
         updated_at = datetime.today(),
         )
-        if task.user_assignee_t == 'null':
+        if not task.user_assignee_t:
             task.assignee_id = user_id
         else:
             task.assignee_id = assigneeId
+
+        if not task.end_date:
+            task.end_date = datetime.today()
+        else:
+            task.end_date =datetime.strptime(task.end_date,'%Y-%m-%d')
 
         user =  User.query.get(request.json['assigneeId'])
         task.user_assignee_t = user
@@ -97,16 +104,15 @@ def edit_task(task_id):
         # Get the user object by assigneeId
         # user =  User.query.get(form.data['assigneeId'])
         # print("^^^^^^^^^^^^^^^^^^end_date",end_date)
-        if end_date == 'null':
+        if not end_date:
             task.end_date = db.null()
         else:
             task.end_date =datetime.strptime(end_date, '%Y-%m-%d')
 
-        if task.user_assignee_t == 'null':
+        if not task.user_assignee_t:
             task.assignee_id = task.owner_id
         else:
             task.assignee_id = assigneeId
-
 
         user =  User.query.get(request.json['assigneeId'])
         task.user_assignee_t = user

@@ -40,7 +40,7 @@ function TaskInSection({ section, project, sessionUser, sessionUserIsOwner }) {
                     <SingleTask task={task} users={users} section={section} sessionUser={sessionUser} projectId={projectId} />
                 </div>
             ))}
-          
+
 
         </>
 

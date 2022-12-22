@@ -371,7 +371,7 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
                                 // value={options.filter(function (option) {
                                 //     return option.value === defaultValue.value;
                                 // })}
-                                value = {defaultValue}
+                                value={defaultValue}
                             // isSearchable={false}
                             />
                         </div>

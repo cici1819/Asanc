@@ -30,7 +30,7 @@ const TaskCreate = ({ section, sessionUser, project }) => {
     // console.log("+++++++++++++,newTask", newTask)
     const [showDateForm, setShowDateForm] = useState(false);
     const [completed, setCompleted] = useState(false)
-    const [dueDate, setDueDate] = useState( new Date().toISOString().split('T')[0]);
+    const [dueDate, setDueDate] = useState(new Date().toISOString().split('T')[0]);
     const [showTaskDetail, setShowTaskDetail] = useState(false);
     const [priority, setPriority] = useState('');
     const [showTaskSideDetail, setShowTaskSideDetail] = useState(false);
@@ -119,7 +119,7 @@ const TaskCreate = ({ section, sessionUser, project }) => {
             end_date: new Date().toISOString().split('T')[0],
         };
         newTask = dispatch(taskAction.thunkCreateTask(payload));
-         setErrors([])
+        setErrors([])
         //  setShowNewTask("")
     }
 
@@ -149,11 +149,12 @@ const TaskCreate = ({ section, sessionUser, project }) => {
 
     }
     let taskId
-    const handleCanelCreat =  () => {
+    
+    const handleCanelCreat = () => {
         if (newTask.id) {
             taskId = newTask.id
             dispatch(taskAction.thunkDeleteTask(taskId))
-                // .then(setShowNewTask(""))
+            // .then(setShowNewTask(""))
             // await dispatch(getOneProject(projectId))
         }
         // else {
@@ -231,7 +232,7 @@ const TaskCreate = ({ section, sessionUser, project }) => {
                     setTimeout(() => {
                         setSaveState("");
                         //   setShowNewTask("")
-                         setErrors([])
+                        setErrors([])
                     }, 1000);
 
                 } else {
@@ -251,9 +252,9 @@ const TaskCreate = ({ section, sessionUser, project }) => {
     useEffect(() => {
         dispatch(taskAction.thunkGetOneTask(taskId))
         dispatch(getOneProject(projectId))
-// ("")        setShowNewTask
+        // ("")        setShowNewTask
         //  console.log("dispatch+++++++++++++++++",)
-    }, [dispatch, taskId, task,newTask])
+    }, [dispatch, taskId, task, newTask])
 
     useEffect(async () => {
         if (task) {
@@ -366,7 +367,6 @@ const TaskCreate = ({ section, sessionUser, project }) => {
                 <button onClick={handleCanelCreat}>
                     Cancel Create
                 </button>
-
             </div> */}
             {newTask.id && <>
                 <div onClick={() => {

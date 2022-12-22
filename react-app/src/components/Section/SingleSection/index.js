@@ -98,7 +98,7 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
 
         setTaskList(taskList.concat(
             <div>
-            <TaskCreate project={project} section={section} sessionUser={sessionUser} />
+                <TaskCreate project={project} section={section} sessionUser={sessionUser} />
             </div>)
 
         );

@@ -187,13 +187,14 @@ const tasks = (state = initialState, action) => {
             newState.singleTask = { ...state.singleTask, ...action.task }
             newState.allTasks = { ...state.allTasks, [action.task.id]: action.task }
             console.log("#############create reduer", action)
-            console.log("newState@@@@@@@@@@@@",newState)
+            console.log("newState@@@@@@@@@@@@", newState)
             return newState
 
         case UPDATE_TASK:
             newState = { ...state }
             newState.singleTask = { ...state.singleTask, ...action.task }
             newState.allTasks = { ...state.allTasks, [action.task.id]: action.task }
+            // newState.allTasks = { ...state.allTasks }
             return newState
 
         case DELETE_TASK:

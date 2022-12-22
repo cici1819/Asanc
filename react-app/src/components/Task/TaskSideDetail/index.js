@@ -15,7 +15,7 @@ import './TaskSideDetail.css'
 
 
 
-const TaskSideDetail = ({ task,taskId, users, section, sessionUser, project, setShowTaskSideDetail, showTaskSideDetail }) => {
+const TaskSideDetail = ({ task, taskId, users, section, sessionUser, project, setShowTaskSideDetail, showTaskSideDetail }) => {
     // console.log("*******************%%%%%%%%%%%%%%% task in sideBar", task)
     console.log("showTaskDetail", showTaskSideDetail)
     const [assignee, setAssingee] = useState(task.assignee)
@@ -37,9 +37,9 @@ const TaskSideDetail = ({ task,taskId, users, section, sessionUser, project, set
     const [dueDate, setDueDate] = useState(task?.end_date);
     const [priority, setPriority] = useState(task?.priority);
     // const [timer, setTimer] = useState(null)
-     let newTask = useSelector(state=>state.tasks.singleTask)
+    let newTask = useSelector(state => state.tasks.singleTask)
 
-     console.log("@@@@@@@@@@@@@@~~~~~~~new task",newTask)
+    console.log("@@@@@@@@@@@@@@~~~~~~~new task", newTask)
 
     const [errors, setErrors] = useState([]);
     const projectId = project?.id
@@ -135,7 +135,7 @@ const TaskSideDetail = ({ task,taskId, users, section, sessionUser, project, set
     };
     const handleDescriptionChange = e => {
 
-         setDescription(e.target.value)
+        setDescription(e.target.value)
     }
 
 
@@ -368,7 +368,6 @@ const TaskSideDetail = ({ task,taskId, users, section, sessionUser, project, set
                                 value={defaultValue}
                             />
                             {/* (<Select className='s-assignee-select'
-
                                 styles={customStyles}
                                 components={{ SingleValue: IconSingleValue, Option: IconOption }}
                                 options={options}
@@ -454,7 +453,7 @@ const TaskSideDetail = ({ task,taskId, users, section, sessionUser, project, set
                             </div>
                         </div>
                         <div className="side-description">
-                        <TextareaAutosize className='edit-s-discription'
+                            <TextareaAutosize className='edit-s-discription'
                                 maxLength={255}
                                 type='text'
                                 value={description}
