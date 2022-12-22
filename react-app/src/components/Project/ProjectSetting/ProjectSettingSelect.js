@@ -34,21 +34,26 @@ const ProjectSetting = ({ setShowProjectEditModal, setShowProjectDeleteModal, cu
 
 
     let title
+    let icon
+    let color
     let sessionUserIsOwner = false
 
         // let currentProject = projectsArr.find(project => project?.id == projectId)
         if (currentProject){
             title = currentProject?.title
+            icon = currentProject?.icon
+            color = currentProject?.color
             // console.log("current Project ",currentProject)
             sessionUserIsOwner = currentProject.owner_id==sessionUser.id
             // console.log ("owned by -------?" , sessionUserIsOwner)
         }
-    
+
 
     return (
         <>
 
             <div className='select-setting' onClick={openMenu}>
+                <img className={`mainPage-single-project-icon`} src={icon} style={{ backgroundColor: {color} }} />
                 <span className='project-title'>
                     {title}
                 </span>
