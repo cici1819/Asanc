@@ -1,17 +1,20 @@
 .main-page-content {
-    background-color: aqua;
-    height: 100vh;
+    /* background-color: aqua; */
+    /* height: 100%; */
     /* position: fixed; */
-    width: 100vw;
+    /* width: 100%; */
 
 
 }
 
-.main-page-wapper{
+.mainPage-open{
     height: 100vh;
     width: 100vw;
     position: absolute;
     top:66px;
     left:240px;
+    display: flex;
+    flex-direction: column;
+     align-items: flex-start;
 
 }
