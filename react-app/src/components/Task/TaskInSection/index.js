@@ -3,10 +3,10 @@ import React from "react";
 import { useState, useEffect, useRef } from 'react';
 import './TaskInSection.css'
 import SingleTask from "../TaskDetail";
-import TaskCreate from '../../Task/TaskCreate';
-import tasks from "../../../store/taskReducer";
+// import TaskCreate from '../../Task/TaskCreate';
+// import tasks from "../../../store/taskReducer";
 
-function TaskInSection({ section, project, sessionUser, sessionUserIsOwner }) {
+function TaskInSection({ section, project, sessionUser }) {
     console.log("*****************,section", section)
 
     const users = project?.users

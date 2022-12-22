@@ -14,7 +14,7 @@ import './TaskCreate.css'
 // import { use } from 'express/lib/router';
 
 
-const TaskCreate = ({ section, sessionUser, project }) => {
+const TaskCreate = ({ section, sessionUser, project, showNewTask, setShowNewTask }) => {
     const [saveState, setSaveState] = useState("");
     const didMount = useRef(false);
     const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const TaskCreate = ({ section, sessionUser, project }) => {
     const [showDateForm, setShowDateForm] = useState(false);
     const [completed, setCompleted] = useState(false)
     const [dueDate, setDueDate] = useState(new Date().toISOString().split('T')[0]);
-    const [showTaskDetail, setShowTaskDetail] = useState(false);
+    // const [showTaskDetail, setShowTaskDetail] = useState(false);
     const [priority, setPriority] = useState('');
     const [showTaskSideDetail, setShowTaskSideDetail] = useState(false);
 
@@ -149,373 +149,377 @@ const TaskCreate = ({ section, sessionUser, project }) => {
 
     }
     let taskId
-    
+
+
+
     const handleCanelCreat = () => {
         if (newTask.id) {
             taskId = newTask.id
             dispatch(taskAction.thunkDeleteTask(taskId))
-            // .then(setShowNewTask(""))
+                .then(setShowNewTask(false))
             // await dispatch(getOneProject(projectId))
         }
-        // else {
-        //     setShowNewTask("")
-        // }
-    }
+        else {
+            setShowNewTask(false)
 
-    // useEffect(() => {
-    //     if (!showNewTask) return;
-
-    //     document.addEventListener('click', );
-
-    //     return () => document.removeEventListener("click", closeDiv);
-    // }, [showTaskSideDetail]);
-    ////////////////////////////////////////////////////////////////////
-    // canlendar
-
-    const tileDisabled = ({ activeaStartDte, date, view }) => {
-        const currentDate = new Date();
-        const adjustedDate = new Date();
-        let avaliable = adjustedDate.setDate(currentDate.getDate() - 1);
-        return date < avaliable
-    }
-
-
-
-    useEffect(() => {
-        if (showDateForm) {
-            document.addEventListener("mousedown", handleClickDate);
-            return () => {
-                document.removeEventListener("mousedown", handleClickDate);
-            };
         }
-    }, [showDateForm]);
+    }
+        // useEffect(() => {
+        //     if (!showNewTask) return;
 
-    const handleClickDate = (e) => {
-        if (dateDiv.current.contains(e.target)) {
+        //     document.addEventListener('click', );
+
+        //     return () => document.removeEventListener("click", closeDiv);
+        // }, [showTaskSideDetail]);
+        ////////////////////////////////////////////////////////////////////
+        // canlendar
+
+        const tileDisabled = ({ activeaStartDte, date, view }) => {
+            const currentDate = new Date();
+            const adjustedDate = new Date();
+            let avaliable = adjustedDate.setDate(currentDate.getDate() - 1);
+            return date < avaliable
+        }
+
+
+
+        useEffect(() => {
+            if (showDateForm) {
+                document.addEventListener("mousedown", handleClickDate);
+                return () => {
+                    document.removeEventListener("mousedown", handleClickDate);
+                };
+            }
+        }, [showDateForm]);
+
+        const handleClickDate = (e) => {
+            if (dateDiv.current.contains(e.target)) {
+                return;
+            }
+            setShowDateForm(false)
             return;
-        }
-        setShowDateForm(false)
-        return;
-    };
-    //////////////////////////////////////////////////////////////////////////////
+        };
+        //////////////////////////////////////////////////////////////////////////////
 
 
-    let task
-    useEffect(() => {
+        let task
+        useEffect(() => {
 
-        if (newTask) {
-            taskId = newTask.id
-            const delayDispatch = setTimeout(async () => {
-                if (didMount.current) {
-                    const payload = {
-                        title: taskTitle,
-                        description,
-                        assigneeId: assigneeId,
-                        taskId,
-                        ownerId,
-                        sectionId,
-                        status: status,
-                        priority: priority,
-                        projectId,
-                        end_date: dueDate,
-                        completed
-                    };
+            if (newTask) {
+                taskId = newTask.id
+                const delayDispatch = setTimeout(async () => {
+                    if (didMount.current) {
+                        const payload = {
+                            title: taskTitle,
+                            description,
+                            assigneeId: assigneeId,
+                            taskId,
+                            ownerId,
+                            sectionId,
+                            status: status,
+                            priority: priority,
+                            projectId,
+                            end_date: dueDate,
+                            completed
+                        };
 
-                    task = await dispatch(taskAction.thunkUpdateTask(payload));
-                    console.log("task+++++++++++++++", task)
-                    if (task) {
-                        taskId = task.id
-                        console.log("88888888888", taskId)
+                        task = await dispatch(taskAction.thunkUpdateTask(payload));
+                        console.log("task+++++++++++++++", task)
+                        if (task) {
+                            taskId = task.id
+                            console.log("88888888888", taskId)
 
+                        }
+                        setSaveState("save changes");
+                        setTimeout(() => {
+                            setSaveState("");
+                            //   setShowNewTask("")
+                            setErrors([])
+                        }, 1000);
+
+                    } else {
+                        didMount.current = true;
+                        return null
                     }
-                    setSaveState("save changes");
-                    setTimeout(() => {
-                        setSaveState("");
-                        //   setShowNewTask("")
-                        setErrors([])
-                    }, 1000);
+
+                }, 500)
+
+                return () => clearTimeout(delayDispatch);
+
+            }
+
+
+        }, [taskTitle, description, assigneeId, priority, status, taskId, dueDate, task]);
+
+        useEffect(() => {
+            dispatch(taskAction.thunkGetOneTask(taskId))
+            dispatch(getOneProject(projectId))
+            // ("")        setShowNewTask
+            //  console.log("dispatch+++++++++++++++++",)
+        }, [dispatch, taskId, task, newTask])
+
+        useEffect(async () => {
+            if (task) {
+                didMount.current = false;
+                // await dispatch(taskAction.loadOneTask(taskId))
+                // await dispatch(getOneProject(projectId))
+                setTaskTitle(task?.title);
+                setDescription(task?.description);
+                if (task?.assigneeId) {
+                    setAssigneeId(task?.assigneeId);
+                } else {
+                    setAssigneeId(task?.ownerId);
+                }
+                if (task?.end_date) {
+                    setDueDate(task?.end_date);
+                    let newDueDate = new Date(task?.end_date);
+                    const date = newDueDate.getDate() + 1
+                    const newDate = newDueDate.setDate(date)
+                    const adjustedNewDate = new Date(newDate)
+                    setProperDate(adjustedNewDate);
 
                 } else {
-                    didMount.current = true;
-                    return null
+                    setDueDate(null);
+                    setProperDate(new Date());
+
                 }
-
-            }, 500)
-
-            return () => clearTimeout(delayDispatch);
-
-        }
-
-
-    }, [taskTitle, description, assigneeId, priority, status, taskId, dueDate, task]);
-
-    useEffect(() => {
-        dispatch(taskAction.thunkGetOneTask(taskId))
-        dispatch(getOneProject(projectId))
-        // ("")        setShowNewTask
-        //  console.log("dispatch+++++++++++++++++",)
-    }, [dispatch, taskId, task, newTask])
-
-    useEffect(async () => {
-        if (task) {
-            didMount.current = false;
-            // await dispatch(taskAction.loadOneTask(taskId))
-            // await dispatch(getOneProject(projectId))
-            setTaskTitle(task?.title);
-            setDescription(task?.description);
-            if (task?.assigneeId) {
-                setAssigneeId(task?.assigneeId);
-            } else {
-                setAssigneeId(task?.ownerId);
+                if (task?.assignee) {
+                    // console.log(`------- task details page - task.assignee:`);
+                    setAssignee(task.assignee);
+                    // console.log(`------- task details page - task.assignee:`);
+                    setDefaultValue({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
+                    // console.log("%%%%%%%%%%%%% in task detail", assignee)
+                    // console.log("***************$$$$$$ in task detail",defaultValue)
+                }
+                if (task.priority) {
+                    setPriority(task?.priority);
+                } else {
+                    setPriority("---");
+                }
+                if (task.status) {
+                    setStatus(task?.status);
+                } else {
+                    setStatus("---");
+                }
             }
-            if (task?.end_date) {
-                setDueDate(task?.end_date);
-                let newDueDate = new Date(task?.end_date);
-                const date = newDueDate.getDate() + 1
-                const newDate = newDueDate.setDate(date)
-                const adjustedNewDate = new Date(newDate)
-                setProperDate(adjustedNewDate);
 
-            } else {
-                setDueDate(null);
-                setProperDate(new Date());
+
+        }, [task, newTask])
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+        const toggleCompleted = async (e) => {
+            // e.stopPropagation();
+            e.preventDefault();
+
+            const res = await dispatch(taskAction.toggleCompleteTask(taskId));
+            if (res) {
+                await dispatch(getOneProject(projectId))
 
             }
-            if (task?.assignee) {
-                // console.log(`------- task details page - task.assignee:`);
-                setAssignee(task.assignee);
-                // console.log(`------- task details page - task.assignee:`);
-                setDefaultValue({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
-                // console.log("%%%%%%%%%%%%% in task detail", assignee)
-                // console.log("***************$$$$$$ in task detail",defaultValue)
-            }
-            if (task.priority) {
-                setPriority(task?.priority);
-            } else {
-                setPriority("---");
-            }
-            if (task.status) {
-                setStatus(task?.status);
-            } else {
-                setStatus("---");
-            }
-        }
 
-
-    }, [task, newTask])
-
-    ////////////////////////////////////////////////////////////////////////////////////////////
-
-    const toggleCompleted = async (e) => {
-        // e.stopPropagation();
-        e.preventDefault();
-
-        const res = await dispatch(taskAction.toggleCompleteTask(taskId));
-        if (res) {
-            await dispatch(getOneProject(projectId))
-
-        }
-
-    };
+        };
 
 
 
-    // const deleteTask = async () => {
-    //     console.log("%%%%%%%%%%%", taskId)
-    //     await dispatch(taskAction.thunkDeleteTask(taskId));
-    //     await dispatch(getOneProject(projectId))
-    // };
+        // const deleteTask = async () => {
+        //     console.log("%%%%%%%%%%%", taskId)
+        //     await dispatch(taskAction.thunkDeleteTask(taskId));
+        //     await dispatch(getOneProject(projectId))
+        // };
 
 
-    ////////////////////////////////////////////////////////////////////////////////////
-    // let taskSettingUser = false
-    // if (task) {
-    //     if (sessionUser.id == task.ownerId || sessionUser.id == task.assigneeId) {
-    //         taskSettingUser = true
-    //     }
+        ////////////////////////////////////////////////////////////////////////////////////
+        // let taskSettingUser = false
+        // if (task) {
+        //     if (sessionUser.id == task.ownerId || sessionUser.id == task.assigneeId) {
+        //         taskSettingUser = true
+        //     }
 
-    // }
-
-
-
-    useEffect(() => {
-        const errors = [];
-        if (taskTitle?.length > 50 || taskTitle?.length < 3) {
-            errors.push("Title should between 3 and 50 characters")
-        } else if (description?.length > 255) {
-            errors.push("Description should be less than 255 characters")
-        }
-        // else if (!assigneeId) {
-        //     errors.push("Please provided a valid assignee")
         // }
 
-        setErrors(errors);
-    }, [taskTitle, description])
+
+
+        useEffect(() => {
+            const errors = [];
+            if (taskTitle?.length > 50 || taskTitle?.length < 3) {
+                errors.push("Title should between 3 and 50 characters")
+            } else if (description?.length > 255) {
+                errors.push("Description should be less than 255 characters")
+            }
+            // else if (!assigneeId) {
+            //     errors.push("Please provided a valid assignee")
+            // }
+
+            setErrors(errors);
+        }, [taskTitle, description])
 
 
 
 
-    // const handleDescriptionBlur = (e) => {
+        // const handleDescriptionBlur = (e) => {
 
 
 
 
 
-    return (
-        <>
-            {/* <div>
+        return (
+            <>
+                {/* <div>
                 <button onClick={handleCanelCreat}>
                     Cancel Create
                 </button>
             </div> */}
-            {newTask.id && <>
-                <div onClick={() => {
-                    setShowTaskSideDetail(true);
+                {newTask.id && <>
+                    <div onClick={() => {
+                        setShowTaskSideDetail(true);
 
-                }}>
-                    <span>Details</span>
-                    <span>
-                        <i className="fa-solid fa-chevron-right"></i>
-                    </span>
-                </div>
-                {showTaskSideDetail && <div>
-                    <TaskSideDetail setShowTaskSideDetail={setShowTaskSideDetail} taskId={newTask.id} users={users} section={section} sessionUser={sessionUser} project={project} showTaskSideDetail={showTaskSideDetail} task={newTask} />
-                </div>}
-            </>}
-
-
-
-            <div className='task-detail-content'>
-                <div className="task-complete">
-                    <button
-                        onClick={toggleCompleted}
-                        className={
-                            task?.completed
-                                ? "task-complete-button-completed"
-                                : "task-complete-button"
-                        }>
-
-                        <i className="fa-solid fa-circle-check">
-
-                        </i>
-                        {task?.completed ? "Completed" : "Mark Complete"}
-                    </button>{'  '}
-                </div>
-                {errors.length > 0 && (<div>
-
-                    <ul>
-                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                    </ul>
-
-                </div>)}
-                <div>
-                    <input className='edit-task-title'
-                        type='text'
-                        value={taskTitle}
-                        placeholder="New Task"
-                        onChange={handleTitleChange}
-                        onBlur={handleTitleBlur}
-
-                    />
-                </div>
+                    }}>
+                        <span>Details</span>
+                        <span>
+                            <i className="fa-solid fa-chevron-right"></i>
+                        </span>
+                    </div>
+                    {showTaskSideDetail && <div>
+                        <TaskSideDetail setShowTaskSideDetail={setShowTaskSideDetail} taskId={newTask.id} users={users} section={section} sessionUser={sessionUser} project={project} showTaskSideDetail={showTaskSideDetail} task={newTask} />
+                    </div>}
+                </>}
 
 
 
+                <div className='task-detail-content'>
+                    <div className="task-complete">
+                        <button
+                            onClick={toggleCompleted}
+                            className={
+                                task?.completed
+                                    ? "task-complete-button-completed"
+                                    : "task-complete-button"
+                            }>
 
-                <div>
-                    <Select className='assignee-select'
+                            <i className="fa-solid fa-circle-check">
 
-                        styles={customStyles}
-                        components={{ SingleValue: IconSingleValue, Option: IconOption }}
-                        options={options}
-                        defaultValue={defaultValue}
-                        onChange={handleAssigneeChange}
-                        value={defaultValue}
-                        placeholder="No assignee"
-                    // isSearchable={false}
-                    />
-                </div>
+                            </i>
+                            {task?.completed ? "Completed" : "Mark Complete"}
+                        </button>{'  '}
+                    </div>
+                    {errors.length > 0 && (<div>
+
+                        <ul>
+                            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                        </ul>
+
+                    </div>)}
+                    <div>
+                        <input className='edit-task-title'
+                            type='text'
+                            value={taskTitle}
+                            placeholder="New Task"
+                            onChange={handleTitleChange}
+                            onBlur={handleTitleBlur}
+
+                        />
+                    </div>
 
 
-                <div className='date-setting'>
-                    <span className='dueDate-title'>Due date</span>
-                    {showDateForm ? (
-                        <div
-                            className="task-detail-date-open"
-                            ref={dateDiv}
-                            onClick={() => setShowDateForm(true)}>
 
-                            <div className="task-calendar-icon">
-                                <i className="fa-light fa-calendar-day"></i>
-                            </div>
-                            {dueDate ? dueDate : "No due date"}
-                            <div id="task-detail-date-calendar">
-                                <Calendar
-                                    value={properDate}
-                                    tileDisabled={tileDisabled}
-                                    onChange={(date) => {
-                                        setProperDate(date);
-                                        // setServerDate(date.toString());
-                                        handleDueDateChange(date)
-                                    }}
-                                />
-                            </div>
-                        </div>
-                    ) : (
-                        <div
-                            className="task-detail-date"
 
-                            onClick={() => setShowDateForm(true)}
-                        >
-                            <div id="task-date-icon">
-                                <i className="fa-regular fa-calendar-days"></i>
-                            </div>
-                            {dueDate ? (
-                                <div>
-                                    {dueDate}
+                    <div>
+                        <Select className='assignee-select'
 
+                            styles={customStyles}
+                            components={{ SingleValue: IconSingleValue, Option: IconOption }}
+                            options={options}
+                            defaultValue={defaultValue}
+                            onChange={handleAssigneeChange}
+                            value={defaultValue}
+                            placeholder="No assignee"
+                        // isSearchable={false}
+                        />
+                    </div>
+
+
+                    <div className='date-setting'>
+                        <span className='dueDate-title'>Due date</span>
+                        {showDateForm ? (
+                            <div
+                                className="task-detail-date-open"
+                                ref={dateDiv}
+                                onClick={() => setShowDateForm(true)}>
+
+                                <div className="task-calendar-icon">
+                                    <i className="fa-light fa-calendar-day"></i>
                                 </div>
-                            ) : (
-                                "No due date"
-                            )}
+                                {dueDate ? dueDate : "No due date"}
+                                <div id="task-detail-date-calendar">
+                                    <Calendar
+                                        value={properDate}
+                                        tileDisabled={tileDisabled}
+                                        onChange={(date) => {
+                                            setProperDate(date);
+                                            // setServerDate(date.toString());
+                                            handleDueDateChange(date)
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                        ) : (
+                            <div
+                                className="task-detail-date"
+
+                                onClick={() => setShowDateForm(true)}
+                            >
+                                <div id="task-date-icon">
+                                    <i className="fa-regular fa-calendar-days"></i>
+                                </div>
+                                {dueDate ? (
+                                    <div>
+                                        {dueDate}
+
+                                    </div>
+                                ) : (
+                                    "No due date"
+                                )}
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="task-detail-priority">
+                        <div className="p-title">Priority</div>
+                        <div className="p-content">
+                            <select value={priority} onChange={handlePriorityChange}>
+                                <option className="p-1" value="Null">---</option>
+                                <option className="p-2" value="Low">Low</option>
+                                <option className="p-3" value="Medium">Medium</option>
+                                <option className="p-4" value="High">High</option>
+                            </select>
                         </div>
-                    )}
-                </div>
+                    </div>
+                    <div className="task-detail-status">
+                        <div className="s-title">Status</div>
+                        <div className="s-labels">
+                            <select value={status} onChange={handleStatusChange}>
+                                <option className="s-1" value="Null">---</option>
+                                <option className="s-2" value="On Track">On Track</option>
+                                <option className="s-3" value="At Risk">At Risk</option>
+                                <option className="s-4" value="Off Track">Off Track</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className="task-delete"
+                        onClick={handleCanelCreat}>
 
-                <div className="task-detail-priority">
-                    <div className="p-title">Priority</div>
-                    <div className="p-content">
-                        <select value={priority} onChange={handlePriorityChange}>
-                            <option className="p-1" value="Null">---</option>
-                            <option className="p-2" value="Low">Low</option>
-                            <option className="p-3" value="Medium">Medium</option>
-                            <option className="p-4" value="High">High</option>
-                        </select>
+                        <i className="fa-sharp fa-solid fa-circle-xmark"></i>
+
                     </div>
                 </div>
-                <div className="task-detail-status">
-                    <div className="s-title">Status</div>
-                    <div className="s-labels">
-                        <select value={status} onChange={handleStatusChange}>
-                            <option className="s-1" value="Null">---</option>
-                            <option className="s-2" value="On Track">On Track</option>
-                            <option className="s-3" value="At Risk">At Risk</option>
-                            <option className="s-4" value="Off Track">Off Track</option>
-                        </select>
-                    </div>
-                </div>
-                <div className="task-delete"
-                    onClick={handleCanelCreat}>
-
-                    <i className="fa-sharp fa-solid fa-circle-xmark"></i>
-
-                </div>
-            </div>
 
 
-        </>
-    )
+            </>
+        )
 
-}
+    }
+
+
 
 export default TaskCreate
