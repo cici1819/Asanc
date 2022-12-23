@@ -23,12 +23,12 @@ const TaskCreate = ({ setCurrentTaskId, section, sessionUser, project, setShowNe
     const [description, setDescription] = useState('');
     const [status, setStatus] = useState('');
     const [assigneeId, setAssigneeId] = useState('');
-    const [assignee, setAssignee] = useState({ value: sessionUser.id, label: `${sessionUser.firstName}  ` + sessionUser.lastName, color: sessionUser.avatar_color, img: userLogo });
+    const [assignee, setAssignee] = useState({ value: sessionUser?.id, label: `${sessionUser?.firstName}  ` + sessionUser?.lastName, color: sessionUser?.avatar_color, img: userLogo });
     const [defaultValue, setDefaultValue] = useState({ value: sessionUser.id, label: `${sessionUser.firstName}  ` + sessionUser.lastName, color: sessionUser.avatar_color, img: userLogo })
     const dateDiv = useRef();
     const [properDate, setProperDate] = useState();
     //  const [task,setTask] = useState({})
-     let task = useSelector(state => state.tasks.singleTask)
+    let task = useSelector(state => state.tasks.singleTask)
     console.log("+++++++++++++,newTask", task)
     const [newTask, setNewTask] = useState({});
 
@@ -174,10 +174,9 @@ const TaskCreate = ({ setCurrentTaskId, section, sessionUser, project, setShowNe
         if (newTask) {
             taskId = newTask?.id
             await dispatch(taskAction.thunkDeleteTask(taskId))
-                .then(
-                    setShowNewTask(false)
+                .then(setShowNewTask(false))
 
-                ).then(setNewTask({}))
+                setNewTask({})
         }
 
         else {
@@ -248,8 +247,10 @@ const TaskCreate = ({ setCurrentTaskId, section, sessionUser, project, setShowNe
                     // setCurrentTaskId(res.id)
                 });
 
-                task = newTask
+                // task = newTask
                 // setTask(updatedTask)
+
+
 
                 // console.log("task+++++++++++++++", task)
                 console.log("!!!!!!!!!!!!!!!!!! res ", newTask)
@@ -263,6 +264,7 @@ const TaskCreate = ({ setCurrentTaskId, section, sessionUser, project, setShowNe
                     setSaveState("");
                     // setShowNewTask(false)
                     setErrors([])
+                    setNewTask({})
                 }, 1000);
 
             } else {
@@ -278,6 +280,8 @@ const TaskCreate = ({ setCurrentTaskId, section, sessionUser, project, setShowNe
 
 
     }, [taskTitle, description, assigneeId, priority, status, taskId, dueDate, task]);
+
+    // task= {...task}
 
     useEffect(() => {
         // dispatch(taskAction.thunkGetOneTask(taskId))
