@@ -112,7 +112,7 @@ export const thunkUpdateTask = (data) => async (dispatch) => {
 
         });
 
-        // console.log("thunkupdateResponse",response)
+        console.log("thunkupdateResponse",response)
         if (response.ok) {
             const updatedTask = await response.json();
             dispatch(updateOneTask(updatedTask));

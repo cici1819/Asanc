@@ -103,11 +103,12 @@ def edit_task(task_id):
         task.completed = form.data['completed']
         # Get the user object by assigneeId
         # user =  User.query.get(form.data['assigneeId'])
-        # print("^^^^^^^^^^^^^^^^^^end_date",end_date)
+        print("^^^^^^^^^^^^^^^^^^end_date",end_date)
         if not end_date:
             task.end_date = db.null()
         else:
             task.end_date =datetime.strptime(end_date, '%Y-%m-%d')
+
 
         if not task.user_assignee_t:
             task.assignee_id = task.owner_id

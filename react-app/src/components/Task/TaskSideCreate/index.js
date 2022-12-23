@@ -11,12 +11,12 @@ import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
 import TextareaAutosize from "react-textarea-autosize";
 import userLogo from "../../../img/user-logo.png"
-import './TaskSideDetail.css'
+import './TaskSideCreate.css'
 
 
 
-const TaskSideDetail = ({ task, taskId, users, section, sessionUser, project, setShowTaskSideDetail, showTaskSideDetail }) => {
-    // console.log("*******************%%%%%%%%%%%%%%% task in sideBar", task)
+const TaskSideCreate = ({ task, taskId, users, section, sessionUser, project, setShowTaskSideDetail, showTaskSideDetail,setNewTask }) => {
+     console.log("*******************%%%%%%%%%%%%%%% task in sideBarCreate", task)
     console.log("showTaskDetail", showTaskSideDetail)
     const [assignee, setAssingee] = useState(task?.assignee)
     const [defaultValue, setDefaultValue] = useState({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
@@ -37,9 +37,9 @@ const TaskSideDetail = ({ task, taskId, users, section, sessionUser, project, se
     const [dueDate, setDueDate] = useState(task?.end_date);
     const [priority, setPriority] = useState(task?.priority);
     // const [timer, setTimer] = useState(null)
-    let newTask = useSelector(state => state.tasks.singleTask)
+    // let newTask = useSelector(state => state.tasks.singleTask)
 
-    console.log("@@@@@@@@@@@@@@~~~~~~~new task", newTask)
+    // console.log("@@@@@@@@@@@@@@~~~~~~~new task", newTask)
 
     const [errors, setErrors] = useState([]);
     const projectId = project?.id
@@ -53,11 +53,11 @@ const TaskSideDetail = ({ task, taskId, users, section, sessionUser, project, se
         setShowTaskSideDetail(false);
     };
 
-    useEffect(() => {
-        dispatch(taskAction.thunkGetOneTask(taskId))
-        // dispatch(getOneProject(projectId))
-        //  console.log("dispatch+++++++++++++++++",)
-    }, [dispatch, taskId])
+    // useEffect(() => {
+    //     dispatch(taskAction.thunkGetOneTask(taskId))
+    //     // dispatch(getOneProject(projectId))
+    //     //  console.log("dispatch+++++++++++++++++",)
+    // }, [dispatch, taskId])
 
 
     // assignee select///////////////////////////////////////////////////
@@ -248,13 +248,19 @@ const TaskSideDetail = ({ task, taskId, users, section, sessionUser, project, se
                     title: taskTitle, description, assigneeId, ownerId, sectionId, status: status, priority: priority, projectId, end_date: dueDate, completed, taskId
                 };
 
-                const res = await dispatch(taskAction.thunkUpdateTask(payload));
-                if (res) {
+                await dispatch(taskAction.thunkUpdateTask(payload)).then(res => {
+                    setNewTask(res)
+                })
 
-                    // await dispatch(taskAction.thunkGetOneTask(taskId))
+                console.log("!!!!!!!!!!!!!!createNewTask Deatil")
 
-                    await dispatch(getOneProject(projectId))
-                }
+                // if (result) {
+
+                //     // await dispatch(taskAction.thunkGetOneTask(taskId))
+
+                //     await dispatch(getOneProject(projectId))
+
+                // }
                 setSaveState("save changes");
                 setTimeout(() => {
                     setSaveState("");
@@ -542,4 +548,4 @@ const TaskSideDetail = ({ task, taskId, users, section, sessionUser, project, se
 
 
 
-export default TaskSideDetail
+export default TaskSideCreate

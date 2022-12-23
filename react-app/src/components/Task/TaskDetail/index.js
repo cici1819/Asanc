@@ -234,7 +234,7 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
 
                 const res = await dispatch(taskAction.thunkUpdateTask(payload));
                 if (res) {
-                    await dispatch(taskAction.loadOneTask(taskId))
+                    // await dispatch(taskAction.loadOneTask(taskId))
                     await dispatch(getOneProject(projectId))
                 }
                 setSaveState("save changes");
