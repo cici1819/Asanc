@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
 import "./ProjectSettingSelect.css"
 
-const ProjectSetting = ({ setShowProjectEditModal, setShowProjectDeleteModal, currentProject}) => {
+const ProjectSetting = ({ setShowProjectEditModal, setShowProjectDeleteModal, currentProject }) => {
     const sessionUser = useSelector((state) => state.session.user);
     // const projects = useSelector(state => state.projects.allProjects)
     // const projectsArr = Object.values(projects)
@@ -38,52 +38,49 @@ const ProjectSetting = ({ setShowProjectEditModal, setShowProjectDeleteModal, cu
     let color
     let sessionUserIsOwner = false
 
-        // let currentProject = projectsArr.find(project => project?.id == projectId)
-        if (currentProject){
-            title = currentProject?.title
-            icon = currentProject?.icon
-            color = currentProject?.color
-            // console.log("current Project ",currentProject)
-            sessionUserIsOwner = currentProject.owner_id==sessionUser.id
-            // console.log ("owned by -------?" , sessionUserIsOwner)
-        }
+    // let currentProject = projectsArr.find(project => project?.id == projectId)
+    if (currentProject) {
+        title = currentProject?.title
+        icon = currentProject?.icon
+        color = currentProject?.color
+        // console.log("current Project ",currentProject)
+        sessionUserIsOwner = currentProject.owner_id == sessionUser.id
+        // console.log ("owned by -------?" , sessionUserIsOwner)
+    }
 
 
     return (
         <>
 
-            <div className='select-setting' onClick={openMenu}>
-                <img className={`mainPage-single-project-icon`} src={icon} style={{ backgroundColor: {color} }} />
+            <div className='select-setting'>
+                <img className={`mainPage-single-project-icon`} src={icon} style={{ backgroundColor: { color } }} />
                 <span className='project-title'>
                     {title}
                 </span>
                 {sessionUserIsOwner &&
-                <span className='arrow-icon' >
-                    {/* <img className="arrow-img" src={selectMenuIcon} /> */}
-                    <i className="fa-solid fa-chevron-down"></i>
-                </span>
-}
+                    <div className='arrow-icon' onClick={openMenu}>
+                        {/* <img className="arrow-img" src={selectMenuIcon} /> */}
+                        <i className="fa-solid fa-chevron-down"></i>
+                    </div>
+                }
 
             </div>
 
             {showMenu && sessionUserIsOwner && (
                 <div className='project-setting-dropMenu'>
                     <div className='project-e-wapper'>
-                    <div className='project-edit-div'
-                        onClick={() => {
-
-                            // console.log("loginon click running````````````")
-                            setShowProjectEditModal(true)
-                        }
-                        }
-                    >
-                        <span className='s-e-t'>
-                            Project Edit
-                        </span>
-                        <span className='s-e-icon'>
-                            <i className="fa-solid fa-pencil"></i>
-                        </span>
-                    </div>
+                        <div className='project-edit-div'
+                            onClick={() => {
+                                setShowProjectEditModal(true)
+                            }
+                            }>
+                            <span className='s-e-t'>
+                                Project Edit
+                            </span>
+                            <span className='s-e-icon'>
+                                <i className="fa-solid fa-pencil"></i>
+                            </span>
+                        </div>
                     </div>
                     <div className='project-delete-div'
                         onClick={() => {
@@ -92,8 +89,8 @@ const ProjectSetting = ({ setShowProjectEditModal, setShowProjectDeleteModal, cu
 
                             setShowProjectDeleteModal(true)
 
-                        }}
-                    >
+                        }}>
+
                         <span>
                             Project Delete
                         </span >
@@ -112,4 +109,4 @@ const ProjectSetting = ({ setShowProjectEditModal, setShowProjectDeleteModal, cu
 }
 
 
-export default ProjectSetting ;
+export default ProjectSetting;

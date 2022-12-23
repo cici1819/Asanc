@@ -134,6 +134,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
         taskId = newTask?.id
         // console.log("##################***********************,newTask res ", newTask)
         setErrors([])
+        setShowNewTask(false)
 
 
     }
@@ -283,9 +284,10 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
     useEffect(() => {
         // dispatch(taskAction.thunkGetOneTask(taskId))
         dispatch(getOneProject(projectId))
+        // setNewTask(newTask)
         // ("")        setShowNewTask
         //  console.log("dispatch+++++++++++++++++",)
-    }, [dispatch, task])
+    }, [dispatch, task,newTask])
 
     useEffect(async () => {
         if (task) {

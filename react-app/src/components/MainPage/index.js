@@ -15,7 +15,8 @@ function MainPage({ show, toggle }) {
     const { projectId } = useParams();
     const dispatch = useDispatch();
     const currentProject = useSelector(state => state.projects.singleProject)
-    const mainPageCalss = show ? "mainPage-open" :"mainPage-closed"
+    const mainPageClass = show ? "mainPage-open" : "mainPage-closed"
+    const mainPageTableClass =show ? "task-table-title" : "task-table-title-closed"
     useEffect(() => {
         dispatch(getOneProject(projectId))
     }, [dispatch, projectId]);
@@ -24,7 +25,7 @@ function MainPage({ show, toggle }) {
         <div className="home-page-sideBar">
             <SideBar show={show} toggle={toggle} />
         </div>
-        <div className={mainPageCalss}>
+        <div className={mainPageClass}>
             <div className="main-page-content">
 
                 <div className="mainPage-project-setting">
@@ -41,6 +42,24 @@ function MainPage({ show, toggle }) {
                 </div>
                 <div className="main-page-currentProjectUser">
                     <CurrentProjectUserInfo />
+                </div>
+                <div className={mainPageTableClass}>
+                    <div className="t-t-name">
+                        Task name
+                    </div>
+                    <div className="t-t-assignee">
+                        Assignee
+                    </div>
+                    <div className="t-t-dueDate">
+                        Due date
+                    </div>
+                    <div className="t-t-priority">
+                        Priority
+                    </div>
+                    <div className="t-t-status">
+                        Status
+                    </div>
+
                 </div>
                 <div className="mian-page-sectionList">
                     <SectionListInProject />

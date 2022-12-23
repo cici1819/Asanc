@@ -250,6 +250,7 @@ const TaskSideCreate = ({ task, taskId, users, section, sessionUser, project, se
 
                 await dispatch(taskAction.thunkUpdateTask(payload)).then(res => {
                     setNewTask(res)
+                    console.log("res#######in sideTask",res)
                 })
 
                 console.log("!!!!!!!!!!!!!!createNewTask Deatil")

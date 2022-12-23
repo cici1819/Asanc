@@ -17,7 +17,7 @@ function CurrentProjectUserInfo() {
     const singleProject = allProjects[+projectId]
 
     //  console.log('usersInCurrentProject!!!!!!!!', usersInCurrentProject)
-    console.log("singleProject in CurrentProjectUserInfo$$$$$$$$$$$$", singleProject)
+    // console.log("singleProject in CurrentProjectUserInfo$$$$$$$$$$$$", singleProject)
 
     useEffect(() => {
         dispatch(getOneProject(projectId))
@@ -26,8 +26,8 @@ function CurrentProjectUserInfo() {
 
     const users = singleProject?.users
     const otherUsers = users?.filter(user => user.id !== sessionUser.id)
-    console.log("users..............", users)
-    console.log("otherUsers1111111111",otherUsers)
+    // console.log("users..............", users)
+    // console.log("otherUsers1111111111",otherUsers)
 
     if (!singleProject) {
         return (<>

@@ -4,7 +4,7 @@
     /* position: fixed; */
     /* width: 100%; */
     padding: 20px;
-     margin-left: 50px;
+    margin-left: 50px;
     height: 100vh;
     width: cal(100vw -240px);
 
@@ -28,4 +28,65 @@
     border-radius: 30%;
     width: 50px;
     height: 50px;
+}
+
+.mainPage-closed{
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top:66px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+
+/* .mainPage-project-setting{
+
+} */
+
+.task-table-title{
+    color: rgb(65,65,65);
+    font-size: 16px;
+    font-weight: 300;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding:10px;
+    background-color: aqua;
+    height: 30px;
+    width:100vw;
+}
+
+.task-table-title-closed{
+    color: rgb(65,65,65);
+    font-size: 16px;
+    font-weight: 300;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding:10px;
+    background-color: aqua;
+    height: 30px;
+    width:100vw;
+
+}
+
+.t-t-name {
+    width: 30%;
+}
+
+.t-t-assignee{
+    width: 20%;
+}
+
+.t-t-dueDate{
+    width: 13%;
+}
+.t-t-priority{
+    width: 10%;
+}
+
+.t-t-status{
+    width: 10%;
 }

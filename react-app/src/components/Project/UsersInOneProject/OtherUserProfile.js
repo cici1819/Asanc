@@ -30,13 +30,13 @@ function UserInOneProjectInfo({ user }) {
 
     return (
         <>
-            <div>
+            <div className="mainPage-user-logo">
                 <img src={userLogo} style={{ backgroundColor: user?.avatar_color }} onClick={openUser} className="user-logo" />
             </div>
-            <div>
+            <div className="main-user-info-div">
                 {showUser && <div className='member-container' >
 
-                
+
 
                     <div className="p-user-profile">
 
@@ -47,7 +47,6 @@ function UserInOneProjectInfo({ user }) {
                             <div className="user-p-2">
                                 Last Name: {user?.lastName}
                             </div>
-
 
                         </div>
 

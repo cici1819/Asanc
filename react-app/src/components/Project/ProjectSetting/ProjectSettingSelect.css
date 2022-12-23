@@ -1,0 +1,98 @@
+.select-setting{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+    align-items: center;
+    margin-bottom:20px;
+    margin-top: 10px;
+}
+
+.project-title{
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.arrow-icon:hover{
+    cursor: pointer;
+    background-color: rgb(245,243,243);
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 8px;
+
+}
+
+.project-setting-dropMenu{
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    padding:5px;
+    position: absolute;
+    background-color:white;
+    min-width: 160px;
+    z-index: 1;
+    top: 80px;
+    width: 210px;
+    height: 80px;
+    border-radius: 8px;
+    /* border: .2px solid rgb(211, 209, 209); */
+    /* margin-left: px; */
+    box-shadow: 0px 0px 16px rgba(183, 183, 183, 0.5);
+
+}
+.project-edit-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    font-size: 18px;
+    padding-left: 10px;
+    padding-right: 10px;
+    /* background-color: aqua; */
+    /* margin-top: -5px; */
+
+}
+
+.project-edit-div:hover{
+    cursor: pointer;
+    background-color: rgb(245,243,243);
+    /* background-color: rgba(240, 106, 106,0.2); */
+    border-radius: 5px;
+
+}
+
+
+.project-e-wapper {
+    margin-bottom: 5px;
+    height: 50%;
+    border-bottom: 1px solid rgb(219, 223, 230);
+
+}
+.project-delete-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 50%;
+    font-size: 18px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.project-delete-div:hover{
+    cursor: pointer;
+    background-color: rgb(245,243,243);
+    /* background-color: rgba(240, 106, 106,0.2); */
+    border-radius: 5px;
+
+}
+
+.arrow-icon{
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 8px;
+    text-align: center;
+    /* margin-left: 5px; */
+}
