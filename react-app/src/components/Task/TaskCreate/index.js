@@ -27,7 +27,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
     const [defaultValue, setDefaultValue] = useState({ value: sessionUser.id, label: `${sessionUser.firstName}  ` + sessionUser.lastName, color: sessionUser.avatar_color, img: userLogo })
     const dateDiv = useRef();
     const [properDate, setProperDate] = useState();
-    // const [task,setTask] = useState({})
+    //  const [task,setTask] = useState({})
     // let newTask = useSelector(state => state.tasks.singleTask
     // console.log("+++++++++++++,newTask", newTask)
     const [newTask, setNewTask] = useState({});
@@ -166,20 +166,23 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
 
 
 
-    const handleCanelCreat = () => {
-        console.log("******************* handleCanelCreat", taskId)
+    const handleCanelCreat = async() => {
+        // console.log("******************* handleCanelCreat", taskId)
 
-        if (taskId) {
-            dispatch(taskAction.thunkDeleteTask(taskId))
+        if (newTask) {
+            taskId = newTask?.id
+           await dispatch(taskAction.thunkDeleteTask(taskId))
                 .then(setShowNewTask(false))
 
+            setNewTask({})
 
-        console.log("newTask iN handleCanelCreat", newTask)
+        // console.log("newTask iN handleCanelCreat", newTask)
             // await dispatch(getOneProject(projectId))
         }
 
         else {
             setShowNewTask(false)
+             setNewTask({})
 
         }
     }
@@ -311,18 +314,18 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
             }
             if (task?.assignee) {
                 // console.log(`------- task details page - task.assignee:`);
-                setAssignee(task.assignee);
+                setAssignee(task?.assignee);
                 // console.log(`------- task details page - task.assignee:`);
                 setDefaultValue({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
                 // console.log("%%%%%%%%%%%%% in task detail", assignee)
                 // console.log("***************$$$$$$ in task detail",defaultValue)
             }
-            if (task.priority) {
+            if (task?.priority) {
                 setPriority(task?.priority);
             } else {
                 setPriority("---");
             }
-            if (task.status) {
+            if (task?.status) {
                 setStatus(task?.status);
             } else {
                 setStatus("---");
