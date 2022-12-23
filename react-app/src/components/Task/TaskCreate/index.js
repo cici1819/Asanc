@@ -15,7 +15,7 @@ import TaskSideCreate from '../TaskSideCreate';
 // import { use } from 'express/lib/router';
 
 
-const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
+const TaskCreate = ({ setCurrentTaskId, section, sessionUser, project, setShowNewTask }) => {
     const [saveState, setSaveState] = useState("");
     const didMount = useRef(false);
     const dispatch = useDispatch();
@@ -28,8 +28,8 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
     const dateDiv = useRef();
     const [properDate, setProperDate] = useState();
     //  const [task,setTask] = useState({})
-    // let newTask = useSelector(state => state.tasks.singleTask
-    // console.log("+++++++++++++,newTask", newTask)
+     let task = useSelector(state => state.tasks.singleTask)
+    console.log("+++++++++++++,newTask", task)
     const [newTask, setNewTask] = useState({});
 
     const [showDateForm, setShowDateForm] = useState(false);
@@ -128,13 +128,14 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
         await dispatch(taskAction.thunkCreateTask(payload)).then(
             res => {
                 setNewTask(res)
+                setCurrentTaskId(res.id)
             }
         );
 
         taskId = newTask?.id
         // console.log("##################***********************,newTask res ", newTask)
         setErrors([])
-        setShowNewTask(false)
+        // setShowNewTask(false)
 
 
     }
@@ -167,24 +168,21 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
 
 
 
-    const handleCanelCreat = async() => {
+    const handleCanelCreat = async () => {
         // console.log("******************* handleCanelCreat", taskId)
 
         if (newTask) {
             taskId = newTask?.id
-           await dispatch(taskAction.thunkDeleteTask(taskId))
-                .then(setShowNewTask(false))
+            await dispatch(taskAction.thunkDeleteTask(taskId))
+                .then(
+                    setShowNewTask(false)
 
-            setNewTask({})
-
-        // console.log("newTask iN handleCanelCreat", newTask)
-            // await dispatch(getOneProject(projectId))
+                ).then(setNewTask({}))
         }
 
         else {
             setShowNewTask(false)
-             setNewTask({})
-
+            setNewTask({})
         }
     }
     // useEffect(() => {
@@ -224,10 +222,10 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
     };
     //////////////////////////////////////////////////////////////////////////////
 
-    let task
+    // let task
     useEffect(() => {
         // taskId = newTask.id
-        if(!newTask?.id) return
+        if (!newTask?.id) return
         const delayDispatch = setTimeout(async () => {
             console.log(`############ update - task id**********`, newTask?.id);
             if (didMount.current) {
@@ -245,9 +243,9 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
                     completed
                 };
 
-                 await dispatch(taskAction.thunkUpdateTask(payload)).then( res => {
+                await dispatch(taskAction.thunkUpdateTask(payload)).then(res => {
                     setNewTask(res)
-
+                    // setCurrentTaskId(res.id)
                 });
 
                 task = newTask
@@ -287,7 +285,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
         // setNewTask(newTask)
         // ("")        setShowNewTask
         //  console.log("dispatch+++++++++++++++++",)
-    }, [dispatch, task,newTask])
+    }, [dispatch, task, newTask])
 
     useEffect(async () => {
         if (task) {
@@ -341,13 +339,14 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
 
     const toggleCompleted = async (e) => {
         // e.stopPropagation();
-        e.preventDefault();
+        // e.preventDefault();
+        console.log("toggle running!!!!!!!!!!!!!!",taskId)
 
-        const res = await dispatch(taskAction.toggleCompleteTask(taskId));
-        if (res) {
-            await dispatch(getOneProject(projectId))
+        await dispatch(taskAction.toggleCompleteTask(taskId));
+        // if (res) {
+        //     await dispatch(getOneProject(projectId))
 
-        }
+        // }
 
     };
 
