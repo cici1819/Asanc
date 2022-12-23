@@ -11,14 +11,15 @@ function TaskInSection({ section, project, sessionUser }) {
     const [showNewTask, setShowNewTask] = useState(false)
     // const [createNewTask, setCreateNewTask] = useState(false);
 
-    const [currentTaskId, setCurrentTaskId] = useState(-1);
-    const users = project?.users
-    let tasksArr = section?.tasks
-    if (currentTaskId !== -1) {
-        tasksArr = tasksArr.filter(t => t.id !== currentTaskId)
+    // const [currentTaskId, setCurrentTaskId] = useState(-1);
+     const users = project?.users
+    // let tasksArr = section?.tasks
+    // if (currentTaskId !== -1) {
+    //     tasksArr = tasksArr.filter(t => t.id !== currentTaskId)
 
-    }
+    // }
     const projectId = project?.id
+    let tasksArr = section?.tasks
 
     console.log("#################,tasksArr", tasksArr)
 
@@ -52,7 +53,7 @@ function TaskInSection({ section, project, sessionUser }) {
                 <i className="fa-duotone fa-plus"></i>
             </div>
             <div>
-                {showNewTask && <TaskCreate setCurrentTaskId={setCurrentTaskId} project={project} section={section} sessionUser={sessionUser} setShowNewTask={setShowNewTask} showNewTask={showNewTask} />}
+                {showNewTask && <TaskCreate  project={project} section={section} sessionUser={sessionUser} setShowNewTask={setShowNewTask} showNewTask={showNewTask} />}
             </div>
             {tasksArr.length > 0 && tasksArr?.map((task) => (
                 <div key={task.id}>
