@@ -2,7 +2,6 @@ import React from 'react'
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneSection } from "../../../store/sectionReducer"
-import TaskSideDetail from '../TaskSideDetail';
 import { getOneProject } from "../../../store/projectReducer"
 import * as taskAction from "../../../store/taskReducer"
 import Select from 'react-select';
@@ -280,7 +279,7 @@ const TaskCreate = ({ setCurrentTaskId, section, sessionUser, project, setShowNe
     }, [taskTitle, description, assigneeId, priority, status, taskId, dueDate, task]);
 
     useEffect(() => {
-        // dispatch(taskAction.thunkGetOneTask(taskId))
+        dispatch(getOneSection(sectionId))
         dispatch(getOneProject(projectId))
         // setNewTask(newTask)
         // ("")        setShowNewTask
