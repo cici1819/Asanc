@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneSection } from "../../../store/sectionReducer"
-import TaskSideDetail from '../TaskSideDetail';
+// import TaskSideDetail from '../TaskSideDetail';
 import { getOneProject } from "../../../store/projectReducer"
 import * as taskAction from "../../../store/taskReducer"
 import Select from 'react-select';
@@ -11,11 +11,11 @@ import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
 import userLogo from "../../../img/user-logo.png"
 import './TaskCreate.css'
+import TaskSideCreate from '../TaskSideCreate';
 // import { use } from 'express/lib/router';
 
 
-const TaskCreate = ({ setCurrentTaskId, section, sessionUser, project, setShowNewTask }) => {
-const TaskCreate = ({ section, sessionUser, project, showNewTask, setShowNewTask }) => {
+const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
     const [saveState, setSaveState] = useState("");
     const didMount = useRef(false);
     const dispatch = useDispatch();
@@ -23,18 +23,22 @@ const TaskCreate = ({ section, sessionUser, project, showNewTask, setShowNewTask
     const [description, setDescription] = useState('');
     const [status, setStatus] = useState('');
     const [assigneeId, setAssigneeId] = useState('');
-    const [assignee, setAssignee] = useState({ value: sessionUser?.id, label: `${sessionUser?.firstName}  ` + sessionUser?.lastName, color: sessionUser?.avatar_color, img: userLogo });
+    const [assignee, setAssignee] = useState({ value: sessionUser.id, label: `${sessionUser.firstName}  ` + sessionUser.lastName, color: sessionUser.avatar_color, img: userLogo });
     const [defaultValue, setDefaultValue] = useState({ value: sessionUser.id, label: `${sessionUser.firstName}  ` + sessionUser.lastName, color: sessionUser.avatar_color, img: userLogo })
     const dateDiv = useRef();
     const [properDate, setProperDate] = useState();
-    let newTask = useSelector(state => state.tasks.singleTask)
+    //  const [task,setTask] = useState({})
+    //   let task = useSelector(state => state.tasks.singleTask)
     // console.log("+++++++++++++,newTask", newTask)
+    const [newTask, setNewTask] = useState({});
+
     const [showDateForm, setShowDateForm] = useState(false);
     const [completed, setCompleted] = useState(false)
     const [dueDate, setDueDate] = useState(new Date().toISOString().split('T')[0]);
     // const [showTaskDetail, setShowTaskDetail] = useState(false);
     const [priority, setPriority] = useState('');
     const [showTaskSideDetail, setShowTaskSideDetail] = useState(false);
+
 
     const [errors, setErrors] = useState([]);
     const sectionId = section.id
@@ -104,7 +108,9 @@ const TaskCreate = ({ section, sessionUser, project, showNewTask, setShowNewTask
         setTaskTitle(e.target.value)
     }
 
-    const handleTitleBlur = async(e) => {
+    let taskId
+    // let task
+    const handleTitleBlur = async (e) => {
         e.preventDefault()
         let taskTitle = e.target.value;
         const payload = {
@@ -119,11 +125,20 @@ const TaskCreate = ({ section, sessionUser, project, showNewTask, setShowNewTask
             completed,
             end_date: new Date().toISOString().split('T')[0],
         };
-        await dispatch(taskAction.thunkCreateTask(payload)).then(setShowNewTask(false));
+
+        await dispatch(taskAction.thunkCreateTask(payload)).then(
+            res => {
+                setNewTask(res)
+            }
+        );
+
+        taskId = newTask?.id
+        // console.log("##################***********************,newTask res ", newTask)
         setErrors([])
+        setShowNewTask(false)
+
 
     }
-
 
 
 
@@ -138,7 +153,6 @@ const TaskCreate = ({ section, sessionUser, project, showNewTask, setShowNewTask
 
     const handleAssigneeChange = (e) => {
         const assinId = parseInt(e.value)
-        console.log("###############,typeOf", typeof (assinId), assinId)
         setAssigneeId(assinId)
         setDefaultValue(e);
 
@@ -150,19 +164,27 @@ const TaskCreate = ({ section, sessionUser, project, showNewTask, setShowNewTask
         setDueDate(dateStr);
 
     }
-    let taskId
 
 
 
-    const handleCanelCreat = () => {
-        if (newTask.id) {
-            taskId = newTask.id
-            dispatch(taskAction.thunkDeleteTask(taskId))
+
+    const handleCanelCreat = async () => {
+        // console.log("******************* handleCanelCreat", taskId)
+
+        if (newTask) {
+            taskId = newTask?.id
+            await dispatch(taskAction.thunkDeleteTask(taskId))
                 .then(setShowNewTask(false))
+
+            setNewTask({})
+
+            // console.log("newTask iN handleCanelCreat", newTask)
             // await dispatch(getOneProject(projectId))
         }
+
         else {
             setShowNewTask(false)
+            setNewTask({})
 
         }
     }
@@ -203,65 +225,70 @@ const TaskCreate = ({ section, sessionUser, project, showNewTask, setShowNewTask
     };
     //////////////////////////////////////////////////////////////////////////////
 
-
-    let task
+     let task
     useEffect(() => {
+        // taskId = newTask.id
+        if (!newTask?.id) return
+        const delayDispatch = setTimeout(async () => {
+            console.log(`############ update - task id**********`, newTask?.id);
+            if (didMount.current) {
+                const payload = {
+                    title: newTask?.title,
+                    description,
+                    assigneeId: assigneeId,
+                    taskId: newTask?.id,
+                    ownerId,
+                    sectionId,
+                    status: status,
+                    priority: priority,
+                    projectId,
+                    end_date: dueDate,
+                    completed
+                };
 
-        if (newTask) {
-            taskId = newTask.id
-            if(!newTask.id) return
-            const delayDispatch = setTimeout(async () => {
-                if (didMount.current) {
-                    const payload = {
-                        title: taskTitle,
-                        description,
-                        assigneeId: assigneeId,
-                        taskId,
-                        ownerId,
-                        sectionId,
-                        status: status,
-                        priority: priority,
-                        projectId,
-                        end_date: dueDate,
-                        completed
-                    };
+                await dispatch(taskAction.thunkUpdateTask(payload)).then(res => {
+                    setNewTask(res)
 
-                    task = await dispatch(taskAction.thunkUpdateTask(payload));
-                    console.log("task+++++++++++++++", task)
-                    if (task) {
-                        taskId = task.id
-                        console.log("88888888888", taskId)
+                });
 
-                    }
-                    setSaveState("save changes");
-                    setTimeout(() => {
-                        setSaveState("");
-                        //   setShowNewTask("")
-                        setErrors([])
-                    }, 1000);
+                task = newTask
+                // setTask(updatedTask)
 
-                } else {
-                    didMount.current = true;
-                    return null
-                }
+                // console.log("task+++++++++++++++", task)
+                console.log("!!!!!!!!!!!!!!!!!! res ", newTask)
 
-            }, 500)
+                // if (task) {
+                //     taskId = task.id
 
-            return () => clearTimeout(delayDispatch);
+                // }
+                setSaveState("save changes");
+                setTimeout(() => {
+                    setSaveState("");
+                    // setShowNewTask(false)
+                    setErrors([])
+                }, 1000);
 
-        }
+            } else {
+                didMount.current = true;
+                return null
+            }
+
+        }, 200)
+
+        return () => clearTimeout(delayDispatch);
+
+
 
 
     }, [taskTitle, description, assigneeId, priority, status, taskId, dueDate, task]);
 
-    // task= {...task}
-
     useEffect(() => {
-        dispatch(taskAction.thunkGetOneTask(taskId))
+        // dispatch(taskAction.thunkGetOneTask(taskId))
         dispatch(getOneProject(projectId))
+        // setNewTask(newTask)
         // ("")        setShowNewTask
         //  console.log("dispatch+++++++++++++++++",)
-    }, [dispatch, taskId, task, newTask])
+    }, [dispatch, task, newTask])
 
     useEffect(async () => {
         if (task) {
@@ -290,18 +317,18 @@ const TaskCreate = ({ section, sessionUser, project, showNewTask, setShowNewTask
             }
             if (task?.assignee) {
                 // console.log(`------- task details page - task.assignee:`);
-                setAssignee(task.assignee);
+                setAssignee(task?.assignee);
                 // console.log(`------- task details page - task.assignee:`);
                 setDefaultValue({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
                 // console.log("%%%%%%%%%%%%% in task detail", assignee)
                 // console.log("***************$$$$$$ in task detail",defaultValue)
             }
-            if (task.priority) {
+            if (task?.priority) {
                 setPriority(task?.priority);
             } else {
                 setPriority("---");
             }
-            if (task.status) {
+            if (task?.status) {
                 setStatus(task?.status);
             } else {
                 setStatus("---");
@@ -315,14 +342,13 @@ const TaskCreate = ({ section, sessionUser, project, showNewTask, setShowNewTask
 
     const toggleCompleted = async (e) => {
         // e.stopPropagation();
-        // e.preventDefault();
-        console.log("toggle running!!!!!!!!!!!!!!",taskId)
+        e.preventDefault();
 
-        await dispatch(taskAction.toggleCompleteTask(taskId));
-        // if (res) {
-        //     await dispatch(getOneProject(projectId))
+        const res = await dispatch(taskAction.toggleCompleteTask(taskId));
+        if (res) {
+            await dispatch(getOneProject(projectId))
 
-        // }
+        }
 
     };
 
@@ -376,7 +402,7 @@ const TaskCreate = ({ section, sessionUser, project, showNewTask, setShowNewTask
                     Cancel Create
                 </button>
             </div> */}
-            {newTask.id && <>
+            {newTask?.id && <>
                 <div onClick={() => {
                     setShowTaskSideDetail(true);
 
@@ -387,7 +413,7 @@ const TaskCreate = ({ section, sessionUser, project, showNewTask, setShowNewTask
                     </span>
                 </div>
                 {showTaskSideDetail && <div>
-                    <TaskSideDetail setShowTaskSideDetail={setShowTaskSideDetail} taskId={newTask.id} users={users} section={section} sessionUser={sessionUser} project={project} showTaskSideDetail={showTaskSideDetail} task={newTask} />
+                    <TaskSideCreate setShowTaskSideDetail={setShowTaskSideDetail} taskId={newTask.id} users={users} section={section} sessionUser={sessionUser} project={project} showTaskSideDetail={showTaskSideDetail} task={newTask} setNewTask={setNewTask} />
                 </div>}
             </>}
 

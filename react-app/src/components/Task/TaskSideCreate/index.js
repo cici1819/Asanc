@@ -15,8 +15,8 @@ import './TaskSideCreate.css'
 
 
 
-const TaskSideCreate = ({ task, taskId, users, section, sessionUser, project, setShowTaskSideDetail, showTaskSideDetail,setNewTask }) => {
-     console.log("*******************%%%%%%%%%%%%%%% task in sideBarCreate", task)
+const TaskSideCreate = ({ task, taskId, users, section, sessionUser, project, setShowTaskSideDetail, showTaskSideDetail, setNewTask }) => {
+    console.log("*******************%%%%%%%%%%%%%%% task in sideBarCreate", task)
     console.log("showTaskDetail", showTaskSideDetail)
     const [assignee, setAssingee] = useState(task?.assignee)
     const [defaultValue, setDefaultValue] = useState({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
@@ -250,7 +250,7 @@ const TaskSideCreate = ({ task, taskId, users, section, sessionUser, project, se
 
                 await dispatch(taskAction.thunkUpdateTask(payload)).then(res => {
                     setNewTask(res)
-                    console.log("res#######in sideTask",res)
+                    console.log("res#######in sideTask", res)
                 })
 
                 console.log("!!!!!!!!!!!!!!createNewTask Deatil")

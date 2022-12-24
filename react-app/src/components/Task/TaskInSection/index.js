@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import './TaskInSection.css'
 import SingleTask from "../TaskDetail";
 import TaskCreate from '../../Task/TaskCreate';
-import tasks from "../../../store/taskReducer";
+// import tasks from "../../../store/taskReducer";
 
 function TaskInSection({ section, project, sessionUser }) {
     console.log("*****************,section", section)
@@ -17,7 +17,7 @@ function TaskInSection({ section, project, sessionUser }) {
     // if (currentTaskId !== -1) {
     //     tasksArr = tasksArr.filter(t => t.id !== currentTaskId)
 
-    }
+
     const projectId = project?.id
     let tasksArr = section?.tasks
 
