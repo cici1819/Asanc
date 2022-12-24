@@ -320,7 +320,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
                 // console.log(`------- task details page - task.assignee:`);
                 setAssignee(task?.assignee);
                 // console.log(`------- task details page - task.assignee:`);
-                setDefaultValue({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
+                // setDefaultValue({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
                 // console.log("%%%%%%%%%%%%% in task detail", assignee)
                 // console.log("***************$$$$$$ in task detail",defaultValue)
             }
@@ -415,7 +415,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
                     </span>
                 </div>
                 {showTaskSideDetail && <div>
-                    <TaskSideCreate setShowTaskSideDetail={setShowTaskSideDetail} taskId={newTask.id} users={users} section={section} sessionUser={sessionUser} project={project} showTaskSideDetail={showTaskSideDetail} task={newTask} setNewTask={setNewTask} />
+                    <TaskSideCreate assingee={assignee} setAssingee={setAssignee} defaultValue={defaultValue} setDefaultValue={setDefaultValue} setShowTaskSideDetail={setShowTaskSideDetail} taskId={newTask.id} users={users} section={section} sessionUser={sessionUser} project={project} showTaskSideDetail={showTaskSideDetail} task={newTask} setNewTask={setNewTask} />
                 </div>}
             </>}
 

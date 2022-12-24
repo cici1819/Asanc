@@ -15,11 +15,11 @@ import './TaskSideCreate.css'
 
 
 
-const TaskSideCreate = ({ task, taskId, users, section, sessionUser, project, setShowTaskSideDetail, showTaskSideDetail,setNewTask }) => {
+const TaskSideCreate = ({ assignee, setAssingee, defaultValue, setDefaultValue,task, taskId, users, section, sessionUser, project, setShowTaskSideDetail, showTaskSideDetail,setNewTask }) => {
      console.log("*******************%%%%%%%%%%%%%%% task in sideBarCreate", task)
     console.log("showTaskDetail", showTaskSideDetail)
-    const [assignee, setAssingee] = useState(task?.assignee)
-    const [defaultValue, setDefaultValue] = useState({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
+    // const [assignee, setAssingee] = useState(task?.assignee)
+    // const [defaultValue, setDefaultValue] = useState({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
     // const defaultAssiObj = users?.find(user => user?.id == task?.ownerId)
     const taskOwnerObj = users?.find(user => user?.id == task?.ownerId)
     const [saveState, setSaveState] = useState("");
@@ -201,8 +201,8 @@ const TaskSideCreate = ({ task, taskId, users, section, sessionUser, project, se
         if (task?.assignee) {
 
             setAssingee(task.assignee);
-            setDefaultValue({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
-            // console.log("@@@@@@@@@@@@@@", defaultValue)
+            // setDefaultValue({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
+            // // console.log("@@@@@@@@@@@@@@", defaultValue)
             // console.log("*****************", assignee)
         }
 
