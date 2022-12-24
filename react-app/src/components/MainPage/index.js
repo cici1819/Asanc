@@ -16,7 +16,8 @@ function MainPage({ show, toggle }) {
     const dispatch = useDispatch();
     const currentProject = useSelector(state => state.projects.singleProject)
     const mainPageClass = show ? "mainPage-open" : "mainPage-closed"
-    const mainPageTableClass =show ? "task-table-title" : "task-table-title-closed"
+    const mainPageTableClass = show ? "task-table-title" : "task-table-title-closed"
+    const sectionListClass = show ? "mian-page-sectionList":"main-page-sectionList-closed"
     useEffect(() => {
         dispatch(getOneProject(projectId))
     }, [dispatch, projectId]);
@@ -61,7 +62,7 @@ function MainPage({ show, toggle }) {
                     </div>
 
                 </div>
-                <div className="mian-page-sectionList">
+                <div className={sectionListClass}>
                     <SectionListInProject />
                 </div>
             </div>

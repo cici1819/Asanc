@@ -1,0 +1,66 @@
+.section-error-list{
+    color: rgb(240,106,106) ;
+    font-size: 12px;
+    /* height: 20px; */
+    width: fit-content;
+
+}
+.single-section-content{
+
+
+}
+
+.section-part-input{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    width: 30%;
+    height: 80px;
+    /* background-color: aqua; */
+    border-bottom:1px solid rgb(242,242,242);
+    border-right:1px solid rgb(242,242,242);
+    background-color: aqua;
+    /* border-top:1px solid rgb(242,242,242); */
+
+
+ }
+
+
+.edit-section-input{
+    background-color: antiquewhite;
+    font-size: 18px;
+    font-weight: 600;
+    min-width: fit-content;
+    height: 45px;
+    border: none;
+    /* max-width: 80%; */
+    /* overflow-y: scroll; */
+
+    /* height: 30px; */
+}
+.edit-section-input:focus{
+    border: 3px solid rgb(81,135,248);
+    border-radius: 10px;
+    width: 50%;
+
+}
+
+.setting-add-task{
+    display: flex;
+    flex-direction: row;
+     margin-left: 60%;
+     gap:10px;
+     font-size: 20px;
+     /* margin-top: 40px; */
+     /* background-color: aqua; */
+
+     /* margin-top: 50px; */
+}
+.add-task-in-section-icon{
+    width: 30px;
+    height: 30px;
+    padding-top: 5px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: azure;
+}

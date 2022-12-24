@@ -5,8 +5,8 @@ from app.models import Section
 
 def valid_title(form, field):
   title = field.data
-  if len(title) > 50 :
-    raise ValidationError('Section title must less than 50 characters.')
+  if len(title) > 30 :
+    raise ValidationError('Section title must less than 30 characters.')
 
 class SectionForm(FlaskForm):
   title = StringField('Title', validators=[valid_title])

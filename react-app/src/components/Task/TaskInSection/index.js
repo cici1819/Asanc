@@ -6,10 +6,11 @@ import SingleTask from "../TaskDetail";
 import TaskCreate from '../../Task/TaskCreate';
 // import tasks from "../../../store/taskReducer";
 
-function TaskInSection({ section, project, sessionUser }) {
+function TaskInSection({ section, project, sessionUser,showNewTask,setShowNewTask }) {
     console.log("*****************,section", section)
-    const [showNewTask, setShowNewTask] = useState(false)
+
     // const [createNewTask, setCreateNewTask] = useState(false);
+
 
     // const [currentTaskId, setCurrentTaskId] = useState(-1);
     const users = project?.users
@@ -37,10 +38,6 @@ function TaskInSection({ section, project, sessionUser }) {
     // };
     //  tasksArr= tasksArr.push(taskList)
 
-    const onAddBtnClick = (e) => {
-        setShowNewTask(true);
-        // setCreateNewTask(true)
-    }
 
 
     if (!section) return null
@@ -49,12 +46,11 @@ function TaskInSection({ section, project, sessionUser }) {
             {/* {sessionUserIsOwner && <div className='add-task-in-section-icon' onClick={onAddBtnClick}>
                 <i className="fa-duotone fa-plus"></i>
             </div>} */}
-            <div className='add-task-in-section-icon' onClick={onAddBtnClick}>
-                <i className="fa-duotone fa-plus"></i>
-            </div>
             <div>
-                {showNewTask && <TaskCreate  project={project} section={section} sessionUser={sessionUser} setShowNewTask={setShowNewTask} showNewTask={showNewTask} />}
+                {showNewTask && <TaskCreate project={project} section={section} sessionUser={sessionUser} setShowNewTask={setShowNewTask} showNewTask={showNewTask} />}
             </div>
+
+
             {tasksArr.length > 0 && tasksArr?.map((task) => (
                 <div key={task.id}>
                     <SingleTask task={task} users={users} section={section} sessionUser={sessionUser} projectId={projectId} />

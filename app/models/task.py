@@ -8,7 +8,7 @@ class Task(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100),default="New Task",nullable=False)
+    title = db.Column(db.String(30),default="New Task",nullable=False)
     description = db.Column(db.String(255))
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     assignee_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))

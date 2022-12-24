@@ -52,10 +52,14 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding:10px;
-    background-color: aqua;
-    height: 30px;
-    width:100vw;
+    /* padding:10px;
+    background-color: aqua; */
+    height: 50px;
+    width:90vw;
+    /* margin-bottom: 20px; */
+    border-top:1px solid rgb(242,242,242);
+    border-bottom:1px solid rgb(242,242,242);
+
 }
 
 .task-table-title-closed{
@@ -65,28 +69,78 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding:10px;
-    background-color: aqua;
-    height: 30px;
+    /* padding:10px; */
+     /* background-color: aqua; */
+    height: 50px;
     width:100vw;
+    /* margin-bottom: 20px; */
+    border-top:1px solid rgb(242,242,242);
+    border-bottom:1px solid rgb(242,242,242);
 
+}
+
+.mian-page-sectionList{
+    /* display: flex;
+    flex-direction: column; */
+    /* background-color: aqua; */
+    /* height: 80px; */
+    width:90vw;
+    /* border-top:1px solid rgb(242,242,242);
+    border-bottom:1px solid rgb(242,242,242); */
+
+}
+.main-page-sectionList-closed{
+    width: 100vw;
 }
 
 .t-t-name {
     width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-right:1px solid rgb(242,242,242);
 }
 
 .t-t-assignee{
     width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-right:1px solid rgb(242,242,242);
 }
 
+
 .t-t-dueDate{
-    width: 13%;
+    width: 10%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-right:1px solid rgb(242,242,242);
 }
+
 .t-t-priority{
     width: 10%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-right:1px solid rgb(242,242,242);
 }
+
 
 .t-t-status{
     width: 10%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-right:1px solid rgb(242,242,242);
+
 }

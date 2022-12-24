@@ -44,7 +44,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
     const [errors, setErrors] = useState([]);
     const sectionId = section.id
     const ownerId = sessionUser.id
-    // const projectId = project.id
+    const projectId = project.id
     const users = project?.users
 
 
@@ -322,8 +322,8 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
                 // console.log(`------- task details page - task.assignee:`);
                 setAssignee(task?.assignee);
                 // console.log(`------- task details page - task.assignee:`);
-                setDefaultValue({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
-                // console.log("%%%%%%%%%%%%% in task detail", assignee)
+                // setDefaultValue({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
+                // // console.log("%%%%%%%%%%%%% in task detail", assignee)
                 // console.log("***************$$$$$$ in task detail",defaultValue)
             }
             if (task?.priority) {
@@ -377,8 +377,8 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
 
     useEffect(() => {
         const errors = [];
-        if (taskTitle?.length > 50 || taskTitle?.length < 3) {
-            errors.push("Title should between 3 and 50 characters")
+        if (taskTitle?.length > 30 || taskTitle?.length < 3) {
+            errors.push("Title should between 3 and 30 characters")
         } else if (description?.length > 255) {
             errors.push("Description should be less than 255 characters")
         }
@@ -416,7 +416,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
                     </span>
                 </div>
                 {showTaskSideDetail && <div>
-                    <TaskSideCreate setShowTaskSideDetail={setShowTaskSideDetail} taskId={newTask.id} users={users} section={section} sessionUser={sessionUser} project={project} showTaskSideDetail={showTaskSideDetail} task={newTask} setNewTask={setNewTask} />
+                    <TaskSideCreate setShowTaskSideDetail={setShowTaskSideDetail} taskId={newTask.id} users={users} section={section} sessionUser={sessionUser} project={project} showTaskSideDetail={showTaskSideDetail} task={newTask} setNewTask={setNewTask} defaultValue={defaultValue} setDefaultValue={setDefaultValue} assignee={assignee} setAssignee={setAssignee} />
                 </div>}
             </>}
 

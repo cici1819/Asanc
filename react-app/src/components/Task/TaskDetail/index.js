@@ -15,12 +15,12 @@ import './SingleTask.css'
 
 const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
     // const defaultAssigneeObj = users.find(user => user?.id == task.assigneeId)
-    const [assignee, setAssingee] = useState(task.assignee)
+    const [assignee, setAssingee] = useState(task?.assignee)
     const [saveState, setSaveState] = useState("");
     const [defaultValue, setDefaultValue] = useState({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
     const didMount = useRef(false);
     const dispatch = useDispatch();
-    const [taskTitle, setTaskTitle] = useState(task.title);
+    const [taskTitle, setTaskTitle] = useState(task?.title);
     const [description, setDescription] = useState(task.description);
     const [status, setStatus] = useState(task.status);
     const [assigneeId, setAssingeeId] = useState(task?.assigneeId);
@@ -122,6 +122,7 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
 
     };
 
+    console.log("!!!!!!!!!!!!!assignee",assignee)
     const handleAssigneeChange = (e) => {
         const assinId = parseInt(e.value)
         // console.log("###############,typeOf",typeof(assinId),assinId)
@@ -180,7 +181,7 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
             console.log(`------- task details page - task.assignee:`);
             setAssingee(task.assignee);
             console.log(`------- task details page - task.assignee:`);
-            setDefaultValue({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
+            // setDefaultValue({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
             // console.log("%%%%%%%%%%%%% in task detail", assignee)
             // console.log("***************$$$$$$ in task detail",defaultValue)
         }
@@ -284,8 +285,8 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
 
     useEffect(() => {
         const errors = [];
-        if (taskTitle.length > 50 || taskTitle.length < 3) {
-            errors.push("Title should between 3 and 50 characters")
+        if (taskTitle.length > 30 || taskTitle.length < 3) {
+            errors.push("Title should between 3 and 30 characters")
         } else if (description.length > 255) {
             errors.push("Description should be less than 255 characters")
         }
@@ -320,7 +321,7 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
             </div>
             }
             {showTaskSideDetail && <div className='task-side-div'>
-                <TaskSideDetail setShowTaskSideDetail={setShowTaskSideDetail} taskId={taskId} users={users} section={section} sessionUser={sessionUser} project={project} showTaskSideDetail={showTaskSideDetail} task={task} />
+                <TaskSideDetail setShowTaskSideDetail={setShowTaskSideDetail} defaultValue={defaultValue} setDefaultValue={setDefaultValue} taskId={taskId} users={users} section={section} sessionUser={sessionUser} project={project} showTaskSideDetail={showTaskSideDetail} task={task} assignee={assignee} setAssingee={setAssingee} />
             </div>}
 
             {taskSettingUser ?

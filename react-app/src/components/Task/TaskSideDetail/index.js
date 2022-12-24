@@ -15,12 +15,12 @@ import './TaskSideDetail.css'
 
 
 
-const TaskSideDetail = ({ task, taskId, users, section, sessionUser, project, setShowTaskSideDetail, showTaskSideDetail }) => {
+const TaskSideDetail = ({assignee,setAssingee,defaultValue,setDefaultValue, task, taskId, users, section, sessionUser, project, setShowTaskSideDetail, showTaskSideDetail }) => {
     // console.log("*******************%%%%%%%%%%%%%%% task in sideBar", task)
     console.log("showTaskDetail", showTaskSideDetail)
-    const [assignee, setAssingee] = useState(task?.assignee)
-    const [defaultValue, setDefaultValue] = useState({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
-    // const defaultAssiObj = users?.find(user => user?.id == task?.ownerId)
+    // const [assignee, setAssingee] = useState(task?.assignee)
+    // const [defaultValue, setDefaultValue] = useState({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
+    // // const defaultAssiObj = users?.find(user => user?.id == task?.ownerId)
     const taskOwnerObj = users?.find(user => user?.id == task?.ownerId)
     const [saveState, setSaveState] = useState("");
     const didMount = useRef(false);
@@ -201,8 +201,8 @@ const TaskSideDetail = ({ task, taskId, users, section, sessionUser, project, se
         if (task?.assignee) {
 
             setAssingee(task.assignee);
-            setDefaultValue({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
-            // console.log("@@@@@@@@@@@@@@", defaultValue)
+            // setDefaultValue({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
+            // // console.log("@@@@@@@@@@@@@@", defaultValue)
             // console.log("*****************", assignee)
         }
 

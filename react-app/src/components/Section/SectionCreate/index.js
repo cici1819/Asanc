@@ -17,8 +17,8 @@ const SectionCreate = ({ projectId}) => {
     }
     useEffect(() => {
         const errors = [];
-        if (title.length > 50) {
-            errors.push("Title should be less than 50 characters")
+        if (title.length > 30) {
+            errors.push("Title should be less than 30 characters")
         }
         setErrors(errors);
     }, [title])
@@ -67,7 +67,7 @@ const SectionCreate = ({ projectId}) => {
                     <input className='add-section-input'
                         type='text'
                         value={title}
-                        placeholder="Untitled Project"
+                        placeholder="Untitled Section"
                         onBlur={handleInputBlur}
                         onChange={handleChange} />
 

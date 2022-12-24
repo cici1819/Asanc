@@ -1,0 +1,13 @@
+ .section-in-project-container {
+     /* background-color: aqua; */
+     height: fit-content;
+     display: flex;
+     flex-direction: column;
+     justify-content: flex-start;
+ }
+
+.section-part{
+    /* background-color: aliceblue; */
+     margin-bottom: 10px;
+ }
+

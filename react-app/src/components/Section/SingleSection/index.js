@@ -16,6 +16,8 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
     const projectId = project.id
     const [showMenu, setShowMenu] = useState(false)
     const [showSectionDeleteModal, setShowSectionDeleteModal] = useState(false);
+    const [showNewTask, setShowNewTask] = useState(false)
+
 
     const ref = useRef(null)
 
@@ -37,10 +39,12 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
         return () => document.removeEventListener("click", closeMenu);
     }, [showMenu]);
 
+
+
     useEffect(() => {
         const errors = [];
-        if (sectionTitle.length > 50) {
-            errors.push("title should be less than 50 characters")
+        if (sectionTitle.length > 30) {
+            errors.push("title should be less than 30 characters")
         }
         setErrors(errors);
     }, [sectionTitle])
@@ -105,11 +109,17 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
 
 
     // };
+    const onAddBtnClick = (e) => {
+        setShowNewTask(true);
+        // setCreateNewTask(true)
+    }
 
 
     return (
         <>
-            {errors.length > 0 && (<div>
+
+
+            {errors.length > 0 && (<div className='section-error-list'>
 
                 {errors[0]}
 
@@ -122,23 +132,29 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
 
             {sessionUserIsOwner ?
                 (<>
-                    <input className='edit-section-input'
-                        type='text'
-                        value={sectionTitle}
-                        placeholder="Untitled Section"
-                        onBlur={handleInputBlur}
-                        onChange={handleChange}
-                        ref={ref}
+                    <div className='section-part-input'>
+                        <input className='edit-section-input'
+                            type='text'
+                            value={sectionTitle}
+                            placeholder="Untitled Section"
+                            onBlur={handleInputBlur}
+                            onChange={handleChange}
+                            ref={ref}
 
-                    />
-                    <div>
-                        <TaskInSection section={section} project={project} sessionUser={sessionUser} sessionUserIsOwner={sessionUserIsOwner} />
+                        />
+                        <div className='setting-add-task'>
+                            <div className='add-task-in-section-icon' onClick={onAddBtnClick}>
+                                <i className="fa-regular fa-plus"></i>
+                            </div>
+
+                            <div className='open-section-setting' onClick={openMenu}>
+                                <i className="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </div>
+
                     </div>
 
 
-                    <div className='open-section-setting' onClick={openMenu}>
-                        <i className="fa-solid fa-ellipsis"></i>
-                    </div>
                     {showMenu && (
                         <>
                             <div className='section-setting-dropMenu delete-ele'>
@@ -181,7 +197,9 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
                         </>
 
                     )}
+
                 </>
+
 
                 )
                 : (
@@ -192,13 +210,17 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
                             onChange={(e) => handleChange(e)}
                             readOnly
                         />
-                        <div>
-                            <TaskInSection section={section} project={project} sessionUser={sessionUser} />
+                        <div className='add-task-in-section-icon' onClick={onAddBtnClick}>
+                            <i className="fa-duotone fa-plus"></i>
                         </div>
+
                     </>
 
 
                 )}
+            <div className='tasks-in-section'>
+                <TaskInSection setShowNewTask={setShowNewTask} section={section} project={project} sessionUser={sessionUser} sessionUserIsOwner={sessionUserIsOwner} showNewTask={showNewTask} />
+            </div>
 
 
         </>

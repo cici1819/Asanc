@@ -5,8 +5,8 @@ from app.models import Project
 
 def valid_title(form, field):
   title = field.data
-  if len(title) > 50 or len(title) < 3:
-    raise ValidationError('Project title must be between 3 and 50 characters.')
+  if len(title) > 30 or len(title) < 3:
+    raise ValidationError('Project title must be between 3 and 30 characters.')
 
 def valid_description(form, field):
   description = field.data

@@ -25,8 +25,8 @@ function ProjectCreate({ setShowModal }) {
         if (!icon.includes('.com') && !icon.includes('.jpg') && !icon.includes('.png') && !icon.includes('.jpeg')) {
             errors.push('Please provide a valid image URL!')
         }
-        if (title.length > 50) {
-            errors.push("title should be less than 50 characters")
+        if (title.length > 30) {
+            errors.push("title should be less than 30 characters")
         }
         if (title.length < 3) {
             errors.push("title should be more than 2 characters")

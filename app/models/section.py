@@ -7,7 +7,7 @@ class Section(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key = True)
-    title = db.Column(db.String(50), default="Untitled Section")
+    title = db.Column(db.String(30), default="Untitled Section")
     created_at = db.Column(db.DateTime,default=datetime.now() )
     updated_at = db.Column(db.DateTime, default=datetime.now())
     project_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("projects.id")), nullable = False)
