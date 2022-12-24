@@ -46,9 +46,9 @@ function CurrentProjectUserInfo() {
             <div className="main-page-project-members-container">
 
                 <div className="members-list-title">
-                    <sapn>
+                    <span>
                         Collaborators
-                    </sapn>
+                    </span>
                 </div>
                 <div className="members-list-container">
                     {otherUsers?.map((user) => <UserInOneProjectInfo key={user.id} user={user} />)}

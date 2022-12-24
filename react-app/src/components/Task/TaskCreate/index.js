@@ -16,12 +16,7 @@ import TaskSideCreate from '../TaskSideCreate';
 // import { use } from 'express/lib/router';
 
 
-const TaskCreate = ({ section, sessionUser, setShowNewTask }) => {
-    const { projectId } = useParams();
-    const project = useSelector(state => state.projects.singleProject);
-    let task = useSelector(state => state.tasks.singleTask)
-
-
+const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
     const [saveState, setSaveState] = useState("");
     const didMount = useRef(false);
     const dispatch = useDispatch();
@@ -35,7 +30,7 @@ const TaskCreate = ({ section, sessionUser, setShowNewTask }) => {
     const [properDate, setProperDate] = useState();
     //  const [task,setTask] = useState({})
     // let task = useSelector(state => state.tasks.singleTask)
-    // console.log("+++++++++++++,newTask", newTask)
+    // console.log("+++++++++++++,newTask", task)
     const [newTask, setNewTask] = useState({});
 
     const [showDateForm, setShowDateForm] = useState(false);
@@ -135,13 +130,14 @@ const TaskCreate = ({ section, sessionUser, setShowNewTask }) => {
         await dispatch(taskAction.thunkCreateTask(payload)).then(
             res => {
                 setNewTask(res)
+                // setCurrentTaskId(res.id)
             }
         );
 
         taskId = newTask?.id
         // console.log("##################***********************,newTask res ", newTask)
         setErrors([])
-        setShowNewTask(false)
+         setShowNewTask(false)
 
 
     }
@@ -195,7 +191,7 @@ const TaskCreate = ({ section, sessionUser, setShowNewTask }) => {
         }
     }
     // useEffect(() => {
-    //     if (!showNewTask) return;
+    //     if (!showTaskSideDetail) return;
 
     //     document.addEventListener('click', );
 
@@ -231,7 +227,7 @@ const TaskCreate = ({ section, sessionUser, setShowNewTask }) => {
     };
     //////////////////////////////////////////////////////////////////////////////
 
-    //  let task
+     let task
     useEffect(() => {
         // taskId = newTask.
 
@@ -258,10 +254,7 @@ const TaskCreate = ({ section, sessionUser, setShowNewTask }) => {
 
                 });
 
-
-
-
-                // task = newTask
+                task = newTask
                 // setTask(updatedTask)
 
                 // console.log("task+++++++++++++++", task)
