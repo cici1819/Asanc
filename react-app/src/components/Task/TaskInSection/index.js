@@ -19,7 +19,7 @@ function TaskInSection({ section, project, sessionUser }) {
 
     // }
     const projectId = project?.id
-    let tasksArr = section?.tasks
+    // let tasksArr = section?.tasks
 
     console.log("#################,tasksArr", tasksArr)
 
