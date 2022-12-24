@@ -14,6 +14,7 @@ import './TaskCreate.css'
 // import { use } from 'express/lib/router';
 
 
+const TaskCreate = ({ setCurrentTaskId, section, sessionUser, project, setShowNewTask }) => {
 const TaskCreate = ({ section, sessionUser, project, showNewTask, setShowNewTask }) => {
     const [saveState, setSaveState] = useState("");
     const didMount = useRef(false);
@@ -22,7 +23,7 @@ const TaskCreate = ({ section, sessionUser, project, showNewTask, setShowNewTask
     const [description, setDescription] = useState('');
     const [status, setStatus] = useState('');
     const [assigneeId, setAssigneeId] = useState('');
-    const [assignee, setAssignee] = useState({ value: sessionUser.id, label: `${sessionUser.firstName}  ` + sessionUser.lastName, color: sessionUser.avatar_color, img: userLogo });
+    const [assignee, setAssignee] = useState({ value: sessionUser?.id, label: `${sessionUser?.firstName}  ` + sessionUser?.lastName, color: sessionUser?.avatar_color, img: userLogo });
     const [defaultValue, setDefaultValue] = useState({ value: sessionUser.id, label: `${sessionUser.firstName}  ` + sessionUser.lastName, color: sessionUser.avatar_color, img: userLogo })
     const dateDiv = useRef();
     const [properDate, setProperDate] = useState();
@@ -253,6 +254,8 @@ const TaskCreate = ({ section, sessionUser, project, showNewTask, setShowNewTask
 
     }, [taskTitle, description, assigneeId, priority, status, taskId, dueDate, task]);
 
+    // task= {...task}
+
     useEffect(() => {
         dispatch(taskAction.thunkGetOneTask(taskId))
         dispatch(getOneProject(projectId))
@@ -312,13 +315,14 @@ const TaskCreate = ({ section, sessionUser, project, showNewTask, setShowNewTask
 
     const toggleCompleted = async (e) => {
         // e.stopPropagation();
-        e.preventDefault();
+        // e.preventDefault();
+        console.log("toggle running!!!!!!!!!!!!!!",taskId)
 
-        const res = await dispatch(taskAction.toggleCompleteTask(taskId));
-        if (res) {
-            await dispatch(getOneProject(projectId))
+        await dispatch(taskAction.toggleCompleteTask(taskId));
+        // if (res) {
+        //     await dispatch(getOneProject(projectId))
 
-        }
+        // }
 
     };
 

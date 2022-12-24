@@ -17,7 +17,7 @@ function TaskInSection({ section, project, sessionUser }) {
     // if (currentTaskId !== -1) {
     //     tasksArr = tasksArr.filter(t => t.id !== currentTaskId)
 
-    // }
+    }
     const projectId = project?.id
     let tasksArr = section?.tasks
 
