@@ -369,10 +369,10 @@ const TaskSideCreate = ({ task, taskId, users, section, sessionUser, project, se
                                 options={options}
                                 defaultValue={defaultValue}
                                 onChange={handleAssigneeChange}
-                                // value={options.filter(function (option) {
-                                //     return option.value === defaultValue.value;
-                                // })}
-                                value={defaultValue}
+                                value={options.filter(function (option) {
+                                    return option.value === defaultValue.value;
+                                })}
+                                // value={defaultValue}
                             />
                             {/* (<Select className='s-assignee-select'
                                 styles={customStyles}

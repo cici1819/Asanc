@@ -27,7 +27,7 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
     const dateDiv = useRef();
     const [properDate, setProperDate] = useState();
     const project = useSelector(state => state.projects.singleProject)
-    const [timer, setTimer] = useState(null)
+    // const [timer, setTimer] = useState(null)
     const [showDateForm, setShowDateForm] = useState(false);
     const [completed, setCompleted] = useState(task.completed)
     const [dueDate, setDueDate] = useState(task.end_date);
@@ -368,10 +368,10 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
                                 options={options}
                                 defaultValue={defaultValue}
                                 onChange={handleAssigneeChange}
-                                // value={options.filter(function (option) {
-                                //     return option.value === defaultValue.value;
-                                // })}
-                                value={defaultValue}
+                                value={options.filter(function (option) {
+                                    return option.value === defaultValue.value;
+                                })}
+                                // value={defaultValue}
                             // isSearchable={false}
                             />
                         </div>

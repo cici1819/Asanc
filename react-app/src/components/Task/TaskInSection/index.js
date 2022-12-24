@@ -53,7 +53,7 @@ function TaskInSection({ section, project, sessionUser }) {
                 <i className="fa-duotone fa-plus"></i>
             </div>
             <div>
-                {showNewTask && <TaskCreate  project={project} section={section} sessionUser={sessionUser} setShowNewTask={setShowNewTask} showNewTask={showNewTask} />}
+                {showNewTask && <TaskCreate  section={section} sessionUser={sessionUser} setShowNewTask={setShowNewTask} showNewTask={showNewTask} />}
             </div>
             {tasksArr.length > 0 && tasksArr?.map((task) => (
                 <div key={task.id}>

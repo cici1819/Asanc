@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect, useRef } from 'react';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneSection } from "../../../store/sectionReducer"
 // import TaskSideDetail from '../TaskSideDetail';
@@ -15,7 +16,12 @@ import TaskSideCreate from '../TaskSideCreate';
 // import { use } from 'express/lib/router';
 
 
-const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
+const TaskCreate = ({ section, sessionUser, setShowNewTask }) => {
+    const { projectId } = useParams();
+    const project = useSelector(state => state.projects.singleProject);
+    let task = useSelector(state => state.tasks.singleTask)
+
+
     const [saveState, setSaveState] = useState("");
     const didMount = useRef(false);
     const dispatch = useDispatch();
@@ -23,12 +29,12 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
     const [description, setDescription] = useState('');
     const [status, setStatus] = useState('');
     const [assigneeId, setAssigneeId] = useState('');
-    const [assignee, setAssignee] = useState({ value: sessionUser.id, label: `${sessionUser.firstName}  ` + sessionUser.lastName, color: sessionUser.avatar_color, img: userLogo });
+    const [assignee, setAssignee] = useState({ value: sessionUser?.id, label: `${sessionUser?.firstName}  ` + sessionUser?.lastName, color: sessionUser?.avatar_color, img: userLogo });
     const [defaultValue, setDefaultValue] = useState({ value: sessionUser.id, label: `${sessionUser.firstName}  ` + sessionUser.lastName, color: sessionUser.avatar_color, img: userLogo })
     const dateDiv = useRef();
     const [properDate, setProperDate] = useState();
     //  const [task,setTask] = useState({})
-    //   let task = useSelector(state => state.tasks.singleTask)
+    // let task = useSelector(state => state.tasks.singleTask)
     // console.log("+++++++++++++,newTask", newTask)
     const [newTask, setNewTask] = useState({});
 
@@ -43,7 +49,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
     const [errors, setErrors] = useState([]);
     const sectionId = section.id
     const ownerId = sessionUser.id
-    const projectId = project.id
+    // const projectId = project.id
     const users = project?.users
 
 
@@ -142,6 +148,8 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
 
 
 
+
+
     const handlePriorityChange = (e) => {
         setPriority(e.target.value);
     };
@@ -151,12 +159,10 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
 
     };
 
-    const handleAssigneeChange = (e) => {
+    const handleAssigneeChange = async(e) => {
         const assinId = parseInt(e.value)
-        setAssigneeId(assinId)
-        setDefaultValue(e);
-
-
+         await setAssigneeId(assinId)
+         await setDefaultValue(e);
     }
 
     const handleDueDateChange = (date) => {
@@ -225,9 +231,10 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
     };
     //////////////////////////////////////////////////////////////////////////////
 
-     let task
+    //  let task
     useEffect(() => {
-        // taskId = newTask.id
+        // taskId = newTask.
+
         if (!newTask?.id) return
         const delayDispatch = setTimeout(async () => {
             console.log(`############ update - task id**********`, newTask?.id);
@@ -251,7 +258,10 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
 
                 });
 
-                task = newTask
+
+
+
+                // task = newTask
                 // setTask(updatedTask)
 
                 // console.log("task+++++++++++++++", task)
@@ -266,7 +276,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
                     setSaveState("");
                     // setShowNewTask(false)
                     setErrors([])
-                }, 1000);
+                }, 500);
 
             } else {
                 didMount.current = true;
@@ -280,7 +290,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
 
 
 
-    }, [taskTitle, description, assigneeId, priority, status, taskId, dueDate, task]);
+    }, [taskTitle, description, assigneeId, priority, status, taskId, dueDate, assignee]);
 
     useEffect(() => {
         // dispatch(taskAction.thunkGetOneTask(taskId))
@@ -288,12 +298,12 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
         // setNewTask(newTask)
         // ("")        setShowNewTask
         //  console.log("dispatch+++++++++++++++++",)
-    }, [dispatch, task, newTask])
+    }, [dispatch, task, newTask, projectId])
 
     useEffect(async () => {
         if (task) {
             didMount.current = false;
-            // await dispatch(taskAction.loadOneTask(taskId))
+        //    await dispatch(taskAction.loadOneTask(taskId))
             // await dispatch(getOneProject(projectId))
             setTaskTitle(task?.title);
             setDescription(task?.description);
@@ -464,7 +474,9 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
                         options={options}
                         defaultValue={defaultValue}
                         onChange={handleAssigneeChange}
-                        value={defaultValue}
+                        value={options.filter(function (option) {
+                            return option.value === defaultValue.value;
+                        })}
                         placeholder="No assignee"
                     // isSearchable={false}
                     />
