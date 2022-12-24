@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneSection } from "../../../store/sectionReducer"
-import TaskSideDetail from '../TaskSideDetail';
+// import TaskSideDetail from '../TaskSideDetail';
 import { getOneProject } from "../../../store/projectReducer"
 import * as taskAction from "../../../store/taskReducer"
 import Select from 'react-select';
@@ -15,7 +15,7 @@ import TaskSideCreate from '../TaskSideCreate';
 // import { use } from 'express/lib/router';
 
 
-const TaskCreate = ({ setCurrentTaskId, section, sessionUser, project, setShowNewTask }) => {
+const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
     const [saveState, setSaveState] = useState("");
     const didMount = useRef(false);
     const dispatch = useDispatch();
@@ -28,8 +28,8 @@ const TaskCreate = ({ setCurrentTaskId, section, sessionUser, project, setShowNe
     const dateDiv = useRef();
     const [properDate, setProperDate] = useState();
     //  const [task,setTask] = useState({})
-    let task = useSelector(state => state.tasks.singleTask)
-    console.log("+++++++++++++,newTask", task)
+    // let task = useSelector(state => state.tasks.singleTask)
+    // console.log("+++++++++++++,newTask", task)
     const [newTask, setNewTask] = useState({});
 
     const [showDateForm, setShowDateForm] = useState(false);
@@ -128,14 +128,14 @@ const TaskCreate = ({ setCurrentTaskId, section, sessionUser, project, setShowNe
         await dispatch(taskAction.thunkCreateTask(payload)).then(
             res => {
                 setNewTask(res)
-                setCurrentTaskId(res.id)
+                // setCurrentTaskId(res.id)
             }
         );
 
         taskId = newTask?.id
         // console.log("##################***********************,newTask res ", newTask)
         setErrors([])
-        // setShowNewTask(false)
+         setShowNewTask(false)
 
 
     }
@@ -185,7 +185,7 @@ const TaskCreate = ({ setCurrentTaskId, section, sessionUser, project, setShowNe
         }
     }
     // useEffect(() => {
-    //     if (!showNewTask) return;
+    //     if (!showTaskSideDetail) return;
 
     //     document.addEventListener('click', );
 
@@ -221,7 +221,7 @@ const TaskCreate = ({ setCurrentTaskId, section, sessionUser, project, setShowNe
     };
     //////////////////////////////////////////////////////////////////////////////
 
-    // let task
+     let task
     useEffect(() => {
         // taskId = newTask.id
         if (!newTask?.id) return
@@ -247,7 +247,7 @@ const TaskCreate = ({ setCurrentTaskId, section, sessionUser, project, setShowNe
                     // setCurrentTaskId(res.id)
                 });
 
-                // task = newTask
+                task = newTask
                 // setTask(updatedTask)
 
 
