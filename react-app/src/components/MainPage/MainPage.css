@@ -114,7 +114,7 @@
 
 
 .t-t-dueDate{
-    width: 10%;
+    width: 13%;
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -124,7 +124,7 @@
 }
 
 .t-t-priority{
-    width: 10%;
+    width: 13%;
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -135,7 +135,7 @@
 
 
 .t-t-status{
-    width: 10%;
+    width: 13%;
     height: 100%;
     display: flex;
     flex-direction: row;

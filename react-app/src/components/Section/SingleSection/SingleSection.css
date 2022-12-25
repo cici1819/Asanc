@@ -5,62 +5,158 @@
     width: fit-content;
 
 }
-.single-section-content{
-
-
-}
 
 .section-part-input{
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    width: 30%;
-    height: 80px;
+    width: 100%;
+    height: 100px;
     /* background-color: aqua; */
-    border-bottom:1px solid rgb(242,242,242);
-    border-right:1px solid rgb(242,242,242);
-    background-color: aqua;
+    border-bottom:0.5px solid rgb(242,242,242);
+     border-top:0.5px solid rgb(242,242,242);
+    /* background-color: aqua; */
     /* border-top:1px solid rgb(242,242,242); */
+
 
 
  }
 
+/* .section-part-input:hover{
+    cursor: grab;
+
+} */
 
 .edit-section-input{
-    background-color: antiquewhite;
+     /* background-color: antiquewhite; */
     font-size: 18px;
     font-weight: 600;
     min-width: fit-content;
-    height: 45px;
+    height: 50px;
     border: none;
+    width: 20vw;
+    margin-top: 25px;
+
+    /* margin-top: 30px; */
     /* max-width: 80%; */
     /* overflow-y: scroll; */
 
     /* height: 30px; */
+
 }
 .edit-section-input:focus{
     border: 3px solid rgb(81,135,248);
     border-radius: 10px;
-    width: 50%;
+    width: 20%;
 
 }
 
 .setting-add-task{
     display: flex;
     flex-direction: row;
-     margin-left: 60%;
+     margin-left: 21%;
      gap:10px;
      font-size: 20px;
+     min-width: fit-content;
+     width: 60vw;
+     cursor:grab;
+
      /* margin-top: 40px; */
-     /* background-color: aqua; */
 
      /* margin-top: 50px; */
 }
+
+#grabable:hover{
+    cursor: pointer;
+    opacity:1;
+}
 .add-task-in-section-icon{
-    width: 30px;
+    width: 35px;
     height: 30px;
     padding-top: 5px;
     border-radius: 5px;
     text-align: center;
-    background-color: azure;
+    /* background-color: azure; */
+    margin-top: -40px;
+    /* opacity:0; */
+    /* cursor: pointer; */
+}
+
+.add-task-in-section-icon:hover {
+    /* cursor: pointer; */
+     opacity:1;
+    background-color: rgb(249,248,248);
+
+}
+
+.open-section-setting{
+    width: 35px;
+    height: 30px;
+    padding-top: 5px;
+    border-radius: 5px;
+    text-align: center;
+    /* opacity:0; */
+    /* background-color: azure; */
+    margin-top: -40px;
+
+}
+.open-section-setting:hover{
+    /* cursor: pointer; */
+    opacity:1;
+    background-color: rgb(249,248,248);
+
+
+}
+
+.section-setting-dropMenu{
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    padding:5px;
+    /* position: absolute; */
+    background-color:white;
+    min-width: 160px;
+    z-index: 10;
+    margin-top: -50px;
+    margin-left: 470px;
+    width: 210px;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 16px;
+    /* border: .2px solid rgb(211, 209, 209); */
+    /* margin-left: px; */
+    box-shadow: 0px 0px 16px rgba(183, 183, 183, 0.5);
+}
+
+.section-edit-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    font-size: 17px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.section-edit-div:hover{
+    cursor: pointer;
+    background-color: rgb(245,243,243);
+    /* background-color: rgba(240, 106, 106,0.2); */
+    border-radius: 5px
+}
+
+.section-delete-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    font-size: 17px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.section-delete-div:hover{
+    cursor: pointer;
+    background-color: rgb(245,243,243);
+    /* background-color: rgba(240, 106, 106,0.2); */
+    border-radius: 5px
 }

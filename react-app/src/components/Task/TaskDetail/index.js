@@ -10,6 +10,7 @@ import { components } from 'react-select';
 import Calendar from "react-calendar";
 import 'react-calendar/dist/Calendar.css';
 import userLogo from "../../../img/user-logo.png"
+
 import './SingleTask.css'
 
 
@@ -25,6 +26,7 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
     const [status, setStatus] = useState(task.status);
     const [assigneeId, setAssingeeId] = useState(task?.assigneeId);
     const dateDiv = useRef();
+  
     const [properDate, setProperDate] = useState();
     const project = useSelector(state => state.projects.singleProject)
     // const [timer, setTimer] = useState(null)
@@ -122,7 +124,7 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
 
     };
 
-    console.log("!!!!!!!!!!!!!assignee",assignee)
+    console.log("!!!!!!!!!!!!!assignee", assignee)
     const handleAssigneeChange = (e) => {
         const assinId = parseInt(e.value)
         // console.log("###############,typeOf",typeof(assinId),assinId)
@@ -209,6 +211,9 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
         }
     }, [task])
 
+
+
+
     useEffect(() => {
         if (showDateForm) {
             document.addEventListener("mousedown", handleClickDate);
@@ -219,7 +224,7 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
     }, [showDateForm]);
 
     const handleClickDate = (e) => {
-        if (dateDiv.current.contains(e.target)) {
+        if (dateDiv.current?.contains(e.target)) {
             return;
         }
         setShowDateForm(false)
@@ -300,17 +305,50 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
 
 
 
-    // const handleDescriptionBlur = (e) => {
+    // Handel close TasksideDetail when click outside
+    //////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+    // const handleClickTask = e => {
+    //     console.log("#####################,TaskDetail e",e)
+    //     if (taskDetailRef.current?.contains(e.target)) {
+    //         return;
+    //     }else if (e.path[0].className.includes("css")) {
+    //         return;
+    //     } else if (e.path[1].className.includes("css")) {
+    //         return;
+    //     } else {
+    //         setShowTaskSideDetail(false)
+    //     }
+
+    // }
+    // useEffect(() => {
+
+    //     if (showTaskSideDetail) {
+    //         document.addEventListener("click", handleClickTask);
+    //         return () => {
+    //             document.removeEventListener("click", handleClickTask);
+    //         };
+    //     }
+    // }, [showTaskSideDetail]);
+
+
+
+
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
     return (
         <>
 
-            {task && <div onClick={() => {
+            {task && <div  onClick={() => {
                 setShowTaskSideDetail(true);
+
 
             }} className="task-side-open">
 
@@ -320,189 +358,192 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
                 </span>
             </div>
             }
-            {showTaskSideDetail && <div className='task-side-div'>
+            {showTaskSideDetail && <div
+                className='task-side-div'>
                 <TaskSideDetail setShowTaskSideDetail={setShowTaskSideDetail} defaultValue={defaultValue} setDefaultValue={setDefaultValue} taskId={taskId} users={users} section={section} sessionUser={sessionUser} project={project} showTaskSideDetail={showTaskSideDetail} task={task} assignee={assignee} setAssingee={setAssingee} />
             </div>}
 
-            {taskSettingUser ?
-                (<>
+            {
+                taskSettingUser ?
+                    (<>
 
-                    <div className='task-detail-content'>
-                        <div className="task-complete">
-                            <button
-                                onClick={toggleCompleted}
-                                className={
-                                    task.completed
-                                        ? "task-complete-button-completed"
-                                        : "task-complete-button"
-                                }>
+                        <div className='task-detail-content'>
+                            <div className="task-complete">
+                                <button
+                                    onClick={toggleCompleted}
+                                    className={
+                                        task.completed
+                                            ? "task-complete-button-completed"
+                                            : "task-complete-button"
+                                    }>
 
-                                <i className="fa-solid fa-circle-check">
+                                    <i className="fa-solid fa-circle-check">
 
-                                </i>
-                                {task.completed ? "Completed" : "Mark Complete"}
-                            </button>{'  '}
-                        </div>
-                        {errors.length > 0 && (<div>
-
-                            <ul>
-                                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                            </ul>
-
-                        </div>)}
-                        <div>
-                            <input className='edit-task-title'
-                                type='text'
-                                value={taskTitle}
-                                placeholder="New Task"
-                                // onBlur={handleTitleBlur}
-                                onChange={handleTitleChange}
-
-                            />
-                        </div>
-
-                        <div>
-                            <Select className='assignee-select'
-
-                                styles={customStyles}
-                                components={{ SingleValue: IconSingleValue, Option: IconOption }}
-                                options={options}
-                                defaultValue={defaultValue}
-                                onChange={handleAssigneeChange}
-                                value={options.filter(function (option) {
-                                    return option.value === defaultValue.value;
-                                })}
-                                // value={defaultValue}
-                            // isSearchable={false}
-                            />
-                        </div>
-
-
-                        <div className='date-setting'>
-                            <span className='dueDate-title'>Due date</span>
-                            {showDateForm ? (
-                                <div
-                                    className="task-detail-date-open"
-                                    ref={dateDiv}
-                                    onClick={() => setShowDateForm(true)}>
-
-                                    <div className="task-calendar-icon">
-                                        <i className="fa-light fa-calendar-day"></i>
-                                    </div>
-                                    {dueDate ? dueDate : "No due date"}
-                                    <div id="task-detail-date-calendar">
-                                        <Calendar
-                                            value={properDate}
-                                            tileDisabled={tileDisabled}
-                                            onChange={(date) => {
-                                                setProperDate(date);
-                                                // setServerDate(date.toString());
-                                                handleDueDateChange(date)
-                                            }}
-                                        />
-                                    </div>
-                                </div>
-                            ) : (
-                                <div
-                                    className="task-detail-date"
-
-                                    onClick={() => setShowDateForm(true)}
-                                >
-                                    <div id="task-date-icon">
-                                        <i className="fa-regular fa-calendar-days"></i>
-                                    </div>
-                                    {dueDate ? (
-                                        <div>
-                                            {dueDate}
-
-                                        </div>
-                                    ) : (
-                                        "No due date"
-                                    )}
-                                </div>
-                            )}
-                        </div>
-
-                        <div className="task-detail-priority">
-                            <div className="p-title">Priority</div>
-                            <div className="p-content">
-                                <select value={priority} onChange={handlePriorityChange}>
-                                    <option className="p-1" value="Null">---</option>
-                                    <option className="p-2" value="Low">Low</option>
-                                    <option className="p-3" value="Medium">Medium</option>
-                                    <option className="p-4" value="High">High</option>
-                                </select>
+                                    </i>
+                                    {task.completed ? "Completed" : "Mark Complete"}
+                                </button>{'  '}
                             </div>
-                        </div>
-                        <div className="task-detail-status">
-                            <div className="s-title">Status</div>
-                            <div className="s-labels">
-                                <select value={status} onChange={handleStatusChange}>
-                                    <option className="s-1" value="Null">---</option>
-                                    <option className="s-2" value="On Track">On Track</option>
-                                    <option className="s-3" value="At Risk">At Risk</option>
-                                    <option className="s-4" value="Off Track">Off Track</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div className="task-delete"
-                            onClick={deleteTask}>
+                            {errors.length > 0 && (<div>
 
-                            <i className="fa-sharp fa-solid fa-circle-xmark"></i>
+                                <ul>
+                                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                                </ul>
 
-                        </div>
-                    </div>
-                </>
-
-                )
-
-
-
-                : (
-                    <>
-                        <div>
+                            </div>)}
                             <div>
-                                <input className='read-task-input'
+                                <input className='edit-task-title'
                                     type='text'
                                     value={taskTitle}
-                                    onChange={(e) => handleTitleChange(e)}
-                                    readOnly
+                                    placeholder="New Task"
+                                    // onBlur={handleTitleBlur}
+                                    onChange={handleTitleChange}
+
                                 />
                             </div>
+
                             <div>
-                                <MySelect className='assignee-select-disable'
+                                <Select className='assignee-select'
 
                                     styles={customStyles}
-                                    components={{ SingleValue: IconSingleValue }}
+                                    components={{ SingleValue: IconSingleValue, Option: IconOption }}
+                                    options={options}
                                     defaultValue={defaultValue}
-                                    isReadOnly={true}
-                                    isSearchable={false}
-
+                                    onChange={handleAssigneeChange}
+                                    value={options.filter(function (option) {
+                                        return option.value === defaultValue.value;
+                                    })}
+                                // value={defaultValue}
+                                // isSearchable={false}
                                 />
                             </div>
 
-                            <div>
-                                <span>Due Date</span>
-                                <span>{dueDate}</span>
-                            </div>
-                            <div>
-                                <span>Priority</span>
-                                <span>{priority}</span>
-                            </div>
-                            <div>
-                                <span>Status</span>
-                                <span>{status}</span>
+
+                            <div className='date-setting'>
+                                <span className='dueDate-title'>Due date</span>
+                                {showDateForm ? (
+                                    <div
+                                        className="task-detail-date-open"
+                                        ref={dateDiv}
+                                        onClick={() => setShowDateForm(true)}>
+
+                                        <div className="task-calendar-icon">
+                                            <i className="fa-light fa-calendar-day"></i>
+                                        </div>
+                                        {dueDate ? dueDate : "No due date"}
+                                        <div id="task-detail-date-calendar">
+                                            <Calendar
+                                                value={properDate}
+                                                tileDisabled={tileDisabled}
+                                                onChange={(date) => {
+                                                    setProperDate(date);
+                                                    // setServerDate(date.toString());
+                                                    handleDueDateChange(date)
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div
+                                        className="task-detail-date"
+
+                                        onClick={() => setShowDateForm(true)}
+                                    >
+                                        <div id="task-date-icon">
+                                            <i className="fa-regular fa-calendar-days"></i>
+                                        </div>
+                                        {dueDate ? (
+                                            <div>
+                                                {dueDate}
+
+                                            </div>
+                                        ) : (
+                                            "No due date"
+                                        )}
+                                    </div>
+                                )}
                             </div>
 
+                            <div className="task-detail-priority">
+                                <div className="p-title">Priority</div>
+                                <div className="p-content">
+                                    <select value={priority} onChange={handlePriorityChange}>
+                                        <option className="p-1" value="Null">---</option>
+                                        <option className="p-2" value="Low">Low</option>
+                                        <option className="p-3" value="Medium">Medium</option>
+                                        <option className="p-4" value="High">High</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="task-detail-status">
+                                <div className="s-title">Status</div>
+                                <div className="s-labels">
+                                    <select value={status} onChange={handleStatusChange}>
+                                        <option className="s-1" value="Null">---</option>
+                                        <option className="s-2" value="On Track">On Track</option>
+                                        <option className="s-3" value="At Risk">At Risk</option>
+                                        <option className="s-4" value="Off Track">Off Track</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="task-delete"
+                                onClick={deleteTask}>
 
+                                <i className="fa-sharp fa-solid fa-circle-xmark"></i>
 
+                            </div>
                         </div>
                     </>
 
+                    )
 
 
 
-                )}
+                    : (
+                        <>
+                            <div>
+                                <div>
+                                    <input className='read-task-input'
+                                        type='text'
+                                        value={taskTitle}
+                                        onChange={(e) => handleTitleChange(e)}
+                                        readOnly
+                                    />
+                                </div>
+                                <div>
+                                    <MySelect className='assignee-select-disable'
+
+                                        styles={customStyles}
+                                        components={{ SingleValue: IconSingleValue }}
+                                        defaultValue={defaultValue}
+                                        isReadOnly={true}
+                                        isSearchable={false}
+
+                                    />
+                                </div>
+
+                                <div>
+                                    <span>Due Date</span>
+                                    <span>{dueDate}</span>
+                                </div>
+                                <div>
+                                    <span>Priority</span>
+                                    <span>{priority}</span>
+                                </div>
+                                <div>
+                                    <span>Status</span>
+                                    <span>{status}</span>
+                                </div>
+
+
+
+                            </div>
+                        </>
+
+
+
+
+                    )
+            }
 
 
 

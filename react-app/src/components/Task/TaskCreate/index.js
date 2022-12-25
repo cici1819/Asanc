@@ -20,12 +20,13 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
     const [saveState, setSaveState] = useState("");
     const didMount = useRef(false);
     const dispatch = useDispatch();
+    const taskDetailRef = useRef();
     const [taskTitle, setTaskTitle] = useState('');
     const [description, setDescription] = useState('');
     const [status, setStatus] = useState('');
     const [assigneeId, setAssigneeId] = useState('');
-    const [assignee, setAssignee] = useState({ value: sessionUser?.id, label: `${sessionUser?.firstName}  ` + sessionUser?.lastName, color: sessionUser?.avatar_color, img: userLogo });
-    const [defaultValue, setDefaultValue] = useState({ value: sessionUser.id, label: `${sessionUser.firstName}  ` + sessionUser.lastName, color: sessionUser.avatar_color, img: userLogo })
+    const [assignee, setAssignee] = useState({value:0, label:"No assignee",color:"gray",img:userLogo});
+    const [defaultValue, setDefaultValue] = useState({value:0, label:"No assignee",color:"gray",img:userLogo})
     const dateDiv = useRef();
     const [properDate, setProperDate] = useState();
     //  const [task,setTask] = useState({})
@@ -49,7 +50,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
 
 
     // assignee select///////////////////////////////////////////////////
-    let options = [];
+    let options = [{value:0, label:"No assignee",color:"gray",img:userLogo}];
     for (let i = 0; i < users.length; i++) {
         let assigneeObj = users[i];
         let value = assigneeObj.id;
@@ -117,7 +118,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
         const payload = {
             title: taskTitle,
             description,
-            assigneeId: sessionUser.id,
+            assigneeId:"null"||"",
             ownerId,
             sectionId,
             status: status,
@@ -137,7 +138,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
         taskId = newTask?.id
         // console.log("##################***********************,newTask res ", newTask)
         setErrors([])
-         setShowNewTask(false)
+        setShowNewTask(false)
 
 
     }
@@ -155,10 +156,10 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
 
     };
 
-    const handleAssigneeChange = async(e) => {
+    const handleAssigneeChange = async (e) => {
         const assinId = parseInt(e.value)
-         await setAssigneeId(assinId)
-         await setDefaultValue(e);
+        await setAssigneeId(assinId)
+        await setDefaultValue(e);
     }
 
     const handleDueDateChange = (date) => {
@@ -227,7 +228,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
     };
     //////////////////////////////////////////////////////////////////////////////
 
-     let task
+    let task
     useEffect(() => {
         // taskId = newTask.
 
@@ -273,6 +274,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
 
             } else {
                 didMount.current = true;
+
                 return null
             }
 
@@ -296,14 +298,14 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
     useEffect(async () => {
         if (task) {
             didMount.current = false;
-        //    await dispatch(taskAction.loadOneTask(taskId))
+            //    await dispatch(taskAction.loadOneTask(taskId))
             // await dispatch(getOneProject(projectId))
             setTaskTitle(task?.title);
             setDescription(task?.description);
             if (task?.assigneeId) {
                 setAssigneeId(task?.assigneeId);
             } else {
-                setAssigneeId(task?.ownerId);
+                setAssigneeId(null);
             }
             if (task?.end_date) {
                 setDueDate(task?.end_date);
@@ -325,6 +327,8 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
                 // setDefaultValue({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
                 // // console.log("%%%%%%%%%%%%% in task detail", assignee)
                 // console.log("***************$$$$$$ in task detail",defaultValue)
+            } else {
+                setAssignee({value:0, label:"No assignee",color:"gray",img:userLogo})
             }
             if (task?.priority) {
                 setPriority(task?.priority);
@@ -336,6 +340,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
             } else {
                 setStatus("---");
             }
+
         }
 
 
@@ -393,11 +398,35 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
 
 
     // const handleDescriptionBlur = (e) => {
+    ///////////////////////////////////////////////////
+
+    // const handleClickTask = e => {
+
+    //     console.log("################## e.path[0].className", e.path[0].className)
+
+    //     if (taskDetailRef.current?.contains(e.target)) {
+    //         return;
+    //     } else if (e.path[0].className.includes("css")) {
+    //         return;
+    //     } else if (e.path[1].className.includes("css")) {
+    //         return;
+    //     } else {
+    //         setShowTaskSideDetail(false)
+    //     }
+
+    // }
+    // useEffect(() => {
+
+    //     if (showTaskSideDetail) {
+    //         document.addEventListener("click", handleClickTask);
+    //         return () => {
+    //             document.removeEventListener("click", handleClickTask);
+    //         };
+    //     }
+    // }, [showTaskSideDetail]);
 
 
-
-
-
+    ///////////////////////////////////////////////////////////
     return (
         <>
             {/* <div>
@@ -406,7 +435,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
                 </button>
             </div> */}
             {newTask?.id && <>
-                <div onClick={() => {
+                <div  onClick={() => {
                     setShowTaskSideDetail(true);
 
                 }}>
@@ -471,6 +500,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
                             return option.value === defaultValue.value;
                         })}
                         placeholder="No assignee"
+                        ref={taskDetailRef}
                     // isSearchable={false}
                     />
                 </div>

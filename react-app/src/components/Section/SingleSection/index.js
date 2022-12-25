@@ -18,7 +18,6 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
     const [showSectionDeleteModal, setShowSectionDeleteModal] = useState(false);
     const [showNewTask, setShowNewTask] = useState(false)
 
-
     const ref = useRef(null)
 
     const openMenu = () => {
@@ -107,6 +106,20 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
 
     //     );
 
+    //////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////
+
 
     // };
     const onAddBtnClick = (e) => {
@@ -142,7 +155,7 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
                             ref={ref}
 
                         />
-                        <div className='setting-add-task'>
+                        <div className='setting-add-task' id="grabable" >
                             <div className='add-task-in-section-icon' onClick={onAddBtnClick}>
                                 <i className="fa-regular fa-plus"></i>
                             </div>
@@ -158,15 +171,15 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
                     {showMenu && (
                         <>
                             <div className='section-setting-dropMenu delete-ele'>
-                                <div className='server-edit-div delete-ele'
+                                <div className='section-edit-div delete-ele'
                                     onClick={handleEdit}>
-
-                                    <span className='s-e-icon delete-ele'>
-                                        <i className="fa-solid fa-pencil delete-ele"></i>
-                                    </span>
                                     <span className='s-e-t delete-ele'>
                                         Rename section
                                     </span>
+                                    <span className='s-e-icon delete-ele'>
+                                        <i className="fa-solid fa-pencil delete-ele"></i>
+                                    </span>
+
 
                                 </div>
 
@@ -179,13 +192,13 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
                                         setShowSectionDeleteModal(true)
 
                                     }}>
-
-                                    <span className='delete-section-icon delete-ele'>
-                                        <i className="fa-solid fa-trash-can delete-ele"></i>
-                                    </span>
                                     <span className='delete-section-title delete-ele'>
                                         Delete section
                                     </span >
+                                    <span className='delete-section-icon delete-ele'>
+                                        <i className="fa-solid fa-trash-can delete-ele"></i>
+                                    </span>
+
                                 </div>
 
                                 <div className='delete-ele delete-modal'>

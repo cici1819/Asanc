@@ -12,6 +12,7 @@ function TaskInSection({ section, project, sessionUser,showNewTask,setShowNewTas
     // const [createNewTask, setCreateNewTask] = useState(false);
 
 
+
     // const [currentTaskId, setCurrentTaskId] = useState(-1);
     const users = project?.users
     let tasksArr = section?.tasks
@@ -20,6 +21,7 @@ function TaskInSection({ section, project, sessionUser,showNewTask,setShowNewTas
 
     // }
     const projectId = project?.id
+    const taskCreateRef = useRef();
     // let tasksArr = section?.tasks
 
     console.log("#################,tasksArr", tasksArr)
@@ -38,6 +40,37 @@ function TaskInSection({ section, project, sessionUser,showNewTask,setShowNewTas
     // };
     //  tasksArr= tasksArr.push(taskList)
 
+    ///////////////////////////////////////////////////////
+
+
+    const handleClickTask = e => {
+        console.log("#####################,TaskDetail e",e)
+        if (taskCreateRef.current?.contains(e.target)) {
+            return;
+        }else if (e.path[0].className.includes("css")) {
+            return;
+        } else if (e.path[1].className.includes("css")) {
+            return;
+        } else {
+            setShowNewTask(false)
+        }
+
+    }
+    useEffect(() => {
+
+        if (showNewTask) {
+            document.addEventListener("click", handleClickTask);
+            return () => {
+                document.removeEventListener("click", handleClickTask);
+            };
+        }
+    }, [showNewTask]);
+
+
+
+
+
+    /////////////////////////////////////////////////////
 
 
     if (!section) return null
@@ -46,7 +79,7 @@ function TaskInSection({ section, project, sessionUser,showNewTask,setShowNewTas
             {/* {sessionUserIsOwner && <div className='add-task-in-section-icon' onClick={onAddBtnClick}>
                 <i className="fa-duotone fa-plus"></i>
             </div>} */}
-            <div>
+            <div ref={taskCreateRef}>
                 {showNewTask && <TaskCreate project={project} section={section} sessionUser={sessionUser} setShowNewTask={setShowNewTask} showNewTask={showNewTask} />}
             </div>
 

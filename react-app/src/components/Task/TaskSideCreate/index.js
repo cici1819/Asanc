@@ -15,7 +15,7 @@ import './TaskSideCreate.css'
 
 
 
-const TaskSideCreate = ({assignee,setAssingee,defaultValue,setDefaultValue, task, taskId, users, section, sessionUser, project, setShowTaskSideDetail, showTaskSideDetail, setNewTask }) => {
+const TaskSideCreate = ({assignee,setAssignee,defaultValue,setDefaultValue, task, taskId, users, section, sessionUser, project, setShowTaskSideDetail, showTaskSideDetail, setNewTask }) => {
     // console.log("*******************%%%%%%%%%%%%%%% task in sideBarCreate", task)
     // console.log("showTaskDetail", showTaskSideDetail)
     // const [assignee, setAssingee] = useState(task?.assignee)
@@ -28,8 +28,9 @@ const TaskSideCreate = ({assignee,setAssingee,defaultValue,setDefaultValue, task
     const [taskTitle, setTaskTitle] = useState(task?.title);
     const [description, setDescription] = useState(task?.description);
     const [status, setStatus] = useState(task?.status);
-    const [assigneeId, setAssingeeId] = useState(task?.assigneeId);
+    const [assigneeId, setAssigneeId] = useState(task?.assigneeId);
     const dateDiv = useRef();
+
     const [properDate, setProperDate] = useState();
     const [showDateForm, setShowDateForm] = useState(false);
     // const [serverDate, setServerDate] = useState();
@@ -61,7 +62,7 @@ const TaskSideCreate = ({assignee,setAssingee,defaultValue,setDefaultValue, task
 
 
     // assignee select///////////////////////////////////////////////////
-    let options = [];
+    let options = [{value:0, label:"No assignee",color:"gray",img:userLogo}];
     for (let i = 0; i < users?.length; i++) {
         let assigneeObj = users[i];
         let value = assigneeObj?.id;
@@ -148,7 +149,7 @@ const TaskSideCreate = ({assignee,setAssingee,defaultValue,setDefaultValue, task
     const handleAssigneeChange = (e) => {
         const assinId = parseInt(e.value)
         // console.log("###############,typeOf",typeof(assinId),assinId)
-        setAssingeeId(assinId)
+        setAssigneeId(assinId)
         setDefaultValue(e)
         // const payload = {
         //     title: taskTitle, description, assigneeId: assinId, ownerId, sectionId, status, priority, projectId, end_date: dueDate, completed, taskId
@@ -195,15 +196,19 @@ const TaskSideCreate = ({assignee,setAssingee,defaultValue,setDefaultValue, task
 
         }
         if (task?.assigneeId) {
-            setAssingeeId(task.assigneeId);
+            setAssigneeId(task.assigneeId);
+        } else {
+            setAssigneeId(null);
         }
 
         if (task?.assignee) {
 
-            setAssingee(task.assignee);
+            setAssignee(task.assignee);
             // setDefaultValue({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
             // // console.log("@@@@@@@@@@@@@@", defaultValue)
             // console.log("*****************", assignee)
+        } else {
+            setAssignee({value:0, label:"No assignee",color:"gray",img:userLogo})
         }
 
         if (task?.title) {
@@ -362,7 +367,8 @@ const TaskSideCreate = ({assignee,setAssingee,defaultValue,setDefaultValue, task
 
 
                         <div className='assignee-s-d'>
-                            <Select className='s-assignee-select'
+                        <Select className='s-assignee-select'
+                            //    ref={taskDetailRef}
 
                                 styles={customStyles}
                                 components={{ SingleValue: IconSingleValue, Option: IconOption }}

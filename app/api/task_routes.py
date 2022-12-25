@@ -67,7 +67,7 @@ def create_task():
         updated_at = datetime.today(),
         )
         if not task.user_assignee_t:
-            task.assignee_id = user_id
+            task.assignee_id = db.null()
         else:
             task.assignee_id = assigneeId
 
@@ -75,6 +75,16 @@ def create_task():
             task.end_date = datetime.today()
         else:
             task.end_date =datetime.strptime(task.end_date,'%Y-%m-%d')
+
+        if task.priority == "---":
+            task.priority = db.null()
+        else:
+            task.priority = task.priority
+
+        if task.status == "---":
+            task.status = db.null()
+        else:
+            task.status = task.status
 
         user =  User.query.get(request.json['assigneeId'])
         task.user_assignee_t = user
