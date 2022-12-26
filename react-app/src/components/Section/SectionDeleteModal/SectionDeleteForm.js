@@ -7,10 +7,6 @@ import './SectionDeleteForm.css';
 
 function SectionDelete({ setShowSectionDeleteModal, section, project }) {
     const dispatch = useDispatch();
-
-
-    console.log(section.title, "#########################")
-    console.log(section.id, "!!!!!!!!!!!!!!!!!")
     const sectionId = section.id
     const projectId = project.id
 
@@ -36,7 +32,7 @@ function SectionDelete({ setShowSectionDeleteModal, section, project }) {
                     </div>
                     <div className="s-delete-warning">
                         <span className="d-s-1">Are you sure you want to delete </span>
-                        <span className="s-d-s-2">{section?.title}?</span>
+                        <span className="s-d-s-2">{section?.title} ?</span>
                         <span className="d-s-3">
                             This cannot be undone.
                         </span>
@@ -44,7 +40,7 @@ function SectionDelete({ setShowSectionDeleteModal, section, project }) {
                 </div>
 
                 <div className="delete-section-button">
-                    <button
+                    <button className="d-s-button"
                         onClick={handleDelete}>Delete Section
                     </button>
                 </div>

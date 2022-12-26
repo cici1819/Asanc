@@ -16,7 +16,7 @@ import './SingleTask.css'
 
 const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
     // const defaultAssigneeObj = users.find(user => user?.id == task.assigneeId)
-    const [assignee, setAssingee] = useState(task?.assignee)
+    const [assignee, setAssignee] = useState(task?.assignee)
     const [saveState, setSaveState] = useState("");
     const [defaultValue, setDefaultValue] = useState({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
     const didMount = useRef(false);
@@ -24,9 +24,9 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
     const [taskTitle, setTaskTitle] = useState(task?.title);
     const [description, setDescription] = useState(task.description);
     const [status, setStatus] = useState(task.status);
-    const [assigneeId, setAssingeeId] = useState(task?.assigneeId);
+    const [assigneeId, setAssigneeId] = useState(task?.assigneeId);
     const dateDiv = useRef();
-  
+
     const [properDate, setProperDate] = useState();
     const project = useSelector(state => state.projects.singleProject)
     // const [timer, setTimer] = useState(null)
@@ -43,7 +43,7 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
     const taskId = task.id
 
     // assignee select///////////////////////////////////////////////////
-    let options = [];
+    let options = [{value:0, label:"No assignee",color:"gray",img:userLogo}];
     for (let i = 0; i < users.length; i++) {
         let assigneeObj = users[i];
         let value = assigneeObj.id;
@@ -129,7 +129,7 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
         const assinId = parseInt(e.value)
         // console.log("###############,typeOf",typeof(assinId),assinId)
         console.log(`---------- handleAssigneeChange - e:`, e);
-        setAssingeeId(assinId)
+        setAssigneeId(assinId)
         setDefaultValue(e);
 
         // const payload = {
@@ -181,16 +181,18 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
         }
         if (task?.assignee) {
             console.log(`------- task details page - task.assignee:`);
-            setAssingee(task.assignee);
+            setAssignee(task.assignee);
             console.log(`------- task details page - task.assignee:`);
-            // setDefaultValue({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
-            // console.log("%%%%%%%%%%%%% in task detail", assignee)
-            // console.log("***************$$$$$$ in task detail",defaultValue)
+
+        } else if(task.assignee==="null"||task.assignee===null){
+            setDefaultValue({value:0, label:"No assignee",color:"gray",img:userLogo})
         }
 
 
         if (task?.assigneeId) {
-            setAssingeeId(task.assigneeId);
+            setAssigneeId(task.assigneeId);
+        }else {
+            setAssigneeId(null);
         }
 
         if (task.title) {
@@ -360,7 +362,7 @@ const SingleTask = ({ task, users, section, sessionUser, projectId }) => {
             }
             {showTaskSideDetail && <div
                 className='task-side-div'>
-                <TaskSideDetail setShowTaskSideDetail={setShowTaskSideDetail} defaultValue={defaultValue} setDefaultValue={setDefaultValue} taskId={taskId} users={users} section={section} sessionUser={sessionUser} project={project} showTaskSideDetail={showTaskSideDetail} task={task} assignee={assignee} setAssingee={setAssingee} />
+                <TaskSideDetail setShowTaskSideDetail={setShowTaskSideDetail} defaultValue={defaultValue} setDefaultValue={setDefaultValue} taskId={taskId} users={users} section={section} sessionUser={sessionUser} project={project} showTaskSideDetail={showTaskSideDetail} task={task} assignee={assignee} setAssignee={setAssignee} />
             </div>}
 
             {

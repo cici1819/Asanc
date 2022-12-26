@@ -63,7 +63,7 @@ function MainPage({ show, toggle }) {
 
                 </div>
                 <div className={sectionListClass}>
-                    <SectionListInProject />
+                    <SectionListInProject show={show} />
                 </div>
             </div>
 

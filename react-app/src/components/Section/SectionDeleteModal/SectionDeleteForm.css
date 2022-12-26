@@ -1,0 +1,63 @@
+.delete-server-wapper2{
+    width: 500px;
+    height: 260px;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    outline: none;
+    overflow: hidden;
+}
+.s-delete-text-1{
+    display: flex;
+    flex-direction: column;
+    /* gap:10px; */
+    padding-left:20px;
+    padding-right:20px;
+    margin-bottom: 20px;
+}
+.s-delete-title{
+    font-size: 20px;
+    margin-top: -10px;
+}
+.s-delete-warning{
+    margin-top: -10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    font-size: 20px;
+    gap:5px;
+    color:rgb(85, 86, 87);
+}
+.s-d-s-2{
+    color:black;
+    font-size: 21px;
+}
+
+.d-s-button{
+
+    background-color: rgb(240, 106, 106);
+    color:black;
+    border-radius: 5px;
+    width: 160px;
+    height: 40px;
+    /* margin-right: 170px; */
+    margin-top: 50px;
+    font-size: 16px;
+    margin-left: 300px;
+}
+.d-s-button:hover{
+   width: 170px;
+}
+
+.s-c-cancel{
+    color:black;
+    font-size: 18px;
+    margin-top: -30px;
+    margin-left: 20px;
+}
+
+.s-c-cancel:hover{
+    text-decoration:underline;
+    cursor: pointer;
+}

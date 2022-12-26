@@ -118,7 +118,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
         const payload = {
             title: taskTitle,
             description,
-            assigneeId:"null"||"",
+            assigneeId:"null",
             ownerId,
             sectionId,
             status: status,
@@ -321,14 +321,11 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
 
             }
             if (task?.assignee) {
-                // console.log(`------- task details page - task.assignee:`);
+
                 setAssignee(task?.assignee);
-                // console.log(`------- task details page - task.assignee:`);
-                // setDefaultValue({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
-                // // console.log("%%%%%%%%%%%%% in task detail", assignee)
-                // console.log("***************$$$$$$ in task detail",defaultValue)
-            } else {
-                setAssignee({value:0, label:"No assignee",color:"gray",img:userLogo})
+
+            } else if (task.assignee==="null"||task.assignee===null) {
+                setDefaultValue({value:0, label:"No assignee",color:"gray",img:userLogo})
             }
             if (task?.priority) {
                 setPriority(task?.priority);

@@ -7,7 +7,7 @@ import SectionDeleteModal from "../SectionDeleteModal";
 import TaskInSection from "../../Task/TaskInSection";
 import TaskCreate from '../../Task/TaskCreate';
 import "./SingleSection.css"
-const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUser }) => {
+const SingleSection = ({show,title, sessionUserIsOwner, section, project, sessionUser }) => {
     const dispatch = useDispatch();
     const [sectionTitle, setSectionTitle] = useState(title);
     const [timer, setTimer] = useState(null)
@@ -17,6 +17,7 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
     const [showMenu, setShowMenu] = useState(false)
     const [showSectionDeleteModal, setShowSectionDeleteModal] = useState(false);
     const [showNewTask, setShowNewTask] = useState(false)
+    const settingClass = show ? "section-setting-dropMenu delete-ele" :"section-setting-dropMenu-closed delete-ele"
 
     const ref = useRef(null)
 
@@ -170,7 +171,7 @@ const SingleSection = ({ title, sessionUserIsOwner, section, project, sessionUse
 
                     {showMenu && (
                         <>
-                            <div className='section-setting-dropMenu delete-ele'>
+                            <div className={settingClass}>
                                 <div className='section-edit-div delete-ele'
                                     onClick={handleEdit}>
                                     <span className='s-e-t delete-ele'>

@@ -7,7 +7,7 @@ import SingleSection from "../SingleSection";
 import SectionCreate from "../SectionCreate";
 
 
-function SectionListInProject() {
+function SectionListInProject({show}) {
     const dispatch = useDispatch();
     const { projectId } = useParams();
     const sessionUser = useSelector((state) => state.session.user);
@@ -47,7 +47,7 @@ function SectionListInProject() {
                         <div className="single-section-in-project-left">
                             <div className="single-section-in-project-title">
                                 <SingleSection title={section.title} sessionUserIsOwner={sessionUserIsOwner} section={section} project={project} sessionUser={sessionUser}
-                                />
+                               show={show} />
                             </div>
                         </div>
                     </div>
