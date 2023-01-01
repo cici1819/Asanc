@@ -7,7 +7,7 @@ import SectionDeleteModal from "../SectionDeleteModal";
 import TaskInSection from "../../Task/TaskInSection";
 import TaskCreate from '../../Task/TaskCreate';
 import "./SingleSection.css"
-const SingleSection = ({show,title, sessionUserIsOwner, section, project, sessionUser }) => {
+const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sessionUser }) => {
     const dispatch = useDispatch();
     const [sectionTitle, setSectionTitle] = useState(title);
     const [timer, setTimer] = useState(null)
@@ -17,21 +17,33 @@ const SingleSection = ({show,title, sessionUserIsOwner, section, project, sessio
     const [showMenu, setShowMenu] = useState(false)
     const [showSectionDeleteModal, setShowSectionDeleteModal] = useState(false);
     const [showNewTask, setShowNewTask] = useState(false)
-    const settingClass = show ? "section-setting-dropMenu delete-ele" :"section-setting-dropMenu-closed delete-ele"
-
+    const settingClass = show ? "section-setting-dropMenu delete-ele" : "section-setting-dropMenu-closed delete-ele"
+    const [style, changeStyle] = useState("setting-add-task")
     const ref = useRef(null)
 
     const openMenu = () => {
+
         if (showMenu) return;
-        else setShowMenu(true);
+        else {
+            setShowMenu(true);
+            // if (style === "setting-add-task") {
+            //     changeStyle("setting-add-task2")
+            // } else if (style === "setting-add-task2") {
+            //     changeStyle("setting-add-task")
+            // }
+            changeStyle("setting-add-task2")
+
+        }
     }
 
     useEffect(() => {
         if (!showMenu) return;
 
         const closeMenu = (e) => {
+            console.log("SingleSection@@@@@@@@@,e", e)
             if (e.target.className.includes('delete-ele')) return;
             setShowMenu(false);
+            changeStyle("setting-add-task")
         };
 
         document.addEventListener('click', closeMenu);
@@ -118,7 +130,6 @@ const SingleSection = ({show,title, sessionUserIsOwner, section, project, sessio
 
 
 
-
     ////////////////////////////////////////////////////////
 
 
@@ -156,15 +167,19 @@ const SingleSection = ({show,title, sessionUserIsOwner, section, project, sessio
                             ref={ref}
 
                         />
-                        <div className='setting-add-task' id="grabable" >
+
+                        <div className={style} id="grabable">
                             <div className='add-task-in-section-icon' onClick={onAddBtnClick}>
                                 <i className="fa-regular fa-plus"></i>
+                                <span className='c-info-title'>Add a task in this section</span>
                             </div>
-
-                            <div className='open-section-setting' onClick={openMenu}>
-                                <i className="fa-solid fa-ellipsis"></i>
+                            <div className="open-section-setting" onClick={openMenu}>
+                                <i className="fa-solid fa-ellipsis delete-ele"></i>
+                                <span className='s-info-title'>Section setting</span>
                             </div>
                         </div>
+
+
 
                     </div>
 
@@ -180,7 +195,6 @@ const SingleSection = ({show,title, sessionUserIsOwner, section, project, sessio
                                     <span className='s-e-icon delete-ele'>
                                         <i className="fa-solid fa-pencil delete-ele"></i>
                                     </span>
-
 
                                 </div>
 

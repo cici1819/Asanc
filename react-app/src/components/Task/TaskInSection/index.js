@@ -6,7 +6,7 @@ import SingleTask from "../TaskDetail";
 import TaskCreate from '../../Task/TaskCreate';
 // import tasks from "../../../store/taskReducer";
 
-function TaskInSection({ section, project, sessionUser,showNewTask,setShowNewTask }) {
+function TaskInSection({ section, project, sessionUser, showNewTask, setShowNewTask }) {
     console.log("*****************,section", section)
 
     // const [createNewTask, setCreateNewTask] = useState(false);
@@ -44,10 +44,10 @@ function TaskInSection({ section, project, sessionUser,showNewTask,setShowNewTas
 
 
     const handleClickTask = e => {
-        console.log("#####################,TaskDetail e",e)
+        console.log("#####################,TaskDetail e", e)
         if (taskCreateRef.current?.contains(e.target)) {
             return;
-        }else if (e.path[0].className.includes("css")) {
+        } else if (e.path[0].className.includes("css")) {
             return;
         } else if (e.path[1].className.includes("css")) {
             return;
@@ -84,11 +84,13 @@ function TaskInSection({ section, project, sessionUser,showNewTask,setShowNewTas
             </div>
 
 
-            {tasksArr.length > 0 && tasksArr?.map((task) => (
-                <div key={task.id}>
-                    <SingleTask task={task} users={users} section={section} sessionUser={sessionUser} projectId={projectId} />
-                </div>
-            ))}
+            <div className="show-tasks-section">
+                {tasksArr.length > 0 && tasksArr?.map((task) => (
+                    <div key={task.id} >
+                        <SingleTask task={task} users={users} section={section} sessionUser={sessionUser} projectId={projectId} />
+                    </div>
+                ))}
+            </div>
 
 
         </>

@@ -13,9 +13,9 @@ function ProjectCreateModal() {
 
     return (
         <>
-            <div className='add-project' >
+            <div className='add-project'  >
                 <span className=''>
-                    <i className="fa-regular fa-plus" id="create-server-plus" onClick={() => setShowModal(true)}> </i>
+                    <i className="fa-regular fa-plus" id="create-server-plus" onClick={()=>setShowModal(true)} > </i>
                 </span>
                 {showModal && (
                     <Modal onClose={() => setShowModal(false)}>

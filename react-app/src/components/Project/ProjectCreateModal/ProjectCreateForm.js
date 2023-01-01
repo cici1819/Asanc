@@ -135,7 +135,7 @@ function ProjectCreate({ setShowModal }) {
                 </form>
 
                 <div className="create-project-button">
-                    <button type="submit" onClick={handleSubmit}>Create Project</button>
+                    <button type="submit" className="c-p-b-homePage"onClick={handleSubmit}>Create Project</button>
                 </div>
 
 

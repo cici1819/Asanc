@@ -1,12 +1,13 @@
 .delete-server-wapper2{
-    width: 500px;
-    height: 260px;
+    width: 520px;
+    height: 280px;
     background-color: white;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     outline: none;
     overflow: hidden;
+    padding-top: 20px;
 }
 .s-delete-text-1{
     display: flex;
@@ -44,10 +45,11 @@
     /* margin-right: 170px; */
     margin-top: 50px;
     font-size: 16px;
-    margin-left: 300px;
+    margin-left: 330px;
 }
 .d-s-button:hover{
    width: 170px;
+   font-size: 18px;
 }
 
 .s-c-cancel{

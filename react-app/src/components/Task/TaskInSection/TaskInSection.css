@@ -3,3 +3,9 @@
     height: 30px;
     border-radius: 50%
 }
+
+.show-tasks-section{
+    display: flex;
+    flex-direction: column-reverse;
+    /* background-color: aqua; */
+}

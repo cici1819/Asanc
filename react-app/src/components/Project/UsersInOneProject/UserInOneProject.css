@@ -15,10 +15,10 @@
     font-size: 18px;
     right: 5%;
     border-top: 4px solid transparent;
-
+    padding-top: 20px;
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
-    background-image: linear-gradient(to right, rgb(239, 233, 233), rgb(255, 255, 255)), linear-gradient(90deg, #8F41E9, #578AEF);
+    background-image: linear-gradient(to right, rgb(248, 249, 249), rgb(255, 255, 255)), linear-gradient(90deg, #8F41E9, #578AEF);
     box-shadow: -5px 5px 10px -4px rgba(154, 153, 153, 0.5), 5px 5px 5px -4px rgba(154, 153, 153, 0.5);
     ;
 }

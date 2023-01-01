@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrUserProjects } from "../../store/projectReducer";
 import LogoutButton from "../auth/LogoutButton";
+import { BsLinkedin, BsGithub } from "react-icons/bs";
 import logo from "../../img/asanc-logo.png"
 import "./SideBar.css"
 import ProjectCreateModal from "../Project/ProjectCreateModal";
@@ -62,21 +63,21 @@ const SideBar = ({ show, toggle }) => {
                     <div className="sideBar-Midddle">
                         <NavLink className="sideBar-home" to="/home">
                             <span className="home-icon">
-                                <i class="fa-light fa-house-blank"></i>
+                                <i className="fa-solid fa-house"></i>
                             </span>
                             <span>Home</span>
                         </NavLink>
-                        <Link className="sideBar-mytask" to="/tasks">
+                        <NavLink className="sideBar-mytask" to="/tasks">
                             <span className="my-task-icon">
                                 <i className="fa-regular fa-circle-check"></i>
                             </span>
                             <span className="my-task">
                                 My Tasks
                             </span>
-                        </Link>
+                        </NavLink>
                         <div className="create-project">
                             <div className='p-c-title' >
-                                My Projects
+                                Projects
                             </div>
                             <div id="add-project-button" >
                                 <ProjectCreateModal location="sideBar" />
@@ -86,14 +87,16 @@ const SideBar = ({ show, toggle }) => {
                         <div className="sideBar-user-project">
                             <div className="c-project-list">
                                 {projectsArr?.map((project) => {
-
                                     return (
-                                        <Link className="sideBar-myproject" to={`/home/${project?.id}/list`} key={project?.id}>
-                                            <i className="fa-solid fa-square" ></i>
-                                            <span>
+                                        <NavLink className="sideBar-myproject" to={`/home/${project?.id}/list`} key={project?.id}>
+                                            {/* <i className="fa-solid fa-square" style={{backgroundColor: project?.color}} id="p-c-sideBar"></i> */}
+                                            <div style={{ backgroundColor: project?.color }} className="p-c-sideBar">
+
+                                            </div>
+                                            <span className="p-title-sideBar">
                                                 {project.title}
                                             </span>
-                                        </Link>
+                                        </NavLink>
                                     )
 
                                 })}
@@ -101,8 +104,32 @@ const SideBar = ({ show, toggle }) => {
                         </div>
 
                     </div>
-                    <div className="sideBar-bottom">
+                    <div className="sideBar-button">
                         <LogoutButton />
+                    </div>
+
+                    <div className="about-links">
+                    <div style={{ textAlign: "center" }} className="about-title">Created by Cici Cheng</div>
+                        <NavLink className="github-link"
+                            to={{
+                                pathname: "https://github.com/cici1819",
+                            }}
+                            target="_blank"
+                        >
+                            <div className="logo-gitHub">
+                                <BsGithub size="2em" />
+                            </div>
+                        </NavLink>
+                        <NavLink
+                            to={{
+                                pathname: "https://www.linkedin.com/in/cici-cheng-87386a259/",
+                            }}
+                            target="_blank"
+                        >
+                            <div className="linkedin-link">
+                                <BsLinkedin size="2em" />
+                            </div>
+                        </NavLink>
                     </div>
                 </div>
 

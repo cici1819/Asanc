@@ -24,6 +24,7 @@
     height: 100vh;
     /* position: fixed; */
     overflow:auto;
+
 }
 
 .homePage-open{
@@ -36,7 +37,10 @@
     width: 100vw;
     height: 100vh;
     /* position: fixed; */
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* overflow-y: auto; */
+    /* overflow-x: hidden; */
 }
 .title-closed {
     display: flex;
@@ -50,3 +54,26 @@
 
 
 }
+
+
+.home-page-projectcreateModal{
+    display: flex;
+    flex-direction: row;
+     /* background-color: aqua; */
+    width: 280px;
+    height: 100px;
+    margin-top: 50px;
+    gap:10px;
+    font-size: 20px;
+    align-items: center;
+     padding-left: 10px;
+     color: rgb(116,117,117);
+}
+
+.home-page-projectcreateModal:hover{
+    background-color: rgb(249,248,248);
+    border-radius: 8px;
+    cursor: pointer;
+    color:rgb(30,31,33)
+}
+

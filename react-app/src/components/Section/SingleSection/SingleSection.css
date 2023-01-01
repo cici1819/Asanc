@@ -1,40 +1,39 @@
-.section-error-list{
-    color: rgb(240,106,106) ;
+.section-error-list {
+    color: rgb(240, 106, 106);
     font-size: 12px;
     /* height: 20px; */
     width: fit-content;
 
 }
 
-.section-part-input{
+.section-part-input {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100px;
     /* background-color: aqua; */
-    border-bottom:0.5px solid rgb(242,242,242);
-     border-top:0.5px solid rgb(242,242,242);
+    border-bottom: 0.5px solid rgb(242, 242, 242);
+    border-top: 0.5px solid rgb(242, 242, 242);
     /* background-color: aqua; */
     /* border-top:1px solid rgb(242,242,242); */
 
+}
 
+.section-part-input:hover {
+    opacity: 1;
+}
 
- }
-
-/* .section-part-input:hover{
-    cursor: grab;
-
-} */
-
-.edit-section-input{
-     /* background-color: antiquewhite; */
+.edit-section-input {
+    /* background-color: antiquewhite; */
     font-size: 18px;
     font-weight: 600;
     min-width: fit-content;
-    height: 50px;
+    height: 60px;
     border: none;
-    width: 20vw;
-    margin-top: 25px;
+    width: 20%;
+    margin-top: 30px;
+    /* opacity: 1;
+    visibility: visible; */
 
     /* margin-top: 30px; */
     /* max-width: 80%; */
@@ -43,52 +42,96 @@
     /* height: 30px; */
 
 }
-.edit-section-input:focus{
-    border: 3px solid rgb(81,135,248);
+
+.edit-section-input:hover {
+    cursor: pointer;
+}
+
+.edit-section-input:focus {
+    border: 3px solid rgb(81, 135, 248);
     border-radius: 10px;
     width: 25%;
-
 }
 
-.setting-add-task{
+.setting-add-task {
     display: flex;
     flex-direction: row;
-     margin-left: 26%;
-     gap:10px;
-     font-size: 20px;
-     min-width: fit-content;
-     width: 60vw;
-     cursor:grab;
+    margin-left: 26%;
+    gap: 10px;
+    font-size: 20px;
+    min-width: fit-content;
+    width: 80%;
+    height: 100%;
+    opacity: 0;
+    margin-top: -40px;
 
-     /* margin-top: 40px; */
+    /* margin-top: 40px; */
 
-     /* margin-top: 50px; */
+    /* margin-top: 50px; */
 }
 
-#grabable:hover{
-    cursor: pointer;
-    opacity:1;
+/* .setting-icons{
+    width: 60%;
+    background-color: aqua;
+    border:1px solid black;
+    height: 100%;
+    margin-left: 26%;
+
+} */
+.setting-add-task2 {
+    display: flex;
+    flex-direction: row;
+    margin-left: 26%;
+    gap: 10px;
+    font-size: 20px;
+    min-width: fit-content;
+    width: 80%;
+    height: 100%;
+
+    margin-top: -40px;
 }
-.add-task-in-section-icon{
+
+.setting-add-task2:hover {
+    cursor: grab;
+
+}
+
+.setting-add-task:hover {
+    cursor: grab;
+    opacity: 1;
+    /* filter: brightness(90%); */
+}
+
+.setting-add-task:active {
+    /* cursor: grabbing; */
+    opacity: 1;
+}
+
+.setting-add-task::after {
+    opacity: 1;
+}
+
+
+.add-task-in-section-icon {
     width: 35px;
     height: 30px;
     padding-top: 5px;
     border-radius: 5px;
     text-align: center;
     /* background-color: azure; */
-    margin-top: -40px;
+    /* margin-top: -40px; */
     /* opacity:0; */
     /* cursor: pointer; */
 }
 
 .add-task-in-section-icon:hover {
-    /* cursor: pointer; */
-    opacity:1;
-    background-color: rgb(249,248,248);
+    cursor: pointer;
+    opacity: 1;
+    background-color: rgb(249, 248, 248);
 
 }
 
-.open-section-setting{
+.open-section-setting {
     width: 35px;
     height: 30px;
     padding-top: 5px;
@@ -96,47 +139,44 @@
     text-align: center;
     /* opacity:0; */
     /* background-color: azure;  */
-    margin-top: -40px;
+    /* margin-top: -40px; */
 
 }
-.open-section-setting:hover{
+
+/* .open-section-setting:target{
+    opacity: 1;
+/* } */
+/* .open-section-setting2{
+    width: 35px;
+    height: 30px;
+    padding-top: 5px;
+    border-radius: 5px;
+    text-align: center;
+    opacity: 1;
+}
+.open-section-setting2:hover{
+    background-color: rgb(249, 248, 248);
+    cursor: pointer;
+} */
+.open-section-setting:hover {
     /* cursor: pointer; */
-    opacity:1;
-    background-color: rgb(249,248,248);
-
+    opacity: 1;
+    background-color: rgb(249, 248, 248);
+    cursor: pointer;
 
 }
 
-.section-setting-dropMenu-closed{
+.section-setting-dropMenu-closed {
     display: flex;
     flex-direction: column;
     /* align-items: center; */
-    padding:5px;
+    padding: 5px;
     /* position: absolute; */
-    background-color:white;
+    background-color: white;
     min-width: 160px;
-    z-index: 10;
+    z-index: 99;
     margin-top: -50px;
-    margin-left:30.5%;
-    width: 210px;
-    height: 40px;
-    border-radius: 8px;
-    font-size: 16px;
-    /* border: .2px solid rgb(211, 209, 209); */
-    /* margin-left: px; */
-    box-shadow: 0px 0px 16px rgba(183, 183, 183, 0.5);
-}
-.section-setting-dropMenu{
-    display: flex;
-    flex-direction: column;
-    /* align-items: center; */
-    padding:5px;
-    /* position: absolute; */
-    background-color:white;
-    min-width: 160px;
-    z-index: 10;
-    margin-top: -50px;
-    margin-left:31%;
+    margin-left: 30.5%;
     width: 210px;
     height: 40px;
     border-radius: 8px;
@@ -146,7 +186,27 @@
     box-shadow: 0px 0px 16px rgba(183, 183, 183, 0.5);
 }
 
-.section-edit-div{
+.section-setting-dropMenu {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    padding: 5px;
+    /* position: absolute; */
+    background-color: white;
+    min-width: 160px;
+    z-index: 99;
+    margin-top: -50px;
+    margin-left: 31%;
+    width: 210px;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 16px;
+    /* border: .2px solid rgb(211, 209, 209); */
+    /* margin-left: px; */
+    box-shadow: 0px 0px 16px rgba(183, 183, 183, 0.5);
+}
+
+.section-edit-div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -157,9 +217,10 @@
     padding-right: 10px;
     margin-top: -2px;
 }
-.section-edit-div:hover{
+
+.section-edit-div:hover {
     cursor: pointer;
-    background-color: rgb(245,243,243);
+    background-color: rgb(245, 243, 243);
     /* background-color: rgba(240, 106, 106,0.2); */
     border-radius: 5px;
     margin-top: -3px;
@@ -176,9 +237,72 @@
     padding-left: 10px;
     padding-right: 10px;
 }
-.section-delete-div:hover{
+
+.section-delete-div:hover {
     cursor: pointer;
-    background-color: rgb(245,243,243);
+    background-color: rgb(245, 243, 243);
     /* background-color: rgba(240, 106, 106,0.2); */
     border-radius: 5px
+}
+
+
+
+.add-task-in-section-icon span{
+   display: none;
+}
+
+.add-task-in-section-icon:hover span {
+
+    display: block;
+    z-index: 100;
+    background-color:rgb(37,38,40);
+    color: white;
+    text-align: center;
+    padding: 5px;
+    line-height: 1.2;
+    border-radius: 6px;
+    opacity: 1;
+    transition: opacity 0.6s;
+
+
+    font-size: 0.75em;
+    /* margin-left: 20px; */
+    margin-top: -62px;
+    margin-left: -150px;
+
+    word-break: break-all;
+    width: 180px;
+    height: 20px;
+    position: relative;
+    text-decoration: none
+}
+
+.open-section-setting span {
+    display: none;
+}
+
+.open-section-setting:hover span{
+    display: block;
+    z-index: 100;
+    background-color:rgb(37,38,40);
+    color: white;
+    text-align: center;
+    padding: 5px;
+    line-height: 1.2;
+    border-radius: 6px;
+    opacity: 1;
+    transition: opacity 0.6s;
+
+
+    font-size: 0.75em;
+    /* margin-left: 20px; */
+    margin-top: -62px;
+    /* margin-left: -75px; */
+    /* margin-top: 10px; */
+
+    word-break: break-all;
+    width: 180px;
+    height: 20px;
+    position: relative;
+    text-decoration: none
 }

@@ -435,7 +435,8 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
                 <div  onClick={() => {
                     setShowTaskSideDetail(true);
 
-                }}>
+                   }} className='task-side-detail'
+                >
                     <span>Details</span>
                     <span>
                         <i className="fa-solid fa-chevron-right"></i>

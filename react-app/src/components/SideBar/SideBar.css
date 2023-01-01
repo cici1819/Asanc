@@ -1,40 +1,44 @@
-.sideBar-top-container{
-    background-color: rgb(37,38,40);;
-    height:65px ;
+.sideBar-top-container {
+    background-color: rgb(37, 38, 40);
+    ;
+    height: 65px;
     width: 100vw;
     display: flex;
-    flex-direction:row;
-    justify-content:space-between;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    gap:40px;
+    gap: 40px;
     position: fixed;
-    top:0;
-    z-index:1;
-    border-bottom: 1px solid rgba(162,160,162,0.5);
+    top: 0;
+    z-index: 1;
+    border-bottom: 1px solid rgba(162, 160, 162, 0.5);
 }
-.sideBar-top-left{
+
+.sideBar-top-left {
     display: flex;
-    position:absolute;
-    flex-direction:row;
+    position: absolute;
+    flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    gap:35px;
-    margin-left:40px;
-    width:214px;
+    gap: 35px;
+    margin-left: 40px;
+    width: 214px;
 }
-.home-l-t{
+
+.home-l-t {
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
     align-items: center;
-    gap:5px;
+    gap: 5px;
 
 }
-.home-title{
-    color:white;
-    font-size:25px;
+
+.home-title {
+    color: white;
+    font-size: 25px;
 }
 
-.sideBar-open-icon{
+.sideBar-open-icon {
     color: white;
     font-size: 25px;
 }
@@ -43,40 +47,178 @@
     width: 40px;
     height: 40px;
 }
-.currentUser-profile img{
- width:40px;
- height: 40px;
- border-radius: 50%;
+
+.currentUser-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
 }
-.currentUser-profile{
-    position:absolute;
+
+.currentUser-profile {
+    position: absolute;
     right: 40px;
 }
 
 .sidebar-open {
 
-    top:66px;
+    top: 66px;
     position: fixed;
-	display: flex;
-	/* flex: 0 0 auto; */
+    display: flex;
+    /* flex: 0 0 auto; */
     padding-left: 20px;
-    padding-right:20px;
-	flex-direction: column;
-	background-color: rgb(37,38,40);
-	color: white;
-	transition: margin-left 250ms ease-out, transform 250ms ease-out;
-	width: 240px;
-	height: 100vh;
+    padding-right: 20px;
+    flex-direction: column;
+    background-color: rgb(30, 31, 33);
+    color: white;
+    transition: margin-left 250ms ease-out, transform 250ms ease-out;
+    width: 240px;
+    height: 100vh;
 }
-.sidebar-closed {
-	margin-left: -240px;
-	background-color:  rgb(37,38,40);
-	color: white;
-	display: flex;
-	/* flex: 0 0 auto; */
-	flex-direction: column;
-	transition: margin-left 250ms ease-out, transform 250ms ease-out;
-	width: 240px;
-	height: 100vh;
 
+.sidebar-closed {
+    margin-left: -240px;
+    background-color: rgb(30, 31, 33);
+    color: white;
+    display: flex;
+    /* flex: 0 0 auto; */
+    flex-direction: column;
+    transition: margin-left 250ms ease-out, transform 250ms ease-out;
+    width: 240px;
+    height: 100vh;
+
+}
+
+.sideBar-open-icon:hover {
+    cursor: pointer;
+}
+
+.sideBar-Midddle {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* padding-left: 10px; */
+    padding-top: 30px;
+    gap: 10px;
+}
+
+.sideBar-home {
+    font-size: 22px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    color: rgb(232, 231, 230);
+    width: 220px;
+    height: 60px;
+    padding-left: 10px;
+    align-items: center;
+    /* margin-left: -10px; */
+    /* background-color: aqua; */
+}
+
+.sideBar-home:hover {
+    background-color: rgb(43, 44, 46);
+    border-radius: 8px;
+}
+
+.sideBar-mytask {
+    font-size: 22px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    color: rgb(232, 231, 230);
+    width: 220px;
+    height: 60px;
+    padding-left: 10px;
+    align-items: center;
+}
+
+.sideBar-mytask:hover {
+    background-color: rgb(43, 44, 46);
+    border-radius: 8px;
+}
+
+.create-project {
+    font-size: 22px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    color: rgb(232, 231, 230);
+    width: 220px;
+    height: 60px;
+    padding-left: 10px;
+    align-items: center;
+}
+
+.c-project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+}
+
+.p-title-sideBar {
+    color: rgb(232, 231, 230);
+}
+
+
+.sideBar-myproject {
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 230px;
+    height: 60px;
+    padding-left: 10px;
+    align-items: center;
+
+}
+
+.sideBar-myproject:hover {
+    background-color: rgb(43, 44, 46);
+    border-radius: 8px;
+}
+
+.p-c-sideBar {
+    width: 25px;
+    height: 25px;
+    border-radius: 8px;
+}
+
+.log-out-button{
+   border: none;
+   outline:none;
+   font-size: 20px;
+   background-color: rgb(240, 106, 106);
+   color:black;
+   border-radius: 5px;
+   width: 120px;
+   height: 40px;
+}
+.log-out-button:hover{
+   width: 140px;
+   font-size: 22px;
+}
+.sideBar-button{
+position: absolute;
+bottom:18vh;
+margin-left: 10px;
+margin-bottom: 20px;
+}
+
+.about-links{
+    position: absolute;
+    bottom:10vh;
+    margin-left: 10px;
+
+}
+.about-title{
+    font-size: 18px;
+}
+.logo-gitHub{
+    margin-top: 10px;
+}
+.linkedin-link{
+    /* margin-left: 200px; */
+    margin-left: 140px;
+    margin-top: -40px;
 }
