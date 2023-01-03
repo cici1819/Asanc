@@ -1,0 +1,211 @@
+.task-lists-currentUser{
+    padding:20px;
+    min-height: 100vh;
+    height: 100%;
+    min-width: calc(100vw -240px);
+    width:calc(100% -240px);
+    position: absolute;
+    top:66px;
+    left:270px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.task-lists-currentUser-closed {
+    padding-left:40px;
+    padding-top: 20px;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top:66px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.tasks-title{
+    /* margin-left:2vw;
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 30px; */
+    position: absolute;
+    top:80px;
+    left:51vw;
+    /* margin-bottom: 20px; */
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.user-none-tasks{
+   position: absolute;
+   left:30vw;
+   top:3vw;
+}
+
+.task-table-title2{
+    margin-top:40px;
+    color: rgb(65,65,65);
+    font-size: 16px;
+    font-weight: 300;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* padding:10px;
+    background-color: aqua; */
+    height: 50px;
+    width:90vw;
+    /* margin-bottom: 20px; */
+    border-top:0.5px solid rgb(242,242,242);
+    border-bottom:0.5px solid rgb(242,242,242);
+
+}
+
+
+.task-table-title-closed2{
+    margin-top:40px;
+    color: rgb(65,65,65);
+    font-size: 16px;
+    font-weight: 300;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* padding:10px; */
+     /* background-color: aqua; */
+    height: 50px;
+    min-width: 100vw;
+    width:100%;
+    /* margin-bottom: 20px; */
+    border-top:0.5px solid rgb(242,242,242);
+    border-bottom:0.5px solid rgb(242,242,242);
+
+}
+
+
+.sigle-project-tasks-div{
+    min-width: calc(100% - 260px);
+    width: 100%;
+   min-height: fit-content;
+
+    /* min-height:100vw; */
+
+
+}
+.projec-taskList{
+    display: flex;
+    flex-direction: column;
+}
+
+.title-project{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 600;
+    width: 100%;
+    height: 100px;
+    border-bottom: 0.5px solid rgb(242, 242, 242);
+    border-top: 0.5px solid rgb(242, 242, 242);
+
+}
+.t-t-name2 {
+    width: 35%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-right:1px solid rgb(242,242,242);
+}
+.t-t-dueDate2{
+    width: 22%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-right:1px solid rgb(242,242,242);
+}
+
+.t-t-priority2{
+    width: 22%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-right:1px solid rgb(242,242,242);
+}
+
+.t-t-status2{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-right:1px solid rgb(242,242,242);
+
+}
+
+.task-title{
+    width: 34.4%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+    border-right:1px solid rgb(242,242,242);
+    border-bottom:0.3px solid rgb(242,242,242);
+    border-top:0.3px solid rgb(242,242,242);
+}
+
+.myTask-dueDate{
+    margin-left: 35%;
+    margin-top: -62px;
+    justify-content: center;
+    width: 22%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-right:1px solid rgb(242,242,242);
+    border-bottom:0.3px solid rgb(242,242,242);
+    border-top:0.3px solid rgb(242,242,242);
+}
+#myTask-p{
+    margin-left: 57%;
+    margin-top: -63px;
+    justify-content: center;
+    width: 22%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-right:1px solid rgb(242,242,242);
+    border-bottom:0.3px solid rgb(242,242,242);
+    border-top:0.3px solid rgb(242,242,242);
+}
+
+#p-s-myTask{
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    line-height:30px;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+#myTask-s{
+    margin-left: 79%;
+    margin-top: -63px;
+    justify-content: center;
+    width: 20%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* border-right:1px solid rgb(242,242,242); */
+    border-bottom:0.3px solid rgb(242,242,242);
+    border-top:0.3px solid rgb(242,242,242);
+}

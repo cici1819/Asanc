@@ -7,8 +7,8 @@
     margin-left: 50px;
     min-height: 1800px;
     height: 100%;
-    min-width: cal(100vw -240px);
-    width:cal(100% -240px);
+    min-width: calc(100vw -240px);
+    width:calc(100% -240px);
 
 
 }
