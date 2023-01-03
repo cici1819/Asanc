@@ -20,8 +20,11 @@
     align-items: center;
     position: absolute;
     top: 66px;
-    width: 100vw;
-    height: 100vh;
+    min-width: 100vw;
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    background-color: white;
     /* position: fixed; */
     overflow:auto;
 
@@ -34,11 +37,14 @@
     position: absolute;
     top: 66px;
     left:300px;
-    width: 100vw;
-    height: 100vh;
+    min-width: 100vw;
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
     /* position: fixed; */
     overflow-y: auto;
     overflow-x: hidden;
+    background-color: white;
     /* overflow-y: auto; */
     /* overflow-x: hidden; */
 }
@@ -76,4 +82,3 @@
     cursor: pointer;
     color:rgb(30,31,33)
 }
-

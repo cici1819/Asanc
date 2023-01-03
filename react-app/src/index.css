@@ -7,8 +7,16 @@ body {
     box-sizing: border-box;
     margin: 0;
     overflow-x: hidden;
+    font-size: 18px;
+    min-height: 100vh;
+    min-width: 100vw;
+    color: black;
+    /* background-color: rgb(30,31,33); */
 }
 
+select , option {
+    font-size: 18px;
+}
 
 ul,
 li {
@@ -40,4 +48,8 @@ button {
 
 button:hover {
     filter: brightness(90%)
+}
+
+input {
+    font-size: 16px;
 }

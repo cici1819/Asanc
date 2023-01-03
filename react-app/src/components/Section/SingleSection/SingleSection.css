@@ -11,117 +11,124 @@
     flex-direction: column;
     width: 100%;
     height: 100px;
-    /* background-color: aqua; */
     border-bottom: 0.5px solid rgb(242, 242, 242);
     border-top: 0.5px solid rgb(242, 242, 242);
-    /* background-color: aqua; */
-    /* border-top:1px solid rgb(242,242,242); */
+
 
 }
 
-.section-part-input:hover {
+/* .section-part-input:hover{
     opacity: 1;
-}
+    /* cursor: grab; }*/
 
-.edit-section-input {
-    /* background-color: antiquewhite; */
-    font-size: 18px;
+
+#edit-section-input {
+    font-size: 20px;
     font-weight: 600;
     min-width: fit-content;
-    height: 60px;
+    min-height: 50px;
     border: none;
     width: 20%;
     margin-top: 30px;
-    /* opacity: 1;
-    visibility: visible; */
-
-    /* margin-top: 30px; */
-    /* max-width: 80%; */
-    /* overflow-y: scroll; */
-
-    /* height: 30px; */
 
 }
+#edit-section-input2{
+    font-size: 20px;
+    font-weight: 600;
+    min-width: fit-content;
+    min-height: 50px;
+    border: none;
+    width: 25%;
+    margin-top: 30px;
+}
 
-.edit-section-input:hover {
+#edit-section-input:hover {
     cursor: pointer;
-}
 
-.edit-section-input:focus {
+
+}
+#edit-section-input2:hover {
+    cursor: pointer;
+
+
+}
+#edit-section-input:focus {
+    border: 3px solid rgb(81, 135, 248);
+    border-radius: 10px;
+    width: 20%;
+
+    /* height: 80px; */
+    /* background-color: aqua; */
+
+}
+#edit-section-input2:focus {
     border: 3px solid rgb(81, 135, 248);
     border-radius: 10px;
     width: 25%;
+
+
 }
 
 .setting-add-task {
+
     display: flex;
     flex-direction: row;
-    margin-left: 26%;
+    /* margin-left: 26%; */
     gap: 10px;
     font-size: 20px;
     min-width: fit-content;
+    margin-left: 19.5%;
     width: 80%;
-    height: 100%;
+    height:100px;
+    padding:30px;
+    /* cursor: grab; */
     opacity: 0;
-    margin-top: -40px;
-
-    /* margin-top: 40px; */
-
-    /* margin-top: 50px; */
+    margin-top: -75px;
 }
 
-/* .setting-icons{
-    width: 60%;
-    background-color: aqua;
-    border:1px solid black;
-    height: 100%;
-    margin-left: 26%;
 
-} */
+.setting-add-task:hover {
+  cursor: grab;
+   opacity: 1;
+   /* background-color: aqua; */
+
+
+}
+
 .setting-add-task2 {
     display: flex;
     flex-direction: row;
-    margin-left: 26%;
+    margin-left: 25.9%;
     gap: 10px;
     font-size: 20px;
     min-width: fit-content;
-    width: 80%;
-    height: 100%;
-
+    width: 75%;
+    height: 98px;
+    /* opacity: 1; */
     margin-top: -40px;
 }
 
 .setting-add-task2:hover {
     cursor: grab;
+     /* opacity: 1; */
 
 }
-
-.setting-add-task:hover {
-    cursor: grab;
-    opacity: 1;
-    /* filter: brightness(90%); */
-}
-
-.setting-add-task:active {
-    /* cursor: grabbing; */
-    opacity: 1;
-}
-
-.setting-add-task::after {
-    opacity: 1;
-}
-
-
+/* .setting-add-task2 > #edit-section-input:focus {
+    border: 3px solid rgb(81, 135, 248);
+    border-radius: 10px;
+    width: 30%;
+} */
 .add-task-in-section-icon {
     width: 35px;
     height: 30px;
     padding-top: 5px;
     border-radius: 5px;
     text-align: center;
-    /* background-color: azure; */
+
+
     /* margin-top: -40px; */
-    /* opacity:0; */
-    /* cursor: pointer; */
+
+    cursor: pointer;
 }
 
 .add-task-in-section-icon:hover {
@@ -137,7 +144,7 @@
     padding-top: 5px;
     border-radius: 5px;
     text-align: center;
-    /* opacity:0; */
+
     /* background-color: azure;  */
     /* margin-top: -40px; */
 
@@ -176,7 +183,7 @@
     min-width: 160px;
     z-index: 99;
     margin-top: -50px;
-    margin-left: 30.5%;
+    margin-left: 29.9%;
     width: 210px;
     height: 40px;
     border-radius: 8px;
@@ -196,7 +203,7 @@
     min-width: 160px;
     z-index: 99;
     margin-top: -50px;
-    margin-left: 31%;
+    margin-left: 30.5%;
     width: 210px;
     height: 40px;
     border-radius: 8px;
@@ -247,62 +254,95 @@
 
 
 
-.add-task-in-section-icon span{
-   display: none;
+.add-task-in-section-icon #c-info-title {
+    visibility: hidden;
+
 }
 
-.add-task-in-section-icon:hover span {
-
-    display: block;
+.add-task-in-section-icon:hover #c-info-title {
+    visibility: visible;
+    opacity: 1;
     z-index: 100;
-    background-color:rgb(37,38,40);
+    background-color: rgb(37, 38, 40);
     color: white;
     text-align: center;
-    padding: 5px;
+    padding: 3px;
     line-height: 1.2;
     border-radius: 6px;
-    opacity: 1;
-    transition: opacity 0.6s;
-
-
     font-size: 0.75em;
-    /* margin-left: 20px; */
-    margin-top: -62px;
-    margin-left: -150px;
-
     word-break: break-all;
-    width: 180px;
-    height: 20px;
-    position: relative;
+    width: 170px;
+    height: 18px;
+    position: absolute;
+    /* top:150%;
+   left:50%; */
+    margin-top: -45px;
+    margin-left: -96px;
+
     text-decoration: none
 }
 
-.open-section-setting span {
-    display: none;
+.add-task-in-section-icon #c-info-title::after {
+    content: "";
+    display: block;
+    overflow: hidden;
+    margin-left: -5px;
+    width: 0px;
+    height: 0px;
+    padding: 0;
+    font-size: 0;
+    border: 5px solid transparent;
+    border-top-style: solid;
+    border-top-color: black;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+
 }
 
-.open-section-setting:hover span{
-    display: block;
+.open-section-setting #s-info-title {
+    visibility: hidden;
+
+}
+
+.open-section-setting:hover #s-info-title {
+    visibility: visible;
+    opacity: 1;
     z-index: 100;
-    background-color:rgb(37,38,40);
+    background-color: rgb(37, 38, 40);
     color: white;
     text-align: center;
-    padding: 5px;
+    padding: 3px;
     line-height: 1.2;
     border-radius: 6px;
-    opacity: 1;
-    transition: opacity 0.6s;
-
-
     font-size: 0.75em;
-    /* margin-left: 20px; */
-    margin-top: -62px;
-    /* margin-left: -75px; */
-    /* margin-top: 10px; */
-
     word-break: break-all;
-    width: 180px;
-    height: 20px;
-    position: relative;
+    width: 100px;
+    height: 18px;
+    position: absolute;
+    /* top:150%;
+       left:50%; */
+    margin-top: -45px;
+    margin-left: -62px;
+    /* margin-left:-96px; */
+
     text-decoration: none
+}
+
+.open-section-setting #s-info-title::after {
+    content: "";
+    display: block;
+    overflow: hidden;
+    margin-left: -5px;
+    width: 0px;
+    height: 0px;
+    padding: 0;
+    font-size: 0;
+    border: 5px solid transparent;
+    border-top-style: solid;
+    border-top-color: black;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+
 }

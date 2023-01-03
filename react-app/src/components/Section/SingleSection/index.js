@@ -19,6 +19,7 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
     const [showNewTask, setShowNewTask] = useState(false)
     const settingClass = show ? "section-setting-dropMenu delete-ele" : "section-setting-dropMenu-closed delete-ele"
     const [style, changeStyle] = useState("setting-add-task")
+    const[inputStyle,changeInputStyle] = useState("edit-section-input")
     const ref = useRef(null)
 
     const openMenu = () => {
@@ -32,6 +33,7 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
             //     changeStyle("setting-add-task")
             // }
             changeStyle("setting-add-task2")
+            changeInputStyle("edit-section-input2")
 
         }
     }
@@ -40,10 +42,11 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
         if (!showMenu) return;
 
         const closeMenu = (e) => {
-            console.log("SingleSection@@@@@@@@@,e", e)
+         
             if (e.target.className.includes('delete-ele')) return;
             setShowMenu(false);
             changeStyle("setting-add-task")
+            changeInputStyle("edit-section-input")
         };
 
         document.addEventListener('click', closeMenu);
@@ -78,7 +81,7 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
             if (editedSection) {
                 dispatch(getOneProject(projectId))
             }
-        }, 1000)
+        }, 500)
 
         setTimer(newTimer)
 
@@ -158,7 +161,7 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
             {sessionUserIsOwner ?
                 (<>
                     <div className='section-part-input'>
-                        <input className='edit-section-input'
+                        <input id={inputStyle}
                             type='text'
                             value={sectionTitle}
                             placeholder="Untitled Section"
@@ -171,11 +174,11 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
                         <div className={style} id="grabable">
                             <div className='add-task-in-section-icon' onClick={onAddBtnClick}>
                                 <i className="fa-regular fa-plus"></i>
-                                <span className='c-info-title'>Add a task in this section</span>
+                                <span id='c-info-title'>Add a task in this section</span>
                             </div>
                             <div className="open-section-setting" onClick={openMenu}>
                                 <i className="fa-solid fa-ellipsis delete-ele"></i>
-                                <span className='s-info-title'>Section setting</span>
+                                <span id='s-info-title'>Section setting</span>
                             </div>
                         </div>
 
@@ -247,7 +250,7 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
 
                 )}
             <div className='tasks-in-section'>
-                <TaskInSection setShowNewTask={setShowNewTask} section={section} project={project} sessionUser={sessionUser} sessionUserIsOwner={sessionUserIsOwner} showNewTask={showNewTask} />
+                <TaskInSection show={show} setShowNewTask={setShowNewTask} section={section} project={project} sessionUser={sessionUser} sessionUserIsOwner={sessionUserIsOwner} showNewTask={showNewTask} />
             </div>
 
 

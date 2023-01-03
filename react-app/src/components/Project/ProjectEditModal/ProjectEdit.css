@@ -1,0 +1,123 @@
+.project-edit-wapper{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 580px;
+    border-radius: 8px;
+    background-color: rgb(242, 243, 245);
+
+}
+.p-e-form-title h1{
+    color: rgb(57, 57, 59);
+}
+
+.project-edit-form{
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+}
+.e-mark-logo{
+    margin-left: 440px;
+    margin-top: -60px;
+}
+.e-close-x-img{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+.e-close-x-img:hover{
+    cursor: pointer;
+    background-color: rgb(227, 229, 232);
+}
+.p-e-errors{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 20px;
+    width: 95%;
+    font-size: 10px;
+    color: rgb(240, 106, 106);
+    font-weight: 500;
+}
+.edit-project-input{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 30px;
+}
+.project-title-input{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap:20px;
+}
+.projecticon-input{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap:20px;
+}
+.project-d-input{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap:20px;
+}
+.projecticon-input >.project-icon-title{
+    color: rgb(56,57,58);
+    font-size: 20px;
+    font-weight:600;
+
+
+}
+.project-d-input >.project-d-title {
+    color: rgb(56,57,58);
+    font-size: 20px;
+    font-weight:600;
+  
+
+}
+.project-title-input >.project-title{
+    color: rgb(56,57,58);
+    font-size: 20px;
+    font-weight:600;
+
+}
+.project-edit-form input{
+ background-color: rgb(227, 229, 232);
+  border: none;
+  border-radius: 5px;
+  color: rgb(0,0,0);
+  width: 456px;
+  height: 45px;
+}
+
+.project-d-input input{
+    height: 80px;
+    word-wrap: break-word;
+
+}
+.edit-project-button button{
+    background-color: rgb(240, 106, 106);
+    color:black;
+    border-radius: 8px;
+    width: 160px;
+    height: 40px;
+    font-size: 16px;
+}
+
+.edit-project-button:hover button{
+    width: 170px;
+    font-size: 18px;
+}
+.edit-project-button{
+    margin-top: 30px;
+    /* margin-left: 175px; */
+}

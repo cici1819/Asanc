@@ -6,12 +6,13 @@ import SingleTask from "../TaskDetail";
 import TaskCreate from '../../Task/TaskCreate';
 // import tasks from "../../../store/taskReducer";
 
-function TaskInSection({ section, project, sessionUser, showNewTask, setShowNewTask }) {
+function TaskInSection({ section, project, sessionUser, showNewTask, setShowNewTask,show }) {
     console.log("*****************,section", section)
 
     // const [createNewTask, setCreateNewTask] = useState(false);
 
-
+    const creatTaskClass = show ? "show-create-task" : "closed-create-task"
+    const tasksInSectionClass = show ?"show-tasks-section2":"closed-tasks-section"
 
     // const [currentTaskId, setCurrentTaskId] = useState(-1);
     const users = project?.users
@@ -79,15 +80,15 @@ function TaskInSection({ section, project, sessionUser, showNewTask, setShowNewT
             {/* {sessionUserIsOwner && <div className='add-task-in-section-icon' onClick={onAddBtnClick}>
                 <i className="fa-duotone fa-plus"></i>
             </div>} */}
-            <div ref={taskCreateRef}>
-                {showNewTask && <TaskCreate project={project} section={section} sessionUser={sessionUser} setShowNewTask={setShowNewTask} showNewTask={showNewTask} />}
+            <div ref={taskCreateRef} className={creatTaskClass}>
+                {showNewTask && <TaskCreate show={show} project={project} section={section} sessionUser={sessionUser} setShowNewTask={setShowNewTask} showNewTask={showNewTask} />}
             </div>
 
 
-            <div className="show-tasks-section">
+            <div className={tasksInSectionClass}>
                 {tasksArr.length > 0 && tasksArr?.map((task) => (
                     <div key={task.id} >
-                        <SingleTask task={task} users={users} section={section} sessionUser={sessionUser} projectId={projectId} />
+                        <SingleTask show={show} task={task} users={users} section={section} sessionUser={sessionUser} projectId={projectId} />
                     </div>
                 ))}
             </div>

@@ -66,7 +66,7 @@ export const createOneProject = (data) => async (dispatch) => {
     console.log("running%%%%%%%%%% createOneProject thunk")
     const { title, icon, description } = data
     try {
-        const response = await fetch('api/projects/new', {
+        const response = await fetch('/api/projects/new', {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ title, icon, description }),

@@ -4,17 +4,16 @@ import { addSectionToProject } from "../../../store/sectionReducer";
 import { getOneProject } from "../../../store/projectReducer";
 import './SectionCreate.css';
 
-const SectionCreate = ({ projectId}) => {
+const SectionCreate = ({ projectId, setSectionList}) => {
     const dispatch = useDispatch();
     const [title, setTitle] = useState("");
-    const [titleInput, setTitleInput] = useState(false);
     const [timer, setTimer] = useState(null)
     const [errors, setErrors] = useState([]);
 
-    const handleCreateInput = () => {
-        setTitleInput(true)
-        setTitle('')
-    }
+    // const handleCreateInput = () => {
+    //     setTitleInput(true)
+    //     setTitle('')
+    // }
     useEffect(() => {
         const errors = [];
         if (title.length > 30) {
@@ -43,7 +42,8 @@ const SectionCreate = ({ projectId}) => {
 
         setTimer(newTimer)
         setErrors([])
-        setTitleInput(false)
+        setTitle("")
+        setSectionList([])
 
     }
 
@@ -55,11 +55,11 @@ const SectionCreate = ({ projectId}) => {
 
     return (
         <>
-            {!titleInput&&<div onClick={handleCreateInput} className="addSection-main-container"><i className="fa-solid fa-plus" id="create-phase-plus"></i>
-                <span> Add section</span></div>}
-            {titleInput  && <div>
-                <div>
-                    {errors.length > 0 && (<div>
+            {/* {!titleInput&&<div onClick={handleCreateInput} className="addSection-main-container"><i className="fa-solid fa-plus" id="create-phase-plus"></i>
+                <span> Add section</span></div>} */}
+             <div>
+                <div >
+                    {errors.length > 0 && (<div className="s-detail-content">
 
                         {errors[0]}
 
@@ -72,21 +72,10 @@ const SectionCreate = ({ projectId}) => {
                         onChange={handleChange} />
 
                 </div>
-            </div>}
+            </div>
 
         </>
     )
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

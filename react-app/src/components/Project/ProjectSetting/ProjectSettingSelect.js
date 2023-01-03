@@ -59,7 +59,7 @@ const ProjectSetting = ({ setShowProjectEditModal, setShowProjectDeleteModal, cu
                 </span>
                 {sessionUserIsOwner &&
                     <div className='arrow-icon' onClick={openMenu}>
-                        {/* <img className="arrow-img" src={selectMenuIcon} /> */}
+                        <span id="project-setting-title">Project setting</span>
                         <i className="fa-solid fa-chevron-down"></i>
                     </div>
                 }

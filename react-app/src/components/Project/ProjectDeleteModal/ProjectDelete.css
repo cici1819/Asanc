@@ -1,0 +1,108 @@
+.delete-Project-wapper2{
+    background-color: rgb(255,255,255);
+    display: flex;
+    flex-direction: column;
+    text-align: flex-start;
+    width: 460px;
+    height: 400px;
+    border-radius: 5px;
+    outline: none;
+    overflow: hidden;
+}
+.delete-Project-form{
+    width: 100%;
+    height: 70%;
+    outline: none;
+    overflow: hidden;
+    background-color: rgb(242,243,245);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+.p-delete-text{
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    color:  rgb(54, 57, 63);
+    font-weight: 600;
+
+}
+.p-delete-title{
+    margin-left: 15px;
+}
+.p-delete-warning{
+    color: rgb(43,47,53);
+    font-size: 18px;
+    margin-left: 15px;
+    margin-right: 5px;
+    gap:5px;
+}
+
+.d-p-2{
+    color: black;
+    font-size: 20px;
+}
+.d-p-input{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+.d-p-input input{
+    width: 93%;
+    margin-left: 15px;
+    height: 45px;
+    border-radius: 8px;
+}
+
+.delete-project-check{
+    margin-top: 20px;
+    color: rgb(43, 47, 54);
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
+.delete-input:focus{
+    border:3px solid rgb(81, 135, 248)
+}
+
+.delete-project-button button{
+    background-color: rgb(240,106,106);
+    color:black;
+    border-radius: 5px;
+    width: 150px;
+    height: 40px;
+    /* margin-right: 170px; */
+    margin-top: 50px;
+    font-size: 15px;
+    margin-left: 280px;
+}
+.d-b-p:hover {
+    width: 160px;
+    font-size: 18px;
+}
+
+.p-c-cancel{
+    width:60px;
+    height: 30px;
+    color: black;
+    font-size: 16px;
+    margin-top: -30px;
+    margin-left: 20px;
+    
+}
+
+.p-c-cancel:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.d-p-errors-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 10px;
+    width: 95%;
+    font-size: 12px;
+    color: rgb(240,106,106);
+    font-weight: 500;
+    margin-top: 10px;
+}

@@ -6,7 +6,7 @@ import { editOneProject, getOneProject } from "../../../store/projectReducer";
 import './ProjectEdit.css';
 
 
-function ProjectEdit({ setShowProjectEditModal ,currentProject}) {
+function ProjectEdit({ setShowProjectEditModal, currentProject }) {
     const dispatch = useDispatch();
     const { projectId } = useParams();
     // const history = useHistory();
@@ -65,9 +65,9 @@ function ProjectEdit({ setShowProjectEditModal ,currentProject}) {
             <div className="project-edit-wapper">
                 <form onSubmit={handleSubmit} className="project-edit-form">
                     <div className="p-e-form-title">
-                        <h2>
+                        <h1>
                             Project Details
-                        </h2>
+                        </h1>
                         {hasSubmitted && !!validationErrors.length && (<div className="p-e-errors">
                             <ul>
                                 {validationErrors.map((error, idx) => <li key={idx}>{error}</li>)}
@@ -77,36 +77,38 @@ function ProjectEdit({ setShowProjectEditModal ,currentProject}) {
                     <div className="e-mark-logo">
                         <img className='e-close-x-img' src='https://static.thenounproject.com/png/1144486-200.png' alt='close' onClick={() => setShowProjectEditModal(false)} />
                     </div>
+                    <div className="edit-project-input">
+                        <div className="project-title-input">
+                            <div className="project-title">
+                                Project Title
+                            </div>
+                            <input type="text"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
 
-                    <div className="project-title-input">
-                        <div className="project-title">
-                            Project Title
+                            />
                         </div>
-                        <input type="text"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
+                        <div className="projecticon-input">
+                            <div className="project-icon-title">
+                                Project Icon
+                            </div>
+                            <input type="text"
+                                value={icon}
+                                onChange={(e) => setIcon(e.target.value)}
 
-                        />
-                    </div>
-                    <div className="projecticon-input">
-                        <div className="project-icon-title">
-                        Project Icon
+                            />
                         </div>
-                        <input type="text"
-                            value={icon}
-                            onChange={(e) => setIcon(e.target.value)}
+                        <div className="project-d-input">
+                            <div className="project-d-title">
+                                Project Description
+                            </div>
+                            <input type="text"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
 
-                        />
-                    </div>
-                    <div className="project-d-input">
-                        <div className="project-d-title">
-                        Project Description
+                            />
                         </div>
-                        <input type="text"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
 
-                        />
                     </div>
 
                     <div className="edit-project-button">

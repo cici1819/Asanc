@@ -1,9 +1,0 @@
-.task-side-detail-content {
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100vh;
-    width: 500px;
-    z-index: 999;
-    background-color: red;
-}

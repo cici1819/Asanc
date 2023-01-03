@@ -16,7 +16,7 @@ import TaskSideCreate from '../TaskSideCreate';
 // import { use } from 'express/lib/router';
 
 
-const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
+const TaskCreate = ({ show, section, sessionUser, project, setShowNewTask }) => {
     const [saveState, setSaveState] = useState("");
     const didMount = useRef(false);
     const dispatch = useDispatch();
@@ -25,10 +25,15 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
     const [description, setDescription] = useState('');
     const [status, setStatus] = useState('');
     const [assigneeId, setAssigneeId] = useState('');
-    const [assignee, setAssignee] = useState({value:0, label:"No assignee",color:"gray",img:userLogo});
-    const [defaultValue, setDefaultValue] = useState({value:0, label:"No assignee",color:"gray",img:userLogo})
+    const [assignee, setAssignee] = useState({ value: 0, label: "No assignee", color: "gray", img: userLogo });
+    const [defaultValue, setDefaultValue] = useState({ value: 0, label: "No assignee", color: "gray", img: userLogo })
     const dateDiv = useRef();
     const [properDate, setProperDate] = useState();
+    const assigneeClass = show ? "task-assignee-column" : "task-assignee-closed"
+    const assigneeReadClass = show ? "task-assignee-column2" : "task-assignee-closed2"
+    const deleteClass = show ? "task-delete" : "task-delete-closed"
+    const [selectPriority, setSelectPriority] = useState();
+    const [selectStatus, setSelectStatus] = useState();
     //  const [task,setTask] = useState({})
     // let task = useSelector(state => state.tasks.singleTask)
     // console.log("+++++++++++++,newTask", task)
@@ -50,7 +55,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
 
 
     // assignee select///////////////////////////////////////////////////
-    let options = [{value:0, label:"No assignee",color:"gray",img:userLogo}];
+    let options = [{ value: 0, label: "No assignee", color: "gray", img: userLogo }];
     for (let i = 0; i < users.length; i++) {
         let assigneeObj = users[i];
         let value = assigneeObj.id;
@@ -85,16 +90,18 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: "space-around",
-            width: "150px"
+            justifyContent: "space-between",
+            width: "220px",
+            cursor: "pointer",
+            borderRadius: "5px"
         }),
         singleValue: (provided) => ({
             ...provided,
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
-            width: "150px",
-            justifyContent: "space-around"
+            width: "170px",
+            justifyContent: "space-between"
         }),
     }
 
@@ -118,7 +125,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
         const payload = {
             title: taskTitle,
             description,
-            assigneeId:"null",
+            assigneeId: "null",
             ownerId,
             sectionId,
             status: status,
@@ -149,10 +156,14 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
 
     const handlePriorityChange = (e) => {
         setPriority(e.target.value);
+        const select = e.target
+        setSelectPriority(select.options[select.selectedIndex].className)
     };
 
     const handleStatusChange = (e) => {
         setStatus(e.target.value);
+        const select = e.target
+        setSelectStatus(select.options[select.selectedIndex].className)
 
     };
 
@@ -324,20 +335,37 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
 
                 setAssignee(task?.assignee);
 
-            } else if (task.assignee==="null"||task.assignee===null) {
-                setDefaultValue({value:0, label:"No assignee",color:"gray",img:userLogo})
+            } else if (task.assignee === "null" || task.assignee === null) {
+                setDefaultValue({ value: 0, label: "No assignee", color: "gray", img: userLogo })
             }
             if (task?.priority) {
                 setPriority(task?.priority);
             } else {
                 setPriority("---");
             }
+            if (task.priority === "Null") {
+                setSelectPriority("p-1")
+            } else if (task.priority === "Low") {
+                setSelectPriority("p-2")
+            } else if (task.priority === "Medium") {
+                setSelectPriority("p-3")
+            } else if (task.priority === "High") {
+                setSelectPriority("p-4")
+            }
             if (task?.status) {
                 setStatus(task?.status);
             } else {
                 setStatus("---");
             }
-
+            if (task.status === "Null") {
+                setSelectStatus("s-1")
+            } else if (task.status === "On Track") {
+                setSelectStatus("s-2")
+            } else if (task.status === "At Risk") {
+                setSelectStatus("s-3")
+            } else if (task.status === "Off Track") {
+                setSelectStatus("s-4")
+            }
         }
 
 
@@ -431,62 +459,68 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
                     Cancel Create
                 </button>
             </div> */}
-            {newTask?.id && <>
-                <div  onClick={() => {
-                    setShowTaskSideDetail(true);
-
-                   }} className='task-side-detail'
-                >
-                    <span>Details</span>
-                    <span>
-                        <i className="fa-solid fa-chevron-right"></i>
-                    </span>
-                </div>
-                {showTaskSideDetail && <div>
-                    <TaskSideCreate setShowTaskSideDetail={setShowTaskSideDetail} taskId={newTask.id} users={users} section={section} sessionUser={sessionUser} project={project} showTaskSideDetail={showTaskSideDetail} task={newTask} setNewTask={setNewTask} defaultValue={defaultValue} setDefaultValue={setDefaultValue} assignee={assignee} setAssignee={setAssignee} />
-                </div>}
-            </>}
-
-
+            {showTaskSideDetail && <div>
+                <TaskSideCreate show={show} setShowTaskSideDetail={setShowTaskSideDetail} taskId={newTask.id} users={users} section={section} sessionUser={sessionUser} project={project} showTaskSideDetail={showTaskSideDetail} task={newTask} setNewTask={setNewTask} defaultValue={defaultValue} setDefaultValue={setDefaultValue} assignee={assignee} setAssignee={setAssignee} />
+            </div>}
 
             <div className='task-detail-content'>
-                <div className="task-complete">
-                    <button
-                        onClick={toggleCompleted}
-                        className={
-                            task?.completed
-                                ? "task-complete-button-completed"
-                                : "task-complete-button"
-                        }>
+                <div className='task-first-column'>
+                    {errors.length > 0 && (<div>
 
-                        <i className="fa-solid fa-circle-check">
+                        <ul className='errors-task'>
+                            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                        </ul>
 
-                        </i>
-                        {task?.completed ? "Completed" : "Mark Complete"}
-                    </button>{'  '}
+                    </div>)}
+                    <div className="task-complete">
+                        <div
+                            onClick={toggleCompleted}
+                            className={
+                                task?.completed
+                                    ? "task-complete-button-completed"
+                                    : "task-complete-button"
+                            }>
+
+                            <i className="fa-solid fa-circle-check">
+
+                            </i>
+                            <span> {task?.completed ? "Completed" : "Mark Complete"}</span>
+
+                        </div>{'  '}
+                    </div>
+
+                    <div className='task-input-title'>
+                        <input className='edit-task-title'
+                            type='text'
+                            value={taskTitle}
+                            placeholder="New Task"
+                            onChange={handleTitleChange}
+                            onBlur={handleTitleBlur}
+
+                        />
+                    </div>
+
+                    {newTask?.id && <>
+                        <div className="task-side-open">
+                            <span className='open-title' onClick={() => {
+                                setShowTaskSideDetail(true);
+
+                            }}>Details</span>
+                            <span className='open-icon' onClick={() => {
+                                setShowTaskSideDetail(true);
+
+                            }}>
+                                <i className="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </div>
+
+                    </>}
                 </div>
-                {errors.length > 0 && (<div>
-
-                    <ul>
-                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                    </ul>
-
-                </div>)}
-                <div>
-                    <input className='edit-task-title'
-                        type='text'
-                        value={taskTitle}
-                        placeholder="New Task"
-                        onChange={handleTitleChange}
-                        onBlur={handleTitleBlur}
-
-                    />
-                </div>
 
 
 
-
-                <div>
+                <div className={assigneeClass}>
+                    <p className='assignee-title'>Assignee</p>
                     <Select className='assignee-select'
 
                         styles={customStyles}
@@ -505,7 +539,7 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
 
 
                 <div className='date-setting'>
-                    <span className='dueDate-title'>Due date</span>
+                    <p className='dueDate-title'>Due date</p>
                     {showDateForm ? (
                         <div
                             className="task-detail-date-open"
@@ -515,7 +549,10 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
                             <div className="task-calendar-icon">
                                 <i className="fa-light fa-calendar-day"></i>
                             </div>
-                            {dueDate ? dueDate : "No due date"}
+                            <div className="dueDate-title">
+                                {dueDate ? dueDate : "No due date"}
+                            </div>
+
                             <div id="task-detail-date-calendar">
                                 <Calendar
                                     value={properDate}
@@ -550,9 +587,9 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
                 </div>
 
                 <div className="task-detail-priority">
-                    <div className="p-title">Priority</div>
-                    <div className="p-content">
-                        <select value={priority} onChange={handlePriorityChange}>
+                    <p className="p-title">Priority</p>
+                    <div className='priority-select'>
+                        <select value={priority} onChange={handlePriorityChange} id="mySelect" className={selectPriority}>
                             <option className="p-1" value="Null">---</option>
                             <option className="p-2" value="Low">Low</option>
                             <option className="p-3" value="Medium">Medium</option>
@@ -561,9 +598,9 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
                     </div>
                 </div>
                 <div className="task-detail-status">
-                    <div className="s-title">Status</div>
+                    <p className="s-title">Status</p>
                     <div className="s-labels">
-                        <select value={status} onChange={handleStatusChange}>
+                        <select value={status} onChange={handleStatusChange} id="mySelect" className={selectStatus}>
                             <option className="s-1" value="Null">---</option>
                             <option className="s-2" value="On Track">On Track</option>
                             <option className="s-3" value="At Risk">At Risk</option>
@@ -571,9 +608,9 @@ const TaskCreate = ({ section, sessionUser, project, setShowNewTask }) => {
                         </select>
                     </div>
                 </div>
-                <div className="task-delete"
+                <div className={deleteClass}
                     onClick={handleCanelCreat}>
-
+                    <span>Delete task</span>
                     <i className="fa-sharp fa-solid fa-circle-xmark"></i>
 
                 </div>

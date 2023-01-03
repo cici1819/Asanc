@@ -72,7 +72,7 @@ function ProjectDelete({ setShowProjectDeleteModal, currentProject }) {
                     </div>
                     <div className="d-p-input">
                         <span className='delete-project-check'>Enter Project Title</span>
-                        <input
+                        <input className="delete-input"
 
                             value={projectTitle}
                             onChange={(e) => setProjectTitle(e.target.value)}
@@ -85,7 +85,7 @@ function ProjectDelete({ setShowProjectDeleteModal, currentProject }) {
 
 
                 <div className="delete-project-button">
-                    <button
+                    <button className="d-b-p"
                         onClick={(e) => handleDelete(projectId)}>Delete Project
                     </button>
                 </div>

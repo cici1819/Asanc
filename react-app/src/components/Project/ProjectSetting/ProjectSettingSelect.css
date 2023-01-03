@@ -11,18 +11,78 @@
     font-size: 25px;
     font-weight: 600;
 }
-
-.arrow-icon:hover{
-    cursor: pointer;
-    background-color: rgb(245,243,243);
-    text-align: center;
+.arrow-icon {
+    /* cursor: pointer; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 40px;
     height: 40px;
+    text-align: center;
     line-height: 40px;
+    /* margin-top:-160px ; */
     border-radius: 8px;
+    /* background-color: aqua; */
 
 }
+ .arrow-icon i {
+    position:relative;
+    margin-top: -70px;
+    /* top:46px;
+    left:280px; */
+    /* color: brown; */
+ }
+.arrow-icon:hover i{
+   margin-top: 10px;
+}
+.arrow-icon:hover{
+    cursor:pointer;
+    background-color: rgb(245,243,243);
 
+}
+.arrow-icon span{
+ visibility: hidden;
+}
+
+.arrow-icon:hover span{
+    visibility: visible;
+    opacity: 1;
+    z-index: 100;
+    background-color: rgb(37, 38, 40);
+    color: white;
+    text-align: center;
+    padding: 3px;
+    line-height: 1.2;
+    border-radius: 6px;
+    font-size: 0.75em;
+    word-break: break-all;
+    width: 100px;
+    height: 18px;
+    position: absolute;
+    /* top:150%;
+   left:50%; */
+    margin-top: -28px;
+    margin-left: -5px;
+
+    text-decoration: none
+}
+
+#project-setting-title::after{
+    content: "";
+    display: block;
+    overflow: hidden;
+    margin-left: -5px;
+    width: 0px;
+    height: 0px;
+    padding: 0;
+    font-size: 0;
+    border: 5px solid transparent;
+    border-top-style: solid;
+    border-top-color: black;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+}
 .project-setting-dropMenu{
     display: flex;
     flex-direction: column;
@@ -86,13 +146,4 @@
     /* background-color: rgba(240, 106, 106,0.2); */
     border-radius: 5px;
 
-}
-
-.arrow-icon{
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    border-radius: 8px;
-    text-align: center;
-    /* margin-left: 5px; */
 }

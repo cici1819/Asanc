@@ -7,7 +7,7 @@ import SingleSection from "../SingleSection";
 import SectionCreate from "../SectionCreate";
 
 
-function SectionListInProject({show}) {
+function SectionListInProject({ show }) {
     const dispatch = useDispatch();
     const { projectId } = useParams();
     const sessionUser = useSelector((state) => state.session.user);
@@ -19,13 +19,17 @@ function SectionListInProject({show}) {
 
     }, [dispatch, projectId]);
 
-    // console.log(`####..project........:  ${project?.section}`)
 
     let sectionArr = project?.sections;
 
-
-    // sectionArr.map(s => sectionTitleObj[s.id] = s.title);
-    // console.log(`sectionTitleObj........:  ${sectionTitleObj}`)
+     const [sectionList, setSectionList] = useState([]);
+     const onAddBtnClick = event => {
+      setSectionList(sectionList.concat(
+        <div className="section-create-div">
+        <SectionCreate projectId={projectId} project={project} setSectionList={setSectionList} />
+    </div >));
+    };
+    //  sectionArr= sectionArr.push(sectionList)
 
 
 
@@ -47,16 +51,19 @@ function SectionListInProject({show}) {
                         <div className="single-section-in-project-left">
                             <div className="single-section-in-project-title">
                                 <SingleSection title={section.title} sessionUserIsOwner={sessionUserIsOwner} section={section} project={project} sessionUser={sessionUser}
-                               show={show} />
+                                    show={show} />
                             </div>
                         </div>
                     </div>
                 ))}
 
             </div >
-            <div className="section-create-div">
+            {/* <div className="section-create-div">
                 {sessionUserIsOwner && <SectionCreate projectId={projectId} project={project} />}
-            </div>
+            </div> */}
+               <div className="section-list-new">{sectionList}</div>
+            {sessionUserIsOwner && <div onClick={onAddBtnClick} className="addSection-main-container"><i className="fa-solid fa-plus" id="create-phase-plus"></i>
+                <span> Add section</span></div>}
 
         </div >
     )

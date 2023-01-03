@@ -14,13 +14,13 @@ function HomePage({ show, toggle }) {
     const today = new Date()
 
     const days = [
+        "Sunday",
         "Monday",
         "Tuesday",
         "Wednesday",
         "Thursday",
         "Friday",
         "Saturday",
-        "Sunday",
     ]
 
     const months = [
@@ -38,7 +38,7 @@ function HomePage({ show, toggle }) {
         "December",
     ]
 
-    const day = days[today.getDay() - 1]
+    const day = days[today.getDay()]
     const month = months[today.getMonth()]
     const dateNumber = today.getDate()
     const homePageClass = show ? "homePage-open" : "homePage-closed"

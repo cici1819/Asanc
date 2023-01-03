@@ -15,7 +15,7 @@ import './TaskSideDetail.css'
 
 
 
-const TaskSideDetail = ({ assignee, setAssignee, defaultValue, setDefaultValue, task, taskId, users, section, sessionUser, project, setShowTaskSideDetail, showTaskSideDetail }) => {
+const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultValue, task, taskId, users, section, sessionUser, project, setShowTaskSideDetail, showTaskSideDetail }) => {
     // console.log("*******************%%%%%%%%%%%%%%% task in sideBar", task)
     console.log("showTaskDetail", showTaskSideDetail)
     // const [assignee, setAssingee] = useState(task?.assignee)
@@ -36,10 +36,14 @@ const TaskSideDetail = ({ assignee, setAssignee, defaultValue, setDefaultValue, 
     const [completed, setCompleted] = useState(task?.completed)
     const [dueDate, setDueDate] = useState(task?.end_date);
     const [priority, setPriority] = useState(task?.priority);
+    const taskSideClass = show ? "taskSide-detail" : "taskSide-detail-closed"
+    const readSideClass = show ? "readSide-deatil" : "readSide-detail-closed"
+    const [selectPriority, setSelectPriority] = useState();
+    const [selectStatus, setSelectStatus] = useState();
     // const [timer, setTimer] = useState(null)
     let newTask = useSelector(state => state.tasks.singleTask)
 
-    console.log("@@@@@@@@@@@@@@~~~~~~~new task", newTask)
+
 
     const [errors, setErrors] = useState([]);
     const projectId = project?.id
@@ -61,7 +65,7 @@ const TaskSideDetail = ({ assignee, setAssignee, defaultValue, setDefaultValue, 
 
 
     // assignee select///////////////////////////////////////////////////
-    let options = [{value:0, label:"No assignee",color:"gray",img:userLogo}];
+    let options = [{ value: 0, label: "No assignee", color: "gray", img: userLogo }];
     for (let i = 0; i < users?.length; i++) {
         let assigneeObj = users[i];
         let value = assigneeObj?.id;
@@ -105,17 +109,20 @@ const TaskSideDetail = ({ assignee, setAssignee, defaultValue, setDefaultValue, 
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: "space-around",
-            width: "150px"
+            justifyContent: "space-between",
+            width: "200px",
+            cursor: "pointer"
+
         }),
         singleValue: (provided) => ({
             ...provided,
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
-            width: "150px",
+            width: "200px",
             // gap: "10px",
-            justifyContent: "space-around"
+            justifyContent: "space-between",
+            // cursor: "pointer"
         }),
     }
     //     setDescription(e.target.value);
@@ -131,6 +138,8 @@ const TaskSideDetail = ({ assignee, setAssignee, defaultValue, setDefaultValue, 
 
     const handlePriorityChange = (e) => {
         setPriority(e.target.value);
+        const select = e.target
+        setSelectPriority(select.options[select.selectedIndex].className)
 
     };
     const handleDescriptionChange = e => {
@@ -142,6 +151,8 @@ const TaskSideDetail = ({ assignee, setAssignee, defaultValue, setDefaultValue, 
 
     const handleStatusChange = (e) => {
         setStatus(e.target.value);
+        const select = e.target
+        setSelectStatus(select.options[select.selectedIndex].className)
 
     };
 
@@ -222,10 +233,28 @@ const TaskSideDetail = ({ assignee, setAssignee, defaultValue, setDefaultValue, 
         } else {
             setPriority("---");
         }
+        if (task.priority === "Null") {
+            setSelectPriority("p-1")
+        } else if (task.priority === "Low") {
+            setSelectPriority("p-2")
+        } else if (task.priority === "Medium") {
+            setSelectPriority("p-3")
+        } else if (task.priority === "High") {
+            setSelectPriority("p-4")
+        }
         if (task?.status) {
             setStatus(task.status);
         } else {
             setStatus("---");
+        }
+        if (task.status === "Null") {
+            setSelectStatus("s-1")
+        } else if (task.status === "On Track") {
+            setSelectStatus("s-2")
+        } else if (task.status === "At Risk") {
+            setSelectStatus("s-3")
+        } else if (task.status === "Off Track") {
+            setSelectStatus("s-4")
         }
     }, [task])
 
@@ -263,12 +292,12 @@ const TaskSideDetail = ({ assignee, setAssignee, defaultValue, setDefaultValue, 
                 setSaveState("save changes");
                 setTimeout(() => {
                     setSaveState("");
-                }, 2000);
+                }, 800);
 
             } else {
                 didMount.current = true;
             }
-        }, 1000);
+        }, 500);
 
         return () => clearTimeout(delayDispatch);
     }, [taskTitle, description, assigneeId, priority, status, dueDate, taskId]);
@@ -305,7 +334,7 @@ const TaskSideDetail = ({ assignee, setAssignee, defaultValue, setDefaultValue, 
 
 
         setErrors(errors);
-    }, [taskTitle, description, assigneeId])
+    }, [taskTitle, description])
 
 
 
@@ -317,14 +346,25 @@ const TaskSideDetail = ({ assignee, setAssignee, defaultValue, setDefaultValue, 
 
 
     return (
-        <div className='task-side-detail-content'>
+        <>
 
             {taskSettingUser &&
-                (<>
+                (<div className={taskSideClass}>
                     <div className='close-s-div' onClick={closeDiv}>
-                        <i className="fa-solid fa-right-to-bracket"></i>
+                        <span id="tip-text">Close details</span>
+                        <span className='icon-exit'>
+                            <i className="fa-solid fa-right-to-bracket"></i>
+                        </span>
+
                     </div>
                     <div className='s-detail-content'>
+                        {errors.length > 0 && (<div>
+
+                            <ul className='t-s-error-list'>
+                                {errors.map((error, idx) => <li key={idx} className="t-s-e sdetail">{error}</li>)}
+                            </ul>
+
+                        </div>)}
 
                         <div className="s-complete">
                             <button
@@ -341,13 +381,7 @@ const TaskSideDetail = ({ assignee, setAssignee, defaultValue, setDefaultValue, 
                                 {task.completed ? "Completed" : "Mark Complete"}
                             </button>{'  '}
                         </div>
-                        {errors.length > 0 && (<div>
 
-                            <ul className='t-s-error-list'>
-                                {errors.map((error, idx) => <li key={idx} className="t-s-e sdetail">{error}</li>)}
-                            </ul>
-
-                        </div>)}
                         <div>
                             <input className='s-task-title'
                                 type='text'
@@ -360,6 +394,7 @@ const TaskSideDetail = ({ assignee, setAssignee, defaultValue, setDefaultValue, 
 
 
                         <div className='assignee-s-d'>
+                            <span className='s-s-title'>Assignee: </span>
                             <Select className='s-assignee-select'
 
                                 styles={customStyles}
@@ -372,20 +407,14 @@ const TaskSideDetail = ({ assignee, setAssignee, defaultValue, setDefaultValue, 
                                 // })}
                                 value={defaultValue}
                             />
-                            {/* (<Select className='s-assignee-select'
-                                styles={customStyles}
-                                components={{ SingleValue: IconSingleValue, Option: IconOption }}
-                                options={options}
-                                defaultValue={defaultAssiValueObj}
-                                onChange={handleAssigneeChange} />)
-                                // isSearchable={false} */}
+
 
 
                         </div>
 
 
                         <div className='s-date-setting'>
-                            <span className='s-dueDate-title'>Due date</span>
+                            <span className='s-dueDate-title'>Due date:</span>
                             {showDateForm ? (
                                 <div
                                     className="s-date-open"
@@ -395,7 +424,8 @@ const TaskSideDetail = ({ assignee, setAssignee, defaultValue, setDefaultValue, 
                                     <div className="s-calendar-icon">
                                         <i className="fa-light fa-calendar-day" id="s-canlendar-i"></i>
                                     </div>
-                                    {dueDate ? dueDate : "No due date"}
+                                    <div className='s-t-c-title'>  {dueDate ? dueDate : "No due date"}</div>
+
                                     <div id="s-date-calendar" className='calender'>
                                         <Calendar className="s-calendar"
                                             value={properDate}
@@ -417,7 +447,7 @@ const TaskSideDetail = ({ assignee, setAssignee, defaultValue, setDefaultValue, 
                                         <i className="fa-regular fa-calendar-days"></i>
                                     </div>
                                     {dueDate ? (
-                                        <div>
+                                        <div className='s-t-dueDate'>
                                             {dueDate}
 
                                         </div>
@@ -429,35 +459,36 @@ const TaskSideDetail = ({ assignee, setAssignee, defaultValue, setDefaultValue, 
                         </div>
                         <div className=' t-s-p'>
                             <span className='t-stp'>
-                                Projects
+                                Projects:
                             </span>
-                            <span><img className={`single-project-icon`} src={project?.icon} style={{ backgroundColor: project?.color }} alt='single-project-icon' /></span>
+                            <span><img className={`single-project-icon2`} src={project?.icon} style={{ backgroundColor: project?.color }} alt='single-project-icon' /></span>
                             <span className='t-p-t'>{project.title}</span>
                         </div>
 
                         <div className="s-priority">
-                            <div className="s-p-title">Priority</div>
+                            <div className="s-p-title">Priority:</div>
                             <div className="s-p-content">
-                                <select value={priority} onChange={handlePriorityChange} className="s-p">
-                                    <option className="s-p-1" value="Null">---</option>
-                                    <option className="s-p-2" value="Low">Low</option>
-                                    <option className="s-p-3" value="Medium">Medium</option>
-                                    <option className="s-p-4" value="High">High</option>
+                                <select value={priority} onChange={handlePriorityChange} className={selectPriority}>
+                                    <option className="p-1" value="Null">---</option>
+                                    <option className="p-2" value="Low">Low</option>
+                                    <option className="p-3" value="Medium">Medium</option>
+                                    <option className="p-4" value="High">High</option>
                                 </select>
                             </div>
                         </div>
                         <div className="s-status">
-                            <div className="s-s-title">Status</div>
+                            <div className="s-s-title">Status:</div>
                             <div className="s-s-labels">
-                                <select value={status} onChange={handleStatusChange} className="s-s sdetail">
-                                    <option className="s-s-1" value="Null">---</option>
-                                    <option className="s-s-2" value="On Track">On Track</option>
-                                    <option className="s-s-3" value="At Risk">At Risk</option>
-                                    <option className="s-s-4" value="Off Track">Off Track</option>
+                                <select value={status} onChange={handleStatusChange} className={selectStatus}>
+                                    <option className="s-1" value="Null">---</option>
+                                    <option className="s-2" value="On Track">On Track</option>
+                                    <option className="s-3" value="At Risk">At Risk</option>
+                                    <option className="s-4" value="Off Track">Off Track</option>
                                 </select>
                             </div>
                         </div>
                         <div className="side-description">
+                            <div className="s-d-title">Description :</div>
                             <TextareaAutosize className='edit-s-discription'
                                 maxLength={255}
                                 type='text'
@@ -474,7 +505,7 @@ const TaskSideDetail = ({ assignee, setAssignee, defaultValue, setDefaultValue, 
 
 
                     </div>
-                </>
+                </div>
 
                 )}
 
@@ -482,9 +513,26 @@ const TaskSideDetail = ({ assignee, setAssignee, defaultValue, setDefaultValue, 
 
 
             {!taskSettingUser && (
-                <div>
+                <div className={readSideClass}>
                     <div className='close-s-div' onClick={closeDiv}>
-                        <i className="fa-solid fa-right-to-bracket"></i>
+                        <span id="tip-text">Close details</span>
+                        <span className='icon-exit'>
+                            <i className="fa-solid fa-right-to-bracket"></i>
+                        </span>
+                    </div>
+                    <div className="s-completed-2">
+                        <span
+                            className={
+                                task.completed
+                                    ? "s-complete-button-completed2"
+                                    : "s-complete-button2"
+                            }>
+
+                            <i className="fa-solid fa-circle-check" id="s-check-icon">
+
+                            </i>
+                            {/* {task.completed ? "Completed" : "Mark Complete"} */}
+                        </span>{'  '}
                     </div>
                     <div>
                         <input className='s-r-task-input'
@@ -494,19 +542,20 @@ const TaskSideDetail = ({ assignee, setAssignee, defaultValue, setDefaultValue, 
                             readOnly
                         />
                     </div>
-                    <div>
+                    <div className='assignee-s-d-r' >
 
-                        <MySelect className='s-r-select'
+                        <span className='s-s-title'>Assignee : </span>
+                            <MySelect className='s-r-select'
 
-                            styles={customStyles}
-                            components={{ SingleValue: IconSingleValue }}
-                            defaultValue={defaultValue}
-                            isReadOnly={true}
-                            isSearchable={false} />
+                                styles={customStyles}
+                                components={{ SingleValue: IconSingleValue }}
+                                defaultValue={defaultValue}
+                                isReadOnly={true}
+                                isSearchable={false} />
                     </div>
 
                     <div className='s-r-dueDate'>
-                        <span className='s-dueDate-title'>Due Date</span>
+                        <span className='s-dueDate-title'>Due Date :</span>
                         {dueDate ? (
                             <div className='s-r-d-date'>
                                 {dueDate}
@@ -517,15 +566,15 @@ const TaskSideDetail = ({ assignee, setAssignee, defaultValue, setDefaultValue, 
                         )}
                     </div>
                     <div className='s-r-p'>
-                        <span className='s-r-p-title'>Priority</span>
-                        <span className='s-r-p'>{priority}</span>
+                        <span className='s-r-p-title'>Priority :</span>
+                        <span className={selectPriority} id="r-side-p">{priority}</span>
                     </div>
-                    <div className='s-r-status'>
-                        <span className='s-r-s-title'>Status</span>
-                        <span className='s-r-s'>{status}</span>
+                    <div className='s-r-p'>
+                        <span className=''>Status :</span>
+                        <span className={selectStatus} id="r-side-s">{status}</span>
                     </div>
                     <div className='t-s-d'>
-                        <spans className="t-s-t"> Description</spans>
+                        <spans className="t-s-t"> Description : </spans>
                         {description ? (
                             <div className='t-s-d-c'><p className='d-p'>{description}</p></div>
 
@@ -541,7 +590,7 @@ const TaskSideDetail = ({ assignee, setAssignee, defaultValue, setDefaultValue, 
 
             )}
 
-        </div>)
+        </>)
 }
 
 
