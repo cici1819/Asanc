@@ -27,6 +27,7 @@ def validate_username(form,field):
    # Checking if email has keyword "@"
 def validate_email(form,field):
     email = field.data
+    
     if "@" not in email:
         raise ValidationError("Please provide a valid email address")
 

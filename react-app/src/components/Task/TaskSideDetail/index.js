@@ -133,6 +133,7 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
 
 
     const handleTitleChange = (e) => {
+
         setTaskTitle(e.target.value)
     }
 
@@ -292,10 +293,12 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                 setSaveState("save changes");
                 setTimeout(() => {
                     setSaveState("");
+
                 }, 800);
 
             } else {
                 didMount.current = true;
+              ;
             }
         }, 500);
 
@@ -323,11 +326,10 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
         }
 
     }
-
     useEffect(() => {
         const errors = [];
-        if (taskTitle?.length > 50 || taskTitle?.length < 3) {
-            errors.push("Title should be between 3 to 50 characters")
+        if (taskTitle?.length > 30 || taskTitle?.length < 3) {
+            errors.push("Title should be between 3 to 30 characters")
         } else if (description?.length > 255) {
             errors.push("Description should be less than 255 characters")
         }
@@ -360,7 +362,7 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                     <div className='s-detail-content'>
                         {errors.length > 0 && (<div>
 
-                            <ul className='t-s-error-list'>
+                            <ul className='t-s-error-list2'>
                                 {errors.map((error, idx) => <li key={idx} className="t-s-e sdetail">{error}</li>)}
                             </ul>
 
@@ -490,7 +492,7 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                         <div className="side-description">
                             <div className="s-d-title">Description :</div>
                             <TextareaAutosize className='edit-s-discription'
-                                maxLength={255}
+                                // maxLength={256}
                                 type='text'
                                 value={description}
                                 placeholder="Description"
@@ -545,13 +547,13 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                     <div className='assignee-s-d-r' >
 
                         <span className='s-s-title'>Assignee : </span>
-                            <MySelect className='s-r-select'
+                        <MySelect className='s-r-select'
 
-                                styles={customStyles}
-                                components={{ SingleValue: IconSingleValue }}
-                                defaultValue={defaultValue}
-                                isReadOnly={true}
-                                isSearchable={false} />
+                            styles={customStyles}
+                            components={{ SingleValue: IconSingleValue }}
+                            defaultValue={defaultValue}
+                            isReadOnly={true}
+                            isSearchable={false} />
                     </div>
 
                     <div className='s-r-dueDate'>

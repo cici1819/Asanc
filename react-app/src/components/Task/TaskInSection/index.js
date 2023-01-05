@@ -74,7 +74,7 @@ function TaskInSection({ section, project, sessionUser, showNewTask, setShowNewT
     /////////////////////////////////////////////////////
 
 
-    if (!section) return null
+    if (!section.id) return null
     return (
         <>
             {/* {sessionUserIsOwner && <div className='add-task-in-section-icon' onClick={onAddBtnClick}>

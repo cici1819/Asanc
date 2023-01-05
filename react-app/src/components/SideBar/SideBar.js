@@ -35,9 +35,9 @@ const SideBar = ({ show, toggle }) => {
         dispatch(getCurrUserProjects())
     }, [dispatch]);
 
-    if (!projects || !projectsArr.length) {
-        return null
-    }
+    // if (!projects || !projectsArr.length) {
+    //     return null
+    // }
     return (
         <>
             <div className="sideBar-top-container">
@@ -126,7 +126,7 @@ const SideBar = ({ show, toggle }) => {
                             }}
                             target="_blank"
                         >
-                            <div className="linkedin-link">
+                            <div className="linkedin-link2">
                                 <BsLinkedin size="2em" />
                             </div>
                         </NavLink>

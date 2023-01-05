@@ -103,7 +103,9 @@ function ProjectCreate({ setShowModal }) {
                                 Project Title
                             </div>
                             <div className="s-c-input1">
-                                <input type="text"
+                                <input
+                                    id="c-p-input"
+                                    type="text"
                                     value={title}
                                     onChange={(e) => setTitle(e.target.value)}
                                 />
@@ -112,7 +114,9 @@ function ProjectCreate({ setShowModal }) {
                                 Project Icon
                             </div>
                             <div className="s-c-input2">
-                                <input type="text"
+                                <input
+                                    id="c-p-input"
+                                    type="text"
                                     value={icon}
                                     onChange={(e) => setIcon(e.target.value)}
                                 />
@@ -121,7 +125,9 @@ function ProjectCreate({ setShowModal }) {
                                 Project Description
                             </div>
                             <div className="s-c-input3">
-                                <input type="text"
+                                <input
+                                    id="c-p-input"
+                                    type="text"
                                     value={description}
                                     onChange={(e) => setDescription(e.target.value)}
 

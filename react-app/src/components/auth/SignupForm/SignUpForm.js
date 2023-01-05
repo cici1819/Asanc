@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import { signUp } from '../../../store/session';
+import asancLogo from "../../../img/asanc-logo.png"
+import signUpImg from"../../../img/signUp-img.png"
 import "../SignupForm/SignupForm.css"
 
 const SignUpForm = () => {
@@ -18,7 +20,7 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(firstName, lastName, email, password));
+      const data = await dispatch(signUp(firstName, lastName, username,email, password));
       if (data) {
         setErrors(data)
       }
@@ -56,76 +58,94 @@ const SignUpForm = () => {
 
   return (
     <div className='signup-page'>
+      <div className='left-img2'>
+        <img src={signUpImg} alt="main-img" />
+      </div>
+      <div className='seprate-line-login2'>
+
+      </div>
       <div className='signup-form'>
         <form onSubmit={onSignUp}>
+          <NavLink className="signUp-page-logo" to={"/home"}>
+            <img src={asancLogo} alt="logo" className="logo-img-2" />
+            <span className="logo-name">
+              Asanc
+            </span>
+          </NavLink>
           <div className='form-title'>
-            <h1>Create an account </h1>
+            <span>Create an account </span>
           </div>
-          <div className='s-error-lists'>
+          <div className='errors-lists-s'>
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
           </div>
-          <div className='signup-username-input'>
+          <div className='signUp-input'>
             <div className='s-u-font'>
               <label>User Name</label>
             </div>
             <input
+              className='s-input'
               type='text'
               name='username'
               onChange={updateUsername}
               value={username}
             ></input>
           </div>
-          <div className='signup-email-input'>
-            <div className='s-e-font'>
-              <label>Email</label>
+          <div className='signUp-input'>
+            <div className='s-u-font'>
+              <label>Email address</label>
             </div>
             <input
+              className='s-input'
               type='text'
               name='email'
               onChange={updateEmail}
               value={email}
             ></input>
           </div>
-          <div className='signup-firstName-input'>
-            <div className="s-f-font">
+          <div className='signUp-input'>
+            <div className="s-u-font">
               <label >First Name </label>
             </div>
             <input
+              className='s-input'
               type='text'
-              name='email'
+              name='firstName'
               onChange={updatefirstName}
               value={firstName}
             ></input>
           </div>
-          <div className="signup-lastName-input">
-            <div className="s-l-font">
-            <label >Last Name *</label>
+          <div className="signUp-input">
+            <div className="s-u-font">
+              <label >Last Name </label>
             </div>
             <input
+              className='s-input'
               type='text'
-              name='email'
+              name='lastName'
               onChange={updatelastName}
               value={lastName}
             ></input>
           </div>
-          <div className='signup-password-input'>
-            <div className='s-p-font'>
+          <div className='signUp-input'>
+            <div className='s-u-font'>
               <label>Password</label>
             </div>
             <input
+              className='s-input'
               type='password'
               name='password'
               onChange={updatePassword}
               value={password}
             ></input>
           </div>
-          <div className='signup-c-p-input'>
-            <div className='s-c-p-font'>
+          <div className='signUp-input'>
+            <div className='s-u-font'>
               <label>Confirm Password</label>
             </div>
             <input
+              className='s-input'
               type='password'
               name='repeat_password'
               onChange={updateRepeatPassword}
@@ -134,12 +154,13 @@ const SignUpForm = () => {
             ></input>
           </div>
           <div className='signup-button'>
-            <button type='submit'>Sign Up</button>
+            <button id="signup-button2"type='submit'>Sign Up</button>
+          </div>
+          <div className='link-login'>
+            <NavLink className="logIn-link"to={"/login"}>Already have an account?</NavLink>
           </div>
         </form>
-        <div className='link-login'>
-          <Link to={"/login"}>Already have an account?</Link>
-        </div>
+
       </div>
 
     </div>

@@ -1,0 +1,145 @@
+.sinup-page{
+    position: fixed;
+    overflow-y: auto;
+    margin: 0;
+    min-height:1200px;
+    height: 100vh;
+    min-width: 100vw;
+    width: 100%;
+    display:flex;
+    flex-direction:row;
+    padding-left: 5vw;
+    padding-right: 5vw;
+
+    align-items:center;
+
+     background-color: rgb(246,248,249);
+}
+.left-img2 img{
+    width: 100%;
+    object-fit:cover;
+     height: 880px;
+     border-radius: 8px;
+}
+.left-img2{
+    top:9vh;
+    position: absolute;
+    height: fit-content;
+    min-height: 880px;
+    width: 40%;
+    margin-left: 5vw;
+}
+
+.signup-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:30px;
+     margin-left:58vw;
+    position: absolute;
+    /* right:10vw; */
+    top:5vw;
+    height: fit-content;
+    min-height: 800px;
+    min-width: 28vw;
+    width: 28%;
+    border-radius: 8px;
+    background-color:white ;
+    box-shadow: rgba(0,0,0,.2) 0px 0px 15px;
+}
+
+.seprate-line-login2{
+    margin-left:51.5vw;
+    position: absolute;
+    /* right:10vw; */
+    top:4.8vw;
+    width: 1px;
+    height: 875px;
+    background-color: rgba(111,111,111,0.2);
+
+
+}
+
+.form-title{
+    margin-top: -10px;
+    font-size: 40px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+.signUp-input{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    margin-bottom: 20px;
+    gap:5px;
+}
+.s-u-font{
+    color: rgb(56,57,58);
+    font-size: 20px;
+}
+.s-input{
+
+    background-color: rgb(227, 229, 232);
+    border: none;
+    border-radius: 5px;
+    color: rgb(0,0,0);
+    width: 25vw;
+    height: 40px;
+    font-size: 20px;
+}
+.signUp-page-logo{
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 40px;
+    margin-top: 10px;
+    /* margin-left: 40px; */
+    color: black;
+}
+
+.signup-button button{
+    margin-top: 25px;
+    margin-bottom: 10px;
+
+    display: block;
+    width: 180px;
+    height: 50px;
+    font-size: 20px;
+    font-weight: 600;
+    padding:5px;
+    border-radius: 5px;
+    background-color: rgb(53,54,55);
+    color: white;
+}
+
+.link-login{
+    margin-left:220px;
+    margin-top: -45px;
+}
+
+
+.logIn-link:hover{
+ text-decoration: underline;
+}
+
+#signup-button2:hover{
+    background-color: rgb(240,106,106);
+    color: rgb(53,54,55);
+    filter: brightness(100%);
+}
+.errors-lists-s{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    height: 25px;
+    width: 100%;
+    font-size: 10px;
+    color: rgb(240, 106, 106);
+    font-weight: 500;
+    margin-top: -25px;
+    margin-bottom: 38px;
+}

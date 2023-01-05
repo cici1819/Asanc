@@ -1,0 +1,19 @@
+.t-s-error-list2
+{
+position: absolute;
+display: flex;
+flex-direction: column;
+color: rgb(240, 128, 128);
+font-size: 12px;
+/* height: 20px; */
+/* background-color: aqua; */
+align-items: flex-start;
+
+/* justify-content: flex-start; */
+width: 300px;
+/* margin-top: -60px; */
+height: 30px;
+/* margin-left: 10px; */
+margin-left: -40px;
+top: 80px;
+}

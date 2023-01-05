@@ -327,8 +327,8 @@ const TaskSideCreate = ({ show, assignee, setAssignee, defaultValue, setDefaultV
 
     useEffect(() => {
         const errors = [];
-        if (taskTitle?.length > 50 || taskTitle?.length < 3) {
-            errors.push("Title should be between 3 to 50 characters")
+        if (taskTitle?.length > 30 || taskTitle?.length < 3) {
+            errors.push("Title should be between 3 to 30 characters")
         } else if (description?.length > 255) {
             errors.push("Description should be less than 255 characters")
         }

@@ -41,6 +41,7 @@
     width: 28%;
     height: 60px;
     font-size: 20px;
+    border: 3px solid rgb(81, 135, 248);
  }
 .add-section-input:focus{
     cursor: pointer;

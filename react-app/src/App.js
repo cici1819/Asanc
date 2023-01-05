@@ -9,6 +9,8 @@ import HomePage from './components/HomePage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
+import SplashPage from './components/SplashPage';
+import FourOhFourPage from './components/404Page';
 import { authenticate } from './store/session';
 
 function App() {
@@ -82,6 +84,10 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path='/' exact={true} >
+          <SplashPage />
+        </Route>
+        <Route>
+        <FourOhFourPage />
         </Route>
       </Switch>
     </BrowserRouter>

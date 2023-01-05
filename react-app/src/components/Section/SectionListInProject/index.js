@@ -12,7 +12,7 @@ function SectionListInProject({ show }) {
     const { projectId } = useParams();
     const sessionUser = useSelector((state) => state.session.user);
     const project = useSelector(state => state.projects?.singleProject);
-
+    const ref = useRef (null)
 
     useEffect(() => {
         dispatch(getOneProject(projectId))
@@ -22,11 +22,14 @@ function SectionListInProject({ show }) {
 
     let sectionArr = project?.sections;
 
+
+
+
      const [sectionList, setSectionList] = useState([]);
      const onAddBtnClick = event => {
       setSectionList(sectionList.concat(
         <div className="section-create-div">
-        <SectionCreate projectId={projectId} project={project} setSectionList={setSectionList} />
+        <SectionCreate  projectId={projectId} project={project} setSectionList={setSectionList} />
     </div >));
     };
     //  sectionArr= sectionArr.push(sectionList)

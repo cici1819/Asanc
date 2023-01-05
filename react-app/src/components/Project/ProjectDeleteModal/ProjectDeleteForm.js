@@ -72,7 +72,8 @@ function ProjectDelete({ setShowProjectDeleteModal, currentProject }) {
                     </div>
                     <div className="d-p-input">
                         <span className='delete-project-check'>Enter Project Title</span>
-                        <input className="delete-input"
+                        <input
+                            id="delete-input2"
 
                             value={projectTitle}
                             onChange={(e) => setProjectTitle(e.target.value)}

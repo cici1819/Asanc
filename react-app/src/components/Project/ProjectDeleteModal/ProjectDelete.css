@@ -46,12 +46,13 @@
     flex-direction: column;
     margin-top: 10px;
 }
-.d-p-input input{
+/* .d-p-input input{
     width: 93%;
     margin-left: 15px;
     height: 45px;
     border-radius: 8px;
-}
+    border:none
+} */
 
 .delete-project-check{
     margin-top: 20px;
@@ -59,9 +60,6 @@
     font-size: 18px;
     margin-bottom: 10px;
     margin-left: 15px;
-}
-.delete-input:focus{
-    border:3px solid rgb(81, 135, 248)
 }
 
 .delete-project-button button{
@@ -87,7 +85,7 @@
     font-size: 16px;
     margin-top: -30px;
     margin-left: 20px;
-    
+
 }
 
 .p-c-cancel:hover{
@@ -105,4 +103,18 @@
     color: rgb(240,106,106);
     font-weight: 500;
     margin-top: 10px;
+}
+
+#delete-input2:focus {
+    border: 3px solid rgb(81, 135, 248);
+    border-radius: 5px;
+
+}
+
+#delete-input2{
+    width: 93%;
+    margin-left: 15px;
+    height: 45px;
+    border-radius: 5px;
+    border:none
 }

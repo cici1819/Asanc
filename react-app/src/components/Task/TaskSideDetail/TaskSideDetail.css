@@ -534,3 +534,7 @@
     border-radius: 5px;
     border: 1px solid rgba(37, 38, 40,0.5);
 }
+
+.edit-s-discription{
+    resize:none;
+}

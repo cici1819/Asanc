@@ -29,16 +29,16 @@ input:hover {
 }
 
 a {
-    text-decoration: none;
+   text-decoration: none;
     color: rgb(240, 106, 106)
 }
 a:hover {
 
     cursor: pointer;
+    text-decoration: none;
 }
 
-button,
-input:focus {
+button,input:focus {
     outline: none;
 }
 
@@ -51,5 +51,9 @@ button:hover {
 }
 
 input {
-    font-size: 16px;
+    font-size: 18px;
+}
+
+input:focus{
+    border: 3px solid rgb(81, 135, 248);
 }

@@ -4,7 +4,7 @@ import { addSectionToProject } from "../../../store/sectionReducer";
 import { getOneProject } from "../../../store/projectReducer";
 import './SectionCreate.css';
 
-const SectionCreate = ({ projectId, setSectionList}) => {
+const SectionCreate = ({projectId, setSectionList}) => {
     const dispatch = useDispatch();
     const [title, setTitle] = useState("");
     const [timer, setTimer] = useState(null)
@@ -50,6 +50,7 @@ const SectionCreate = ({ projectId, setSectionList}) => {
     const handleChange = (e) => {
         e.preventDefault();
         setTitle(e.target.value);
+
 
     }
 

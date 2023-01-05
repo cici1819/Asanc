@@ -82,7 +82,9 @@ function ProjectEdit({ setShowProjectEditModal, currentProject }) {
                             <div className="project-title">
                                 Project Title
                             </div>
-                            <input type="text"
+                            <input
+                                id="c-p-input"
+                                type="text"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
 
@@ -92,7 +94,9 @@ function ProjectEdit({ setShowProjectEditModal, currentProject }) {
                             <div className="project-icon-title">
                                 Project Icon
                             </div>
-                            <input type="text"
+                            <input
+                                 id="c-p-input"
+                                type="text"
                                 value={icon}
                                 onChange={(e) => setIcon(e.target.value)}
 
@@ -102,7 +106,9 @@ function ProjectEdit({ setShowProjectEditModal, currentProject }) {
                             <div className="project-d-title">
                                 Project Description
                             </div>
-                            <input type="text"
+                            <input
+                                 id="c-p-input"
+                                type="text"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
 
