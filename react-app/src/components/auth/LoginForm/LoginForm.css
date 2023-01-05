@@ -162,8 +162,13 @@ background-color: rgb(227, 229, 232);
     filter: brightness(100%);
 }
 .Demo-button{
-  margin-left:18vw;
+  margin-left:21vw;
   margin-top: -40px;
+}
+.login-button-demo{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .signUp-link{
     display: flex;

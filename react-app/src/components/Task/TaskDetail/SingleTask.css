@@ -35,7 +35,7 @@
     padding-left: 5px;
     padding-right: 5px;
     width: 29.5%;
-    height: 100%;
+    height: 59px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -77,11 +77,11 @@
     border-top:0.5px solid rgb(242,242,242) ;
 }
 .task-assignee-column{
-    margin-top: -3.25%;
+    margin-top: -59px;
     margin-left: 30%;
     padding-top: 5px;
     width: 20%;
-    height: 56px;
+    height: 59px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -119,7 +119,7 @@
 
 .task-assignee-closed{
     /* color: rgb(132,131,144); */
-    margin-top: -3.08%;
+    margin-top: -59px;
     margin-left: 30%;
     padding-top: 5px;
     width: 20%;
@@ -175,9 +175,9 @@ display: none;
 
 .date-setting{
     margin-left: 50%;
-    margin-top: -60px;
+    margin-top: -62px;
     width: 13%;
-    height: 100%;
+    height: 59px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -255,7 +255,7 @@ display: none;
     margin-top: -60px;
     margin-left: 63%;
     width: 13%;
-    height: 100%;
+    height: 59px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -345,7 +345,7 @@ display: none;
     margin-top: -60px;
     margin-left: 76%;
     width: 13%;
-    height: 100%;
+    height: 59px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -397,8 +397,11 @@ display: none;
 .assignee-title{
     margin-left: -30px;
 }
-.assignee-select{
-    width:60%;
+.task-assignee-column.assignee-select{
+
+}
+.task-assignee-closed .assignee-selecct{
+    width:255px;
 }
 .task-complete-button-completed{
     color: green;
@@ -487,9 +490,9 @@ display: none;
 .task-delete-closed{
     position: relative;
     margin-left: 89vw;
-    margin-top: -60px;
+    margin-top: -59px;
     width: 6%;
-    height: 100%;
+    height: 59px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -536,9 +539,9 @@ display: none;
 .task-delete{
     position: relative;
     margin-left: 80vw;
-    margin-top: -60px;
+    margin-top: -59px;
     width: 4%;
-    height: 100%;
+    height: 59px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -625,7 +628,7 @@ display: none;
     padding-left: 5px;
     padding-right: 5px;
     width: 29.5%;
-    height: 100%;
+    height: 59px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -646,11 +649,11 @@ display: none;
 }
 
 .task-assignee-column2{
-    margin-top: -3.3%;
+    margin-top:-59px;
     margin-left: 30%;
     padding-top: 5px;
     width: 20%;
-    height: 56px;
+    height: 58px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -660,11 +663,11 @@ display: none;
 }
 
 .task-assignee-closed2{
-    margin-top: -3%;
+    margin-top: -59px;
     margin-left: 30%;
     padding-top: 5px;
     width: 20%;
-    height: 57px;
+    height: 56px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -677,15 +680,15 @@ display: none;
     /* margin-left: -10px; */
     /* display: flex;
     flex-direction: row; */
-    width: 255px;
+    /* width: 255px; */
     /* width: 300px; */
     /* justify-content: space-between; */
 }
 .due-date-read{
     margin-left: 50%;
-    margin-top: -60px;
+    margin-top: -62px;
     width: 13%;
-    height: 100%;
+    height: 59px;
     display: flex;
     flex-direction: row;
     /* gap:10px; */
@@ -709,7 +712,7 @@ display: none;
     margin-top: -60px;
     margin-left: 63%;
     width: 13%;
-    height: 100%;
+    height: 59px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -720,7 +723,7 @@ display: none;
     margin-top: -60px;
     margin-left: 76%;
     width: 13%;
-    height: 100%;
+    height: 59px;
     display: flex;
     flex-direction: row;
     justify-content: center;

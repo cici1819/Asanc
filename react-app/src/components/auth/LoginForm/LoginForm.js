@@ -85,17 +85,17 @@ const LoginForm = () => {
               onChange={updatePassword}
             />
           </div>
+
           <div className='login-button'>
             <button id="home-signUp" type='submit'>Log In</button>
           </div>
-
         </form>
         <div className='Demo-button'>
           <DemoUserLogin />
         </div>
         <div className='signUp-link'>
           <span>Don't have an account?</span>
-          <NavLink id="login-signUp-link"to={'/sign-up'}>Sign up</NavLink>
+          <NavLink id="login-signUp-link" to={'/sign-up'}>Sign up</NavLink>
         </div>
       </div>
 
