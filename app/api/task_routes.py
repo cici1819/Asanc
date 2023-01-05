@@ -66,10 +66,7 @@ def create_task():
         created_at = datetime.today(),
         updated_at = datetime.today(),
         )
-        if not task.user_assignee_t:
-            task.assignee_id = db.null()
-        else:
-            task.assignee_id = assigneeId
+
 
         if not task.end_date:
             task.end_date = datetime.today()
@@ -85,9 +82,13 @@ def create_task():
             task.status = db.null()
         else:
             task.status = task.status
+        if not task.user_assignee_t:
+            task.assignee_id = db.null()
+        else:
+            task.assignee_id = assigneeId
+        if request.json['assigneeId']:
+           task.user_assignee_t =  User.query.get(request.json['assigneeId'])
 
-        user =  User.query.get(request.json['assigneeId'])
-        task.user_assignee_t = user
         db.session.add(task)
         db.session.commit()
         return task.to_dict()
@@ -109,24 +110,21 @@ def edit_task(task_id):
         task.description=form.data['description']
         task.status= form.data['status']
         task.priority=form.data['priority']
-        task.end_date = datetime.strptime(end_date, '%Y-%m-%d')
-        task.completed = form.data['completed']
-        # Get the user object by assigneeId
-        # user =  User.query.get(form.data['assigneeId'])
-        print("^^^^^^^^^^^^^^^^^^end_date",end_date)
         if not end_date:
             task.end_date = db.null()
         else:
             task.end_date =datetime.strptime(end_date, '%Y-%m-%d')
-
+        task.end_date = datetime.strptime(end_date, '%Y-%m-%d')
+        task.completed = form.data['completed']
+        # Get the user object by assigneeId
+        # user =  User.query.get(form.data['assigneeId'])
 
         if not task.user_assignee_t:
-            task.assignee_id = task.owner_id
+            task.assignee_id = db.null()
         else:
             task.assignee_id = assigneeId
-
-        user =  User.query.get(request.json['assigneeId'])
-        task.user_assignee_t = user
+        if request.json['assigneeId']:
+           task.user_assignee_t =  User.query.get(request.json['assigneeId'])
         db.session.add(task)
         db.session.commit()
         res = task.to_dict()
