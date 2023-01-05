@@ -72,9 +72,12 @@ def update_section(section_id):
     if form.validate_on_submit():
         data = form.data
         section = Section.query.get(section_id)
-        section.title = data['title']
-        section.projectId = data['projectId']
-        db.session.commit()
-        return json.dumps(section.to_dict_task())
+        if section:
+           section.title = data['title']
+           section.projectId = data['projectId']
+           db.session.commit()
+           return json.dumps(section.to_dict_task())
+        else:
+           return {"errors":"section not found"},404
     else:
          return {'errors': validation_errors_to_error_messages(form.errors)}, 401

@@ -19,7 +19,7 @@ function DemoUserLogin() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <button className='demo-user-login-button' type="submit">Demo User Login</button>
+      <button className='demo-user-login-button' type="submit">Demo User</button>
     </form>
   );
 }
