@@ -425,8 +425,16 @@
     cursor: default;
     margin-bottom: 20px;
 }
+
 .s-r-task-input:hover{
     cursor: default;
+    border: none;
+    outline:none
+}
+.s-r-task-input:focus {
+    cursor: default;
+    border: none;
+    outline:none
 }
 .s-completed-2 span {
     display: flex;

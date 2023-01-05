@@ -613,6 +613,13 @@ display: none;
 .read-task-input:hover{
     /* background-color: rgb(249,248,248); */
     cursor: default;
+    border:none;
+    outline:none;
+}
+.read-task-input:focus{
+    cursor: default;
+    border:none;
+    outline:none;
 }
 .task-first-column2 {
     padding-left: 5px;
