@@ -86,7 +86,9 @@ def create_task():
             task.assignee_id = db.null()
         else:
             task.assignee_id = assigneeId
-        if request.json['assigneeId']:
+
+        print("@@@@@@@@@@@@@@,assignIdjson",request.json['assigneeId'])
+        if request.json['assigneeId']!= "null":
            task.user_assignee_t =  User.query.get(request.json['assigneeId'])
 
         db.session.add(task)
@@ -123,8 +125,8 @@ def edit_task(task_id):
             task.assignee_id = db.null()
         else:
             task.assignee_id = assigneeId
-        if request.json['assigneeId']:
-           task.user_assignee_t =  User.query.get(request.json['assigneeId'])
+        if request.json['assigneeId'] != "null":
+           task.user_assignee_t = User.query.get(request.json['assigneeId'])
         db.session.add(task)
         db.session.commit()
         res = task.to_dict()
