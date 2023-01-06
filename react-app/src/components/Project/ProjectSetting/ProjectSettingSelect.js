@@ -20,7 +20,7 @@ const ProjectSetting = ({ setShowProjectEditModal, setShowProjectDeleteModal, cu
 
     useEffect(() => {
         dispatch(getOneProject(projectId))
-    }, [dispatch, projectId]);
+    }, [dispatch, projectId,showImg]);
 
 
     const openMenu = () => {
@@ -66,7 +66,8 @@ const ProjectSetting = ({ setShowProjectEditModal, setShowProjectDeleteModal, cu
         <>
 
             <div className='select-setting'>
-                 {showImg ?
+
+            {showImg ?
                 <img className={`mainPage-single-project-icon`} src={icon} style={{ backgroundColor: { color } }} onError={hideImg} />
 
                : (<img className={`mainPage-single-project-icon`} src ="https://mingprojectawsbucket.s3.amazonaws.com/cici/ciciicon.png"/>)
