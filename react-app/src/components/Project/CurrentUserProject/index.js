@@ -9,7 +9,7 @@ import './CurrentUserProject.css';
 
 function CurrentUserProject() {
     const dispatch = useDispatch();
-    // const history = useHistory();
+     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
     const projects = useSelector(state => state.projects.allProjects);
     const projectsArr = Object.values(projects);
@@ -27,6 +27,7 @@ function CurrentUserProject() {
             </div>)
     }
 
+
     return (
         <>
 
@@ -40,16 +41,15 @@ function CurrentUserProject() {
                         return (
                             <div className="sigle-project-homepage-div" key={project?.id}>
 
-                                <NavLink
-                                    to={`/home/${project?.id}/list`}>
+                                <div onClick={()=>history.push(`/home/${project?.id}/list`)}>
                                     <div className="s-p-i-homePage">
-                                        <img className={`single-project-icon`} src={project?.icon} style={{ backgroundColor: project?.color }} alt='single-project-icon' />
+                                        <img className={`single-project-icon`} src={project?.icon} style={{ backgroundColor: project?.color }} alt='single-project-icon' onError={e =>{e.currentTarget.src = "https://mingprojectawsbucket.s3.amazonaws.com/cici/ciciicon.png"}} />
                                     </div>
                                     <div className="single-project-title2">
                                         {project?.title}
                                     </div>
 
-                                </NavLink>
+                                </div>
                             </div>
 
                         )

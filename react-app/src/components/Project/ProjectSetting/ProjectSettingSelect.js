@@ -1,16 +1,27 @@
 import { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector ,useDispatch} from 'react-redux'
 import { useParams } from 'react-router-dom';
+import { getOneProject } from "../../../store/projectReducer";
 import "./ProjectSettingSelect.css"
 
 const ProjectSetting = ({ setShowProjectEditModal, setShowProjectDeleteModal, currentProject }) => {
     const sessionUser = useSelector((state) => state.session.user);
     // const projects = useSelector(state => state.projects.allProjects)
     // const projectsArr = Object.values(projects)
-    // const { projectId } = useParams()
+    const { projectId } = useParams()
     // let [showMenu, setShowMenu] = useState(false)
-    // const dispatch = useDispatch()
+     const dispatch = useDispatch()
     let [showMenu, setShowMenu] = useState(false)
+    const [showImg, setShowImg] = useState(true)
+
+    const hideImg = (e) => {
+        setShowImg(false)
+    }
+
+    useEffect(() => {
+        dispatch(getOneProject(projectId))
+    }, [dispatch, projectId]);
+
 
     const openMenu = () => {
         if (showMenu) return;
@@ -38,6 +49,7 @@ const ProjectSetting = ({ setShowProjectEditModal, setShowProjectDeleteModal, cu
     let color
     let sessionUserIsOwner = false
 
+
     // let currentProject = projectsArr.find(project => project?.id == projectId)
     if (currentProject) {
         title = currentProject?.title
@@ -49,11 +61,16 @@ const ProjectSetting = ({ setShowProjectEditModal, setShowProjectDeleteModal, cu
     }
 
 
+
     return (
         <>
 
             <div className='select-setting'>
-                <img className={`mainPage-single-project-icon`} src={icon} style={{ backgroundColor: { color } }} />
+                 {showImg ?
+                <img className={`mainPage-single-project-icon`} src={icon} style={{ backgroundColor: { color } }} onError={hideImg} />
+
+               : (<img className={`mainPage-single-project-icon`} src ="https://mingprojectawsbucket.s3.amazonaws.com/cici/ciciicon.png"/>)
+                 }
                 <span className='project-title'>
                     {title}
                 </span>

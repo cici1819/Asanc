@@ -66,11 +66,14 @@
 
 }
 
+
 .sidebar-open {
 
     top: 66px;
     position: fixed;
+    /* top:0; */
     display: flex;
+    z-index:1000;
     /* flex: 0 0 auto; */
     padding-left: 20px;
     padding-right: 20px;
@@ -81,7 +84,7 @@
     width: 240px;
     min-height: 100vh;
     height: 100%;
-    overflow-y: auto;
+    /* overflow-y: auto; */
 }
 .sidebar-open::-webkit-scrollbar {
     width: 0.4px;
@@ -122,6 +125,7 @@
 }
 
 .sideBar-Midddle {
+
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -129,6 +133,25 @@
     padding-top: 30px;
     gap: 10px;
 }
+.c-project-list::-webkit-scrollbar {
+    width: 0.4px;
+    size: 0.4px;
+}
+
+.c-project-list::-webkit-scrollbar-thumb {
+    /* Foreground */
+    background: rgb(32, 34, 37);
+    border-radius: 8px;
+}
+
+.c-project-list::-webkit-scrollbar-track {
+    /* Background */
+    background: rgb(46, 51, 56);
+    border-radius: 8px;
+    margin-block: 3px;
+    border-bottom: 2px solid rgb(54, 57, 63);
+}
+
 
 .sideBar-home {
     font-size: 22px;
@@ -175,7 +198,7 @@
     width: 220px;
     height: 60px;
     padding-left: 10px;
-   gap:30px;
+    gap:30px;
     align-items: center;
 }
 .create-project:hover{
@@ -185,7 +208,11 @@
 .c-project-list {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 50vh;
+    margin-bottom: 20px;
 
 }
 

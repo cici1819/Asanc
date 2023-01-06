@@ -26,6 +26,7 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
     const [status, setStatus] = useState(task.status);
     const [assigneeId, setAssigneeId] = useState(task?.assigneeId);
     const dateDiv = useRef();
+    const taskDetailRef = useRef();
 
     const [properDate, setProperDate] = useState();
     const project = useSelector(state => state.projects.singleProject)
@@ -33,7 +34,6 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
     const [showDateForm, setShowDateForm] = useState(false);
     const [completed, setCompleted] = useState(task.completed)
     const [dueDate, setDueDate] = useState(task.end_date);
-    // const [showTaskDetail, setShowTaskDetail] = useState(false);
     const [priority, setPriority] = useState(task.priority);
     const [showTaskSideDetail, setShowTaskSideDetail] = useState(false);
     const [errors, setErrors] = useState([]);
@@ -121,6 +121,24 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
         // e.preventDefault();
         setTaskTitle(e.target.value)
     }
+
+    const handleKeyDown = async (e) => {
+        if (e.key === 'Enter') {
+
+            e.target.blur();
+
+
+        }
+
+    }
+
+
+
+
+
+
+
+
 
     const handlePriorityChange = (e) => {
         setPriority(e.target.value);
@@ -349,28 +367,36 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
     //////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    // const handleClickTask = e => {
-    //     console.log("#####################,TaskDetail e",e)
-    //     if (taskDetailRef.current?.contains(e.target)) {
-    //         return;
-    //     }else if (e.path[0].className.includes("css")) {
-    //         return;
-    //     } else if (e.path[1].className.includes("css")) {
-    //         return;
-    //     } else {
-    //         setShowTaskSideDetail(false)
-    //     }
+    const handleClickTask = e => {
+        console.log("#####################,TaskDetail e", e)
+        if (e.target?.className.includes('ref')) {
+            return;
+        } else if (e.path[0].className.includes("css")) {
+            return;
+        } else if (e.path[1].className.includes("css")) {
+            return;
+        } else if (e.path[0].className.includes("abbr")) {
+            return;
+        } else if (e.path[1].className.includes("react-calendar")) {
+            return;
+        }
 
-    // }
-    // useEffect(() => {
 
-    //     if (showTaskSideDetail) {
-    //         document.addEventListener("click", handleClickTask);
-    //         return () => {
-    //             document.removeEventListener("click", handleClickTask);
-    //         };
-    //     }
-    // }, [showTaskSideDetail]);
+
+        else {
+            setShowTaskSideDetail(false)
+        }
+
+    }
+    useEffect(() => {
+
+        if (showTaskSideDetail) {
+            document.addEventListener("click", handleClickTask);
+            return () => {
+                document.removeEventListener("click", handleClickTask);
+            };
+        }
+    }, [showTaskSideDetail]);
 
 
 
@@ -387,7 +413,8 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
         <>
 
             {showTaskSideDetail && <div
-                className='task-side-div'>
+                className='task-side-div ref'>
+
                 <TaskSideDetail setShowTaskSideDetail={setShowTaskSideDetail} defaultValue={defaultValue} setDefaultValue={setDefaultValue} taskId={taskId} users={users} section={section} sessionUser={sessionUser} project={project} showTaskSideDetail={showTaskSideDetail} task={task} assignee={assignee} setAssignee={setAssignee} show={show} />
             </div>}
 
@@ -395,46 +422,49 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
                 taskSettingUser ?
                     (<>
 
-                        <div className='task-detail-content'>
+                        <div className='task-detail-content ref'>
 
-                            <div className='task-first-column'>
+                            <div className='task-first-column ref'>
                                 {errors.length > 0 && (<div>
 
-                                    <ul className='errors-task'>
-                                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                                    <ul className='errors-task ref'>
+                                        {errors.map((error, idx) => <li className="ref" key={idx}>{error}</li>)}
                                     </ul>
 
                                 </div>)}
 
-                                <div className="task-complete">
+                                <div className="task-complete ref" >
                                     <div
                                         onClick={toggleCompleted}
                                         className={
                                             task.completed
-                                                ? "task-complete-button-completed"
-                                                : "task-complete-button"
+                                                ? "task-complete-button-completed ref"
+                                                : "task-complete-button ref"
                                         }>
 
-                                        <i className="fa-solid fa-circle-check">
+                                        <i className="fa-solid fa-circle-check ref">
 
                                         </i>
-                                        <span>
+                                        <span className='ref'>
                                             {task.completed ? "Completed" : "Mark Complete"}
                                         </span>
                                     </div>{'  '}
                                 </div>
 
                                 <div className='task-input-title'>
-                                    <input className='edit-task-title'
+                                    <input className='edit-task-title ref'
                                         type='text'
                                         value={taskTitle}
-                                        placeholder="New Task"
+                                        placeholder="Task title"
+                                        onKeyDown={handleKeyDown}
+
                                         // onBlur={handleTitleBlur}
                                         onChange={handleTitleChange}
 
+
                                     />
                                 </div>
-                                {task && <div className="task-side-open">
+                                {task && <div className="task-side-open ">
                                     <span className='open-title' onClick={() => {
                                         setShowTaskSideDetail(true);
                                     }}>Details</span>
@@ -450,10 +480,10 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
 
 
 
-                            <div className={assigneeClass}>
-                                <p className='assignee-title'>Assignee</p>
-                                <Select className='assignee-select'
-
+                            <div className={`${assigneeClass} ref`}>
+                                <p className='assignee-title ref'>Assignee</p>
+                                <Select className='assignee-select ref'
+                                    ref={taskDetailRef}
                                     styles={customStyles}
                                     components={{ SingleValue: IconSingleValue, Option: IconOption }}
                                     options={options}
@@ -468,23 +498,25 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
                             </div>
 
 
-                            <div className='date-setting'>
-                                <p className='dueDate-title'>Due date</p>
+                            <div className='date-setting ref'>
+                                <p className='dueDate-title ref'>Due date</p>
                                 {showDateForm ? (
                                     <div
-                                        className="task-detail-date-open"
+                                        className="task-detail-date-open ref"
                                         ref={dateDiv}
                                         onClick={() => setShowDateForm(true)}>
 
-                                        <div className="task-calendar-icon">
-                                            <i className="fa-light fa-calendar-day"></i>
+                                        <div className="task-calendar-icon ref" >
+                                            <i className="fa-light fa-calendar-day ref"></i>
                                         </div>
-                                        <div className="dueDate-title">
+                                        <div className="dueDate-title ref" >
                                             {dueDate ? dueDate : "No due date"}
                                         </div>
 
-                                        <div id="task-detail-date-calendar">
+                                        <div id="task-detail-date-calendar" className='ref' >
                                             <Calendar
+                                                className={"ref"}
+
                                                 value={properDate}
                                                 tileDisabled={tileDisabled}
                                                 onChange={(date) => {
@@ -497,15 +529,17 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
                                     </div>
                                 ) : (
                                     <div
-                                        className="task-detail-date"
+                                        className="task-detail-date ref"
+
 
                                         onClick={() => setShowDateForm(true)}
                                     >
-                                        <div id="task-date-icon">
-                                            <i className="fa-regular fa-calendar-days"></i>
+                                        <div id="task-date-icon" className='ref'
+                                        >
+                                            <i className="fa-regular fa-calendar-days ref"></i>
                                         </div>
                                         {dueDate ? (
-                                            <div>
+                                            <div className='ref'>
                                                 {dueDate}
 
                                             </div>
@@ -516,32 +550,32 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
                                 )}
                             </div>
 
-                            <div className="task-detail-priority">
-                                <p className="p-title">Priority</p>
-                                <div className='priority-select'>
+                            <div className="task-detail-priority ref"  >
+                                <p className="p-title ref">Priority</p>
+                                <div className='priority-select ref' >
                                     <select value={priority} onChange={handlePriorityChange} id="mySelect"
-                                        className={selectPriority}>
-                                        <option className="p-1" value="Null">---</option>
-                                        <option className="p-2" value="Low">Low</option>
-                                        <option className="p-3" value="Medium">Medium</option>
-                                        <option className="p-4" value="High">High</option>
+                                        className={`${selectPriority} ref`} >
+                                        <option className="p-1 ref" value="Null">---</option>
+                                        <option className="p-2 ref" value="Low">Low</option>
+                                        <option className="p-3 ref" value="Medium">Medium</option>
+                                        <option className="p-4 ref" value="High">High</option>
                                     </select>
                                 </div>
                             </div>
-                            <div className="task-detail-status">
-                                <p className="s-title">Status</p>
-                                <div className="s-labels">
-                                    <select value={status} onChange={handleStatusChange} id="mySelect" className={selectStatus}>
-                                        <option className="s-1" value="Null">---</option>
-                                        <option className="s-2" value="On Track">On Track</option>
-                                        <option className="s-3" value="At Risk">At Risk</option>
-                                        <option className="s-4" value="Off Track">Off Track</option>
+                            <div className="task-detail-status ref" >
+                                <p className="s-title ref">Status</p>
+                                <div className="s-labels ref">
+                                    <select value={status} onChange={handleStatusChange} id="mySelect" className={`${selectStatus} ref`}>
+                                        <option className="s-1 ref" value="Null">---</option>
+                                        <option className="s-2 ref" value="On Track">On Track</option>
+                                        <option className="s-3 ref" value="At Risk">At Risk</option>
+                                        <option className="s-4 ref" value="Off Track">Off Track</option>
                                     </select>
                                 </div>
                             </div>
-                            <div className={deleteClass}
+                            <div className={`${deleteClass}`}
                                 onClick={deleteTask}>
-                                <span>Delete task</span>
+                                <span className='ref'>Delete task</span>
                                 <i className="fa-sharp fa-solid fa-circle-xmark"></i>
                             </div>
                         </div>
@@ -553,19 +587,19 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
 
                     : (
                         <>
-                            <div className='task-detail-content'>
-                                <div className='task-first-column2'>
+                            <div className='task-detail-content ref'>
+                                <div className='task-first-column2 ref'>
                                     <span className={
                                         task.completed
-                                            ? "task-complete-button-completed"
-                                            : "task-complete-button"
+                                            ? "task-complete-button-completed ref"
+                                            : "task-complete-button ref"
                                     }>
-                                        <i className="fa-solid fa-circle-check">
+                                        <i className="fa-solid fa-circle-check ref">
 
                                         </i>
                                     </span>
 
-                                    <input className='read-task-input'
+                                    <input className='read-task-input ref'
                                         type='text'
                                         value={taskTitle}
                                         onChange={(e) => handleTitleChange(e)}
@@ -575,18 +609,18 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
                                         setShowTaskSideDetail(true);
 
 
-                                    }} className="task-side-open">
+                                    }} className="task-side-open ref">
 
-                                        <span className='open-title'>Details</span>
-                                        <span className='open-icon'>
-                                            <i className="fa-solid fa-chevron-right"></i>
+                                        <span className='open-title ref'>Details</span>
+                                        <span className='open-icon ref'>
+                                            <i className="fa-solid fa-chevron-right ref"></i>
                                         </span>
                                     </div>
                                     }
                                 </div>
 
-                                <div className={assigneeReadClass}>
-                                    <MySelect className='assignee-select-disable'
+                                <div className={`${assigneeReadClass} ref`}>
+                                    <MySelect className='assignee-select-disable ref'
 
                                         styles={customStyles}
                                         components={{ SingleValue: IconSingleValue }}
@@ -597,17 +631,17 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
                                     />
                                 </div>
 
-                                <div className='due-date-read'>
+                                <div className='due-date-read ref'>
                                     {/* <span>Due Date</span> */}
-                                    <span className='read-dueDate'>{dueDate}</span>
+                                    <span className='read-dueDate ref'>{dueDate}</span>
                                 </div>
-                                <div className="task-detail-priority2">
+                                <div className="task-detail-priority2 ref">
 
-                                    <span className={selectPriority} id="read-priority">{priority}</span>
+                                    <span className={`${selectPriority} ref`} id="read-priority">{priority}</span>
                                 </div>
-                                <div className="task-detail-status2">
+                                <div className="task-detail-status2 ref">
 
-                                    <span className={selectStatus} id="read-priority">{status}</span>
+                                    <span className={`${selectStatus} ref`} id="read-priority">{status}</span>
                                 </div>
 
 

@@ -42,7 +42,7 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
         if (!showMenu) return;
 
         const closeMenu = (e) => {
-         
+
             if (e.target.className.includes('delete-ele')) return;
             setShowMenu(false);
             changeStyle("setting-add-task")
@@ -64,7 +64,7 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
         setErrors(errors);
     }, [sectionTitle])
 
-    const handleInputBlur = (e) => {
+    const handleInputBlur = async(e) => {
         e.preventDefault();
         // console.log(`current input value...... ${e.target.value}`);
         let title = e.target.value;
@@ -72,21 +72,41 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
             title = "Untitled Section";
             setSectionTitle(title);
         }
-        clearTimeout(timer)
-        const newTimer = setTimeout(() => {
+
             const payload = {
                 sectionId: sectionId, title: title, projectId: projectId
             };
             const editedSection = dispatch(updatedSection(payload))
             if (editedSection) {
-                dispatch(getOneProject(projectId))
+               await dispatch(getOneProject(projectId))
             }
-        }, 500)
-
-        setTimer(newTimer)
-
 
     }
+
+
+
+
+    const handleKeyDown = async (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            // console.log(`current input value...... ${e.target.value}`);
+            let title = e.target.value;
+            if (title === "") {
+                title = "Untitled Section";
+                setSectionTitle(title);
+            }
+
+            const payload = {
+                sectionId: sectionId, title: title, projectId: projectId
+            };
+            const editedSection = dispatch(updatedSection(payload))
+            if (editedSection) {
+                await dispatch(getOneProject(projectId))
+            }
+
+        }
+    }
+
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -167,6 +187,7 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
                             placeholder="Untitled Section"
                             onBlur={handleInputBlur}
                             onChange={handleChange}
+                            onKeyDown={handleKeyDown}
                             ref={ref}
 
                         />

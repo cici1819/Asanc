@@ -47,11 +47,9 @@ function ProjectEdit({ setShowProjectEditModal, currentProject }) {
         e.preventDefault();
         setHasSubmitted(true);
         if (validationErrors.length) { return }
-        // console.log('serverId', serverId)
 
         const editedProjectPayload = { projectId, title, icon, description }
         editedProjectPayload.projectId = projectId
-        // console.log("!!!!!editedServerPayload", editedServerPayload)
         await dispatch(editOneProject(editedProjectPayload))
         await setShowProjectEditModal(false);
 

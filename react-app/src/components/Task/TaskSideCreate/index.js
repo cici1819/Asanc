@@ -461,7 +461,7 @@ const TaskSideCreate = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                             <span className='t-stp'>
                                 Projects
                             </span>
-                            <span><img className={`single-project-icon2`} src={project?.icon} style={{ backgroundColor: project?.color }} alt='single-project-icon' /></span>
+                            <span><img className={`single-project-icon2`} src={project?.icon} style={{ backgroundColor: project?.color }} alt='single-project-icon' onError={e =>{e.currentTarget.src = "https://mingprojectawsbucket.s3.amazonaws.com/cici/ciciicon.png"}} /></span>
                             <span className='t-p-t'>{project.title}</span>
                         </div>
 

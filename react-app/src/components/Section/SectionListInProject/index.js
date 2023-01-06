@@ -64,7 +64,10 @@ function SectionListInProject({ show }) {
             {/* <div className="section-create-div">
                 {sessionUserIsOwner && <SectionCreate projectId={projectId} project={project} />}
             </div> */}
-               <div className="section-list-new">{sectionList}</div>
+            
+            <div className="section-list-new">{sectionList}</div>
+
+
             {sessionUserIsOwner && <div onClick={onAddBtnClick} className="addSection-main-container"><i className="fa-solid fa-plus" id="create-phase-plus"></i>
                 <span> Add section</span></div>}
 

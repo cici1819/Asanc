@@ -16,14 +16,23 @@ function ProjectCreate({ setShowModal }) {
     const [validationErrors, setValidationErrors] = useState([]);
     const [errors, setErrors] = useState([]);
     const history = useHistory();
-    // const { channelId, serverId } = useParams();
 
-    // console.log(validationErrors)
 
     useEffect(() => {
         const errors = [];
-        if (!icon.includes('.com') && !icon.includes('.jpg') && !icon.includes('.png') && !icon.includes('.jpeg')) {
-            errors.push('Please provide a valid image URL!')
+        if (
+            !icon.toLowerCase().endsWith('.jpg')
+            && !icon.toLowerCase().endsWith('.png')
+            && !icon.toLowerCase().endsWith('.jpeg')
+            && !icon.toLowerCase().endsWith('.gif')
+
+        ) {
+            errors.push(' Image URL should end with .jpg, .png, .jpeg .gif,!')
+        }
+
+        if (!icon.toLowerCase().startsWith('https://')
+            && !icon.toLowerCase().startsWith('http://')) {
+                errors.push('Image URL should start with https://, http://')
         }
         if (title.length > 30) {
             errors.push("title should be less than 30 characters")
@@ -117,6 +126,7 @@ function ProjectCreate({ setShowModal }) {
                                 <input
                                     id="c-p-input"
                                     type="text"
+
                                     value={icon}
                                     onChange={(e) => setIcon(e.target.value)}
                                 />

@@ -298,7 +298,7 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
 
             } else {
                 didMount.current = true;
-              ;
+                ;
             }
         }, 500);
 
@@ -343,7 +343,15 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
 
     // const handleDescriptionBlur = (e) => {
 
+    const handleKeyDown = async (e) => {
+        if (e.key === 'Enter') {
 
+            e.target.blur();
+
+
+        }
+
+    }
 
 
 
@@ -351,7 +359,7 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
         <>
 
             {taskSettingUser &&
-                (<div className={taskSideClass}>
+                (<div className={`${taskSideClass} ref`}>
                     <div className='close-s-div' onClick={closeDiv}>
                         <span id="tip-text">Close details</span>
                         <span className='icon-exit'>
@@ -359,25 +367,25 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                         </span>
 
                     </div>
-                    <div className='s-detail-content'>
+                    <div className='s-detail-content ref'>
                         {errors.length > 0 && (<div>
 
-                            <ul className='t-s-error-list2'>
-                                {errors.map((error, idx) => <li key={idx} className="t-s-e sdetail">{error}</li>)}
+                            <ul className='t-s-error-list2 ref'>
+                                {errors.map((error, idx) => <li key={idx} className="t-s-e sdetail ref">{error}</li>)}
                             </ul>
 
                         </div>)}
 
-                        <div className="s-complete">
+                        <div className="s-complete ref">
                             <button
                                 onClick={toggleCompleted}
                                 className={
                                     task.completed
-                                        ? "s-complete-button-completed"
-                                        : "s-complete-button"
+                                        ? "s-complete-button-completed ref"
+                                        : "s-complete-button ref"
                                 }>
 
-                                <i className="fa-solid fa-circle-check" id="s-check-icon">
+                                <i className="fa-solid fa-circle-check ref" id="s-check-icon">
 
                                 </i>
                                 {task.completed ? "Completed" : "Mark Complete"}
@@ -385,19 +393,21 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                         </div>
 
                         <div>
-                            <input className='s-task-title'
+                            <input className='s-task-title ref'
+                                id="s-task-t"
                                 type='text'
                                 value={taskTitle}
                                 placeholder="Write a task name"
                                 onChange={handleTitleChange}
+                                onKeyDown={handleKeyDown}
 
                             />
                         </div>
 
 
-                        <div className='assignee-s-d'>
-                            <span className='s-s-title'>Assignee: </span>
-                            <Select className='s-assignee-select'
+                        <div className='assignee-s-d ref'>
+                            <span className='s-s-title ref'>Assignee: </span>
+                            <Select className='s-assignee-select ref'
 
                                 styles={customStyles}
                                 components={{ SingleValue: IconSingleValue, Option: IconOption }}
@@ -415,21 +425,21 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                         </div>
 
 
-                        <div className='s-date-setting'>
-                            <span className='s-dueDate-title'>Due date:</span>
+                        <div className='s-date-setting ref'>
+                            <span className='s-dueDate-title ref'>Due date:</span>
                             {showDateForm ? (
                                 <div
-                                    className="s-date-open"
+                                    className="s-date-open ref"
                                     ref={dateDiv}
                                     onClick={() => setShowDateForm(true)}>
 
-                                    <div className="s-calendar-icon">
-                                        <i className="fa-light fa-calendar-day" id="s-canlendar-i"></i>
+                                    <div className="s-calendar-icon ref">
+                                        <i className="fa-light fa-calendar-day ref" id="s-canlendar-i"></i>
                                     </div>
-                                    <div className='s-t-c-title'>  {dueDate ? dueDate : "No due date"}</div>
+                                    <div className='s-t-c-title ref'>  {dueDate ? dueDate : "No due date"}</div>
 
-                                    <div id="s-date-calendar" className='calender'>
-                                        <Calendar className="s-calendar"
+                                    <div id="s-date-calendar" className='calender ref'>
+                                        <Calendar className="s-calendar ref"
                                             value={properDate}
                                             tileDisabled={tileDisabled}
                                             onChange={(date) => {
@@ -441,15 +451,15 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                                 </div>
                             ) : (
                                 <div
-                                    className="s-date-div"
+                                    className="s-date-div ref"
 
                                     onClick={() => setShowDateForm(true)}>
 
-                                    <div id="s-showDate-icon">
-                                        <i className="fa-regular fa-calendar-days"></i>
+                                    <div id="s-showDate-icon ref">
+                                        <i className="fa-regular fa-calendar-days ref"></i>
                                     </div>
                                     {dueDate ? (
-                                        <div className='s-t-dueDate'>
+                                        <div className='s-t-dueDate ref'>
                                             {dueDate}
 
                                         </div>
@@ -459,39 +469,39 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                                 </div>
                             )}
                         </div>
-                        <div className=' t-s-p'>
-                            <span className='t-stp'>
+                        <div className=' t-s-p ref'>
+                            <span className='t-stp ref'>
                                 Projects:
                             </span>
-                            <span><img className={`single-project-icon2`} src={project?.icon} style={{ backgroundColor: project?.color }} alt='single-project-icon' /></span>
-                            <span className='t-p-t'>{project.title}</span>
+                            <span><img className={`single-project-icon2 ref`} src={project?.icon} style={{ backgroundColor: project?.color }} alt='single-project-icon' onError={e => { e.currentTarget.src = "https://mingprojectawsbucket.s3.amazonaws.com/cici/ciciicon.png" }} /></span>
+                            <span className='t-p-t ref'>{project.title}</span>
                         </div>
 
-                        <div className="s-priority">
-                            <div className="s-p-title">Priority:</div>
-                            <div className="s-p-content">
-                                <select value={priority} onChange={handlePriorityChange} className={selectPriority}>
-                                    <option className="p-1" value="Null">---</option>
-                                    <option className="p-2" value="Low">Low</option>
-                                    <option className="p-3" value="Medium">Medium</option>
-                                    <option className="p-4" value="High">High</option>
+                        <div className="s-priority ref">
+                            <div className="s-p-title ref">Priority:</div>
+                            <div className="s-p-content ref">
+                                <select value={priority} onChange={handlePriorityChange} className={`${selectPriority} ref `}>
+                                    <option className="p-1 ref" value="Null">---</option>
+                                    <option className="p-2 ref" value="Low">Low</option>
+                                    <option className="p-3 ref" value="Medium">Medium</option>
+                                    <option className="p-4 ref" value="High">High</option>
                                 </select>
                             </div>
                         </div>
-                        <div className="s-status">
-                            <div className="s-s-title">Status:</div>
-                            <div className="s-s-labels">
-                                <select value={status} onChange={handleStatusChange} className={selectStatus}>
-                                    <option className="s-1" value="Null">---</option>
-                                    <option className="s-2" value="On Track">On Track</option>
-                                    <option className="s-3" value="At Risk">At Risk</option>
-                                    <option className="s-4" value="Off Track">Off Track</option>
+                        <div className="s-status ref">
+                            <div className="s-s-title ref">Status:</div>
+                            <div className="s-s-labels ref">
+                                <select value={status} onChange={handleStatusChange} className={`${selectStatus} ref`}>
+                                    <option className="s-1 ref" value="Null">---</option>
+                                    <option className="s-2 ref" value="On Track">On Track</option>
+                                    <option className="s-3 ref" value="At Risk">At Risk</option>
+                                    <option className="s-4 ref" value="Off Track">Off Track</option>
                                 </select>
                             </div>
                         </div>
-                        <div className="side-description">
-                            <div className="s-d-title">Description :</div>
-                            <TextareaAutosize className='edit-s-discription'
+                        <div className="side-description ref">
+                            <div className="s-d-title ref">Description :</div>
+                            <TextareaAutosize className='edit-s-discription ref'
                                 // maxLength={256}
                                 type='text'
                                 value={description}
@@ -500,9 +510,9 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
 
                             />
                         </div>
-                        <div className='s-owner-info'>
-                            <span className='s-o-logo'> <img className='s-o-i' src={userLogo} style={{ height: '30px', width: '30px', borderRadius: '50%', backgroundColor: taskOwnerObj.avatar_color }} /> </span>
-                            <span className='s-o-name'>{taskOwnerObj.firstName} {taskOwnerObj.lastName} created this task</span>
+                        <div className='s-owner-info ref'>
+                            <span className='s-o-logo ref'> <img className='s-o-i ref' src={userLogo} style={{ height: '30px', width: '30px', borderRadius: '50%', backgroundColor: taskOwnerObj.avatar_color }} /> </span>
+                            <span className='s-o-name ref'>{taskOwnerObj.firstName} {taskOwnerObj.lastName} created this task</span>
                         </div>
 
 
@@ -515,39 +525,39 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
 
 
             {!taskSettingUser && (
-                <div className={readSideClass}>
+                <div className={`${readSideClass} ref`}>
                     <div className='close-s-div' onClick={closeDiv}>
                         <span id="tip-text">Close details</span>
                         <span className='icon-exit'>
                             <i className="fa-solid fa-right-to-bracket"></i>
                         </span>
                     </div>
-                    <div className="s-completed-2">
+                    <div className="s-completed-2 ref">
                         <span
                             className={
                                 task.completed
-                                    ? "s-complete-button-completed2"
-                                    : "s-complete-button2"
+                                    ? "s-complete-button-completed2 ref"
+                                    : "s-complete-button2 ref"
                             }>
 
-                            <i className="fa-solid fa-circle-check" id="s-check-icon">
+                            <i className="fa-solid fa-circle-check ref" id="s-check-icon">
 
                             </i>
                             {/* {task.completed ? "Completed" : "Mark Complete"} */}
                         </span>{'  '}
                     </div>
                     <div>
-                        <input className='s-r-task-input'
+                        <input className='s-r-task-input ref'
                             type='text'
                             value={taskTitle}
                             onChange={handleTitleChange}
                             readOnly
                         />
                     </div>
-                    <div className='assignee-s-d-r' >
+                    <div className='assignee-s-d-r ref' >
 
-                        <span className='s-s-title'>Assignee : </span>
-                        <MySelect className='s-r-select'
+                        <span className='s-s-title ref'>Assignee : </span>
+                        <MySelect className='s-r-select ref'
 
                             styles={customStyles}
                             components={{ SingleValue: IconSingleValue }}
@@ -556,10 +566,10 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                             isSearchable={false} />
                     </div>
 
-                    <div className='s-r-dueDate'>
-                        <span className='s-dueDate-title'>Due Date :</span>
+                    <div className='s-r-dueDate ref'>
+                        <span className='s-dueDate-title ref'>Due Date :</span>
                         {dueDate ? (
-                            <div className='s-r-d-date'>
+                            <div className='s-r-d-date ref'>
                                 {dueDate}
 
                             </div>
@@ -567,26 +577,33 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                             "No due date"
                         )}
                     </div>
-                    <div className='s-r-p'>
-                        <span className='s-r-p-title'>Priority :</span>
-                        <span className={selectPriority} id="r-side-p">{priority}</span>
+                    <div className=' t-s-p ref'>
+                        <span className='t-stp ref'>
+                            Projects:
+                        </span>
+                        <span><img className={`single-project-icon2 ref`} src={project?.icon} style={{ backgroundColor: project?.color }} alt='single-project-icon' onError={e => { e.currentTarget.src = "https://mingprojectawsbucket.s3.amazonaws.com/cici/ciciicon.png" }} /></span>
+                        <span className='t-p-t ref'>{project.title}</span>
                     </div>
-                    <div className='s-r-p'>
-                        <span className=''>Status :</span>
-                        <span className={selectStatus} id="r-side-s">{status}</span>
+                    <div className='s-r-p ref'>
+                        <span className='s-r-p-title ref'>Priority :</span>
+                        <span className={`${selectPriority} ref`} id="r-side-p">{priority}</span>
                     </div>
-                    <div className='t-s-d'>
-                        <spans className="t-s-t"> Description : </spans>
+                    <div className='s-r-p ref'>
+                        <span className='ref'>Status :</span>
+                        <span className={`${selectStatus} ref`} id="r-side-s">{status}</span>
+                    </div>
+                    <div className='t-s-d ref'>
+                        <spans className="t-s-t ref"> Description : </spans>
                         {description ? (
-                            <div className='t-s-d-c'><p className='d-p'>{description}</p></div>
+                            <div className='t-s-d-c ref'><p className='d-p ref'>{description}</p></div>
 
                         ) : (
                             "No description"
                         )}
                     </div>
-                    <div className='s-owner-info'>
-                        <span className='s-o-logo'> <img className='s-o-i' src={userLogo} style={{ height: '30px', width: '30px', borderRadius: '50%', backgroundColor: taskOwnerObj?.avatar_color }} /> </span>
-                        <span className='s-o-name'>{taskOwnerObj?.firstName} {taskOwnerObj?.lastName} created this task</span>
+                    <div className='s-owner-info ref'>
+                        <span className='s-o-logo ref'> <img className='s-o-i ref' src={userLogo} style={{ height: '30px', width: '30px', borderRadius: '50%', backgroundColor: taskOwnerObj?.avatar_color }} /> </span>
+                        <span className='s-o-name ref'>{taskOwnerObj?.firstName} {taskOwnerObj?.lastName} created this task</span>
                     </div>
                 </div>
 

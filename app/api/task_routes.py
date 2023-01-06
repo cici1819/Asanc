@@ -87,7 +87,7 @@ def create_task():
         else:
             task.assignee_id = assigneeId
 
-        print("@@@@@@@@@@@@@@,assignIdjson",request.json['assigneeId'])
+
         if request.json['assigneeId']!= "null":
            task.user_assignee_t =  User.query.get(request.json['assigneeId'])
 
@@ -116,7 +116,8 @@ def edit_task(task_id):
             task.end_date = db.null()
         else:
             task.end_date =datetime.strptime(end_date, '%Y-%m-%d')
-        task.end_date = datetime.strptime(end_date, '%Y-%m-%d')
+
+        # task.end_date = datetime.strptime(end_date, '%Y-%m-%d')
         task.completed = form.data['completed']
         # Get the user object by assigneeId
         # user =  User.query.get(form.data['assigneeId'])

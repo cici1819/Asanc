@@ -42,8 +42,8 @@ const SideBar = ({ show, toggle }) => {
         <>
             <div className="sideBar-top-container">
                 <div className="sideBar-top-left">
-                    <div className="sideBar-open-icon" onClick={toggle}>
-                        <i className="fa-solid fa-bars"></i>
+                    <div className="sideBar-open-icon ref" onClick={toggle}>
+                        <i className="fa-solid fa-bars ref"></i>
                     </div>
                     <NavLink className="home-l-t" to="/home">
                         <img src={logo} alt="asanc logo" className="home-logo" style={{ backgroundColor: "rgb(37, 38, 40)" }} />
@@ -58,7 +58,7 @@ const SideBar = ({ show, toggle }) => {
             </div>
 
             <>
-                <div className={sidebarClass}>
+                <div className={`${sidebarClass} ref`}>
 
                     <div className="sideBar-Midddle">
                         <NavLink className="sideBar-home" to="/home">
@@ -88,15 +88,18 @@ const SideBar = ({ show, toggle }) => {
                             <div className="c-project-list">
                                 {projectsArr?.map((project) => {
                                     return (
-                                        <NavLink className="sideBar-myproject" to={`/home/${project?.id}/list`} key={project?.id}>
-                                            {/* <i className="fa-solid fa-square" style={{backgroundColor: project?.color}} id="p-c-sideBar"></i> */}
-                                            <div style={{ backgroundColor: project?.color }} className="p-c-sideBar">
 
-                                            </div>
-                                            <span className="p-title-sideBar">
-                                                {project.title}
-                                            </span>
-                                        </NavLink>
+                                            <NavLink className="sideBar-myproject" to={`/home/${project?.id}/list`} key={project?.id}>
+                                                {/* <i className="fa-solid fa-square" style={{backgroundColor: project?.color}} id="p-c-sideBar"></i> */}
+                                                <div style={{ backgroundColor: project?.color }} className="p-c-sideBar">
+
+                                                </div>
+                                                <span className="p-title-sideBar">
+                                                    {project.title}
+                                                </span>
+                                            </NavLink>
+
+
                                     )
 
                                 })}
@@ -109,7 +112,7 @@ const SideBar = ({ show, toggle }) => {
                     </div>
 
                     <div className="about-links">
-                    <div style={{ textAlign: "center" }} className="about-title">Created by Cici Cheng</div>
+                        <div style={{ textAlign: "center" }} className="about-title">Created by Cici Cheng</div>
                         <NavLink className="github-link"
                             to={{
                                 pathname: "https://github.com/cici1819",

@@ -4,16 +4,44 @@ import { addSectionToProject } from "../../../store/sectionReducer";
 import { getOneProject } from "../../../store/projectReducer";
 import './SectionCreate.css';
 
-const SectionCreate = ({projectId, setSectionList}) => {
+const SectionCreate = ({ projectId, setSectionList }) => {
     const dispatch = useDispatch();
     const [title, setTitle] = useState("");
-    const [timer, setTimer] = useState(null)
+    // const [timer, setTimer] = useState(null)
     const [errors, setErrors] = useState([]);
 
     // const handleCreateInput = () => {
     //     setTitleInput(true)
     //     setTitle('')
     // }
+    const handleKeyDown = async (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault()
+            let title = e.target.value;
+            if (title === "") {
+                title = "Untitled Section";
+                setTitle(title);
+            }
+
+            const payload = {
+                title: title, projectId: projectId
+            };
+            const newSection = dispatch(addSectionToProject(payload))
+            if (newSection) {
+                await dispatch(getOneProject(projectId))
+            }
+
+            setErrors([])
+            setTitle("")
+            setSectionList([])
+        }
+    };
+
+    useEffect(() => {
+        const input = document.getElementsByClassName("add-section-input")[0];
+        input.focus();
+    }, [])
+
     useEffect(() => {
         const errors = [];
         if (title.length > 30) {
@@ -29,18 +57,18 @@ const SectionCreate = ({projectId, setSectionList}) => {
             title = "Untitled Section";
             setTitle(title);
         }
-        clearTimeout(timer)
-        const newTimer = setTimeout(() => {
-            const payload = {
-                title: title, projectId: projectId
-            };
-            const newSection = dispatch(addSectionToProject(payload))
-            if (newSection) {
-                dispatch(getOneProject(projectId))
-            }
-        }, 500)
+        // clearTimeout(timer)
+        // const newTimer = setTimeout(() => {
+        const payload = {
+            title: title, projectId: projectId
+        };
+        const newSection = dispatch(addSectionToProject(payload))
+        if (newSection) {
+            await dispatch(getOneProject(projectId))
+        }
+        // }, 200)
 
-        setTimer(newTimer)
+        // setTimer(newTimer)
         setErrors([])
         setTitle("")
         setSectionList([])
@@ -58,19 +86,25 @@ const SectionCreate = ({projectId, setSectionList}) => {
         <>
             {/* {!titleInput&&<div onClick={handleCreateInput} className="addSection-main-container"><i className="fa-solid fa-plus" id="create-phase-plus"></i>
                 <span> Add section</span></div>} */}
-             <div>
+            <div>
                 <div >
                     {errors.length > 0 && (<div className="s-detail-content">
 
                         {errors[0]}
 
                     </div>)}
-                    <input className='add-section-input'
+
+                    <input
+                        id="fname"
+                        className='add-section-input'
                         type='text'
                         value={title}
                         placeholder="Untitled Section"
                         onBlur={handleInputBlur}
-                        onChange={handleChange} />
+                        onChange={handleChange}
+                        onKeyDown={handleKeyDown}
+
+                    />
 
                 </div>
             </div>

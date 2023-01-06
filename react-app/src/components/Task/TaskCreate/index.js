@@ -151,7 +151,39 @@ const TaskCreate = ({ show, section, sessionUser, project, setShowNewTask }) => 
     }
 
 
+    const handleKeyDown = async (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault()
+            let taskTitle = e.target.value;
+            const payload = {
+                title: taskTitle,
+                description,
+                assigneeId: "null",
+                ownerId,
+                sectionId,
+                status: status,
+                priority: priority,
+                projectId,
+                completed,
+                end_date: new Date().toISOString().split('T')[0],
+            };
 
+            await dispatch(taskAction.thunkCreateTask(payload)).then(
+                res => {
+                    setNewTask(res)
+                    // setCurrentTaskId(res.id)
+                }
+            );
+
+            taskId = newTask?.id
+            // console.log("##################***********************,newTask res ", newTask)
+            setErrors([])
+            setShowNewTask(false)
+        }
+
+
+
+    }
 
 
     const handlePriorityChange = (e) => {
@@ -496,6 +528,7 @@ const TaskCreate = ({ show, section, sessionUser, project, setShowNewTask }) => 
                             placeholder="New Task"
                             onChange={handleTitleChange}
                             onBlur={handleTitleBlur}
+                            onKeyDown={handleKeyDown}
 
                         />
                     </div>

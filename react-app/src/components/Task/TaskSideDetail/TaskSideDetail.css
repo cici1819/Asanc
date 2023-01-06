@@ -193,15 +193,8 @@
 
 }
 
-.s-task-title:hover {
-    border: 1px solid black;
-    border-radius: 8px;
-}
 
-.s-task-title:focus {
-    border-radius: 8px;
-    border: 3px solid rgb(81, 135, 248);
-}
+
 
 .t-s-error-list {
     position: absolute;
@@ -449,6 +442,17 @@
     border: 1px solid rgb(237, 234, 233);
     /* box-shadow: rgba(0, 0, 0, .2) 0px 0px 5px; */
     /* background-color: white; */
+}
+.s-task-title:hover{
+    border:none;
+    background-color:rgb(249,248,248)
+}
+
+#s-task-t:focus{
+
+        border-radius: 8px;
+        border: 3px solid rgb(81, 135, 248);
+    
 }
 .s-completed-2:hover span{
     cursor: default;
