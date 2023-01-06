@@ -4,12 +4,15 @@ import session from './session'
 import projectReducer from './projectReducer';
 import sectionReducer from './sectionReducer';
 import taskReducer from './taskReducer';
+import sideBarReducer from './sideBarProjectReducer';
+
 
 const rootReducer = combineReducers({
   session,
   projects: projectReducer,
   section: sectionReducer,
-  tasks:taskReducer,
+  tasks: taskReducer,
+  sideBar: sideBarReducer
 
 });
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useSelector ,useDispatch} from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom';
 import { getOneProject } from "../../../store/projectReducer";
 import "./ProjectSettingSelect.css"
@@ -10,18 +10,34 @@ const ProjectSetting = ({ setShowProjectEditModal, setShowProjectDeleteModal, cu
     // const projectsArr = Object.values(projects)
     const { projectId } = useParams()
     // let [showMenu, setShowMenu] = useState(false)
-     const dispatch = useDispatch()
+    const dispatch = useDispatch()
     let [showMenu, setShowMenu] = useState(false)
-    const [showImg, setShowImg] = useState(true)
+    // const [showImg, setShowImg] = useState(true)
 
-    const hideImg = (e) => {
-        setShowImg(false)
-    }
+    // const hideImg = (e) => {
+    //     setShowImg(false)
+    // }
 
     useEffect(() => {
         dispatch(getOneProject(projectId))
-    }, [dispatch, projectId,showImg]);
+    }, [dispatch, projectId]);
 
+    // useEffect(() => {
+    //     const handleClick = () => {
+    //       dispatch(getOneProject(projectId));
+    //     };
+
+    //     const iconElement = document.querySelector('.mainPage-single-project-icon');
+    //     if (iconElement) {
+    //       iconElement.addEventListener('click', handleClick);
+    //     }
+
+    //     return () => {
+    //       if (iconElement) {
+    //         iconElement.removeEventListener('click', handleClick);
+    //       }
+    //     };
+    //   }, [dispatch, projectId]);
 
     const openMenu = () => {
         if (showMenu) return;
@@ -67,11 +83,9 @@ const ProjectSetting = ({ setShowProjectEditModal, setShowProjectDeleteModal, cu
 
             <div className='select-setting'>
 
-            {showImg ?
-                <img className={`mainPage-single-project-icon`} src={icon} style={{ backgroundColor: { color } }} onError={hideImg} />
+                <img className={`single-project-icon`} src={icon} style={{ backgroundColor: color }} alt='single-project-icon' onError={e => { e.currentTarget.src = "https://mingprojectawsbucket.s3.amazonaws.com/cici/ciciicon.png" }} />
 
-               : (<img className={`mainPage-single-project-icon`} src ="https://mingprojectawsbucket.s3.amazonaws.com/cici/ciciicon.png"/>)
-                 }
+
                 <span className='project-title'>
                     {title}
                 </span>
