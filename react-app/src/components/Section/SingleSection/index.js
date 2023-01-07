@@ -88,22 +88,24 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
 
     const handleKeyDown = async (e) => {
         if (e.key === 'Enter') {
-            e.preventDefault();
-            // console.log(`current input value...... ${e.target.value}`);
-            let title = e.target.value;
-            if (title === "") {
-                title = "Untitled Section";
-                setSectionTitle(title);
-            }
+            e.target.blur();
+            //     e.preventDefault();
+            //     // console.log(`current input value...... ${e.target.value}`);
+            //     let title = e.target.value;
+            //     if (title === "") {
+            //         title = "Untitled Section";
+            //         setSectionTitle(title);
+            //     }
 
-            const payload = {
-                sectionId: sectionId, title: title, projectId: projectId
-            };
-            const editedSection = dispatch(updatedSection(payload))
-            if (editedSection) {
-                await dispatch(getOneProject(projectId))
-            }
-
+            //     const payload = {
+            //         sectionId: sectionId, title: title, projectId: projectId
+            //     };
+            //     const editedSection = dispatch(updatedSection(payload))
+            //     if (editedSection) {
+            //         await dispatch(getOneProject(projectId))
+            //     }
+            //     setErrors([])
+            // }
         }
     }
 

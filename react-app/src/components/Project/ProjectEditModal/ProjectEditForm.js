@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import{getSideBarProjects} from"../../../store/sideBarProjectReducer"
 // import { useHistory } from "react-router-dom";
 import { useParams } from "react-router";
 import { editOneProject, getOneProject } from "../../../store/projectReducer";
@@ -50,7 +51,9 @@ function ProjectEdit({ setShowProjectEditModal, currentProject }) {
 
         const editedProjectPayload = { projectId, title, icon, description }
         editedProjectPayload.projectId = projectId
-        await dispatch(editOneProject(editedProjectPayload))
+
+        await dispatch(editOneProject(editedProjectPayload));
+        await dispatch(getSideBarProjects());
         await setShowProjectEditModal(false);
 
 

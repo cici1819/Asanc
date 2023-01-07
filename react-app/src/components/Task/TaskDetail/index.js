@@ -369,7 +369,7 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
 
     const handleClickTask = e => {
         console.log("#####################,TaskDetail e", e)
-        if (e.target?.className.includes('ref')) {
+        if (e.target?.className?.includes('ref')) {
             return;
         } else if (e.path[0].className.includes("css")) {
             return;

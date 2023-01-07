@@ -27,7 +27,7 @@
 }
 
 .home-page-members-container:hover {
-    cursor: grab;
+    /* cursor: grab; */
     border: 1px solid rgba(175, 171, 172, 1);
     box-shadow: 0px 0px 10px rgba(175, 171, 172),
 
@@ -61,7 +61,7 @@
         flex-direction: row;
         flex-wrap: wrap;
         gap:25px;
-      
+
         /* margin-top: -70px; */
 
     }

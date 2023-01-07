@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch} from 'react-redux';
 import { useHistory } from "react-router-dom";
+import{getSideBarProjects} from"../../../store/sideBarProjectReducer"
 // import { useParams } from "react-router";
 import { createOneProject } from "../../../store/projectReducer";
 import './ProjectCreate.css';
@@ -71,6 +72,7 @@ function ProjectCreate({ setShowModal }) {
             if (createdProject) {
                 setValidationErrors([]);
                 setErrors([]);
+                await dispatch(getSideBarProjects());
                 await setShowModal(false);
                 await history.push(`/home/${createdProject.id}/list`)
             }
