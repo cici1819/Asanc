@@ -6,7 +6,7 @@ import CurrentUserInfo from "./CurrentUserProfile";
 import './UserInOneProject.css';
 
 function UserInOneProjectInfo({ user }) {
-    console.log("user ======= in UserInOneProjectInfo", user)
+    // console.log("user ======= in UserInOneProjectInfo", user)
     const [showUser, setShowUser] = useState(false);
     const openUser = () => {
         if (showUser) return;

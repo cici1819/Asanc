@@ -12,7 +12,7 @@ function CurrentProjectUserInfo() {
     const sessionUser = useSelector(state => state.session.user)
     // const [UserInOneProject, setUserInOneProject] = useState();
     const allProjects = useSelector(state => state.projects.allProjects)
-    console.log("allProjects~~~~~~~~~~", allProjects)
+    
     // = useSelector(state => state.projects.singleProject?.users)
     const singleProject = allProjects[+projectId]
 
