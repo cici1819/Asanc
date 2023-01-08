@@ -234,7 +234,7 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
         } else {
             setPriority("---");
         }
-        if (task.priority === "Null") {
+        if (task.priority === "---") {
             setSelectPriority("p-1")
         } else if (task.priority === "Low") {
             setSelectPriority("p-2")
@@ -248,7 +248,7 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
         } else {
             setStatus("---");
         }
-        if (task.status === "Null") {
+        if (task.status === "---") {
             setSelectStatus("s-1")
         } else if (task.status === "On Track") {
             setSelectStatus("s-2")
@@ -481,7 +481,7 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                             <div className="s-p-title ref">Priority:</div>
                             <div className="s-p-content ref">
                                 <select value={priority} onChange={handlePriorityChange} className={`${selectPriority} ref `}>
-                                    <option className="p-1 ref" value="Null">---</option>
+                                    <option className="p-1 ref" value="---">---</option>
                                     <option className="p-2 ref" value="Low">Low</option>
                                     <option className="p-3 ref" value="Medium">Medium</option>
                                     <option className="p-4 ref" value="High">High</option>
@@ -492,7 +492,7 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                             <div className="s-s-title ref">Status:</div>
                             <div className="s-s-labels ref">
                                 <select value={status} onChange={handleStatusChange} className={`${selectStatus} ref`}>
-                                    <option className="s-1 ref" value="Null">---</option>
+                                    <option className="s-1 ref" value="---">---</option>
                                     <option className="s-2 ref" value="On Track">On Track</option>
                                     <option className="s-3 ref" value="At Risk">At Risk</option>
                                     <option className="s-4 ref" value="Off Track">Off Track</option>

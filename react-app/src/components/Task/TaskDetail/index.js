@@ -43,6 +43,7 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
     const assigneeClass = show ? "task-assignee-column" : "task-assignee-closed"
     const assigneeReadClass = show ? "task-assignee-column2" : "task-assignee-closed2"
     const deleteClass = show ? "task-delete" : "task-delete-closed"
+    const priorityId = show ? "mySelect" : "mySelect-closed"
     const [selectPriority, setSelectPriority] = useState();
     const [selectStatus, setSelectStatus] = useState();
 
@@ -237,12 +238,12 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
             setTaskTitle("");
         }
 
-        if (task.priority) {
+        if (task?.priority) {
             setPriority(task.priority);
         } else {
             setPriority("---");
         }
-        if (task.priority === "Null") {
+        if (task.priority === "---") {
             setSelectPriority("p-1")
         } else if (task.priority === "Low") {
             setSelectPriority("p-2")
@@ -251,13 +252,13 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
         } else if (task.priority === "High") {
             setSelectPriority("p-4")
         }
-        if (task.status) {
+        if (task?.status) {
             setStatus(task.status);
         } else {
             setStatus("---");
         }
 
-        if (task.status === "Null") {
+        if (task.status === "---") {
             setSelectStatus("s-1")
         } else if (task.status === "On Track") {
             setSelectStatus("s-2")
@@ -368,7 +369,7 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
 
 
     const handleClickTask = e => {
-        console.log("#####################,TaskDetail e", e)
+        // console.log("#####################,TaskDetail e", e)
         if (e.target?.className?.includes('ref')) {
             return;
         } else if (e.path[0].className.includes("css")) {
@@ -451,7 +452,7 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
                                     </div>{'  '}
                                 </div>
 
-                                <div className='task-input-title'>
+                                <div className='task-input-title ref'>
                                     <input className='edit-task-title ref'
                                         type='text'
                                         value={taskTitle}
@@ -555,7 +556,7 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
                                 <div className='priority-select ref' >
                                     <select value={priority} onChange={handlePriorityChange} id="mySelect"
                                         className={`${selectPriority} ref`} >
-                                        <option className="p-1 ref" value="Null">---</option>
+                                        <option className="p-1 ref" value="---">---</option>
                                         <option className="p-2 ref" value="Low">Low</option>
                                         <option className="p-3 ref" value="Medium">Medium</option>
                                         <option className="p-4 ref" value="High">High</option>
@@ -566,7 +567,7 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
                                 <p className="s-title ref">Status</p>
                                 <div className="s-labels ref">
                                     <select value={status} onChange={handleStatusChange} id="mySelect" className={`${selectStatus} ref`}>
-                                        <option className="s-1 ref" value="Null">---</option>
+                                        <option className="s-1 ref" value="---">---</option>
                                         <option className="s-2 ref" value="On Track">On Track</option>
                                         <option className="s-3 ref" value="At Risk">At Risk</option>
                                         <option className="s-4 ref" value="Off Track">Off Track</option>
@@ -609,11 +610,11 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
                                         setShowTaskSideDetail(true);
 
 
-                                    }} className="task-side-open ref">
+                                    }} className="task-side-open">
 
-                                        <span className='open-title ref'>Details</span>
-                                        <span className='open-icon ref'>
-                                            <i className="fa-solid fa-chevron-right ref"></i>
+                                        <span className='open-title '>Details</span>
+                                        <span className='open-icon '>
+                                            <i className="fa-solid fa-chevron-right "></i>
                                         </span>
                                     </div>
                                     }

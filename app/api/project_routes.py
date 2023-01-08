@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import Project, db, User, Section
 from app.forms import ProjectForm
-import json
+import json,random
 from datetime import datetime
 from flask_login import current_user, login_user, logout_user, login_required
 
@@ -65,7 +65,9 @@ def create_project():
     data = form.data
     user_id = current_user.id
     form['csrf_token'].data = request.cookies['csrf_token']
-    new_project= Project(title= data["title"], icon= data["icon"], description= data["description"], owner_id= user_id,created_at = datetime.today(),
+    Colors = ['limegreen', 'darkorange', 'royalblue', 'wheat',
+    'orangered', 'powderblue', "lightcoral", "teal"]
+    new_project= Project(title= data["title"], icon= data["icon"],color=random.choice(Colors), description= data["description"], owner_id= user_id,created_at = datetime.today(),
         updated_at = datetime.today())
 
     new_project.project_project_member.append(current_user)

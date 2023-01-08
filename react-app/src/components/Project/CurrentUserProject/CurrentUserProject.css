@@ -25,6 +25,59 @@
     border: 1px solid rgba(175,171,172,1);
     box-shadow: 0px 0px 10px rgba(175, 171, 172,0.5);
 }
+
+x
+
+
+
+
+
+.single-project-container::-webkit-scrollbar-thumb {
+    /* Foreground */
+
+    background:rgba(248,234,234,0.3);
+    border-radius: 8px;
+
+	border: 15px solid transparent; /* 设置边距透明 */
+    background-clip: padding-box; /* 设置背景范围 */
+	-webkit-box-shadow: inset005pxrgba(0,0,0);
+
+}
+
+.single-project-container::-webkit-scrollbar-track {
+    /* Background */
+    background:white;
+
+    /* margin-block: 1px; */
+    border-top: 1px solid rgb(30,31,33,);
+}
+.single-project-container::-webkit-scrollbar{
+    width: 1px;
+    size:1px;
+    height:1px;
+    background-color: rgba(30,31,33, 0.3);
+  }
+
+  .single-project-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(30,31,33, 0.3);
+    border-radius: 10px;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .c-p-l-title{
     font-size: 25px;
     font-weight: 600;

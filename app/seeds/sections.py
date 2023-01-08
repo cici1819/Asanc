@@ -4,7 +4,7 @@ from datetime import datetime
 def seed_sections():
     section1 = Section(
         project_id=1,
-        title='Project Planning',
+        title='Planning',
         created_at=datetime.now(),
         updated_at=datetime.now()
     )
@@ -18,21 +18,21 @@ def seed_sections():
 
     section3 = Section(
         project_id=1,
-        title='Coding and Implementation',
+        title='Coding',
         created_at=datetime.now(),
         updated_at=datetime.now()
     )
 
     section4 = Section(
         project_id=1,
-        title='Testing and Deployment',
+        title='Testing && deployment',
         created_at=datetime.now(),
         updated_at=datetime.now()
     )
 
     section5 = Section(
         project_id=2,
-        title='Project Planning',
+        title='Planning',
         created_at=datetime.now(),
         updated_at=datetime.now(),
     )
@@ -46,14 +46,14 @@ def seed_sections():
 
     section7 = Section(
         project_id=2,
-        title='Coding and Implementation',
+        title='Coding',
         created_at=datetime.now(),
         updated_at=datetime.now()
     )
 
     section8 = Section(
         project_id=2,
-        title='Testing and Deployment',
+        title='Testing && deployment',
         created_at=datetime.now(),
         updated_at=datetime.now()
 

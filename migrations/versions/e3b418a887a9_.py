@@ -39,7 +39,7 @@ def upgrade():
     sa.Column('title', sa.String(length=50), nullable=False),
     sa.Column('owner_id', sa.Integer(), nullable=False),
     sa.Column('description', sa.String(length=255), nullable=False),
-    sa.Column('color', sa.String(length=255)),
+    sa.Column('color', sa.String(length=255),nullable=True),
     sa.Column('icon', sa.String(length=255), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),

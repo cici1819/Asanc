@@ -80,14 +80,14 @@ const CurrentUserTasks = ({ show, toggle }) => {
                                                 {task.end_date}
                                             </div>
                                             <div id="myTask-p">
-                                                <span id="p-s-myTask" className={`${task.priority === "Null" ? "p-1" : ""} ${task.priority === "Low" ? "p-2" : ""} ${task.priority === "Medium" ? "p-3" : ""} ${task.priority === "High" ? "p-4" : ""}`}>
-                                                    {task.priority}
+                                                <span id="p-s-myTask" className={`${task.priority === "null" ? "p-1" : ""} ${task.priority === "Low" ? "p-2" : ""} ${task.priority === "Medium" ? "p-3" : ""} ${task.priority === "High" ? "p-4" : ""}`}>
+                                                    {task.priority === "null" ? "---" :task.priority}
                                                 </span>
 
                                             </div>
                                             <div id="myTask-s">
-                                                <span id="p-s-myTask"className={`${task.status === "Null" ? "s-1" : ""} ${task.status === "On Track" ? "s-2" : ""} ${task.status === "At Risk" ? "s-3" : ""} ${task.status === "Off Track" ? "s-4" : ""}`} >
-                                                    {task.status}
+                                                <span id="p-s-myTask"className={`${task.status === "null" ? "s-1" : ""} ${task.status === "On Track" ? "s-2" : ""} ${task.status === "At Risk" ? "s-3" : ""} ${task.status === "Off Track" ? "s-4" : ""}`} >
+                                                {task.status === "null" ? "---" : task.status}
                                                 </span>
 
 

@@ -10,8 +10,9 @@
     overflow: hidden;
 }
 .delete-Project-form{
+    word-break: break-all;
     width: 100%;
-    height: 70%;
+    height: 75%;
     outline: none;
     overflow: hidden;
     background-color: rgb(242,243,245);
@@ -38,13 +39,14 @@
 }
 
 .d-p-2{
-    color: black;
-    font-size: 20px;
+    color:rgb(240,106,106);
+    font-size: 22px;
+    font-weight: 600;
 }
 .d-p-input{
     display: flex;
     flex-direction: column;
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
 /* .d-p-input input{
     width: 93%;
@@ -69,7 +71,7 @@
     width: 150px;
     height: 40px;
     /* margin-right: 170px; */
-    margin-top: 50px;
+    margin-top: 30px;
     font-size: 15px;
     margin-left: 280px;
 }

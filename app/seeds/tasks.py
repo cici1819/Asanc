@@ -5,7 +5,7 @@ today = date.today()
 
 def seed_tasks():
     task1 = Task(
-        title='Requirements and Analysis',
+        title='Requirements',
         description='Create a customer requirement specification ',
         owner_id=1,
         assignee_id=1,
@@ -37,7 +37,7 @@ def seed_tasks():
 
 
     task3 = Task(
-        title='Designing the product Part 1',
+        title='Designing Part 1',
         description='Full project overview,main needs and goals,target audience,functional requirements and desired set of features',
         owner_id=1,
         assignee_id=6,
@@ -54,7 +54,7 @@ def seed_tasks():
 
 
     task4 = Task(
-        title='Designing the product Part 2',
+        title='Designing Part 2',
         description='Aesthetic aspects,non-functional details,recommendation , prohibitions and questions.',
         owner_id=1,
         assignee_id=7,

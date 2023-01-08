@@ -19,7 +19,7 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
     const [showNewTask, setShowNewTask] = useState(false)
     const settingClass = show ? "section-setting-dropMenu delete-ele" : "section-setting-dropMenu-closed delete-ele"
     const [style, changeStyle] = useState("setting-add-task")
-    const[inputStyle,changeInputStyle] = useState("edit-section-input")
+    const [inputStyle, changeInputStyle] = useState("edit-section-input")
     const ref = useRef(null)
 
     const openMenu = () => {
@@ -64,7 +64,7 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
         setErrors(errors);
     }, [sectionTitle])
 
-    const handleInputBlur = async(e) => {
+    const handleInputBlur = async (e) => {
         e.preventDefault();
         // console.log(`current input value...... ${e.target.value}`);
         let title = e.target.value;
@@ -73,13 +73,13 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
             setSectionTitle(title);
         }
 
-            const payload = {
-                sectionId: sectionId, title: title, projectId: projectId
-            };
-            const editedSection = dispatch(updatedSection(payload))
-            if (editedSection) {
-               await dispatch(getOneProject(projectId))
-            }
+        const payload = {
+            sectionId: sectionId, title: title, projectId: projectId
+        };
+        const editedSection = dispatch(updatedSection(payload))
+        if (editedSection) {
+            await dispatch(getOneProject(projectId))
+        }
 
     }
 
@@ -89,23 +89,7 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
     const handleKeyDown = async (e) => {
         if (e.key === 'Enter') {
             e.target.blur();
-            //     e.preventDefault();
-            //     // console.log(`current input value...... ${e.target.value}`);
-            //     let title = e.target.value;
-            //     if (title === "") {
-            //         title = "Untitled Section";
-            //         setSectionTitle(title);
-            //     }
 
-            //     const payload = {
-            //         sectionId: sectionId, title: title, projectId: projectId
-            //     };
-            //     const editedSection = dispatch(updatedSection(payload))
-            //     if (editedSection) {
-            //         await dispatch(getOneProject(projectId))
-            //     }
-            //     setErrors([])
-            // }
         }
     }
 
@@ -258,15 +242,22 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
                 )
                 : (
                     <>
-                        <input className='read-section-input'
-                            type='text'
-                            value={sectionTitle}
-                            onChange={(e) => handleChange(e)}
-                            readOnly
-                        />
-                        <div className='add-task-in-section-icon' onClick={onAddBtnClick}>
-                            <i className="fa-duotone fa-plus"></i>
+                        <div className='read-section-input'>
+                            <input
+                                type='text'
+                                value={sectionTitle}
+                                onChange={(e) => handleChange(e)}
+                                readOnly
+                            />
+                            <div className='setting-add-task'>
+                            <div className='add-task-in-section-icon' onClick={onAddBtnClick}>
+                                <i className="fa-regular fa-plus"></i>
+                                <span id='c-info-title'>Add a task in this section</span>
+                            </div>
+                            </div>
+
                         </div>
+
 
                     </>
 

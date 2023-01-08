@@ -1,5 +1,5 @@
-.sinup-page{
-    position: fixed;
+.signup-page{
+    /* position: fixed; */
     overflow-y: auto;
     margin: 0;
     min-height:1000px;
@@ -8,24 +8,27 @@
     width: 100%;
     display:flex;
     flex-direction:row;
-    padding-left: 5vw;
-    padding-right: 5vw;
-
+    /* padding-left: 5vw;
+    padding-right: 5vw; */
+    padding-left: 1vw;
+    padding-right:1vw;
     align-items:center;
+    /* overflow-y: auto; */
 
     background-color: rgb(247,248,248);
 }
 .left-img2 img{
     width: 100%;
     object-fit:cover;
-     height: 680px;
+     height: 900px;
      border-radius: 8px;
+     box-shadow: rgba(0,0,0,.2) 0px 0px 15px;
 }
 .left-img2{
-    top:5vh;
+    /* top:5vh; */
     position: absolute;
     height: fit-content;
-    min-height: 680px;
+    min-height: 900px;
     width: 48%;
     margin-left: 2vw;
 }
@@ -34,17 +37,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: -10px;
     padding-top:20px;
     padding-bottom:30px;
     padding-left:20px;
     padding-right:20px;
-
+    /* overflow-y: auto; */
     margin-left:58vw;
     position: absolute;
     /* right:10vw; */
-    top:5vh;
+    /* top:5vh; */
     height: fit-content;
-    min-height: 650px;
+    min-height: 845px;
     min-width: 35vw;
     width: 35%;
     border-radius: 8px;
@@ -53,22 +57,22 @@
 }
 
 .seprate-line-login2{
-    margin-left:54vw;
+    margin-left:54.5vw;
     position: absolute;
     /* right:10vw; */
-    top:5vh;
+    /* top:5vh; */
     width: 1px;
-    height: 680px;
+    height: 900px;
     background-color: rgba(111,111,111,0.2);
 
 
 }
 
 .form-title{
-    margin-top: -10px;
-    font-size: 30px;
+    /* margin-top: -10px; */
+    font-size: 40px;
     font-weight: 400;
-    margin-bottom: 18px;
+    margin-bottom: 30px;
 }
 .signUp-input{
     margin-top: 8px;
@@ -77,11 +81,11 @@
     align-items: flex-start;
 
     margin-bottom: 10px;
-    gap:5px;
+    gap:10px;
 }
 .s-u-font{
     color: rgb(56,57,58);
-    font-size: 18px;
+    font-size: 20px;
 }
 .s-input{
 
@@ -90,14 +94,14 @@
     border-radius: 5px;
     color: rgb(0,0,0);
     width: 30vw;
-    height: 40px;
-    font-size: 16px;
+    height: 50px;
+    font-size: 20px;
 }
 .signUp-page-logo{
     display: flex;
     flex-direction: row;
     gap:20px;
-    font-size: 25px;
+    font-size: 30px;
     font-weight: 600;
     margin-bottom: 20px;
     margin-top: 10px;
@@ -106,13 +110,13 @@
 }
 
 .signup-button button{
-    margin-top: 20px;
+    margin-top: 30px;
     margin-bottom: 20px;
 
     display: block;
-    width: 120px;
+    width: 150px;
     height: 40px;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
     padding:5px;
     border-radius: 5px;
@@ -123,6 +127,7 @@
 .link-login{
     margin-left:220px;
     margin-top: -50px;
+    font-size: 22px;
 }
 
 
@@ -141,9 +146,9 @@
     align-items:flex-start;
     height: 20px;
     width: 100%;
-    font-size: 12px;
+    font-size: 13px;
     color: rgb(240, 106, 106);
     font-weight: 500;
-    margin-top: -25px;
-    margin-bottom: 38px;
+    margin-top: -35px;
+    margin-bottom: 60px;
 }

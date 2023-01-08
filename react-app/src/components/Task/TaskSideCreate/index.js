@@ -227,7 +227,7 @@ const TaskSideCreate = ({ show, assignee, setAssignee, defaultValue, setDefaultV
         } else {
             setPriority("---");
         }
-        if (task.priority === "Null") {
+        if (task.priority === "---") {
             setSelectPriority("p-1")
         } else if (task.priority === "Low") {
             setSelectPriority("p-2")
@@ -241,7 +241,7 @@ const TaskSideCreate = ({ show, assignee, setAssignee, defaultValue, setDefaultV
         } else {
             setStatus("---");
         }
-        if (task.status === "Null") {
+        if (task.status === "---") {
             setSelectStatus("s-1")
         } else if (task.status === "On Track") {
             setSelectStatus("s-2")
@@ -350,7 +350,7 @@ const TaskSideCreate = ({ show, assignee, setAssignee, defaultValue, setDefaultV
         <>
 
             {taskSettingUser &&
-                (<div>
+                (<div className={taskSideClass}>
                     <div className='close-s-div' onClick={closeDiv}>
                         <span id="tip-text">Close details</span>
                         <span className='icon-exit'>
@@ -469,7 +469,7 @@ const TaskSideCreate = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                             <div className="s-p-title">Priority :</div>
                             <div className="s-p-content">
                                 <select value={priority} onChange={handlePriorityChange} className={selectPriority}>
-                                    <option className="p-1" value="Null">---</option>
+                                    <option className="p-1" value="---">---</option>
                                     <option className="p-2" value="Low">Low</option>
                                     <option className="p-3" value="Medium">Medium</option>
                                     <option className="p-4" value="High">High</option>
@@ -480,7 +480,7 @@ const TaskSideCreate = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                             <div className="s-s-title">Status : </div>
                             <div className="s-s-labels">
                                 <select value={status} onChange={handleStatusChange} className={selectStatus}>
-                                    <option className="s-1" value="Null">---</option>
+                                    <option className="s-1" value="---">---</option>
                                     <option className="s-2" value="On Track">On Track</option>
                                     <option className="s-3" value="At Risk">At Risk</option>
                                     <option className="s-4" value="Off Track">Off Track</option>

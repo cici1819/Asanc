@@ -128,8 +128,8 @@ const TaskCreate = ({ show, section, sessionUser, project, setShowNewTask }) => 
             assigneeId: "null",
             ownerId,
             sectionId,
-            status: status,
-            priority: priority,
+            status: "null",
+            priority: "null",
             projectId,
             completed,
             end_date: new Date().toISOString().split('T')[0],
@@ -152,38 +152,17 @@ const TaskCreate = ({ show, section, sessionUser, project, setShowNewTask }) => 
 
 
     const handleKeyDown = async (e) => {
+
         if (e.key === 'Enter') {
-            e.preventDefault()
-            let taskTitle = e.target.value;
-            const payload = {
-                title: taskTitle,
-                description,
-                assigneeId: "null",
-                ownerId,
-                sectionId,
-                status: status,
-                priority: priority,
-                projectId,
-                completed,
-                end_date: new Date().toISOString().split('T')[0],
-            };
+            e.target.blur();
 
-            await dispatch(taskAction.thunkCreateTask(payload)).then(
-                res => {
-                    setNewTask(res)
-                    // setCurrentTaskId(res.id)
-                }
-            );
-
-            taskId = newTask?.id
-            // console.log("##################***********************,newTask res ", newTask)
-            setErrors([])
-            setShowNewTask(false)
         }
 
-
-
     }
+
+
+
+
 
 
     const handlePriorityChange = (e) => {
@@ -375,7 +354,7 @@ const TaskCreate = ({ show, section, sessionUser, project, setShowNewTask }) => 
             } else {
                 setPriority("---");
             }
-            if (task.priority === "Null") {
+            if (task.priority ===  "---") {
                 setSelectPriority("p-1")
             } else if (task.priority === "Low") {
                 setSelectPriority("p-2")
@@ -389,7 +368,7 @@ const TaskCreate = ({ show, section, sessionUser, project, setShowNewTask }) => 
             } else {
                 setStatus("---");
             }
-            if (task.status === "Null") {
+            if (task.status === '---') {
                 setSelectStatus("s-1")
             } else if (task.status === "On Track") {
                 setSelectStatus("s-2")
@@ -623,7 +602,7 @@ const TaskCreate = ({ show, section, sessionUser, project, setShowNewTask }) => 
                     <p className="p-title">Priority</p>
                     <div className='priority-select'>
                         <select value={priority} onChange={handlePriorityChange} id="mySelect" className={selectPriority}>
-                            <option className="p-1" value="Null">---</option>
+                            <option className="p-1" value="---">---</option>
                             <option className="p-2" value="Low">Low</option>
                             <option className="p-3" value="Medium">Medium</option>
                             <option className="p-4" value="High">High</option>
@@ -634,7 +613,7 @@ const TaskCreate = ({ show, section, sessionUser, project, setShowNewTask }) => 
                     <p className="s-title">Status</p>
                     <div className="s-labels">
                         <select value={status} onChange={handleStatusChange} id="mySelect" className={selectStatus}>
-                            <option className="s-1" value="Null">---</option>
+                            <option className="s-1" value="---">---</option>
                             <option className="s-2" value="On Track">On Track</option>
                             <option className="s-3" value="At Risk">At Risk</option>
                             <option className="s-4" value="Off Track">Off Track</option>

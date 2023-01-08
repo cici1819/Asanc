@@ -16,8 +16,8 @@ def valid_description(form, field):
 class TaskForm(FlaskForm):
   title = StringField('Title', validators=[DataRequired(),valid_title])
   description = StringField('Description', validators=[valid_description])
-  status = SelectField("Status",choices=["Null","On Track","Off Track","At Risk","",'---'])
-  priority = SelectField("Priority",choices=["Null","Low","Medium","High","",'---'])
+  status = SelectField("Status",choices=["Null","On Track","Off Track","At Risk","",'---',"null"])
+  priority = SelectField("Priority",choices=["Null","Low","Medium","High","",'---',"null"])
   projectId = IntegerField("ProjectId")
   sectionId = IntegerField("SectionId",validators=[DataRequired()])
   # assigneeId=IntegerField("AssigneeId")

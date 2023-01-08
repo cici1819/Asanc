@@ -28,7 +28,7 @@ function CurrentUserInfo({ currentUser }) {
 
     return (
         <>
-            <div>
+            <div className="sideBar-user-logo">
                 <img src={userLogo} style={{ backgroundColor: currentUser?.avatar_color }} onClick={openUser} />
             </div>
             {showUser && <div className='single-member-container' >

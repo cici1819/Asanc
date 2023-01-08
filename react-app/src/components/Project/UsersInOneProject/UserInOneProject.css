@@ -1,5 +1,6 @@
 .single-member-container {
     overflow: auto;
+    word-break: break-all;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -7,6 +8,7 @@
     position: absolute;
     background-color: white;
     min-width: 180px;
+    padding-left: 5px;
     z-index: 1;
     top: 45px;
     width: 220px;
@@ -25,8 +27,36 @@
 }
 
 
+.single-member-container::-webkit-scrollbar-thumb {
+    /* Foreground */
 
+    background:rgba(248,234,234,0.3);
+    border-radius: 8px;
 
+	border: 15px solid transparent;
+    background-clip: padding-box;
+	-webkit-box-shadow: inset005pxrgba(0,0,0);
+
+}
+
+.single-member-container::-webkit-scrollbar-track {
+    /* Background */
+    background:white;
+
+    /* margin-block: 1px; */
+    border-top: 1px solid rgb(30,31,33,);
+}
+.single-member-container::-webkit-scrollbar{
+    width: 1px;
+    size:1px;
+    height:1px;
+    background-color: rgba(30,31,33, 0.3);
+  }
+
+.single-member-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(30,31,33, 0.3);
+    border-radius: 10px;
+  }
 
 
 .c-user-profile {
@@ -56,11 +86,13 @@
 }
 
 .user-logo{
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
 }
-
+.sideBar-user-logo:hover{
+ cursor: pointer;
+}
 .members-list-title{
     font-size: 20px;
     /* margin-left: 10px; */

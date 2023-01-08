@@ -284,13 +284,19 @@ margin-bottom: 20px;
 }
 
 .about-links{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     /* position: absolute;
     bottom:10vh; */
+    gap:5px;
     margin-left: 10px;
+    margin-bottom: 10px;
 
 }
 .about-title{
     font-size: 18px;
+
 }
 .logo-gitHub{
     margin-top: 10px;
@@ -303,5 +309,5 @@ margin-bottom: 20px;
 .linkedin-link2{
     /* margin-left: 200px; */
     margin-left: 140px;
-    margin-top: -43px;
+    margin-top: -48px;
 }

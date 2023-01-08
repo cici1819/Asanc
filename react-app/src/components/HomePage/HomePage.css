@@ -42,12 +42,14 @@
     min-height: 100vh;
     height: 100%;
     /* position: fixed; */
-    overflow-y: auto;
-    overflow-x: hidden;
+    /* overflow: auto; */
+
     background-color: white;
     /* overflow-y: auto; */
     /* overflow-x: hidden; */
 }
+
+
 .title-closed {
     display: flex;
     flex-direction: column;
