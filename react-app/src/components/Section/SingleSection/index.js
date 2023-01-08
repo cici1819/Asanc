@@ -20,6 +20,8 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
     const settingClass = show ? "section-setting-dropMenu delete-ele" : "section-setting-dropMenu-closed delete-ele"
     const [style, changeStyle] = useState("setting-add-task")
     // const addTaskRef = useRef(null)
+    const creatTaskClass = show ? "show-create-task" : "closed-create-task"
+    const taskCreateRef = useRef();
     const [inputStyle, changeInputStyle] = useState("edit-section-input")
     const ref = useRef(null)
 
@@ -44,7 +46,7 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
 
         const closeMenu = (e) => {
 
-            if (e.target.className.includes('delete-ele')) return;
+            if (e.target.className && e.target.className.includes !== "undefined" && (e.target?.className?.includes('delete-ele'))) return;
             setShowMenu(false);
             changeStyle("setting-add-task")
             changeInputStyle("edit-section-input")
@@ -130,9 +132,30 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
     //     );
 
     //////////////////////////////////////////////////
+    const handleClickTask = e => {
+        // console.log("#####################,TaskDetail e", e)
+        // if (target.className && typeof target.className.includes !== 'undefined' &&(target.className.includes('kpxc') || target.className.includes('ui-helper')))
+        if (taskCreateRef?.current?.contains(e.target)) {
+            return;
+        } else if (e.path[0].className && e.path[0].className.includes !== 'undefined' && (e.path[0].className.includes("css"))) {
+            return;
+        } else if (e.path[1].className && e.path[1].className.includes !== 'undefined' && (e.path[1].className.includes("css"))) {
+            return;
+        } else {
+            setShowNewTask(false)
+        }
 
+    }
 
+    useEffect(() => {
 
+        if (showNewTask) {
+            document.addEventListener("click", handleClickTask);
+            return () => {
+                document.removeEventListener("click", handleClickTask);
+            };
+        }
+    }, [showNewTask]);
 
 
 
@@ -191,7 +214,17 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
                                 <span id='s-info-title'>Section setting</span>
                             </div>
                         </div>
+                        {/* <div className={style} id="grabable">
+                        <div className="open-section-setting" onClick={openMenu}>
+                                <i className="fa-solid fa-ellipsis delete-ele"></i>
+                                <span id='s-info-title'>Section setting</span>
+                            </div>
+                            <div className='add-task-in-section-icon' onClick={onAddBtnClick}  >
+                                <i className="fa-regular fa-plus" ></i>
+                                <span id='c-info-title'>Add a task in this section</span>
+                            </div>
 
+                        </div> */}
 
 
                     </div>
@@ -253,10 +286,10 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
                                 readOnly
                             />
                             <div className='setting-add-task'>
-                            <div className='add-task-in-section-icon' onClick={onAddBtnClick}>
-                                <i className="fa-regular fa-plus"></i>
-                                <span id='c-info-title'>Add a task in this section</span>
-                            </div>
+                                <div className='add-task-in-section-icon' onClick={onAddBtnClick}>
+                                    <i className="fa-regular fa-plus"></i>
+                                    <span id='c-info-title'>Add a task in this section</span>
+                                </div>
                             </div>
 
                         </div>
@@ -266,9 +299,14 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
 
 
                 )}
-            <div className='tasks-in-section'>
-                <TaskInSection show={show} setShowNewTask={setShowNewTask} section={section} project={project} sessionUser={sessionUser} sessionUserIsOwner={sessionUserIsOwner} showNewTask={showNewTask} />
+            <div ref={taskCreateRef} className={creatTaskClass}>
+                {showNewTask && <TaskCreate show={show} project={project} section={section} sessionUser={sessionUser} setShowNewTask={setShowNewTask} showNewTask={showNewTask} />}
             </div>
+
+            <div className='tasks-in-section'>
+                <TaskInSection show={show} section={section} project={project} sessionUser={sessionUser} sessionUserIsOwner={sessionUserIsOwner}  />
+            </div>
+
 
 
         </>
