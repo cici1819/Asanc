@@ -19,6 +19,7 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
     const [showNewTask, setShowNewTask] = useState(false)
     const settingClass = show ? "section-setting-dropMenu delete-ele" : "section-setting-dropMenu-closed delete-ele"
     const [style, changeStyle] = useState("setting-add-task")
+    // const addTaskRef = useRef(null)
     const [inputStyle, changeInputStyle] = useState("edit-section-input")
     const ref = useRef(null)
 
@@ -145,6 +146,8 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
     // };
     const onAddBtnClick = (e) => {
         setShowNewTask(true);
+        // addSectionRef.current.focus()
+
         // setCreateNewTask(true)
     }
 
@@ -179,8 +182,8 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
                         />
 
                         <div className={style} id="grabable">
-                            <div className='add-task-in-section-icon' onClick={onAddBtnClick}>
-                                <i className="fa-regular fa-plus"></i>
+                            <div className='add-task-in-section-icon' onClick={onAddBtnClick}  >
+                                <i className="fa-regular fa-plus" ></i>
                                 <span id='c-info-title'>Add a task in this section</span>
                             </div>
                             <div className="open-section-setting" onClick={openMenu}>

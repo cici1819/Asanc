@@ -68,7 +68,7 @@ function ProjectCreate({ setShowModal }) {
                     setErrors(data)
                 };
             });
-            console.log("createdProject+++++++", createdProject)
+            // console.log("createdProject+++++++", createdProject)
             if (createdProject) {
                 setValidationErrors([]);
                 setErrors([]);

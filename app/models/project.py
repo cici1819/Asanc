@@ -13,7 +13,7 @@ class Project(db.Model):
     add_prefix_for_prod('users.id')), nullable=False)
     description = db.Column(db.String(255), nullable=False)
     color = db.Column(db.String(255),nullable=True)
-    icon = db.Column(db.String(255), default = "https://thumbnail.imgbin.com/18/11/8/business-essential-icon-project-icon-vkR5utvD_t.jpg",nullable=False)
+    icon = db.Column(db.String(255), default = "https://cdn-icons-png.flaticon.com/512/1087/1087840.png",nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.now())
 

@@ -14,7 +14,7 @@ function CurrentUserCollaborators() {
     const projects = useSelector(state => state.projects.allProjects);
     const projectsArr = Object.values(projects);
 
-    console.log(projectsArr, "***********projectsARR")
+    // console.log(projectsArr, "***********projectsARR")
     useEffect(() => {
         dispatch(getCurrUserProjects())
     }, [dispatch]);
@@ -27,7 +27,7 @@ function CurrentUserCollaborators() {
 
     let collaborators = [];
     let newUsersArr = projectsArr.map(project => project.users);
-    console.log(newUsersArr, "&&&&&&&&&&&***********UserARR")
+    // console.log(newUsersArr, "&&&&&&&&&&&***********UserARR")
 
     //  collaborators = [...newUsersArr]
 
@@ -45,7 +45,7 @@ function CurrentUserCollaborators() {
     const uniqueUsers = [...new Map(collaborators.map((m) => [m.id, m])).values()]
 
 
-    console.log(uniqueUsers, "cccccccccccccc,Collaborators")
+    // console.log(uniqueUsers, "cccccccccccccc,Collaborators")
 
     const uniqueColla = uniqueUsers.filter(user => user.id !== sessionUser.id)
 

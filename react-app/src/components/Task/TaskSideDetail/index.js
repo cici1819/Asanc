@@ -17,7 +17,7 @@ import './TaskSideDetail.css'
 
 const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultValue, task, taskId, users, section, sessionUser, project, setShowTaskSideDetail, showTaskSideDetail }) => {
     // console.log("*******************%%%%%%%%%%%%%%% task in sideBar", task)
-    console.log("showTaskDetail", showTaskSideDetail)
+    // console.log("showTaskDetail", showTaskSideDetail)
     // const [assignee, setAssingee] = useState(task?.assignee)
     // const [defaultValue, setDefaultValue] = useState({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
     // // const defaultAssiObj = users?.find(user => user?.id == task?.ownerId)

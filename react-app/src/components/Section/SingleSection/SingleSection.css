@@ -73,8 +73,8 @@
 
     display: flex;
     flex-direction: row;
-    /* margin-left: 26%; */
-    gap: 10px;
+     margin-left: 26%;
+     gap: 10px;
     font-size: 20px;
     min-width: fit-content;
     margin-left: 19.5%;
@@ -82,20 +82,34 @@
     height:100px;
     padding:30px;
     /* cursor: grab; */
-    opacity: 0;
+     /* opacity: 0; */
     margin-top: -75px;
+    /* background-color: black; */
 }
-
-
 .setting-add-task:hover {
-  cursor: grab;
+  /* cursor: grab; */
    opacity: 1;
    /* background-color: aqua; */
-
-
 }
 
-.setting-add-task2 {
+/* .add-task-in-section-icon2{
+    display: flex;
+    flex-direction: row;
+     margin-left: 26%;
+     gap: 10px;
+    font-size: 20px;
+    min-width: fit-content;
+    margin-left: 19.5%;
+    width: 80%;
+    height:100px;
+    padding:30px;
+    /* cursor: grab; */
+     /* opacity: 1;
+    margin-top: -75px;
+} */
+
+
+ .setting-add-task2 {
     display: flex;
     flex-direction: row;
     margin-left: 25.9%;
@@ -104,13 +118,12 @@
     min-width: fit-content;
     width: 75%;
     height: 98px;
-    /* opacity: 1; */
-    margin-top: -40px;
+    margin-top: -45px;
 }
 
 .setting-add-task2:hover {
-    cursor: grab;
-     /* opacity: 1; */
+    /* cursor: grab; */
+     opacity: 1;
 
 }
 /* .setting-add-task2 > #edit-section-input:focus {

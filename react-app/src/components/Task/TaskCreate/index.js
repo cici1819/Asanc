@@ -256,7 +256,7 @@ const TaskCreate = ({ show, section, sessionUser, project, setShowNewTask }) => 
 
         if (!newTask?.id) return
         const delayDispatch = setTimeout(async () => {
-            console.log(`############ update - task id**********`, newTask?.id);
+            // console.log(`############ update - task id**********`, newTask?.id);
             if (didMount.current) {
                 const payload = {
                     title: newTask?.title,
@@ -281,7 +281,7 @@ const TaskCreate = ({ show, section, sessionUser, project, setShowNewTask }) => 
                 // setTask(updatedTask)
 
                 // console.log("task+++++++++++++++", task)
-                console.log("!!!!!!!!!!!!!!!!!! res ", newTask)
+                // console.log("!!!!!!!!!!!!!!!!!! res ", newTask)
 
                 // if (task) {
                 //     taskId = task.id

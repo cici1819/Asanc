@@ -6,8 +6,8 @@ import SingleTask from "../TaskDetail";
 import TaskCreate from '../../Task/TaskCreate';
 // import tasks from "../../../store/taskReducer";
 
-function TaskInSection({ section, project, sessionUser, showNewTask, setShowNewTask,show }) {
-    console.log("*****************,section", section)
+function TaskInSection({section, project, sessionUser, showNewTask, setShowNewTask,show }) {
+    // console.log("*****************,section", section)
 
     // const [createNewTask, setCreateNewTask] = useState(false);
 
@@ -25,7 +25,7 @@ function TaskInSection({ section, project, sessionUser, showNewTask, setShowNewT
     const taskCreateRef = useRef();
     // let tasksArr = section?.tasks
 
-    console.log("#################,tasksArr", tasksArr)
+    // console.log("#################,tasksArr", tasksArr)
 
     // const [taskList, setTaskList] = useState([]);
     // const onAddBtnClick = event => {
@@ -45,7 +45,7 @@ function TaskInSection({ section, project, sessionUser, showNewTask, setShowNewT
 
 
     const handleClickTask = e => {
-        console.log("#####################,TaskDetail e", e)
+        // console.log("#####################,TaskDetail e", e)
         if (taskCreateRef.current?.contains(e.target)) {
             return;
         } else if (e.path[0].className.includes("css")) {

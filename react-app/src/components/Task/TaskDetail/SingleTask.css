@@ -23,7 +23,7 @@
 }
 .task-side-open:hover{
     opacity: 1;
-    cursor: grab;
+    /* cursor: grab; */
 }
 .task-side-open:hover span{
     cursor: pointer;

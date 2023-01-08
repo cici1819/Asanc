@@ -35,7 +35,7 @@ export const deleteOneSection = (id) => {
 //Thunk
 
 export const addSectionToProject = (data) => async (dispatch) => {
-    console.log("running^^^^^^^^^^ createOneSection thunk")
+    // console.log("running^^^^^^^^^^ createOneSection thunk")
     const { title ,projectId} = data
     const response = await fetch(`/api/sections/new`, {
         method: 'POST',
@@ -71,7 +71,7 @@ export const updatedSection = (data) => async (dispatch) => {
     })
     if (response.ok) {
         const editedSection = await response.json();
-        console.log('section!!!!!!!!!!!!', editedSection)
+        // console.log('section!!!!!!!!!!!!', editedSection)
         dispatch(editOneSection(editedSection));
         return editedSection;
     }
@@ -95,27 +95,27 @@ const sectionReducer = (state = {}, action) => {
     switch (action.type) {
 
         case LOAD_ONE_SECTION:
-            console.log("action!!!!!!!!", action)
+            // console.log("action!!!!!!!!", action)
             let sectionState = { ...state }
-            console.log("!!!!!!!!", action.section)
+            // console.log("!!!!!!!!", action.section)
             sectionState[action.section.id] = action.section
-            console.log("!!!!!!!!", sectionState)
+            // console.log("!!!!!!!!", sectionState)
             return sectionState
 
         case ADD_SECTION_TO_PROJECT:
-            console.log('!!!action', action)
+            // console.log('!!!action', action)
             return { ...state, [action.section.id]: { ...action.section } };
 
         case EDIT_SECTION:
-            console.log('action!!!!!!!!!!!!', action.section)
+            // console.log('action!!!!!!!!!!!!', action.section)
             return { ...state, [action.section.id]: { ...state[action.section.id], ...action.section } }
 
         case DELETE_SECTION:
             let newState = { ...state }
             // console.log('!!!action', action)
             delete newState[action.id]
-        
-            console.log("newState________",newState)
+
+            // console.log("newState________",newState)
             return newState
 
         default:

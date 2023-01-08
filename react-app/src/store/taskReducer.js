@@ -76,7 +76,7 @@ export const thunkGetOneTask = (taskId) => async (dispatch) => {
 
 
 export const thunkCreateTask = (data) => async (dispatch) => {
-    console.log("CREATE TASKS THUNK:", data)
+    // console.log("CREATE TASKS THUNK:", data)
     const { title, description, assigneeId, ownerId, sectionId, status, priority, projectId, end_date: dueDate, completed } = data
 
     try {
@@ -87,7 +87,7 @@ export const thunkCreateTask = (data) => async (dispatch) => {
             },
             body: JSON.stringify({ title, description, assigneeId, ownerId, sectionId, status, priority, projectId, end_date: dueDate, completed })
         })
-        console.log("CREATE TASK THUNK RESPONSE", response)
+        // console.log("CREATE TASK THUNK RESPONSE", response)
         if (response.ok) {
             const newTask = await response.json();
             dispatch(createOneTask(newTask));
@@ -101,7 +101,7 @@ export const thunkCreateTask = (data) => async (dispatch) => {
 
 export const thunkUpdateTask = (data) => async (dispatch) => {
     const { title, description, assigneeId, sectionId, status, priority, projectId, end_date: dueDate, completed, taskId } = data
-    console.log("thunkUpdateTask'''''''''", data)
+    // console.log("thunkUpdateTask'''''''''", data)
     try {
         const response = await fetch(`/api/tasks/${taskId}`, {
             method: "PUT",
@@ -112,11 +112,11 @@ export const thunkUpdateTask = (data) => async (dispatch) => {
 
         });
 
-        console.log("thunkupdateResponse",response)
+        // console.log("thunkupdateResponse",response)
         if (response.ok) {
             const updatedTask = await response.json();
             dispatch(updateOneTask(updatedTask));
-            console.log("QQQQQQQQQQQQQ", updatedTask)
+            // console.log("QQQQQQQQQQQQQ", updatedTask)
             return updatedTask
         }
 
@@ -126,11 +126,11 @@ export const thunkUpdateTask = (data) => async (dispatch) => {
 }
 
 export const thunkDeleteTask = (taskId) => async (dispatch) => {
-    console.log("DELETE Task THUNK running:", taskId)
+    // console.log("DELETE Task THUNK running:", taskId)
     const response = await fetch(`/api/tasks/${taskId}`, {
         method: "DELETE"
     })
-    console.log("DELETE TASKS Response:", response)
+    // console.log("DELETE TASKS Response:", response)
     if (response.ok) {
         dispatch(removeOneTask(taskId));
         return response

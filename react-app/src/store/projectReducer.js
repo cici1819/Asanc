@@ -36,11 +36,11 @@ const deleteProject = (projectId) => ({
 //Thunk
 
 export const getCurrUserProjects = () => async (dispatch) => {
-    console.log("running*******getCurrUserProjectsThunk")
+    // console.log("running*******getCurrUserProjectsThunk")
     const response = await fetch('/api/projects/current');
     if (response.ok) {
         const projects = await response.json();
-        console.log("current user projects Thunk", projects)
+        // console.log("current user projects Thunk", projects)
         dispatch(loadCurrUserProjects(projects))
         return projects
     }
@@ -48,11 +48,11 @@ export const getCurrUserProjects = () => async (dispatch) => {
 
 
 export const getOneProject = (projectId) => async (dispatch) => {
-    console.log("running$$$$$$$$$getOneProjectThunk")
-    console.log("Thunk projectId",projectId)
+    // console.log("running$$$$$$$$$getOneProjectThunk")
+    // console.log("Thunk projectId",projectId)
     const response = await fetch(`/api/projects/${projectId}`)
-    console.log("get one project thunk response",
-    response)
+    // console.log("get one project thunk response",
+    // response)
     if (response.ok) {
         const project = await response.json();
 
@@ -63,7 +63,7 @@ export const getOneProject = (projectId) => async (dispatch) => {
 
 
 export const createOneProject = (data) => async (dispatch) => {
-    console.log("running%%%%%%%%%% createOneProject thunk")
+    // console.log("running%%%%%%%%%% createOneProject thunk")
     const { title, icon, description } = data
     try {
         const response = await fetch('/api/projects/new', {
@@ -74,7 +74,7 @@ export const createOneProject = (data) => async (dispatch) => {
         if (response.ok) {
             const newProject = await response.json();
             dispatch(addProject(newProject))
-            console.log("create one project thunk response", newProject)
+            // console.log("create one project thunk response", newProject)
             return newProject
         }
     } catch (error) {
@@ -86,7 +86,7 @@ export const createOneProject = (data) => async (dispatch) => {
 
 export const editOneProject = (data) => async (dispatch) => {
     const { projectId, title, icon, description } = data;
-    console.log("running!!!!!!!!!editOneProject thunk")
+    // console.log("running!!!!!!!!!editOneProject thunk")
     try {
         const response = await fetch(`/api/projects/${projectId}`, {
             method: "PUT",
@@ -97,7 +97,7 @@ export const editOneProject = (data) => async (dispatch) => {
         if (response.ok) {
             const editedProject = await response.json();
             dispatch(editProject(editedProject));
-            console.log("Edit one project thunk response", editedProject)
+            // console.log("Edit one project thunk response", editedProject)
             return editedProject
         }
     } catch (error) {

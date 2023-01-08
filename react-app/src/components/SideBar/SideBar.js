@@ -15,7 +15,7 @@ import CurrentUserInfo from "../Project/UsersInOneProject/CurrentUserProfile";
 const SideBar = ({ show, toggle }) => {
     const dispatch = useDispatch();
     const currentUser = useSelector((state) => state.session.user)
-    console.log("!!!!!!!!!!!!!!", currentUser)
+    // console.log("!!!!!!!!!!!!!!", currentUser)
     const sidebarClass = show ? "sidebar-open" : "sidebar-closed"
     const projects = useSelector(state => state.sideBar);
     const projectsArr = Object.values(projects);

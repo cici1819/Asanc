@@ -9,11 +9,11 @@ const loadSideBarProjects = (projects) => ({
 
 
 export const getSideBarProjects = () => async (dispatch) => {
-    console.log("running*******sideBarProjectsThunk")
+    // console.log("running*******sideBarProjectsThunk")
     const response = await fetch('/api/projects/current');
     if (response.ok) {
         const projects = await response.json();
-        console.log("current sideBar projects Thunk", projects)
+        // console.log("current sideBar projects Thunk", projects)
         dispatch(loadSideBarProjects(projects))
         return projects
     }

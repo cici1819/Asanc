@@ -17,7 +17,7 @@ function CurrentUserProject() {
         dispatch(getCurrUserProjects())
     }, [dispatch]);
 
-    console.log('projects!!!!!!!!', projects)
+    // console.log('projects!!!!!!!!', projects)
 
 
     if (!projects || !projectsArr.length) {
