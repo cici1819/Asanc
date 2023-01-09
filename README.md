@@ -1,6 +1,6 @@
 ## Project 
 
-### [Asanc](https://cc-asanc.onrender.com) is a project management application that inspiration from Asana. Users can create projects, sections and tasks and organize work in one place for seamless collaboration.
+#### [Asanc](https://cc-asanc.onrender.com) is a project management application that inspiration from Asana. Users can create projects, sections and tasks and organize work in one place for seamless collaboration.
 
 ## Wiki 
 
