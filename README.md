@@ -35,8 +35,14 @@
 ### Sign Up Page
 <img src="https://github.com/cici1819/Asanc/blob/dev/react-app/src/img/signUp-page.png" alt="signup page">
 
-### Home Page (click the Hamburger toggle the  sideBar open or close) 
+### Home Page (click the Hamburger icon to toggle the  sideBar open or close) 
 #### Home Page (sideBar open)
 <img src="https://github.com/cici1819/Asanc/blob/dev/react-app/src/img/homePage.png" alt="homePage page">
+
 #### Home Page (sideBar Closed)
-<img src="https://github.com/cici1819/Asanc/blob/dev/react-app/src/img/homePage.png" alt="homePage page">
+<img src="https://github.com/cici1819/Asanc/blob/dev/react-app/src/img/homePage2.png" alt="homePage page">
+
+### Create Project （Click the sideBar plus icon or home page plus icon in current users projects container）
+
+<img src="https://github.com/cici1819/Asanc/blob/dev/react-app/src/img/creatHomePage.png" alt="create project page">
+<img src="https://github.com/cici1819/Asanc/blob/dev/react-app/src/img/creatHomePage.png" alt="create project page">
