@@ -29,7 +29,10 @@ const SignUpForm = () => {
       return setErrors(['Confirm Password field must be the same as the Password field']);
     }
     else if (firstName.length > 30 || lastName.length>30) {
-      return setErrors(['FirstName and lastName should less than 30'])
+      return setErrors(['FirstName and lastName should less than 30 characters'])
+    }
+    else if (username.length > 30) {
+      return setErrors(["Username should less than 30 characters"])
     }
   };
 

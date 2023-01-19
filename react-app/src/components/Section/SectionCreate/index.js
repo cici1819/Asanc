@@ -16,24 +16,25 @@ const SectionCreate = ({ projectId, setSectionList }) => {
     // }
     const handleKeyDown = async (e) => {
         if (e.key === 'Enter') {
-            e.preventDefault()
-            let title = e.target.value;
-            if (title === "") {
-                title = "Untitled Section";
-                setTitle(title);
-            }
+            // e.preventDefault()
+            // let title = e.target.value;
+            // if (title === "") {
+            //     title = "Untitled Section";
+            //     setTitle(title);
+            // }
 
-            const payload = {
-                title: title, projectId: projectId
-            };
-            const newSection = dispatch(addSectionToProject(payload))
-            if (newSection) {
-                await dispatch(getOneProject(projectId))
-            }
+            // const payload = {
+            //     title: title, projectId: projectId
+            // };
+            // const newSection = dispatch(addSectionToProject(payload))
+            // if (newSection) {
+            //     await dispatch(getOneProject(projectId))
+            // }
 
-            setErrors([])
-            setTitle("")
-            setSectionList([])
+            // setErrors([])
+            // setTitle("")
+            // setSectionList([])
+            e.target.blur();
         }
     };
 

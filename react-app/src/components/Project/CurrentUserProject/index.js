@@ -9,7 +9,7 @@ import './CurrentUserProject.css';
 
 function CurrentUserProject() {
     const dispatch = useDispatch();
-     const history = useHistory();
+    const history = useHistory();
     const sessionUser = useSelector(state => state.session.user);
     const projects = useSelector(state => state.projects.allProjects);
     const projectsArr = Object.values(projects);
@@ -23,7 +23,7 @@ function CurrentUserProject() {
     if (!projects || !projectsArr.length) {
         return (
             <div className="user-none-projects">
-                <h3> Sorry , {sessionUser.firstName},you do not have any projects at this time ,you can start with creating a new project! </h3>
+                <h3> Sorry, {sessionUser.firstName},you do not have any projects at this time,you can start with creating a new project! </h3>
             </div>)
     }
 
@@ -39,6 +39,7 @@ function CurrentUserProject() {
                     {projectsArr?.map((project) => {
 
                         return (
+
                             <div className="sigle-project-homepage-div" key={project?.id}>
 
                                 <div onClick={()=>history.push(`/home/${project?.id}/list`)}>

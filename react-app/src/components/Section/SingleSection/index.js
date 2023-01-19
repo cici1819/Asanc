@@ -10,7 +10,6 @@ import "./SingleSection.css"
 const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sessionUser }) => {
     const dispatch = useDispatch();
     const [sectionTitle, setSectionTitle] = useState(title);
-    const [timer, setTimer] = useState(null)
     const [errors, setErrors] = useState([]);
     const sectionId = section.id
     const projectId = project.id
@@ -19,9 +18,9 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
     const [showNewTask, setShowNewTask] = useState(false)
     const settingClass = show ? "section-setting-dropMenu delete-ele" : "section-setting-dropMenu-closed delete-ele"
     const [style, changeStyle] = useState("setting-add-task")
-    // const addTaskRef = useRef(null)
-    const creatTaskClass = show ? "show-create-task" : "closed-create-task"
-    const taskCreateRef = useRef();
+
+    // const creatTaskClass = show ? "show-create-task" : "closed-create-task"
+    // const taskCreateRef = useRef();
     const [inputStyle, changeInputStyle] = useState("edit-section-input")
     const ref = useRef(null)
 
@@ -30,11 +29,6 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
         if (showMenu) return;
         else {
             setShowMenu(true);
-            // if (style === "setting-add-task") {
-            //     changeStyle("setting-add-task2")
-            // } else if (style === "setting-add-task2") {
-            //     changeStyle("setting-add-task")
-            // }
             changeStyle("setting-add-task2")
             changeInputStyle("edit-section-input2")
 
@@ -132,30 +126,30 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
     //     );
 
     //////////////////////////////////////////////////
-    const handleClickTask = e => {
-        // console.log("#####################,TaskDetail e", e)
-        // if (target.className && typeof target.className.includes !== 'undefined' &&(target.className.includes('kpxc') || target.className.includes('ui-helper')))
-        if (taskCreateRef?.current?.contains(e.target)) {
-            return;
-        } else if (e.path[0].className && e.path[0].className.includes !== 'undefined' && (e.path[0].className.includes("css"))) {
-            return;
-        } else if (e.path[1].className && e.path[1].className.includes !== 'undefined' && (e.path[1].className.includes("css"))) {
-            return;
-        } else {
-            setShowNewTask(false)
-        }
+    // const handleClickTask = e => {
+    //     // console.log("#####################,TaskDetail e", e)
+    //     // if (target.className && typeof target.className.includes !== 'undefined' &&(target.className.includes('kpxc') || target.className.includes('ui-helper')))
+    //     if (taskCreateRef?.current?.contains(e.target)) {
+    //         return;
+    //     } else if (e.path[0].className && e.path[0].className.includes !== 'undefined' && (e.path[0].className.includes("css"))) {
+    //         return;
+    //     } else if (e.path[1].className && e.path[1].className.includes !== 'undefined' && (e.path[1].className.includes("css"))) {
+    //         return;
+    //     } else {
+    //         setShowNewTask(false)
+    //     }
 
-    }
+    // }
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        if (showNewTask) {
-            document.addEventListener("click", handleClickTask);
-            return () => {
-                document.removeEventListener("click", handleClickTask);
-            };
-        }
-    }, [showNewTask]);
+    //     if (showNewTask) {
+    //         document.addEventListener("click", handleClickTask);
+    //         return () => {
+    //             document.removeEventListener("click", handleClickTask);
+    //         };
+    //     }
+    // }, [showNewTask]);
 
 
 
@@ -299,12 +293,12 @@ const SingleSection = ({ show, title, sessionUserIsOwner, section, project, sess
 
 
                 )}
-            <div ref={taskCreateRef} className={creatTaskClass}>
+            {/* <div ref={taskCreateRef} className={creatTaskClass}>
                 {showNewTask && <TaskCreate show={show} project={project} section={section} sessionUser={sessionUser} setShowNewTask={setShowNewTask} showNewTask={showNewTask} />}
-            </div>
+            </div> */}
 
             <div className='tasks-in-section'>
-                <TaskInSection show={show} section={section} project={project} sessionUser={sessionUser} sessionUserIsOwner={sessionUserIsOwner}  />
+                <TaskInSection show={show} section={section} project={project} sessionUser={sessionUser} sessionUserIsOwner={sessionUserIsOwner} showNewTask={showNewTask} setShowNewTask={setShowNewTask} />
             </div>
 
 

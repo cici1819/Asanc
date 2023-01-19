@@ -3,11 +3,12 @@ import ProjectEditModal from "../Project/ProjectEditModal";
 import ProjectDeleteModal from "../Project/ProjectDeleteModal";
 import ProjectSetting from "../Project/ProjectSetting/ProjectSettingSelect";
 import SideBar from "../SideBar/SideBar";
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOneProject } from "../../store/projectReducer";
 import CurrentProjectUserInfo from "../Project/UsersInOneProject";
 import SectionListInProject from "../Section/SectionListInProject";
+import  FourOhFourPage from '../404Page/index';
 import './MainPage.css'
 function MainPage({ show, toggle }) {
     const [showProjectEditModal, setShowProjectEditModal] = useState(false)
@@ -15,12 +16,17 @@ function MainPage({ show, toggle }) {
     const { projectId } = useParams();
     const dispatch = useDispatch();
     const currentProject = useSelector(state => state.projects.singleProject)
+    const sessionUser = useSelector(state => state.session.user);
     const mainPageClass = show ? "mainPage-open" : "mainPage-closed"
     const mainPageTableClass = show ? "task-table-title" : "task-table-title-closed"
     const sectionListClass = show ? "mian-page-sectionList":"main-page-sectionList-closed"
     useEffect(() => {
         dispatch(getOneProject(projectId))
     }, [dispatch, projectId]);
+    const existedUser = currentProject?.users?.some(el=>el.id===sessionUser.id)
+    if (currentProject && !existedUser) {
+      return( <FourOhFourPage />)
+    }
 
     return (<>
         <div className="home-page-sideBar">

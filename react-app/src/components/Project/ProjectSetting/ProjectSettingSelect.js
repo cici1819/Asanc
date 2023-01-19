@@ -22,22 +22,7 @@ const ProjectSetting = ({ setShowProjectEditModal, setShowProjectDeleteModal, cu
         dispatch(getOneProject(projectId))
     }, [dispatch, projectId]);
 
-    // useEffect(() => {
-    //     const handleClick = () => {
-    //       dispatch(getOneProject(projectId));
-    //     };
-
-    //     const iconElement = document.querySelector('.mainPage-single-project-icon');
-    //     if (iconElement) {
-    //       iconElement.addEventListener('click', handleClick);
-    //     }
-
-    //     return () => {
-    //       if (iconElement) {
-    //         iconElement.removeEventListener('click', handleClick);
-    //       }
-    //     };
-    //   }, [dispatch, projectId]);
+ 
 
     const openMenu = () => {
         if (showMenu) return;

@@ -32,7 +32,7 @@ function SectionListInProject({ show }) {
         <SectionCreate  projectId={projectId} project={project} setSectionList={setSectionList} />
     </div >));
     };
-    //  sectionArr= sectionArr.push(sectionList)
+
 
 
 
@@ -64,7 +64,7 @@ function SectionListInProject({ show }) {
             {/* <div className="section-create-div">
                 {sessionUserIsOwner && <SectionCreate projectId={projectId} project={project} />}
             </div> */}
-            
+
             <div className="section-list-new">{sectionList}</div>
 
 

@@ -81,8 +81,8 @@
     width: 80%;
     height:100px;
     padding:30px;
-    /* cursor: grab; */
-     /* opacity: 0; */
+    cursor: grab;
+    opacity: 0;
     margin-top: -75px;
     /* background-color: black; */
 }
