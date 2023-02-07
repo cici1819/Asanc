@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField,DateField,BooleanField,SubmitField,IntegerField
+from wtforms import StringField, SelectField,DateField,BooleanField,SubmitField,IntegerField,TextAreaField
 from wtforms.validators import DataRequired, ValidationError
 from app.models import Task
 
@@ -20,6 +20,7 @@ class TaskForm(FlaskForm):
   priority = SelectField("Priority",choices=["Null","Low","Medium","High","",'---',"null"])
   projectId = IntegerField("ProjectId")
   sectionId = IntegerField("SectionId",validators=[DataRequired()])
+  attachment = TextAreaField('Url')
   # assigneeId=IntegerField("AssigneeId")
   # end_date = DateField("Due Date")
   completed = BooleanField("Completed")

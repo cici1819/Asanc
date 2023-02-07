@@ -77,65 +77,55 @@ export const thunkGetOneTask = (taskId) => async (dispatch) => {
 
 export const thunkCreateTask = (data) => async (dispatch) => {
     // console.log("CREATE TASKS THUNK:", data)
-    const { title, description, assigneeId, ownerId, sectionId, status, priority, projectId, end_date: dueDate, completed } = data
+    const { title, description, assigneeId, ownerId, sectionId, status, priority, projectId, end_date: dueDate, completed, attachment } = data
+        try {
+            const response = await fetch(`/api/tasks/new`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ title, description, assigneeId, ownerId, sectionId, status, priority, projectId, end_date: dueDate, completed, attachment })
+            })
+            // console.log("CREATE TASK THUNK RESPONSE", response)
+            if (response.ok) {
+                const newTask = await response.json();
+                dispatch(createOneTask(newTask));
+                return newTask
+            }
 
-    try {
-        const response = await fetch(`/api/tasks/new`, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ title, description, assigneeId, ownerId, sectionId, status, priority, projectId, end_date: dueDate, completed })
-        })
-        // console.log("CREATE TASK THUNK RESPONSE", response)
-        if (response.ok) {
-            const newTask = await response.json();
-            dispatch(createOneTask(newTask));
-            return newTask
+        } catch (error) {
+            throw error
         }
-
-    } catch (error) {
-        throw error
     }
-}
+
+
 
 export const thunkUpdateTask = (data) => async (dispatch) => {
-    const { title, description, assigneeId, sectionId, status, priority, projectId, end_date: dueDate, completed, taskId } = data
+    const { title, description, assigneeId, sectionId, status, priority, projectId, end_date: dueDate, completed, taskId, attachment } = data
     // console.log("thunkUpdateTask'''''''''", data)
-    try {
-        const response = await fetch(`/api/tasks/${taskId}`, {
-            method: "PUT",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ title, description, assigneeId, sectionId, status, priority, projectId, end_date: dueDate, completed })
+     try {
+            const response = await fetch(`/api/tasks/${taskId}`, {
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ title, description, assigneeId, sectionId, status, priority, projectId, end_date: dueDate, completed, attachment })
 
-        });
+            });
 
-        // console.log("thunkupdateResponse",response)
-        if (response.ok) {
-            const updatedTask = await response.json();
-            dispatch(updateOneTask(updatedTask));
-            // console.log("QQQQQQQQQQQQQ", updatedTask)
-            return updatedTask
+            // console.log("thunkupdateResponse",response)
+            if (response.ok) {
+                const updatedTask = await response.json();
+                dispatch(updateOneTask(updatedTask));
+                // console.log("QQQQQQQQQQQQQ", updatedTask)
+                return updatedTask
+            }
+
+        } catch (error) {
+            throw error
         }
-
-    } catch (error) {
-        throw error
     }
-}
 
-export const thunkDeleteTask = (taskId) => async (dispatch) => {
-    // console.log("DELETE Task THUNK running:", taskId)
-    const response = await fetch(`/api/tasks/${taskId}`, {
-        method: "DELETE"
-    })
-    // console.log("DELETE TASKS Response:", response)
-    if (response.ok) {
-        dispatch(removeOneTask(taskId));
-        return response
-    }
-}
 
 export const toggleCompleteTask = (taskId) => async () => {
     const response = await fetch(`/api/tasks/${taskId}/complete`, {

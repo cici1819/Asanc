@@ -4,6 +4,7 @@ from app.forms import ProjectForm
 import json,random
 from datetime import datetime
 from flask_login import current_user, login_user, logout_user, login_required
+from app.awsS3 import (upload_file_to_s3, allowed_file, get_unique_filename)
 
 today = datetime.today();
 
@@ -54,8 +55,10 @@ def current_projects():
 @login_required
 def single_project(project_id):
     project = Project.query.get(project_id);
-
-    return project.to_dict_tasks()
+    if project:
+       return project.to_dict_tasks()
+    else:
+       return{"error": "Project couldn't be found", "statusCode": 404}
 
 
 @project_routes.route('/new', methods=['POST'])
@@ -105,6 +108,9 @@ def edit_project(project_id):
 @login_required
 def delete_project(project_id):
     project = Project.query.get(project_id);
-    db.session.delete(project)
-    db.session.commit()
-    return {'Message':'Successfully deleted'}
+    if project:
+        db.session.delete(project)
+        db.session.commit()
+        return {'Message':'Successfully deleted'}
+    else:
+        return {"errors": "Project couldn't be found"}, 404
