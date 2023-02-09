@@ -20,15 +20,15 @@ class Attachment(db.Model):
     "Task",back_populates="attachment_t"
    )
 
-def to_dic(self):
-    attachment_dict = {
-        "id":self.id,
-        "ownerId":self.owner_id,
-        "taskId":self.task_id,
-        "url":self.url,
-        "created_at":str(self.created_at),
-        "updated_at":str(self.updated_at)
-    }
-    return attachment_dict
-def __repr__(self):
-    return f'<Attachment model: id={self.id},ownerId={self.owner_id},url={self.url},created_at={self.created_at},updated_at={self.updated_at}>'
+    def to_dic(self):
+        attachment_dict = {
+            "id":self.id,
+            "ownerId":self.owner_id,
+            "taskId":self.task_id,
+            "url":self.url,
+            "created_at":str(self.created_at),
+            "updated_at":str(self.updated_at)
+        }
+        return attachment_dict
+    def __repr__(self):
+        return f'<Attachment model: id={self.id},ownerId={self.owner_id},url={self.url},created_at={self.created_at},updated_at={self.updated_at}>'

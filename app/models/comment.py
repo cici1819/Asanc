@@ -20,15 +20,15 @@ class Comment(db.Model):
     "Task",back_populates="comment_t"
    )
 
-def to_dic(self):
-    comment_dict = {
-        "id":self.id,
-        "ownerId":self.owner_id,
-        "taskId":self.task_id,
-        "content":self.content,
-        "created_at":str(self.created_at),
-        "updated_at":str(self.updated_at)
-    }
-    return comment_dict
-def __repr__(self):
-    return f'<Comment model: id={self.id},ownerId={self.owner_id},taskId={self.task_id},content={self.content},created_at={self.created_at},updated_at={self.updated_at}>'
+    def to_dic(self):
+        comment_dict = {
+            "id":self.id,
+            "ownerId":self.owner_id,
+            "taskId":self.task_id,
+            "content":self.content,
+            "created_at":str(self.created_at),
+            "updated_at":str(self.updated_at)
+        }
+        return comment_dict
+    def __repr__(self):
+        return f'<Comment model: id={self.id},ownerId={self.owner_id},taskId={self.task_id},content={self.content},created_at={self.created_at},updated_at={self.updated_at}>'
