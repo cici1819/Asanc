@@ -25,9 +25,10 @@ class User(db.Model, UserMixin):
     task_owner_u = db.relationship(
         "Task", back_populates = "user_owner_t", primaryjoin='Task.owner_id==User.id',cascade='all, delete'
     )
-    attachment_owner_u = db.relationship("Attachment",back_populate = "user_owner_a",
+    attachment_owner_u = db.relationship("Attachment",back_populates="user_owner_a",
                                            cascade='all, delete')
-
+    comment_owner_u = db.relationship("Comment",back_populates="user_owner_c",
+                                           cascade='all, delete')
     task_assignee_u = db.relationship(
     "Task", back_populates="user_assignee_t",
     primaryjoin='Task.assignee_id==User.id',

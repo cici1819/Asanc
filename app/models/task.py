@@ -10,7 +10,6 @@ class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(30),default="New Task",nullable=False)
     description = db.Column(db.String(255))
-    # attachment = db.Column(db.String(2000))
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     assignee_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     project_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("projects.id")),nullable=False)
@@ -66,8 +65,8 @@ class Task(db.Model):
                 'lastName':self.user_assignee_t.last_name ,
                 'avatar_color':self.user_assignee_t.avatar_color,
             } if self.assignee_id else None,
-         "attachments":[attachment.to_dic() for attachment in self.attachment_t],
-         "comments":[comment.to_dic() for comment in self.comment_t]
+        "attachments":[attachment.to_dic() for attachment in self.attachment_t],
+        "comments":[comment.to_dic() for comment in self.comment_t]
         }
         return task_dict
 

@@ -1,14 +1,14 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
-class Comment(db.Modal):
+class Comment(db.Model):
     __tablename__ = 'comments'
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-    id = db.Column(db.Integer,primart_key=True)
+    id = db.Column(db.Integer,primary_key = True)
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     task_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("tasks.id")),nullable=False)
-    content = db.Column(db.String(3000),nullable=True)
+    content = db.Column(db.String(3000),nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.now())
 
@@ -17,7 +17,7 @@ class Comment(db.Modal):
     )
 
     task_c = db.relationship(
-    "Task",back_populates = "comment_t"
+    "Task",back_populates="comment_t"
    )
 
 def to_dic(self):

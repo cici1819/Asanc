@@ -1,11 +1,11 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
-class Attachment(db.Modal):
+class Attachment(db.Model):
     __tablename__ = 'attachments'
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-    id = db.Column(db.Integer,primart_key=True)
+    id = db.Column(db.Integer,primary_key = True)
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     task_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("tasks.id")),nullable=False)
     url = db.Column(db.String(1000),nullable=True)
@@ -17,7 +17,7 @@ class Attachment(db.Modal):
     )
 
     task_a = db.relationship(
-    "Task",back_populates = "attachment_t"
+    "Task",back_populates="attachment_t"
    )
 
 def to_dic(self):
