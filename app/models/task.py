@@ -10,7 +10,7 @@ class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(30),default="New Task",nullable=False)
     description = db.Column(db.String(255))
-    attachment = db.Column(db.String(2000))
+    # attachment = db.Column(db.String(2000))
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     assignee_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     project_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("projects.id")),nullable=False)
@@ -32,6 +32,7 @@ class Task(db.Model):
         primaryjoin='Task.assignee_id==User.id'
     )
 
+    attachment_t = db.relationship("Attachment",back_populates="task_a",cascade='all, delete')
 
     section_t = db.relationship(
         "Section",back_populates = "task_s"
@@ -40,14 +41,15 @@ class Task(db.Model):
     project_t = db.relationship (
         "Project",back_populates = "task_p"
     )
-
+    comment_t = db.relationship (
+        "Comment",back_populates = "task_c"
+    )
 
     def to_dict(self):
         task_dict =  {
         "id": self.id,
         "title": self.title,
         "description": self.description,
-        "attachment": self.attachment,
         "status": self.status,
         "priority": self.priority,
         "sectionId": self.section_id,
@@ -59,13 +61,15 @@ class Task(db.Model):
         "created_at": str(self.created_at),
         "updated_at": str(self.updated_at),
         'assignee': {
-                 "id":self.user_assignee_t.id,
+                "id":self.user_assignee_t.id,
                 'firstName': self.user_assignee_t.first_name,
                 'lastName':self.user_assignee_t.last_name ,
                 'avatar_color':self.user_assignee_t.avatar_color,
-            } if self.assignee_id else None
+            } if self.assignee_id else None,
+         "attachments":[attachment.to_dic() for attachment in self.attachment_t],
+         "comments":[comment.to_dic() for comment in self.comment_t]
         }
         return task_dict
 
     def __repr__(self):
-        return f'<Task model: id={self.id}, title={self.title}, description={self.description},attachment={self.attachment},status={self.status},priority={self.priority},sectionId={self.section_id},ownerId={self.owner_id},assigneeId={self.assignee_id},projectId={self.project_id},end_date={self.end_date},created_at={self.created_at},updated_at={self.updated_at}>'
+        return f'<Task model: id={self.id}, title={self.title}, description={self.description},status={self.status},priority={self.priority},sectionId={self.section_id},ownerId={self.owner_id},assigneeId={self.assignee_id},projectId={self.project_id},end_date={self.end_date},created_at={self.created_at},updated_at={self.updated_at}>'

@@ -6,13 +6,13 @@ import SingleTask from "../TaskDetail";
 import TaskCreate from '../../Task/TaskCreate';
 // import tasks from "../../../store/taskReducer";
 
-function TaskInSection({section, project, sessionUser, show,showNewTask,setShowNewTask }) {
+function TaskInSection({ section, project, sessionUser, show, showNewTask, setShowNewTask }) {
     // console.log("*****************,section", section)
 
     // const [createNewTask, setCreateNewTask] = useState(false);
 
     const creatTaskClass = show ? "show-create-task" : "closed-create-task"
-    const tasksInSectionClass = show ?"show-tasks-section2":"closed-tasks-section"
+    const tasksInSectionClass = show ? "show-tasks-section2" : "closed-tasks-section"
 
     // const [currentTaskId, setCurrentTaskId] = useState(-1);
     const users = project?.users
@@ -44,18 +44,29 @@ function TaskInSection({section, project, sessionUser, show,showNewTask,setShowN
     ///////////////////////////////////////////////////////
 
 
-   const handleClickTask = e => {
+    const handleClickTask = e => {
         // console.log("#####################,TaskDetail e", e)
         // if (target.className && typeof target.className.includes !== 'undefined' &&(target.className.includes('kpxc') || target.className.includes('ui-helper')))
         if (taskCreateRef?.current?.contains(e.target)) {
             return;
-        } else if (e.path[0].className && e.path[0].className.includes !== 'undefined' && (e.path[0].className.includes("css"))) {
+        } else if (e && e.target && e.target.className.includes !== 'undefined' && (e.target?.className.includes("css"))) {
             return;
-        } else if (e.path[1].className && e.path[1].className.includes !== 'undefined' && (e.path[1].className.includes("css"))) {
-            return;
-        } else {
+        }
+        // else if (e && e.path && e.path[1] && e.path[1]?.className && e.path[1]?.className.includes !== 'undefined' && (e.path[1]?.className.includes("css"))) {
+        //     return;
+        // }
+        else {
             setShowNewTask(false)
         }
+        // if (e && e.target && e.target.className && typeof e.target.className.includes !== 'undefined'
+        //     return;
+        //   } else if (e && e.path && e.path[0] && e.path[0].className && typeof e.path[0].className.includes !== 'undefined' && e.path[0].className.includes("css")) {
+        //     return;
+        //   } else if (e && e.path && e.path[1] && e.path[1].className && typeof e.path[1].className.includes !== 'undefined' && e.path[1].className.includes("css")) {
+        //     return;
+        //   } else {
+        //          setShowNewTask(false)
+        //     }
 
     }
 

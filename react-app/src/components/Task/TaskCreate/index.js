@@ -23,6 +23,8 @@ const TaskCreate = ({ show, section, sessionUser, project, setShowNewTask }) => 
     const taskDetailRef = useRef();
     const [taskTitle, setTaskTitle] = useState('');
     const [description, setDescription] = useState('');
+    // const [attachment, setAttachment] = useState(null);
+    // const [attachmentLoading,setAttachmentLoding] = useState(false)
     const [status, setStatus] = useState('');
     const [assigneeId, setAssigneeId] = useState('');
     const [assignee, setAssignee] = useState({ value: 0, label: "No assignee", color: "gray", img: userLogo });
@@ -125,6 +127,7 @@ const TaskCreate = ({ show, section, sessionUser, project, setShowNewTask }) => 
         const payload = {
             title: taskTitle,
             description,
+            // attachment,
             assigneeId: "null",
             ownerId,
             sectionId,
@@ -160,7 +163,9 @@ const TaskCreate = ({ show, section, sessionUser, project, setShowNewTask }) => 
 
     }
 
-
+    // const handleFileChange = async (e) => {
+    //     await setAttachment(e.target.files[0])
+    // }
 
 
 
@@ -261,6 +266,7 @@ const TaskCreate = ({ show, section, sessionUser, project, setShowNewTask }) => 
                 const payload = {
                     title: newTask?.title,
                     description,
+                    // attachment,
                     assigneeId: assigneeId,
                     taskId: newTask?.id,
                     ownerId,
@@ -307,7 +313,7 @@ const TaskCreate = ({ show, section, sessionUser, project, setShowNewTask }) => 
 
 
 
-    }, [taskTitle, description, assigneeId, priority, status, taskId, dueDate, assignee]);
+    }, [taskTitle, description,assigneeId, priority, status, taskId, dueDate, assignee]);
 
     useEffect(() => {
         // dispatch(taskAction.thunkGetOneTask(taskId))
@@ -324,6 +330,7 @@ const TaskCreate = ({ show, section, sessionUser, project, setShowNewTask }) => 
             // await dispatch(getOneProject(projectId))
             setTaskTitle(task?.title);
             setDescription(task?.description);
+            // setAttachment(task?.attachment);
             if (task?.assigneeId) {
                 setAssigneeId(task?.assigneeId);
             } else {

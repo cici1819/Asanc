@@ -293,8 +293,11 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
         const delayDispatch = setTimeout(async () => {
             if (didMount.current) {
                 const payload = {
-                    title: taskTitle, description, assigneeId, ownerId, sectionId, status: status, priority: priority, projectId, end_date: dueDate, completed, taskId
+                    title: taskTitle, description, assigneeId, ownerId, sectionId, status: status, priority: priority, projectId, end_date: dueDate, completed,taskId
                 };
+                // const data = {
+                //     title: taskTitle, description, assigneeId, ownerId, sectionId, status: status, priority: priority, projectId, end_date: dueDate, completed
+                // }
 
                 const res = await dispatch(taskAction.thunkUpdateTask(payload));
                 if (res) {
@@ -369,18 +372,32 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
 
 
     const handleClickTask = e => {
-        // console.log("#####################,TaskDetail e", e)
-        if (e.target.className && typeof e.target.className.includes!=='undefined' &&(e.target?.className?.includes('ref'))) {
+         console.log("#####################,TaskDetail e", e)
+        if (e && e.target && e.target?.className && typeof e.target?.className?.includes!=='undefined' &&(e.target?.className?.includes('ref'))) {
             return;
-        } else if (e.path[0].className && typeof e.path[0].className.includes !=='undefined' && (e.path[0].className.includes("css"))) {
-            return;
-        } else if (e.path[1].className && typeof e.path[1].className.includes !=='undefined'&&(e.path[1].className.includes("css"))) {
-            return;
-        } else if (e.path[0].className && typeof e.path[0].className.includes !=='undefined'&&(e.path[0].className.includes("abbr")) ){
-            return;
-        } else if (e.path[1].className && typeof e.path[1].className.includes !=='undefined'&&(e.path[1].className.includes("react-calendar"))) {
-            return;
+        } else if (e && e.target && e.target.className.includes("css")) {
+            return
+        } else if (e && e.target && e.target.className.includes("react-calendar")) {
+            return
+        } else if (e && e.target && e.target.className.includes("abbr")) {
+            return
+        } else if (e && e.target && e.target.type === "abbr") {
+            return
+        } else if (e && e.target && e.target.localName === "abbr") {
+            return
+        } else if (e && e.target && e.target?.offsetParent?.className.includes("ref")) {
+            return
         }
+
+        // else if (e.path[0]?.className && typeof e.path[0]?.className.includes !== 'undefined' && (e.path[0]?.className.includes("css"))) {
+        //     return;
+        // } else if (e.path[1]?.className && typeof e.path[1]?.className.includes !=='undefined'&&(e.path[1]?.className.includes("css"))) {
+        //     return;
+        // } else if (e.path[0]?.className && typeof e.path[0]?.className.includes !=='undefined'&&(e.path[0]?.className.includes("abbr")) ){
+        //     return;
+        // } else if (e.path[1]?.className && typeof e.path[1]?.className.includes !=='undefined'&&(e.path[1]?.className.includes("react-calendar"))) {
+        //     return;
+        // }
 
 
 

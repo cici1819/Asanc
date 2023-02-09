@@ -20,7 +20,7 @@ class TaskForm(FlaskForm):
   priority = SelectField("Priority",choices=["Null","Low","Medium","High","",'---',"null"])
   projectId = IntegerField("ProjectId")
   sectionId = IntegerField("SectionId",validators=[DataRequired()])
-  attachment = TextAreaField('Url')
+  # attachment = TextAreaField('Url')
   # assigneeId=IntegerField("AssigneeId")
   # end_date = DateField("Due Date")
   completed = BooleanField("Completed")
