@@ -10,6 +10,6 @@ def valid_content(form, field):
 
 
 class CommentForm(FlaskForm):
-  ownerId = IntegerField("OwnerId")
+  # ownerId = IntegerField("OwnerId")
   taskId = IntegerField("TaskId",validators=[DataRequired()])
   content = TextAreaField("Content",validators=[valid_content])

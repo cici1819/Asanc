@@ -293,7 +293,7 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
             if (didMount.current) {
 
                 const payload = {
-                    title: taskTitle, description, assigneeId, ownerId, sectionId, status: status, priority: priority, projectId, end_date: dueDate, completed,taskId
+                    title: taskTitle, description, assigneeId, ownerId, sectionId, status: status, priority: priority, projectId, end_date: dueDate, completed, taskId
                 };
 
                 const res = await dispatch(taskAction.thunkUpdateTask(payload));
@@ -359,12 +359,8 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
 
     const handleKeyDown = async (e) => {
         if (e.key === 'Enter') {
-
             e.target.blur();
-
-
         }
-
     }
 
 
@@ -407,6 +403,10 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                             </button>{'  '}
                         </div>
 
+                        <div className='s-owner-info ref'>
+                            <span className='s-o-logo ref'> <img className='s-o-i ref' src={userLogo} style={{ height: '30px', width: '30px', borderRadius: '50%', backgroundColor: taskOwnerObj.avatar_color }} /> </span>
+                            <span className='s-o-name ref'>{taskOwnerObj.firstName} {taskOwnerObj.lastName} created this task</span>
+                        </div>
                         <div>
                             <input className='s-task-title ref'
                                 id="s-task-t"
@@ -524,13 +524,12 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                                 onChange={handleDescriptionChange}
 
                             />
-                        </div>
+                    </div>
+                    {/* <div>
+                        <br></br>
+                    </div> */}
 
 
-                        <div className='s-owner-info ref'>
-                            <span className='s-o-logo ref'> <img className='s-o-i ref' src={userLogo} style={{ height: '30px', width: '30px', borderRadius: '50%', backgroundColor: taskOwnerObj.avatar_color }} /> </span>
-                            <span className='s-o-name ref'>{taskOwnerObj.firstName} {taskOwnerObj.lastName} created this task</span>
-                        </div>
                     </div>
 
                 </div>
@@ -570,6 +569,10 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                                 onChange={handleTitleChange}
                                 readOnly
                             />
+                        </div>
+                        <div className='s-owner-info ref'>
+                            <span className='s-o-logo ref'> <img className='s-o-i ref' src={userLogo} style={{ height: '30px', width: '30px', borderRadius: '50%', backgroundColor: taskOwnerObj?.avatar_color }} /> </span>
+                            <span className='s-o-name ref'>{taskOwnerObj?.firstName} {taskOwnerObj?.lastName} created this task</span>
                         </div>
                         <div className='assignee-s-d-r ref' >
 
@@ -618,10 +621,7 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                                 "No description"
                             )}
                         </div>
-                        <div className='s-owner-info ref'>
-                            <span className='s-o-logo ref'> <img className='s-o-i ref' src={userLogo} style={{ height: '30px', width: '30px', borderRadius: '50%', backgroundColor: taskOwnerObj?.avatar_color }} /> </span>
-                            <span className='s-o-name ref'>{taskOwnerObj?.firstName} {taskOwnerObj?.lastName} created this task</span>
-                        </div>
+
                     </div>
 
                 )}

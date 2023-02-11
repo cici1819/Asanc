@@ -37,7 +37,7 @@ def get_current_attachments():
         return {"errors": " Attachments couldn't be found"}, 404
 
 
-@attachment_routes.route('/tasks/<int:task_id>')
+@attachment_routes.route('/<int:task_id>')
 @login_required
 
 def task_attachments(task_id):

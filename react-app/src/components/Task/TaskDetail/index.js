@@ -432,7 +432,6 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
 
             {showTaskSideDetail && <div
                 className='task-side-div ref'>
-
                 <TaskSideDetail setShowTaskSideDetail={setShowTaskSideDetail} defaultValue={defaultValue} setDefaultValue={setDefaultValue} taskId={taskId} users={users} section={section} sessionUser={sessionUser} project={project} showTaskSideDetail={showTaskSideDetail} task={task} assignee={assignee} setAssignee={setAssignee} show={show} />
             </div>}
 

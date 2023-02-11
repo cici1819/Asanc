@@ -5,14 +5,17 @@ import projectReducer from './projectReducer';
 import sectionReducer from './sectionReducer';
 import taskReducer from './taskReducer';
 import sideBarReducer from './sideBarProjectReducer';
-
+import commentReducer from './commentReducer';
+import attachmentReducer from './attachmentReducer';
 
 const rootReducer = combineReducers({
   session,
   projects: projectReducer,
   section: sectionReducer,
   tasks: taskReducer,
-  sideBar: sideBarReducer
+  sideBar: sideBarReducer,
+  comments: commentReducer,
+  attachments:attachmentReducer
 
 });
 

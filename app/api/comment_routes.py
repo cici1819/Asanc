@@ -28,7 +28,7 @@ def get_one_comment(comment_id):
     else:
         return {"errors": "Comment couldn't be found"}, 404
 
-@comment_routes.route('/comments/<int:task_id>', methods=["GET"])
+@comment_routes.route('/<int:task_id>', methods=["GET"])
 @login_required
 def get_task_comments(task_id):
     id = task_id
