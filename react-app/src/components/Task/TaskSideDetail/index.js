@@ -12,6 +12,7 @@ import 'react-calendar/dist/Calendar.css';
 import TextareaAutosize from "react-textarea-autosize";
 import userLogo from "../../../img/user-logo.png"
 import './TaskSideDetail.css'
+import CommentListInTask from '../../Comment/commentListInTask';
 
 
 
@@ -525,9 +526,10 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
 
                             />
                     </div>
-                    {/* <div>
-                        <br></br>
-                    </div> */}
+                    <div className='commentsList ref'>
+                        <CommentListInTask taskId={taskId} users={users} />
+                    </div>
+
 
 
                     </div>
