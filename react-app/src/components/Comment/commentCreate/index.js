@@ -4,14 +4,16 @@ import * as commentActions from "../../../store/commentReducer";
 import { thunkGetOneTask } from "../../../store/taskReducer";
 import TextareaAutosize from "react-textarea-autosize";
 import './CommentCreate.css';
+import { compareSync } from "bcryptjs";
 
-const CommentCreate = ({ taskId, setCommentList }) => {
+const CommentCreate = ({ task, setCommentList }) => {
     const dispatch = useDispatch();
     const [content, setContent] = useState("");
     const sessionUser = useSelector((state) => state.session.user);
     // const [timer, setTimer] = useState(null)
     const [errors, setErrors] = useState([]);
-
+    // const taskId = task.id
+   let taskId = task.id
     const handleKeyDown = async (e) => {
         if (e.key === 'Enter') {
             e.target.blur();
@@ -34,12 +36,14 @@ const CommentCreate = ({ taskId, setCommentList }) => {
     const handleInputBlur = async (e) => {
         e.preventDefault()
         let content = e.target.value;
+        console.log("taskid$$$$$$$$$$$$$$$",task.id)
         const payload = {
-            content: content, taskId: taskId
+            content: content, taskId: task.id
         };
         const newComment= dispatch(commentActions.thunkAddCommentToTask(payload))
         if (newComment) {
             await dispatch(thunkGetOneTask(taskId))
+            // await dispatch(commentActions.thunkLoadTaskComments(taskId))
         }
         setErrors([])
         setContent("")

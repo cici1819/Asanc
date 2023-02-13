@@ -28,7 +28,7 @@ function CommentListInTask({ taskId ,users }) {
     const onAddBtnClick = event => {
         setCommentList(commentList.concat(
             <div className="comment-create-div">
-                <CommentCreate taskId={taskId} task={task} setCommentList={setCommentList} />
+                <CommentCreate  task={task} setCommentList={setCommentList} />
             </div >));
     };
 
@@ -50,7 +50,7 @@ function CommentListInTask({ taskId ,users }) {
                     <div className="single-comment-in-task ref" key={comment.id}>
                         <div className="single-comment-in-task-detail ref">
                             <div className="single-comment-in-project-title ref">
-                                <SingleComment commentId={comment.id} comment={comment} taskId={taskId} users={users} />
+                                <SingleComment commentId={comment.id} comment={comment} users={users} />
                             </div>
                         </div>
                     </div>

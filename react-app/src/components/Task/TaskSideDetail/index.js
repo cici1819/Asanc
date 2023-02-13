@@ -13,6 +13,7 @@ import TextareaAutosize from "react-textarea-autosize";
 import userLogo from "../../../img/user-logo.png"
 import './TaskSideDetail.css'
 import CommentListInTask from '../../Comment/commentListInTask';
+import UploadAttachment from '../../Attachment/attachmentUpload';
 
 
 
@@ -78,9 +79,6 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
         let color = assigneeObj?.avatar_color
         options.push({ value: value, label: label, color: color, img: userLogo })
     }
-
-    // defaultValue = { value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo }
-    // const defaultAssiValueObj = { value: defaultAssiObj?.id, label: `${defaultAssiObj?.firstName}  ` + defaultAssiObj?.lastName, color: defaultAssiObj?.avatar_color, img: userLogo }
 
     const { SingleValue, Option } = components;
     const IconSingleValue = (props) => (
@@ -171,17 +169,6 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
         setAssigneeId(assinId)
         setDefaultValue(e)
     }
-    // const payload = {
-    //     title: taskTitle, description, assigneeId: assinId, ownerId, sectionId, status, priority, projectId, end_date: dueDate, completed, taskId
-    // }
-    // dispatch(taskAction.thunkUpdateTask(payload))
-    // clearTimeout(timer)
-    // const newTimer = setTimeout(() => {
-    //     dispatch(getOneSection(sectionId))
-
-    // },500)
-
-    // setTimer(newTimer)
 
 
     const handleDueDateChange = (date) => {
@@ -368,267 +355,275 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
 
     return (
         <>
-
-            {taskSettingUser &&
-                (<div className={`${taskSideClass} ref`}>
-                    <div className='close-s-div' onClick={closeDiv}>
-                        <span id="tip-text">Close details</span>
-                        <span className='icon-exit'>
-                            <i className="fa-solid fa-right-to-bracket"></i>
-                        </span>
-
-                    </div>
-                    <div className='s-detail-content ref'>
-                        {errors.length > 0 && (<div>
-
-                            <ul className='t-s-error-list2 ref'>
-                                {errors.map((error, idx) => <li key={idx} className="t-s-e sdetail ref">{error}</li>)}
-                            </ul>
-
-                        </div>)}
-
-
-                        <div className="s-complete ref">
-                            <button
-                                onClick={toggleCompleted}
-                                className={
-                                    task.completed
-                                        ? "s-complete-button-completed ref"
-                                        : "s-complete-button ref"
-                                }>
-
-                                <i className="fa-solid fa-circle-check ref" id="s-check-icon">
-
-                                </i>
-                                {task.completed ? "Completed" : "Mark Complete"}
-                            </button>{'  '}
-                        </div>
-
-                        <div className='s-owner-info ref'>
-                            <span className='s-o-logo ref'> <img className='s-o-i ref' src={userLogo} style={{ height: '30px', width: '30px', borderRadius: '50%', backgroundColor: taskOwnerObj.avatar_color }} /> </span>
-                            <span className='s-o-name ref'>{taskOwnerObj.firstName} {taskOwnerObj.lastName} created this task</span>
-                        </div>
-                        <div>
-                            <input className='s-task-title ref'
-                                id="s-task-t"
-                                type='text'
-                                value={taskTitle}
-                                placeholder="Write a task name"
-                                onChange={handleTitleChange}
-                                onKeyDown={handleKeyDown}
-
-                            />
-                        </div>
-
-
-                        <div className='assignee-s-d ref'>
-                            <span className='s-s-title ref'>Assignee: </span>
-                            <Select className='s-assignee-select ref'
-
-                                styles={customStyles}
-                                components={{ SingleValue: IconSingleValue, Option: IconOption }}
-                                options={options}
-                                defaultValue={defaultValue}
-                                onChange={handleAssigneeChange}
-                                // value={options.filter(function (option) {
-                                //     return option.value === defaultValue.value;
-                                // })}
-                                value={defaultValue}
-                            />
-
-
-
-                        </div>
-
-
-                        <div className='s-date-setting ref'>
-                            <span className='s-dueDate-title ref'>Due date:</span>
-                            {showDateForm ? (
-                                <div
-                                    className="s-date-open ref"
-                                    ref={dateDiv}
-                                    onClick={() => setShowDateForm(true)}>
-
-                                    <div className="s-calendar-icon ref">
-                                        <i className="fa-light fa-calendar-day ref" id="s-canlendar-i"></i>
-                                    </div>
-                                    <div className='s-t-c-title ref'>  {dueDate ? dueDate : "No due date"}</div>
-
-                                    <div id="s-date-calendar" className='calender ref'>
-                                        <Calendar className="s-calendar ref"
-                                            value={properDate}
-                                            tileDisabled={tileDisabled}
-                                            onChange={(date) => {
-                                                setProperDate(date);
-                                                // setServerDate(date.toString());
-                                                handleDueDateChange(date)
-                                            }} />
-                                    </div>
-                                </div>
-                            ) : (
-                                <div
-                                    className="s-date-div ref"
-
-                                    onClick={() => setShowDateForm(true)}>
-
-                                    <div id="s-showDate-icon ref">
-                                        <i className="fa-regular fa-calendar-days ref"></i>
-                                    </div>
-                                    {dueDate ? (
-                                        <div className='s-t-dueDate ref'>
-                                            {dueDate}
-
-                                        </div>
-                                    ) : (
-                                        "No due date"
-                                    )}
-                                </div>
-                            )}
-                        </div>
-                        <div className=' t-s-p ref'>
-                            <span className='t-stp ref'>
-                                Projects:
-                            </span>
-                            <span><img className={`single-project-icon2 ref`} src={project?.icon} style={{ backgroundColor: project?.color }} alt='single-project-icon' onError={e => { e.currentTarget.src = "https://mingprojectawsbucket.s3.amazonaws.com/cici/ciciicon.png" }} /></span>
-                            <span className='t-p-t ref'>{project.title}</span>
-                        </div>
-
-                        <div className="s-priority ref">
-                            <div className="s-p-title ref">Priority:</div>
-                            <div className="s-p-content ref">
-                                <select value={priority} onChange={handlePriorityChange} className={`${selectPriority} ref `}>
-                                    <option className="p-1 ref" value="---">---</option>
-                                    <option className="p-2 ref" value="Low">Low</option>
-                                    <option className="p-3 ref" value="Medium">Medium</option>
-                                    <option className="p-4 ref" value="High">High</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div className="s-status ref">
-                            <div className="s-s-title ref">Status:</div>
-                            <div className="s-s-labels ref">
-                                <select value={status} onChange={handleStatusChange} className={`${selectStatus} ref`}>
-                                    <option className="s-1 ref" value="---">---</option>
-                                    <option className="s-2 ref" value="On Track">On Track</option>
-                                    <option className="s-3 ref" value="At Risk">At Risk</option>
-                                    <option className="s-4 ref" value="Off Track">Off Track</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div className="side-description ref">
-                            <div className="s-d-title ref">Description :</div>
-                            <TextareaAutosize className='edit-s-discription ref'
-                                // maxLength={256}
-                                type='text'
-                                value={description}
-                                placeholder="Description"
-                                onChange={handleDescriptionChange}
-
-                            />
-                    </div>
-                    <div className='commentsList ref'>
-                        <CommentListInTask taskId={taskId} users={users} />
-                    </div>
-
-
-
-                    </div>
-
-                </div>
-
-                )}
-
-
-
-
-            {
-                !taskSettingUser && (
-                    <div className={`${readSideClass} ref`}>
+            <div>
+                {taskSettingUser &&
+                    (<div className={`${taskSideClass} ref`}>
                         <div className='close-s-div' onClick={closeDiv}>
                             <span id="tip-text">Close details</span>
                             <span className='icon-exit'>
                                 <i className="fa-solid fa-right-to-bracket"></i>
                             </span>
+
                         </div>
-                        <div className="s-completed-2 ref">
-                            <span
-                                className={
-                                    task.completed
-                                        ? "s-complete-button-completed2 ref"
-                                        : "s-complete-button2 ref"
-                                }>
+                        <div className='s-detail-content ref'>
+                            {errors.length > 0 && (<div>
 
-                                <i className="fa-solid fa-circle-check ref" id="s-check-icon">
+                                <ul className='t-s-error-list2 ref'>
+                                    {errors.map((error, idx) => <li key={idx} className="t-s-e sdetail ref">{error}</li>)}
+                                </ul>
 
-                                </i>
-                                {/* {task.completed ? "Completed" : "Mark Complete"} */}
-                            </span>{'  '}
-                        </div>
-                        <div>
-                            <input className='s-r-task-input ref'
-                                type='text'
-                                value={taskTitle}
-                                onChange={handleTitleChange}
-                                readOnly
-                            />
-                        </div>
-                        <div className='s-owner-info ref'>
-                            <span className='s-o-logo ref'> <img className='s-o-i ref' src={userLogo} style={{ height: '30px', width: '30px', borderRadius: '50%', backgroundColor: taskOwnerObj?.avatar_color }} /> </span>
-                            <span className='s-o-name ref'>{taskOwnerObj?.firstName} {taskOwnerObj?.lastName} created this task</span>
-                        </div>
-                        <div className='assignee-s-d-r ref' >
+                            </div>)}
 
-                            <span className='s-s-title ref'>Assignee : </span>
-                            <MySelect className='s-r-select ref'
 
-                                styles={customStyles}
-                                components={{ SingleValue: IconSingleValue }}
-                                defaultValue={defaultValue}
-                                isReadOnly={true}
-                                isSearchable={false} />
-                        </div>
+                            <div className="s-complete ref">
+                                <button
+                                    onClick={toggleCompleted}
+                                    className={
+                                        task.completed
+                                            ? "s-complete-button-completed ref"
+                                            : "s-complete-button ref"
+                                    }>
 
-                        <div className='s-r-dueDate ref'>
-                            <span className='s-dueDate-title ref'>Due Date :</span>
-                            {dueDate ? (
-                                <div className='s-r-d-date ref'>
-                                    {dueDate}
+                                    <i className="fa-solid fa-circle-check ref" id="s-check-icon">
 
+                                    </i>
+                                    {task.completed ? "Completed" : "Mark Complete"}
+                                </button>{'  '}
+                            </div>
+
+                            <div className='s-owner-info ref'>
+                                <span className='s-o-logo ref'> <img className='s-o-i ref' src={userLogo} style={{ height: '30px', width: '30px', borderRadius: '50%', backgroundColor: taskOwnerObj.avatar_color }} /> </span>
+                                <span className='s-o-name ref'>{taskOwnerObj.firstName} {taskOwnerObj.lastName} created this task</span>
+                            </div>
+                            <div>
+                                <input className='s-task-title ref'
+                                    id="s-task-t"
+                                    type='text'
+                                    value={taskTitle}
+                                    placeholder="Write a task name"
+                                    onChange={handleTitleChange}
+                                    onKeyDown={handleKeyDown}
+
+                                />
+                            </div>
+
+
+                            <div className='assignee-s-d ref'>
+                                <span className='s-s-title ref'>Assignee: </span>
+                                <Select className='s-assignee-select ref'
+
+                                    styles={customStyles}
+                                    components={{ SingleValue: IconSingleValue, Option: IconOption }}
+                                    options={options}
+                                    defaultValue={defaultValue}
+                                    onChange={handleAssigneeChange}
+                                    // value={options.filter(function (option) {
+                                    //     return option.value === defaultValue.value;
+                                    // })}
+                                    value={defaultValue}
+                                />
+
+
+
+                            </div>
+
+
+                            <div className='s-date-setting ref'>
+                                <span className='s-dueDate-title ref'>Due date:</span>
+                                {showDateForm ? (
+                                    <div
+                                        className="s-date-open ref"
+                                        ref={dateDiv}
+                                        onClick={() => setShowDateForm(true)}>
+
+                                        <div className="s-calendar-icon ref">
+                                            <i className="fa-light fa-calendar-day ref" id="s-canlendar-i"></i>
+                                        </div>
+                                        <div className='s-t-c-title ref'>  {dueDate ? dueDate : "No due date"}</div>
+
+                                        <div id="s-date-calendar" className='calender ref'>
+                                            <Calendar className="s-calendar ref"
+                                                value={properDate}
+                                                tileDisabled={tileDisabled}
+                                                onChange={(date) => {
+                                                    setProperDate(date);
+                                                    // setServerDate(date.toString());
+                                                    handleDueDateChange(date)
+                                                }} />
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div
+                                        className="s-date-div ref"
+
+                                        onClick={() => setShowDateForm(true)}>
+
+                                        <div id="s-showDate-icon ref">
+                                            <i className="fa-regular fa-calendar-days ref"></i>
+                                        </div>
+                                        {dueDate ? (
+                                            <div className='s-t-dueDate ref'>
+                                                {dueDate}
+
+                                            </div>
+                                        ) : (
+                                            "No due date"
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                            <div className=' t-s-p ref'>
+                                <span className='t-stp ref'>
+                                    Projects:
+                                </span>
+                                <span><img className={`single-project-icon2 ref`} src={project?.icon} style={{ backgroundColor: project?.color }} alt='single-project-icon' onError={e => { e.currentTarget.src = "https://mingprojectawsbucket.s3.amazonaws.com/cici/ciciicon.png" }} /></span>
+                                <span className='t-p-t ref'>{project.title}</span>
+                            </div>
+
+                            <div className="s-priority ref">
+                                <div className="s-p-title ref">Priority:</div>
+                                <div className="s-p-content ref">
+                                    <select value={priority} onChange={handlePriorityChange} className={`${selectPriority} ref `}>
+                                        <option className="p-1 ref" value="---">---</option>
+                                        <option className="p-2 ref" value="Low">Low</option>
+                                        <option className="p-3 ref" value="Medium">Medium</option>
+                                        <option className="p-4 ref" value="High">High</option>
+                                    </select>
                                 </div>
-                            ) : (
-                                "No due date"
-                            )}
-                        </div>
-                        <div className=' t-s-p ref'>
-                            <span className='t-stp ref'>
-                                Projects:
-                            </span>
-                            <span><img className={`single-project-icon2 ref`} src={project?.icon} style={{ backgroundColor: project?.color }} alt='single-project-icon' onError={e => { e.currentTarget.src = "https://mingprojectawsbucket.s3.amazonaws.com/cici/ciciicon.png" }} /></span>
-                            <span className='t-p-t ref'>{project.title}</span>
-                        </div>
-                        <div className='s-r-p ref'>
-                            <span className='s-r-p-title ref'>Priority :</span>
-                            <span className={`${selectPriority} ref`} id="r-side-p">{priority}</span>
-                        </div>
-                        <div className='s-r-p ref'>
-                            <span className='ref'>Status :</span>
-                            <span className={`${selectStatus} ref`} id="r-side-s">{status}</span>
-                        </div>
-                        <div className='t-s-d ref'>
-                            <spans className="t-s-t ref"> Description : </spans>
-                            {description ? (
-                                <div className='t-s-d-c ref'><p className='d-p ref'>{description}</p></div>
+                            </div>
+                            <div className="s-status ref">
+                                <div className="s-s-title ref">Status:</div>
+                                <div className="s-s-labels ref">
+                                    <select value={status} onChange={handleStatusChange} className={`${selectStatus} ref`}>
+                                        <option className="s-1 ref" value="---">---</option>
+                                        <option className="s-2 ref" value="On Track">On Track</option>
+                                        <option className="s-3 ref" value="At Risk">At Risk</option>
+                                        <option className="s-4 ref" value="Off Track">Off Track</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="side-description ref">
+                                <div className="s-d-title ref">Description :</div>
+                                <TextareaAutosize className='edit-s-discription ref'
+                                    // maxLength={256}
+                                    type='text'
+                                    value={description}
+                                    placeholder="Description"
+                                    onChange={handleDescriptionChange}
 
-                            ) : (
-                                "No description"
-                            )}
+                                />
+                            </div>
+                            <div className='commentsList ref'>
+                                <CommentListInTask taskId={taskId} users={users} />
+                            </div>
+
+                            <div>
+                                <h3>Attachment:</h3>
+                                <UploadAttachment taskId={taskId} users={users} />
+                            </div>
+
+
                         </div>
 
                     </div>
 
-                )}
+                    )}
 
-        </>)
+
+                {
+                    !taskSettingUser && (
+                        <div className={`${readSideClass} ref`}>
+                            <div className='close-s-div' onClick={closeDiv}>
+                                <span id="tip-text">Close details</span>
+                                <span className='icon-exit'>
+                                    <i className="fa-solid fa-right-to-bracket"></i>
+                                </span>
+                            </div>
+                            <div className="s-completed-2 ref">
+                                <span
+                                    className={
+                                        task.completed
+                                            ? "s-complete-button-completed2 ref"
+                                            : "s-complete-button2 ref"
+                                    }>
+
+                                    <i className="fa-solid fa-circle-check ref" id="s-check-icon">
+
+                                    </i>
+                                    {/* {task.completed ? "Completed" : "Mark Complete"} */}
+                                </span>{'  '}
+                            </div>
+                            <div>
+                                <input className='s-r-task-input ref'
+                                    type='text'
+                                    value={taskTitle}
+                                    onChange={handleTitleChange}
+                                    readOnly
+                                />
+                            </div>
+                            <div className='s-owner-info ref'>
+                                <span className='s-o-logo ref'> <img className='s-o-i ref' src={userLogo} style={{ height: '30px', width: '30px', borderRadius: '50%', backgroundColor: taskOwnerObj?.avatar_color }} /> </span>
+                                <span className='s-o-name ref'>{taskOwnerObj?.firstName} {taskOwnerObj?.lastName} created this task</span>
+                            </div>
+                            <div className='assignee-s-d-r ref' >
+
+                                <span className='s-s-title ref'>Assignee : </span>
+                                <MySelect className='s-r-select ref'
+
+                                    styles={customStyles}
+                                    components={{ SingleValue: IconSingleValue }}
+                                    defaultValue={defaultValue}
+                                    isReadOnly={true}
+                                    isSearchable={false} />
+                            </div>
+
+                            <div className='s-r-dueDate ref'>
+                                <span className='s-dueDate-title ref'>Due Date :</span>
+                                {dueDate ? (
+                                    <div className='s-r-d-date ref'>
+                                        {dueDate}
+
+                                    </div>
+                                ) : (
+                                    "No due date"
+                                )}
+                            </div>
+                            <div className=' t-s-p ref'>
+                                <span className='t-stp ref'>
+                                    Projects:
+                                </span>
+                                <span><img className={`single-project-icon2 ref`} src={project?.icon} style={{ backgroundColor: project?.color }} alt='single-project-icon' onError={e => { e.currentTarget.src = "https://mingprojectawsbucket.s3.amazonaws.com/cici/ciciicon.png" }} /></span>
+                                <span className='t-p-t ref'>{project.title}</span>
+                            </div>
+                            <div className='s-r-p ref'>
+                                <span className='s-r-p-title ref'>Priority :</span>
+                                <span className={`${selectPriority} ref`} id="r-side-p">{priority}</span>
+                            </div>
+                            <div className='s-r-p ref'>
+                                <span className='ref'>Status :</span>
+                                <span className={`${selectStatus} ref`} id="r-side-s">{status}</span>
+                            </div>
+                            <div className='t-s-d ref'>
+                                <spans className="t-s-t ref"> Description : </spans>
+                                {description ? (
+                                    <div className='t-s-d-c ref'><p className='d-p ref'>{description}</p></div>
+
+                                ) : (
+                                    "No description"
+                                )}
+                            </div>
+                            <div className='commentsList ref'>
+                                <CommentListInTask taskId={taskId} users={users} />
+                            </div>
+
+                        </div>
+
+                    )}
+
+            </div>
+
+        </>
+    )
 
 
 }

@@ -6,14 +6,14 @@ import { thunkGetOneTask } from "../../../store/taskReducer"
 import TextareaAutosize from "react-textarea-autosize";
 import userLogo from "../../../img/user-logo.png"
 import "./SingleComment.css"
-const SingleComment = ({ commentId, comment, taskId, users }) => {
+const SingleComment = ({ commentId, comment, users }) => {
     const dispatch = useDispatch();
     const [content, setContet] = useState(comment?.content);
     const [errors, setErrors] = useState([]);
     const task = useSelector(state => state.tasks?.singleTask);
     const sessionUser = useSelector((state) => state.session.user);
     const ref = useRef(null)
-
+    let taskId = task.id
     const commentOwnerObj = users?.find(user => user?.id == comment?.ownerId)
 
     useEffect(() => {
@@ -28,7 +28,7 @@ const SingleComment = ({ commentId, comment, taskId, users }) => {
         e.preventDefault();
         // console.log(`current input value...... ${e.target.value}`);
         const payload = {
-            taskId, content, commentId
+           content, taskId,  commentId
         };
         const editedComment = dispatch(commentActions.thunkUpdatedComment(payload))
         if (editedComment) {

@@ -24,7 +24,7 @@ def validation_errors_to_error_messages(validation_errors):
 def get_one_comment(comment_id):
     comment = Comment.query.get(comment_id)
     if comment:
-        return comment.to_dict_task()
+        return comment.to_dict()
     else:
         return {"errors": "Comment couldn't be found"}, 404
 
@@ -34,7 +34,7 @@ def get_task_comments(task_id):
     id = task_id
     task_comments = Comment.query.filter_by(task_id ==id)
     if task_comments:
-        return json.dumps({"Comments": [comment.to_dict() for comment in task_comments]})
+        return json.dumps({"comments": [comment.to_dict() for comment in task_comments]})
     else:
         return {"errors": "Comment couldn't be found"}, 404
 
@@ -42,7 +42,7 @@ def get_task_comments(task_id):
 @comment_routes.route('/new', methods=["POST"])
 @login_required
 def add_comment():
-    print('here')
+    # print('here')
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -78,18 +78,19 @@ def delete_comment_by_id(comment_id):
 @comment_routes.route('/<int:comment_id>', methods=["PUT"])
 @login_required
 def update_comment(comment_id):
-    print('here comment')
+    # print('here comment')
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    comment = Comment.query.get(comment_id)
     if current_user.id == comment.owner_id:
         if form.validate_on_submit():
             data = form.data
-            comment = Comment.query.get(comment_id)
+            # comment = Comment.query.get(comment_id)
             if comment:
                 comment.content = data['content']
                 comment.taskId= data['taskId']
                 db.session.commit()
-                return json.dumps(comment.to_dict)
+                return json.dumps(comment.to_dict())
             else:
                 return {"errors":"comment not found"},404
         else:

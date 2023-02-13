@@ -5,6 +5,7 @@ def seed_attachments():
     attachment1 = Attachment(
         owner_id = 1,
         task_id = 1,
+        name="resume",
         url = "s3://cici-aa/cheng_cheng(cici)_resume .pdf",
         created_at= datetime.now(),
         updated_at= datetime.now(),

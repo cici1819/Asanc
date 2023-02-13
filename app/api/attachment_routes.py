@@ -32,7 +32,7 @@ def get_attachment(attachment_id):
 def get_current_attachments():
     attachments = Attachment.query.filter(current_user.id == Attachment.owner_id).all()
     if attachments:
-        return json.dumps({"Attachments": [attachment.to_dict() for attachment in attachments]})
+        return json.dumps({"attachments": [attachment.to_dict() for attachment in attachments]})
     else:
         return {"errors": " Attachments couldn't be found"}, 404
 
@@ -43,7 +43,7 @@ def get_current_attachments():
 def task_attachments(task_id):
     id = task_id
     task_attachments = Attachment.query.filter_by(task_id=id)
-    return json.dumps({"Attachments": [attachment.to_dict() for attachment in task_attachments]})
+    return json.dumps({"attachments": [attachment.to_dict() for attachment in task_attachments]})
 
 # AWS upload task attachment ------------------------------------------------------------------------
 # upload form url to aws, and return the aws url
@@ -64,6 +64,7 @@ def upload_attachment():
         attachment = Attachment(
             owner_id=current_user.id,
             task_id=form.data['taskId'],
+            name=form.data['name'],
             url=url,
             created_at = datetime.today(),
             updated_at = datetime.today(),
@@ -93,6 +94,7 @@ def edit_attachment(attachment_id):
                 deleted = delete_file_from_s3(attachment.url.split(".com/")[1])
                 url = upload["url"]
             attachment.task_id = form.data['taskId']
+            attachment.name = form.data['name']
             attachment.url = url
             db.session.add(attachment)
             db.session.commit()

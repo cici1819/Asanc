@@ -20,7 +20,7 @@ class Comment(db.Model):
     "Task",back_populates="comment_t"
    )
 
-    def to_dic(self):
+    def to_dict(self):
         comment_dict = {
             "id":self.id,
             "ownerId":self.owner_id,

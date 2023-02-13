@@ -55,10 +55,11 @@ export const thunkLoadAttachments = (taskId) => async (dispatch) => {
 
 export const thunkAddAttachmentToTask = (data) => async (dispatch) => {
     // console.log("running^^^^^^^^^^ createOneComment thunk")
-    const { taskId, attachment } = data
+    const { taskId, attachment,name } = data
     const formData = new FormData();
     // formData.append("ownerId", ownerId);
     formData.append("taskId", taskId);
+    formData.append("name", name);
     // formData.append("private", priv);
     formData.append("attachment", attachment);
     const response = await fetch("/api/attachments/new", {
@@ -81,11 +82,12 @@ export const thunkAddAttachmentToTask = (data) => async (dispatch) => {
 
 
 export const thunkUpdatedAttachment = (data) => async (dispatch) => {
-    const { taskId,attachmentId,newAttachment } = data;
+    const { taskId,attachmentId,newAttachment,name } = data;
     // console.log(`........thunkUpdatedAttachment....: ${sectionTitle}`);
     const formData = new FormData();
     formData.append("taskId", taskId);
     // formData.append("private", priv);
+    formData.append("name",name)
     formData.append("attachment", newAttachment);
     const response = await fetch(`/api/attachments/${attachmentId}`, {
         method: "PUT",
@@ -106,6 +108,7 @@ export const thunkUpdatedAttachment = (data) => async (dispatch) => {
 };
 
 export const thunkDeleteAttachment = (attachmentId) => async (dispatch) => {
+    console.log("@@@@@@@@@@@@@@@@@@Delete thunk", attachmentId)
     const response = await fetch(`/api/attachments/${attachmentId}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' }
@@ -123,24 +126,20 @@ const attachmentReducer = (state = {}, action) => {
     let newState
     switch (action.type) {
         case LOAD_ATTACHMENTS:
-            // newState = {}
-            // action.attachments.Attachments.forEach(attachment => {
-            //     newState[attachment.id] = attachment
-            // })
-            // console.log("!!!!!!!!", newState)
-            // return newState
-            return { ...state, ...newState, attachments: [...action.attachments] };
+            return { ...state, ...newState, attachments: [...action.attachments.attachments] };
 
         case ADD_ATTACHMENT_TO_TASK:
-            // console.log('!!!action', action)
-            return { ...state, [action.attachment.id]: { ...action.attachment} };
+            newState = {...state}
+            newState.attachments = { ...newState.attachments }
+            // newState.attachments.push(action.attachment);
+            return { ...state,...newState, [action.attachment.id]: action.attachment };
 
         case EDIT_ATTACHMENT:
             // console.log('action!!!!!!!!!!!!', action.section)
             return { ...state, [action.attachment.id]: { ...state[action.attachment.id], ...action.attachment } }
 
         case DELETE_ATTACHMENT:
-            let newState = { ...state }
+             newState = { ...state }
             // console.log('!!!action', action)
             delete newState[action.attachmentId]
 

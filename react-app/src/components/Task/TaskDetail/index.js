@@ -169,27 +169,12 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
         setAssigneeId(assinId)
         setDefaultValue(e);
 
-        // const payload = {
-        //     title: taskTitle, description, assigneeId: assinId, ownerId, sectionId, status, priority, projectId, end_date: dueDate, completed, taskId
-        // }
-        // dispatch(taskAction.thunkUpdateTask(payload))
-        // clearTimeout(timer)
-        // const newTimer = setTimeout(() => {
-        //     dispatch(getOneSection(sectionId))
-
-        // }, 500)
-
-        // setTimer(newTimer)
     }
 
     const handleDueDateChange = (date) => {
         const dateStr = JSON.stringify(date).slice(1, 11);
         setDueDate(dateStr);
-        // const payload = {
-        //     title: taskTitle, discription, assigneeId, ownerId, sectionId, status, priority, projectId, end_date: dateStr, completed, taskId
-        // }
 
-        // dispatch(taskAction.thunkUpdateTask(payload))
 
     }
 
@@ -295,9 +280,6 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
                 const payload = {
                     title: taskTitle, description, assigneeId, ownerId, sectionId, status: status, priority: priority, projectId, end_date: dueDate, completed,taskId
                 };
-                // const data = {
-                //     title: taskTitle, description, assigneeId, ownerId, sectionId, status: status, priority: priority, projectId, end_date: dueDate, completed
-                // }
 
                 const res = await dispatch(taskAction.thunkUpdateTask(payload));
                 if (res) {
@@ -356,10 +338,6 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
         } else if (description.length > 255) {
             errors.push("Description should be less than 255 characters")
         }
-        // else if (!assigneeId) {
-        //     errors.push("Please provided a valid assignee")
-        // }
-
         setErrors(errors);
     }, [taskTitle, description])
 

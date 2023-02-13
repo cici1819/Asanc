@@ -44,11 +44,11 @@ export const deleteOneComment = (commentId) => {
 
 export const thunkAddCommentToTask = (data) => async (dispatch) => {
     // console.log("running^^^^^^^^^^ createOneComment thunk")
-    const { taskId, content } = data
+    const { content ,taskId } = data
     const response = await fetch(`/api/comments/new`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ taskId, content }),
+        body: JSON.stringify({  content ,taskId }),
     })
     // console.log('!!!!!!response', response)
     if (response.ok) {
@@ -79,12 +79,12 @@ export const thunkLoadTaskComments = (taskId) => async (dispatch) => {
 }
 
 export const thunkUpdatedComment = (data) => async (dispatch) => {
-    const { commentId, taskId, content } = data;
-    // console.log(`........printing sectionTitle input....: ${sectionTitle}`);
+    const { content, taskId, commentId, } = data;
+    console.log(`........printing comment input....: ${content}`);
     const response = await fetch(`/api/comments/${commentId}`, {
         method: "PUT",
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content: content }),
+        body: JSON.stringify({content ,taskId }),
     })
     if (response.ok) {
         const editedComment = await response.json();
@@ -122,7 +122,10 @@ const commentReducer = (state = {}, action) => {
 
         case ADD_COMMENT_TO_TASK:
             // console.log('!!!action', action)
-            return { ...state, [action.comment.id]: { ...action.comment } };
+            newState = {...state}
+            newState.comments = { ...newState.comments }
+            // newState.comments.push(action.comment);
+            return { ...state,...newState, [action.comment.id]: action.comment };
 
         case LOAD_TASK_COMMENTS:
             // newState = {}
@@ -130,9 +133,9 @@ const commentReducer = (state = {}, action) => {
             // action.comments.Comments.forEach(comment => {
             //     newState[comment.id] = comment
             // })
-            // console.log("newState................", newState)
+            console.log("action.Comments................", action.comments)
             // return newState
-            return { ...state, ...newState, comments: [...action.comments] };
+            return { ...state, ...newState, comments: action.comments };
 
         case EDIT_COMMENT:
             // console.log('action!!!!!!!!!!!!', action.section)

@@ -65,8 +65,8 @@ class Task(db.Model):
                 'lastName':self.user_assignee_t.last_name ,
                 'avatar_color':self.user_assignee_t.avatar_color,
             } if self.assignee_id else None,
-        "attachments":[attachment.to_dic() for attachment in self.attachment_t],
-        "comments":[comment.to_dic() for comment in self.comment_t]
+        "attachments":[attachment.to_dict() for attachment in self.attachment_t],
+        "comments":[comment.to_dict() for comment in self.comment_t]
         }
         return task_dict
 

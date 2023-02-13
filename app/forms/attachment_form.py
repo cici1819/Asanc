@@ -14,4 +14,5 @@ class AttachmentForm(FlaskForm):
   # ownerId = IntegerField("OwnerId")
   taskId = IntegerField("TaskId",validators=[DataRequired()])
   url = StringField("Url",validators=[valid_url])
+  name=StringField("Name",validators=[DataRequired()])
   submit = SubmitField('Upload')
