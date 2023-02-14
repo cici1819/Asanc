@@ -1,0 +1,129 @@
+.delete-attachment:hover {
+    cursor: pointer;
+}
+
+.download-a-div:hover {
+    cursor: pointer;
+}
+
+.download-a-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    width: fit-content;
+    height: 40px;
+    align-items: center;
+    margin-top: -43px;
+    margin-left: 90%;
+    gap: 10px;
+}
+.download-icon{
+    font-size: 16px;
+}
+.delete-attachment {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    width: fit-content;
+    height: 40px;
+    align-items: center;
+    margin-top: -28px;
+    margin-left: 67%;
+    gap: 10px;
+
+}
+
+.delete-attachment #tip-text {
+    visibility: hidden;
+}
+
+.download-a-div #tip-text {
+    visibility: hidden;
+}
+
+.download-a-div:hover #tip-text {
+    visibility: visible;
+    opacity: 1;
+    z-index: 100;
+    background-color: rgb(37, 38, 40);
+    color: white;
+    text-align: center;
+    padding: 3px;
+    line-height: 1.2;
+    border-radius: 6px;
+    font-size: 0.75em;
+    word-break: break-all;
+    width: 60px;
+    height: 13px;
+    position: absolute;
+    /* top:150%;
+   left:50%; */
+    margin-top: -45px;
+    margin-left: 1px;
+
+    text-decoration: none
+}
+.download-icon {
+
+}
+.delete-attachment:hover #tip-text {
+
+    visibility: visible;
+    opacity: 1;
+    z-index: 100;
+    background-color: rgb(37, 38, 40);
+    color: white;
+    text-align: center;
+    padding: 3px;
+    line-height: 1.2;
+    border-radius: 6px;
+    font-size: 0.75em;
+    word-break: break-all;
+    width: 40px;
+    height: 13px;
+    position: absolute;
+    /* top:150%;
+   left:50%; */
+    margin-top: -45px;
+    margin-left: 1px;
+
+    text-decoration: none
+}
+
+.delete-attachment:hover #tip-text::after {
+    content: "";
+    display: block;
+    overflow: hidden;
+    margin-left: -5px;
+    width: 0px;
+    height: 0px;
+    padding: 0;
+    font-size: 0;
+    border: 5px solid transparent;
+    border-top-style: solid;
+    border-top-color: black;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+}
+
+.download-a-div:hover #tip-text::after {
+    content: "";
+    display: block;
+    overflow: hidden;
+    margin-left: -5px;
+    width: 0px;
+    height: 0px;
+    padding: 0;
+    font-size: 0;
+    border: 5px solid transparent;
+    border-top-style: solid;
+    border-top-color: black;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+}

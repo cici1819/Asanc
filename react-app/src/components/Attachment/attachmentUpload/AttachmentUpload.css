@@ -1,16 +1,85 @@
-.attachment-errors{
+.attachment-errors {
     display: flex;
     flex-direction: column;
     width: fit-content;
-    height: 15px;
+    height: 25px;
     font-size: 12px;
     align-items: center;
     font-weight: 600;
+    /* margin-top: -100px; */
 
 }
-.attachment-container{
+
+.attachment-container {
+    /* background-color: aqua; */
+    width: 117%;
+    gap: 10px;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
     display: flex;
     flex-direction: column-reverse;
+    color: black;
+}
+
+.edit-a-from-upload {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    color: black;
+    margin-bottom: 20px;
+    /* background-color: antiquewhite; */
+}
+
+.file-a-input input{
+
+    gap:5px;
+    font-size: 14px;
+    width: 60%;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+
+    /* background-color: antiquewhite; */
+}
+
+.name-a-input .attachment-name-input {
+    font-size: 16px;
+    width: 115%;
+    height: 30px;
+    font-size: 14px;
+
+}
+
+.name-a-input {
+  margin-top: -10px;
+}
+.upload-input:hover{
+    cursor: pointer;
+}
+.a-upload-button button{
+    font-size: 14px;
+    width:150px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: rgb(251,206,117);
+
+}
+.a-upload-button{
+    margin-left: 73%;
+    margin-top: -48px;
+
+}
+.attachment-name{
+  font-size: 16px;
+}
+
+.owner-info-a {
+    display: flex;
+    flex-direction: row;
+    gap:5px;
+    align-items: center;
+    height: fit-content;
+    font-style: italic;
+
 }

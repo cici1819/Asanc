@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { thunkGetOneTask } from '../../../store/taskReducer'
 import * as attachmentAction from '../../../store/attachmentReducer';
+import './AttachmentDownload.css';
 // import AttachmentEditModal from "../attachmentEdit";
 
 
-const AttachmentDownLoad = ({attachment, taskId}) => {
+const AttachmentDownLoad = ({ attachment, taskId }) => {
     const dispatch = useDispatch()
     const sessionUser = useSelector(state => state.session.user);
     const attachmentId = attachment.id
@@ -15,7 +16,7 @@ const AttachmentDownLoad = ({attachment, taskId}) => {
 
     useEffect(() => {
         dispatch(thunkGetOneTask(taskId))
-    }, [dispatch, taskId,attachments]);
+    }, [dispatch, taskId, attachments]);
 
     const deleteAttachment = async () => {
         if (window.confirm('Do you want to delete this attachment?')) {
@@ -35,30 +36,33 @@ const AttachmentDownLoad = ({attachment, taskId}) => {
     }
 
     return (
-        <div className="setting-attachment">
+        <div className="setting-attachment ref">
             {sessionUserIsOwner && (
                 <>
-                    <div className="delete-attachment" onClick={deleteAttachment}>
-                        <div className="delete-icon">
-                            <i class="fa-solid fa-trash dropDownIcon leftPad"></i>
-                            <div className="delete-title">Delete</div>
-                        </div>
+                    <div className="delete-attachment ref" onClick={deleteAttachment}>
+                        <span className="delete-icon ref">
+                            <i className="fa-solid fa-trash ref"></i>
+                        </span>
+                        <span className="delete-title ref" id="tip-text">Delete</span>
+
                     </div>
                     {/* <button onClick={(e) => editFile(file.id)}>Edit</button> */}
                     {/* <AttachmentEditModal attachment={attachment} attachmentId={attachmentId} taskId={taskId} attachments={attachments} /> */}
                 </>
             )}
 
-            <button className="dropDownButton">
-                <div className="flexRow alignCenter">
-                <i className="fa-solid fa-download"></i>
-                    <div className="dropDownIcon font leftPad">
-                        <a href={attachment.url} download>
-                            Download
-                        </a>
-                    </div>
-                </div>
-            </button>
+            {/* <button className="dropDownButton ref"> */}
+            <div className="download-a-div ref">
+                <span className="download-icon ref">
+                    <a href={attachment.url} download>
+                        <i className="fa-solid fa-download ref"></i>
+                    </a>
+                </span>
+                <span className="download-title ref" id="tip-text">
+                    Download
+                </span>
+            </div>
+            {/* </button> */}
         </div>
     );
 }

@@ -14,7 +14,7 @@ margin-bottom: 20px;
 }
 .comment-in-task-container-closed .comment-c-container{
     /* margin-top: 10px; */
-    width:30%;
+    width:45%;
     display:flex;
     flex-direction: row;
     justify-content: space-between;
@@ -76,7 +76,7 @@ margin-bottom: 20px;
 }
 .comment-c-container {
     /* margin-top: 10px; */
-    width:37%;
+    width:45%;
     display:flex;
     flex-direction: row;
     justify-content: space-between;

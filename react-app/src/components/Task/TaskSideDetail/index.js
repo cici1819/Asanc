@@ -614,7 +614,7 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                                 <CommentListInTask taskId={taskId} users={users} show={show} />
                             </div>
                             <div className="attachment-container ref">
-                            {attachments && attachments?.length ? (
+                            {attachments && attachments?.length>0 ? (
                                   attachments.map((attachment) =>
                                   <div key={attachment.id} className="attachment-delete ref">
                                       <span className='a-o-logo ref'> <img className='a-o-i ref' src={userLogo} style={{ height: '20px', width: '20px', borderRadius: '50%', backgroundColor: attachmentOwnerObj?.avatar_color }} /> </span>

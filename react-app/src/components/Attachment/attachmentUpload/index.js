@@ -7,6 +7,7 @@ import userLogo from "../../../img/user-logo.png"
 import AttachmentDownLoad from "../attachmentDownload";
 import './AttachmentUpload.css';
 
+
 const UploadAttachment = ({ users, taskId }) => {
     const dispatch = useDispatch();
     const [attachment, setAttachment] = useState(null);
@@ -65,7 +66,7 @@ const UploadAttachment = ({ users, taskId }) => {
                 setImageLoading(false);
                 setName("")
                 setAttachment(null)
-                await dispatch(thunkGetOneTask(taskId))
+                // await dispatch(thunkGetOneTask(taskId))
                 //     await dispatch(attachmentAction.thunkLoadAttachments(taskId))
             }
         }
@@ -92,41 +93,49 @@ const UploadAttachment = ({ users, taskId }) => {
     //         await dispatch(attachmentAction.thunkDeleteAttachment(attachmentId))
     //         setUrlErrors([]);
     //     }
-    // }
-    if (!attachments && (attachments === null || attachments === undefined)) {
-        return (
-            <>
-                {/* <div>
-                    NO Attachments in this task
-                </div> */}
-                <div className="edit-product-from-upload ref">
-                    <div className="attachment-errors ref">
-                        {showAttachmentsErrors && urlErrors.map((error, idx) => (
-                            <li key={idx} className='form-errors'>{error}</li>
-                        ))}
-                    </div>
-                    <input
-                        className="ref attachment-name-input"
-                        name="name"
-                        type="text"
-                        placeholder="File Name"
-                        value={name}
-                        onChange={handleNameChange}
-                        required
-                    />
-                    <input
-                        type="file"
-                        accept="image/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                        onChange={updateAttachment}
-                        className="upload-button ref"
-                    />
-                    <button onClick={handleSubmit}>Upload Attachment</button>
-                    {(imageLoading) && <p>Loading...</p>}
-                </div>
+    // // }
+    // if (!attachments && !attachmentArr?.length && (attachments === null || attachments === undefined)) {
+    //     return (
+    //         <div className="edit-a-from-upload ref">
+    //             <div className="attachment-errors ref">
+    //                 {showAttachmentsErrors && urlErrors.map((error, idx) => (
+    //                     <li key={idx} className='form-errors'>{error}</li>
+    //                 ))}
+    //             </div>
+    //             <div className="name-a-input ref">
+    //                 <input
+    //                     className="ref attachment-name-input"
+    //                     name="name"
+    //                     type="text"
+    //                     placeholder="File Name"
+    //                     value={name}
+    //                     onChange={handleNameChange}
+    //                     required
+    //                 />
+    //             </div>
 
-            </>
-        )
-    } else {
+    //             <div className="upload-c-div ref">
+    //                 <div className="file-a-input ref">
+    //                     <input
+    //                         type="file"
+    //                         accept="image/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    //                         onChange={updateAttachment}
+    //                         className="upload-input ref"
+    //                     />
+    //                 </div>
+
+    //                 <span className="a-upload-button">
+    //                     <button onClick={handleSubmit} className="upload-button ref">Upload Attachment</button>
+    //                     {(imageLoading) && <p>Loading...</p>}
+    //                 </span>
+    //             </div>
+
+    //             {/* <div className="ref">
+    //                 <p> No Attachments</p>
+    //             </div> */}
+    //         </div>
+    //     )
+    // }
         return (
             <div>
                 <div className="attachment-errors ref">
@@ -134,33 +143,46 @@ const UploadAttachment = ({ users, taskId }) => {
                         <li key={idx} className='form-errors'>{error}</li>
                     ))}
                 </div>
-                <div className="edit-attachment-from-upload ref">
-                    <input
-                        className="ref attachment-name-input"
-                        name="name"
-                        type="text"
-                        placeholder="File Name"
-                        value={name}
-                        onChange={handleNameChange}
-                        required
-                    />
-                    <input
-                        type="file"
-                        accept="image/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                        onChange={updateAttachment}
-                        className="upload-button ref"
-                    />
-                    <button onClick={handleSubmit}>Upload Attachment</button>
-                    {(imageLoading) && <p>Loading...</p>}
+                <div className="edit-a-from-upload ref">
+                    <div className="name-a-input ref">
+                        <input
+                            className="ref attachment-name-input"
+                            name="name"
+                            type="text"
+                            placeholder="File Name"
+                            value={name}
+                            onChange={handleNameChange}
+                            required
+                        />
+                    </div>
+                    <div className="file-a-input ref">
+                        <input
+                            type="file"
+                            accept="image/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                            onChange={updateAttachment}
+                            className="upload-button ref"
+                        />
+                    </div>
+                    <div className="a-upload-button">
+                        <button onClick={handleSubmit}>Upload Attachment</button>
+                        {(imageLoading) && <p>Loading...</p>}
+                    </div>
                 </div>
+
                 <div className="attachment-container ref">
-                    {(attachmentArr && attachmentArr.length) && attachmentArr.map((attachment) =>
+                    {(attachmentArr && attachmentArr.length > 0) && attachmentArr.map((attachment) =>
                         <div key={attachment.id} className="attachment-delete ref">
-                            <span className='a-o-logo ref'> <img className='a-o-i ref' src={userLogo} style={{ height: '20px', width: '20px', borderRadius: '50%', backgroundColor: attachmentOwnerObj?.avatar_color }} /> </span>
-                            <span className='a-o-name ref'>{attachmentOwnerObj?.firstName} {attachmentOwnerObj?.lastName}</span>
-                            <span className="attachment-date ref">{attachment?.updated_at.substring(0, 10)}</span>
+                            <div className="owner-info-a ref">
+                                <span className='a-o-logo ref'> <img className='a-o-i ref' src={userLogo} style={{ height: '20px', width: '20px', borderRadius: '50%', backgroundColor: attachmentOwnerObj?.avatar_color }} /> </span>
+                                <span className='a-o-name ref'>{attachmentOwnerObj?.firstName} {attachmentOwnerObj?.lastName}</span>
+                                <span className="attachment-date ref">{attachment?.updated_at.substring(0, 16)}</span>
+                            </div>
+
                             <div className="ref attachment-name">File Name : {attachment?.name}</div>
-                            <AttachmentDownLoad attachment={attachment} taskId={taskId} />
+                            <div>
+                                <AttachmentDownLoad attachment={attachment} taskId={taskId} />
+                            </div>
+
                             {/* <button onClick={() => handleAttachmentDelete(attachment.id)}>x</button> */}
                         </div>
                     )}
@@ -168,7 +190,7 @@ const UploadAttachment = ({ users, taskId }) => {
 
             </div>
         )
-    }
+
 }
 
 export default UploadAttachment;

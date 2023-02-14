@@ -291,7 +291,7 @@
     gap: 15%;
     justify-content: flex-start;
     align-items: center;
-    width: 99%;
+    width: 120%;
     height: 50px;
     font-size: 16px;
     color: black;
@@ -311,7 +311,7 @@
     gap: 15%;
     justify-content: flex-start;
     align-items: center;
-    width: 99%;
+    width: 120%;
     height: 50px;
     font-size: 16px;
     color: black;
@@ -367,7 +367,7 @@
     gap: 15.5%;
     justify-content: flex-start;
     align-items: center;
-    width: 99%;
+    width: 120%;
     height: 50px;
     font-size: 16px;
     color: black;
@@ -398,7 +398,7 @@
     gap: 16%;
     justify-content: flex-start;
     align-items: center;
-    width: 99%;
+    width: 120%;
     height: 50px;
     font-size: 16px;
     color: black;
@@ -427,7 +427,7 @@
     gap: 16%;
     justify-content: flex-start;
     align-items: center;
-    width: 99%;
+    width: 120%;
     height: 50px;
     font-size: 16px;
     color: black;
@@ -455,7 +455,7 @@
     flex-direction: column;
     gap: 10px;
     width: fit-content;
-    min-width: 120%;
+    min-width: 100%;
     margin-left: 5px;
     color: black;
 }
@@ -469,7 +469,7 @@
     height: fit-content;
     width: fit-content;
     min-height: 80px;
-    min-width: 80%;
+    min-width: 115%;
     overflow-y:auto;
     resize: none;
     border-radius: 3px;
@@ -501,7 +501,7 @@ cursor: pointer;
     height: fit-content;
     width: fit-content;
     min-height: 80px;
-    min-width: 55.6%;
+    min-width: 115%;
     overflow-y:auto;
     resize: none;
     border-radius: 3px;

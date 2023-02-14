@@ -130,9 +130,9 @@ const attachmentReducer = (state = {}, action) => {
 
         case ADD_ATTACHMENT_TO_TASK:
             newState = {...state}
-            newState.attachments = { ...newState.attachments }
+            newState.attachments[action.attachment.id]= action.attachment
             // newState.attachments.push(action.attachment);
-            return { ...state,...newState, [action.attachment.id]: action.attachment };
+            return newState;
 
         case EDIT_ATTACHMENT:
             // console.log('action!!!!!!!!!!!!', action.section)
