@@ -1,0 +1,47 @@
+.comments-input{
+    margin-top:10px;
+    display :flex;
+    flex-direction: column;
+    gap:10px;
+
+}
+
+.comments-input #commnet-content{
+    word-wrap: break-word;
+    /* background-color: aqua; */
+    margin-bottom: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    width: fit-content;
+    height: fit-content;
+    min-width:88%;
+    min-height: 40px;
+    resize: none;
+    /* margin-left: 5px; */
+    color: black;
+}
+
+.comments-input-closed {
+    margin-top:10px;
+    display :flex;
+    flex-direction: column;
+    gap:10px;
+}
+.comments-input-closed #commnet-content{
+    word-wrap: break-word;
+    /* background-color: aqua; */
+    margin-bottom: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    width: fit-content;
+    height: fit-content;
+    min-width:60%;
+    min-height: 40px;
+    resize: none;
+    /* margin-left: 5px; */
+    color: black;
+}

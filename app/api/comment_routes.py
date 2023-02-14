@@ -28,11 +28,12 @@ def get_one_comment(comment_id):
     else:
         return {"errors": "Comment couldn't be found"}, 404
 
-@comment_routes.route('/<int:task_id>', methods=["GET"])
+@comment_routes.route('/tasks/<int:task_id>', methods=["GET"])
 @login_required
 def get_task_comments(task_id):
     id = task_id
-    task_comments = Comment.query.filter_by(task_id ==id)
+    task_comments = Comment.query.filter_by(task_id=id)
+
     if task_comments:
         return json.dumps({"comments": [comment.to_dict() for comment in task_comments]})
     else:
@@ -56,7 +57,8 @@ def add_comment():
         )
         db.session.add(new_comment)
         db.session.commit()
-        return {"messages": "Comment created successfully"}, 200
+        # print("@@@@@@@@@@@@@@@@@@@@@@",new_comment)
+        return new_comment.to_dict()
     else:
        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
@@ -90,7 +92,7 @@ def update_comment(comment_id):
                 comment.content = data['content']
                 comment.taskId= data['taskId']
                 db.session.commit()
-                return json.dumps(comment.to_dict())
+                return comment.to_dict()
             else:
                 return {"errors":"comment not found"},404
         else:

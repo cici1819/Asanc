@@ -70,7 +70,9 @@ button,
 input:hover {
     cursor: pointer;
 }
-
+textarea:hover{
+    cursor: pointer;
+}
 a {
    text-decoration: none;
     color: rgb(240, 106, 106)

@@ -6,16 +6,18 @@ import { thunkGetOneTask } from "../../../store/taskReducer"
 import TextareaAutosize from "react-textarea-autosize";
 import userLogo from "../../../img/user-logo.png"
 import "./SingleComment.css"
-const SingleComment = ({ commentId, comment, users }) => {
+const SingleComment = ({ commentId, comment, users,show }) => {
     const dispatch = useDispatch();
     const [content, setContet] = useState(comment?.content);
     const [errors, setErrors] = useState([]);
     const task = useSelector(state => state.tasks?.singleTask);
+    const comments = useSelector(state => state?.comments?.comments)
     const sessionUser = useSelector((state) => state.session.user);
     const ref = useRef(null)
     let taskId = task.id
     const commentOwnerObj = users?.find(user => user?.id == comment?.ownerId)
-
+    const commentClass = show ? "comment-edit-input" : "comment-edit-input-closed"
+    const deleteCommentClass = show ? "comment-delete-icon" :"commen-delete-icon-closed"
     useEffect(() => {
         const errors = [];
         if (content.length > 3000 || content.length < 3) {
@@ -32,12 +34,16 @@ const SingleComment = ({ commentId, comment, users }) => {
         };
         const editedComment = dispatch(commentActions.thunkUpdatedComment(payload))
         if (editedComment) {
-            await dispatch(thunkGetOneTask(taskId))
+            await dispatch(commentActions.thunkLoadOneComment(commentId))
         }
     }
 
+
+
     const deleteComment = async (e) => {
         await dispatch(commentActions.thunkDeleteComment(commentId));
+        await dispatch(commentActions.thunkLoadTaskComments(taskId));
+        // await dispatch(c(taskId))
         await dispatch(thunkGetOneTask(taskId))
     };
 
@@ -47,7 +53,11 @@ const SingleComment = ({ commentId, comment, users }) => {
 
         }
     }
+    // useEffect(() => {
 
+    //     dispatch(commentActions.thunkLoadTaskComments(taskId))
+
+    // }, [dispatch, taskId,comment,comments]);
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -73,14 +83,14 @@ const SingleComment = ({ commentId, comment, users }) => {
                 {errors[0]}
 
             </div>)}
-            <div className='c-owner-info ref'>
-                <span className='c-o-logo ref'> <img className='c-o-i ref' src={userLogo} style={{ height: '20px', width: '20px', borderRadius: '50%', backgroundColor: commentOwnerObj?.avatar_color }} /> </span>
+            <div className='comment-owner-info ref'>
+                <span className='c-o-logo ref'> <img className='c-o-i ref' src={userLogo} style={{ height: '25px', width: '25px', borderRadius: '50%', backgroundColor: commentOwnerObj?.avatar_color }} /> </span>
                 <span className='c-o-name ref'>{commentOwnerObj?.firstName} {commentOwnerObj?.lastName}</span>
-                <div className="comment-date">{comment?.updated_at.substring(0, 10)}</div>
+                <span className="comment-date">{comment?.updated_at.substring(0, 16)}</span>
             </div>
             {sessionUserIsOwner ?
                 (<>
-                    <div className='comment-part-input'>
+                    <div className={`ref ${commentClass}`}>
                         <TextareaAutosize
                             type='text'
                             value={content}
@@ -89,15 +99,17 @@ const SingleComment = ({ commentId, comment, users }) => {
                             onChange={handleChange}
                             onKeyDown={handleKeyDown}
                             ref={ref}
+                            id='comment-part-input'
 
                         />
 
                     </div>
 
-                    <div className={`${deleteComment}`}
+                    <div className={`${deleteCommentClass} ref`}
                         onClick={deleteComment}>
-                        <span className='ref comment-delete'>Delete comment</span>
-                        <i className="fa-sharp fa-solid fa-circle-xmark"></i>
+                        <i className="fa-sharp fa-solid fa-circle-xmark ref"></i>
+                        <span className='ref comment-delete' id="d-c-span">Delete comment</span>
+
                     </div>
                 </>
 

@@ -44,11 +44,11 @@ export const deleteOneComment = (commentId) => {
 
 export const thunkAddCommentToTask = (data) => async (dispatch) => {
     // console.log("running^^^^^^^^^^ createOneComment thunk")
-    const { content ,taskId } = data
+    const { content, taskId } = data
     const response = await fetch(`/api/comments/new`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({  content ,taskId }),
+        body: JSON.stringify({ content, taskId }),
     })
     // console.log('!!!!!!response', response)
     if (response.ok) {
@@ -70,7 +70,9 @@ export const thunkLoadOneComment = (commentId) => async (dispatch) => {
 
 
 export const thunkLoadTaskComments = (taskId) => async (dispatch) => {
-    const response = await fetch(`/api/comments/${taskId}`)
+    console.log("RunningthunkLoad loadTaskComments")
+    const response = await fetch(`/api/comments/tasks/${taskId}`)
+    console.log("response!!!!!!!!!!!!", response)
     if (response.ok) {
         const comments = await response.json();
         dispatch(loadTaskComments(comments))
@@ -84,7 +86,7 @@ export const thunkUpdatedComment = (data) => async (dispatch) => {
     const response = await fetch(`/api/comments/${commentId}`, {
         method: "PUT",
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({content ,taskId }),
+        body: JSON.stringify({ content, taskId }),
     })
     if (response.ok) {
         const editedComment = await response.json();
@@ -122,10 +124,10 @@ const commentReducer = (state = {}, action) => {
 
         case ADD_COMMENT_TO_TASK:
             // console.log('!!!action', action)
-            newState = {...state}
-            newState.comments = { ...newState.comments }
-            // newState.comments.push(action.comment);
-            return { ...state,...newState, [action.comment.id]: action.comment };
+            newState = { ...state }
+            newState.comments[action.comment.id] = action.comment
+            // newState.comments.comments.push(action.comment);
+            return newState;
 
         case LOAD_TASK_COMMENTS:
             // newState = {}
@@ -133,9 +135,7 @@ const commentReducer = (state = {}, action) => {
             // action.comments.Comments.forEach(comment => {
             //     newState[comment.id] = comment
             // })
-            console.log("action.Comments................", action.comments)
-            // return newState
-            return { ...state, ...newState, comments: action.comments };
+            return { ...state, ...newState, comments: [...action.comments.comments] };
 
         case EDIT_COMMENT:
             // console.log('action!!!!!!!!!!!!', action.section)
@@ -145,7 +145,7 @@ const commentReducer = (state = {}, action) => {
             newState = { ...state }
             // console.log('!!!action', action)
             delete newState[action.commentId]
-
+            // delete newState.comments[action.commentId]
             // console.log("newState________",newState)
             return newState
 

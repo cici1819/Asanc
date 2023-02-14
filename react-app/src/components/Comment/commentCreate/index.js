@@ -4,15 +4,15 @@ import * as commentActions from "../../../store/commentReducer";
 import { thunkGetOneTask } from "../../../store/taskReducer";
 import TextareaAutosize from "react-textarea-autosize";
 import './CommentCreate.css';
-import { compareSync } from "bcryptjs";
+// import { compareSync } from "bcryptjs";
 
-const CommentCreate = ({ task, setCommentList }) => {
+const CommentCreate = ({ show, task, setCommentList }) => {
     const dispatch = useDispatch();
     const [content, setContent] = useState("");
     const sessionUser = useSelector((state) => state.session.user);
-    // const [timer, setTimer] = useState(null)
+    const commentCreateClass = show ? "comments-input" :"comments-input-closed"
     const [errors, setErrors] = useState([]);
-    // const taskId = task.id
+
    let taskId = task.id
     const handleKeyDown = async (e) => {
         if (e.key === 'Enter') {
@@ -42,8 +42,16 @@ const CommentCreate = ({ task, setCommentList }) => {
         };
         const newComment= dispatch(commentActions.thunkAddCommentToTask(payload))
         if (newComment) {
+
             await dispatch(thunkGetOneTask(taskId))
-            // await dispatch(commentActions.thunkLoadTaskComments(taskId))
+            // await dispatch(commentActions.loadTaskComments(taskId))
+
+            // if (newComment?.id) {
+            //     let commentId = newComment.id
+            //     await dispatch(commentActions.thunkLoadOneComment(commentId))
+
+            // }
+
         }
         setErrors([])
         setContent("")
@@ -56,11 +64,13 @@ const CommentCreate = ({ task, setCommentList }) => {
         setContent(e.target.value)
     }
 
+
+
     return (
         <>
-            <div>
+            <div className={`ref ${commentCreateClass}`}>
                 <div >
-                    {errors.length > 0 && (<div className="s-detail-content">
+                    {errors.length > 0 && (<div className="s-detail-content ref">
 
                         {errors[0]}
 

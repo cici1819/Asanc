@@ -43,6 +43,7 @@ def get_current_attachments():
 def task_attachments(task_id):
     id = task_id
     task_attachments = Attachment.query.filter_by(task_id=id)
+
     return json.dumps({"attachments": [attachment.to_dict() for attachment in task_attachments]})
 
 # AWS upload task attachment ------------------------------------------------------------------------

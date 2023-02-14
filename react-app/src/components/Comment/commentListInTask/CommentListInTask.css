@@ -1,0 +1,99 @@
+.addComment-main-container{
+    width: 30px;
+    height: 25px;
+    padding-top: 5px;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 1.5;
+    color: black;
+    /* cursor: pointer; */
+}
+.comment-list-task{
+margin-top: 20px;
+margin-bottom: 20px;
+}
+.comment-in-task-container-closed .comment-c-container{
+    /* margin-top: 10px; */
+    width:30%;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap:30px;
+    align-items: center;
+    height: 50px;
+    color:black;
+    font-size: 16px;
+}
+.addComment-main-container:hover {
+    cursor: pointer;
+    opacity: 1;
+    background-color: rgb(249, 248, 248);
+
+}
+
+.addComment-main-container #c-c-title{
+    visibility: hidden;
+
+}
+
+.addComment-main-container:hover #c-c-title {
+    visibility: visible;
+    opacity: 1;
+    z-index: 100;
+    background-color: rgb(37, 38, 40);
+    color: white;
+    text-align: center;
+    padding: 3px;
+    line-height: 1.2;
+    border-radius: 6px;
+    font-size: 0.75em;
+    word-break: break-all;
+    width: 80px;
+    height: 13px;
+    position: absolute;
+    /* top:150%;
+   left:50%; */
+    margin-top: -30px;
+    margin-left: -50px;
+
+    text-decoration: none
+}
+.addComment-main-container #c-c-title::after {
+    content: "";
+    display: block;
+    overflow: hidden;
+    margin-left: -5px;
+    width: 0px;
+    height: 0px;
+    padding: 0;
+    font-size: 0;
+    border: 5px solid transparent;
+    border-top-style: solid;
+    border-top-color: black;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+}
+.comment-c-container {
+    /* margin-top: 10px; */
+    width:37%;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap:30px;
+    align-items: center;
+    height: 50px;
+    color:black;
+    font-size: 16px;
+}
+.single-comment-in-task{
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column-reverse;
+    gap:10px;
+    color:black;
+    font-size: 14px;
+    font-weight: 600;
+    font-style: italic;
+
+}

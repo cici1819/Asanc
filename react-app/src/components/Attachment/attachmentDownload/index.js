@@ -51,7 +51,7 @@ const AttachmentDownLoad = ({attachment, taskId}) => {
 
             <button className="dropDownButton">
                 <div className="flexRow alignCenter">
-                    <i class="fa-solid fa-upload dropDownIcon leftPad"></i>
+                <i className="fa-solid fa-download"></i>
                     <div className="dropDownIcon font leftPad">
                         <a href={attachment.url} download>
                             Download

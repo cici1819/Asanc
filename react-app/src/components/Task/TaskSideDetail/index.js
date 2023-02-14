@@ -14,15 +14,11 @@ import userLogo from "../../../img/user-logo.png"
 import './TaskSideDetail.css'
 import CommentListInTask from '../../Comment/commentListInTask';
 import UploadAttachment from '../../Attachment/attachmentUpload';
+import AttachmentDownLoad from '../../Attachment/attachmentDownload';
 
 
 
 const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultValue, task, taskId, users, section, sessionUser, project, setShowTaskSideDetail, showTaskSideDetail }) => {
-    // console.log("*******************%%%%%%%%%%%%%%% task in sideBar", task)
-    // console.log("showTaskDetail", showTaskSideDetail)
-    // const [assignee, setAssingee] = useState(task?.assignee)
-    // const [defaultValue, setDefaultValue] = useState({ value: assignee?.id, label: `${assignee?.firstName}  ` + assignee?.lastName, color: assignee?.avatar_color, img: userLogo })
-    // // const defaultAssiObj = users?.find(user => user?.id == task?.ownerId)
     const taskOwnerObj = users?.find(user => user?.id == task?.ownerId)
     const [saveState, setSaveState] = useState("");
     const didMount = useRef(false);
@@ -34,20 +30,25 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
     const dateDiv = useRef();
     const [properDate, setProperDate] = useState();
     const [showDateForm, setShowDateForm] = useState(false);
-    // const currentAttach = task?.attachment
-    // const [attachment, setAttachment] = useState(currentAttach)
-    // const [attachmentLoading, setAttachmentLoading] = useState(false)
-    // const [isUploaded, setIsUploaded] = useState(false)
-    let [attachErrors, setAttachErrors] = useState([]);
+    //  let [attachErrors, setAttachErrors] = useState([]);
     const [completed, setCompleted] = useState(task?.completed)
     const [dueDate, setDueDate] = useState(task?.end_date);
     const [priority, setPriority] = useState(task?.priority);
     const taskSideClass = show ? "taskSide-detail" : "taskSide-detail-closed"
     const readSideClass = show ? "readSide-deatil" : "readSide-detail-closed"
+    const taskTitleClass = show ? "s-task-title" : "s-task-title-closed"
+    const descriptionClass = show ? "edit-s-description" : "edit-s-description-closed"
     const [selectPriority, setSelectPriority] = useState();
     const [selectStatus, setSelectStatus] = useState();
-    // const [timer, setTimer] = useState(null)
-    let newTask = useSelector(state => state.tasks.singleTask)
+    let newTask = useSelector(state => state?.tasks?.singleTask)
+    let attachments,attachmentOwnerObj
+    if (newTask && newTask.id) {
+        attachments = newTask?.attachments;
+        attachments?.forEach(attachment => {
+            attachmentOwnerObj = users?.find(user => user?.id == attachment?.ownerId)
+            return attachmentOwnerObj
+        })
+    }
 
 
 
@@ -59,14 +60,11 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
     ///////////////////////////////////////////////////////////////
 
     const closeDiv = (e) => {
-        // if (e.target?.className.includes('sdetail')) return;
         setShowTaskSideDetail(false);
     };
 
     useEffect(() => {
         dispatch(taskAction.thunkGetOneTask(taskId))
-        // dispatch(getOneProject(projectId))
-        //  console.log("dispatch+++++++++++++++++",)
     }, [dispatch, taskId])
 
 
@@ -396,7 +394,7 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                                 <span className='s-o-name ref'>{taskOwnerObj.firstName} {taskOwnerObj.lastName} created this task</span>
                             </div>
                             <div>
-                                <input className='s-task-title ref'
+                                <input className={`${taskTitleClass} ref`}
                                     id="s-task-t"
                                     type='text'
                                     value={taskTitle}
@@ -503,8 +501,8 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                                 </div>
                             </div>
                             <div className="side-description ref">
-                                <div className="s-d-title ref">Description :</div>
-                                <TextareaAutosize className='edit-s-discription ref'
+                                <div className="s-d-title ref">Description:</div>
+                                <TextareaAutosize className={`${descriptionClass} ref`}
                                     // maxLength={256}
                                     type='text'
                                     value={description}
@@ -514,12 +512,12 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                                 />
                             </div>
                             <div className='commentsList ref'>
-                                <CommentListInTask taskId={taskId} users={users} />
+                                <CommentListInTask taskId={taskId} users={users} show={show} />
                             </div>
 
-                            <div>
-                                <h3>Attachment:</h3>
-                                <UploadAttachment taskId={taskId} users={users} />
+                            <div className='ref attachment-upload'>
+                                <div className='ref att-title'>Attachments:</div>
+                                <UploadAttachment taskId={taskId} users={users} show={show} />
                             </div>
 
 
@@ -613,9 +611,24 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                                 )}
                             </div>
                             <div className='commentsList ref'>
-                                <CommentListInTask taskId={taskId} users={users} />
+                                <CommentListInTask taskId={taskId} users={users} show={show} />
                             </div>
+                            <div className="attachment-container ref">
+                            {attachments && attachments?.length ? (
+                                  attachments.map((attachment) =>
+                                  <div key={attachment.id} className="attachment-delete ref">
+                                      <span className='a-o-logo ref'> <img className='a-o-i ref' src={userLogo} style={{ height: '20px', width: '20px', borderRadius: '50%', backgroundColor: attachmentOwnerObj?.avatar_color }} /> </span>
+                                      <span className='a-o-name ref'>{attachmentOwnerObj?.firstName} {attachmentOwnerObj?.lastName}</span>
+                                      <span className="attachment-date ref">{attachment?.updated_at.substring(0, 10)}</span>
+                                      <div>{attachment?.name} : </div>
+                                      <AttachmentDownLoad attachment={attachment} taskId={taskId} />
 
+                                  </div>)
+                            ) : (
+                                  "No Attachments"
+                                )}
+
+                            </div>
                         </div>
 
                     )}

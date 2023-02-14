@@ -1,0 +1,16 @@
+.attachment-errors{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: 15px;
+    font-size: 12px;
+    align-items: center;
+    font-weight: 600;
+
+}
+.attachment-container{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+}
