@@ -14,7 +14,7 @@ margin-bottom: 20px;
 }
 .comment-in-task-container-closed .comment-c-container{
     /* margin-top: 10px; */
-    width:45%;
+    width:57.5%;
     display:flex;
     flex-direction: row;
     justify-content: space-between;
@@ -24,6 +24,13 @@ margin-bottom: 20px;
     color:black;
     font-size: 16px;
 }
+.read-commentsList #comment-c-container-r {
+    width:45%;
+}
+.read-commentsList .comment-in-task-container-closed #comment-c-container-r {
+    width:35%;
+}
+
 .addComment-main-container:hover {
     cursor: pointer;
     opacity: 1;
@@ -75,12 +82,13 @@ margin-bottom: 20px;
     left: 50%;
 }
 .comment-c-container {
-    /* margin-top: 10px; */
-    width:45%;
+
+
+    width:58%;
     display:flex;
     flex-direction: row;
     justify-content: space-between;
-    gap:30px;
+
     align-items: center;
     height: 50px;
     color:black;

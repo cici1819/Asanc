@@ -41,7 +41,7 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
     const [selectPriority, setSelectPriority] = useState();
     const [selectStatus, setSelectStatus] = useState();
     let newTask = useSelector(state => state?.tasks?.singleTask)
-    let attachments,attachmentOwnerObj
+    let attachments, attachmentOwnerObj
     if (newTask && newTask.id) {
         attachments = newTask?.attachments;
         attachments?.forEach(attachment => {
@@ -590,9 +590,13 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                                 <span className='t-stp ref'>
                                     Projects:
                                 </span>
-                                <span><img className={`single-project-icon2 ref`} src={project?.icon} style={{ backgroundColor: project?.color }} alt='single-project-icon' onError={e => { e.currentTarget.src = "https://mingprojectawsbucket.s3.amazonaws.com/cici/ciciicon.png" }} /></span>
-                                <span className='t-p-t ref'>{project.title}</span>
+
+                                    <span><img className={`single-project-icon2 ref`} src={project?.icon} style={{ backgroundColor: project?.color }} alt='single-project-icon' onError={e => { e.currentTarget.src = "https://mingprojectawsbucket.s3.amazonaws.com/cici/ciciicon.png" }} /></span>
+                                    <span className='t-p-t ref'>{project.title}</span>
+                                
                             </div>
+
+
                             <div className='s-r-p ref'>
                                 <span className='s-r-p-title ref'>Priority :</span>
                                 <span className={`${selectPriority} ref`} id="r-side-p">{priority}</span>
@@ -610,22 +614,22 @@ const TaskSideDetail = ({ show, assignee, setAssignee, defaultValue, setDefaultV
                                     "No description"
                                 )}
                             </div>
-                            <div className='commentsList ref'>
+                            <div className='read-commentsList ref'>
                                 <CommentListInTask taskId={taskId} users={users} show={show} />
                             </div>
                             <div className="attachment-container ref">
-                            {attachments && attachments?.length>0 ? (
-                                  attachments.map((attachment) =>
-                                  <div key={attachment.id} className="attachment-delete ref">
-                                      <span className='a-o-logo ref'> <img className='a-o-i ref' src={userLogo} style={{ height: '20px', width: '20px', borderRadius: '50%', backgroundColor: attachmentOwnerObj?.avatar_color }} /> </span>
-                                      <span className='a-o-name ref'>{attachmentOwnerObj?.firstName} {attachmentOwnerObj?.lastName}</span>
-                                      <span className="attachment-date ref">{attachment?.updated_at.substring(0, 10)}</span>
-                                      <div>{attachment?.name} : </div>
-                                      <AttachmentDownLoad attachment={attachment} taskId={taskId} />
+                                {attachments && attachments?.length > 0 ? (
+                                    attachments.map((attachment) =>
+                                        <div key={attachment.id} className="attachment-delete ref">
+                                            <span className='a-o-logo ref'> <img className='a-o-i ref' src={userLogo} style={{ height: '20px', width: '20px', borderRadius: '50%', backgroundColor: attachmentOwnerObj?.avatar_color }} /> </span>
+                                            <span className='a-o-name ref'>{attachmentOwnerObj?.firstName} {attachmentOwnerObj?.lastName}</span>
+                                            <span className="attachment-date ref">{attachment?.updated_at.substring(0, 10)}</span>
+                                            <div>{attachment?.name} : </div>
+                                            <AttachmentDownLoad attachment={attachment} taskId={taskId} />
 
-                                  </div>)
-                            ) : (
-                                  "No Attachments"
+                                        </div>)
+                                ) : (
+                                    "No Attachments"
                                 )}
 
                             </div>

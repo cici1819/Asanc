@@ -1,5 +1,5 @@
 .delete-server-wapper2{
-    width: 520px;
+    width: 500px;
     height: 280px;
     background-color: white;
     border-radius: 5px;
@@ -41,7 +41,7 @@
     background-color: rgb(240, 106, 106);
     color:black;
     border-radius: 5px;
-    width: 160px;
+    width: 140px;
     height: 40px;
     /* margin-right: 170px; */
     margin-top: 50px;
@@ -49,7 +49,7 @@
     margin-left: 330px;
 }
 .d-s-button:hover{
-   width: 170px;
+   width: 150px;
    font-size: 18px;
 }
 

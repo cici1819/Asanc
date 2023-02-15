@@ -20,12 +20,12 @@
 .left-img2 img{
     width: 100%;
     object-fit:cover;
-     height: 650px;
+     height: 660px;
      border-radius: 8px;
      box-shadow: rgba(0,0,0,.2) 0px 0px 15px;
 }
 .left-img2{
-    top:2vh;
+    top:7vh;
     position: absolute;
     height: fit-content;
     min-height: 650px;
@@ -37,9 +37,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: -33vh;
+    margin-top: -16vh;
     padding-top:10px;
-    padding-bottom:20px;
+    padding-bottom:25px;
     padding-left:20px;
     padding-right:20px;
     /* overflow-y: auto; */
@@ -60,7 +60,7 @@
     margin-left:54.5vw;
     position: absolute;
     /* right:10vw; */
-    top:2vh;
+    top:8vh;
     width: 1px;
     height: 650px;
     background-color: rgba(111,111,111,0.2);

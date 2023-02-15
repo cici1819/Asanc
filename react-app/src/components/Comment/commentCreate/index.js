@@ -10,10 +10,11 @@ const CommentCreate = ({ show, task, setCommentList }) => {
     const dispatch = useDispatch();
     const [content, setContent] = useState("");
     const sessionUser = useSelector((state) => state.session.user);
-    const commentCreateClass = show ? "comments-input" :"comments-input-closed"
+    const commentCreateClass = show ? "comments-input" : "comments-input-closed"
     const [errors, setErrors] = useState([]);
-
-   let taskId = task.id
+    const comments = useSelector(state => state?.comments?.comments)
+    let taskId = task.id
+    let commentId
     const handleKeyDown = async (e) => {
         if (e.key === 'Enter') {
             e.target.blur();
@@ -27,7 +28,7 @@ const CommentCreate = ({ show, task, setCommentList }) => {
 
     useEffect(() => {
         const errors = [];
-        if (content.length > 3000 || content.length < 3 ) {
+        if (content.length > 3000 || content.length < 3) {
             errors.push("Content must be between 3 and 3000 characters")
         }
         setErrors(errors);
@@ -36,21 +37,14 @@ const CommentCreate = ({ show, task, setCommentList }) => {
     const handleInputBlur = async (e) => {
         e.preventDefault()
         let content = e.target.value;
-        console.log("taskid$$$$$$$$$$$$$$$",task.id)
+        console.log("taskid$$$$$$$$$$$$$$$", task.id)
         const payload = {
             content: content, taskId: task.id
         };
-        const newComment= dispatch(commentActions.thunkAddCommentToTask(payload))
+        const newComment = dispatch(commentActions.thunkAddCommentToTask(payload))
         if (newComment) {
-
+            commentId = newComment.id
             await dispatch(thunkGetOneTask(taskId))
-            // await dispatch(commentActions.loadTaskComments(taskId))
-
-            // if (newComment?.id) {
-            //     let commentId = newComment.id
-            //     await dispatch(commentActions.thunkLoadOneComment(commentId))
-
-            // }
 
         }
         setErrors([])
@@ -64,7 +58,11 @@ const CommentCreate = ({ show, task, setCommentList }) => {
         setContent(e.target.value)
     }
 
+    useEffect(() => {
 
+        dispatch(commentActions.thunkLoadTaskComments(taskId))
+
+    }, [dispatch, taskId,commentId]);
 
     return (
         <>

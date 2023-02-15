@@ -1,53 +1,71 @@
-.delete-Project-wapper2{
-    background-color: rgb(255,255,255);
+.delete-Project-wapper2 {
+    background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
     text-align: flex-start;
     width: 460px;
-    height: 400px;
+    height: 390px;
     border-radius: 5px;
     outline: none;
     overflow: hidden;
+    word-wrap: break-word;
 }
-.delete-Project-form{
+
+.delete-Project-form {
     word-break: break-all;
     width: 100%;
-    height: 75%;
+    height: 75.5%;
     outline: none;
     overflow: hidden;
-    background-color: rgb(242,243,245);
+    background-color: rgb(242, 243, 245);
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    word-wrap: break-word;
 }
-.p-delete-text{
+
+.p-delete-text {
     height: 50%;
     display: flex;
     flex-direction: column;
-    color:  rgb(54, 57, 63);
+    color: rgb(54, 57, 63);
     font-weight: 600;
 
 }
-.p-delete-title{
+
+.p-delete-title {
     margin-left: 15px;
+    font-size: 20px;
 }
-.p-delete-warning{
-    color: rgb(43,47,53);
+
+.p-delete-warning {
+    color: rgb(43, 47, 53);
     font-size: 18px;
     margin-left: 15px;
     margin-right: 5px;
-    gap:5px;
+    gap: 5px;
 }
 
-.d-p-2{
-    color:rgb(240,106,106);
-    font-size: 22px;
+.d-p-2 {
+    color: rgb(240, 106, 106);
+    font-size: 20px;
     font-weight: 600;
+    word-break: break-word;
 }
-.d-p-input{
+
+.d-p-3 {
+    word-break: break-word;
+}
+
+#d-p {
+    color: rgb(43, 47, 53);
+}
+
+.d-p-input {
     display: flex;
     flex-direction: column;
     /* margin-top: 10px; */
 }
+
 /* .d-p-input input{
     width: 93%;
     margin-left: 15px;
@@ -56,32 +74,33 @@
     border:none
 } */
 
-.delete-project-check{
+.delete-project-check {
     margin-top: 20px;
     color: rgb(43, 47, 54);
     font-size: 18px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     margin-left: 15px;
 }
 
-.delete-project-button button{
-    background-color: rgb(240,106,106);
-    color:black;
+.delete-project-button button {
+    background-color: rgb(240, 106, 106);
+    color: black;
     border-radius: 5px;
     width: 150px;
     height: 40px;
     /* margin-right: 170px; */
-    margin-top: 30px;
+    margin-top: 28px;
     font-size: 15px;
     margin-left: 280px;
 }
+
 .d-b-p:hover {
     width: 160px;
     font-size: 18px;
 }
 
-.p-c-cancel{
-    width:60px;
+.p-c-cancel {
+    width: 60px;
     height: 30px;
     color: black;
     font-size: 16px;
@@ -90,33 +109,34 @@
 
 }
 
-.p-c-cancel:hover{
+.p-c-cancel:hover {
     text-decoration: underline;
     cursor: pointer;
 }
 
-.d-p-errors-list{
+.d-p-errors-list {
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 10px;
     width: 95%;
     font-size: 12px;
-    color: rgb(240,106,106);
+    color: rgb(240, 106, 106);
     font-weight: 500;
-    margin-top: 10px;
+    margin-top: -10px;
+    margin-bottom: 10px;
 }
 
 #delete-input2:focus {
-    border: 3px solid rgb(81, 135, 248);
+    border: 2px solid rgb(81, 135, 248);
     border-radius: 5px;
 
 }
 
-#delete-input2{
+#delete-input2 {
     width: 93%;
     margin-left: 15px;
     height: 45px;
     border-radius: 5px;
-    border:none
+    border: none
 }

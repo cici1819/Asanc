@@ -1,37 +1,44 @@
-.project-edit-wapper{
+.project-edit-wapper {
     display: flex;
     flex-direction: column;
-    width: 500px;
-    height: 580px;
+    width: 480px;
+    height: 470px;
     border-radius: 8px;
     background-color: rgb(242, 243, 245);
+    padding-bottom: 10px;
 
 }
-.p-e-form-title h1{
+
+.p-e-form-title h1 {
     color: rgb(57, 57, 59);
+    font-size: 25px;
 }
 
-.project-edit-form{
+.project-edit-form {
     display: flex;
     flex-direction: column;
     padding-left: 20px;
     padding-right: 20px;
     text-align: center;
 }
-.e-mark-logo{
-    margin-left: 440px;
-    margin-top: -60px;
+
+.e-mark-logo {
+    margin-left: 420px;
+    margin-top: -40px;
 }
-.e-close-x-img{
-    width: 25px;
-    height: 25px;
+
+.e-close-x-img {
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
 }
-.e-close-x-img:hover{
+
+.e-close-x-img:hover {
     cursor: pointer;
     background-color: rgb(227, 229, 232);
 }
-.p-e-errors{
+
+.p-e-errors {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,83 +48,93 @@
     color: rgb(240, 106, 106);
     font-weight: 500;
 }
-.edit-project-input{
-    margin-top: 50px;
+
+.edit-project-input {
+    margin-top: 45px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    gap: 30px;
+    gap: 20px;
 }
-.project-title-input{
+
+.project-title-input {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    gap:20px;
+    gap: 10px;
 }
-.projecticon-input{
+
+.projecticon-input {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    gap:20px;
+    gap: 10px;
 }
-.project-d-input{
+
+.project-d-input {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    gap:20px;
+    gap: 20px;
 }
-.projecticon-input >.project-icon-title{
-    color: rgb(56,57,58);
-    font-size: 20px;
-    font-weight:600;
+
+.projecticon-input>.project-icon-title {
+    color: rgb(56, 57, 58);
+    font-size: 18px;
+    font-weight: 600;
 
 
 }
-.project-d-input >.project-d-title {
-    color: rgb(56,57,58);
-    font-size: 20px;
-    font-weight:600;
-  
+
+.project-d-input>.project-d-title {
+    color: rgb(56, 57, 58);
+    font-size: 18px;
+    font-weight: 600;
+
 
 }
-.project-title-input >.project-title{
-    color: rgb(56,57,58);
-    font-size: 20px;
-    font-weight:600;
+
+.project-title-input>.project-title {
+    color: rgb(56, 57, 58);
+    font-size: 18px;
+    font-weight: 600;
 
 }
-.project-edit-form input{
- background-color: rgb(227, 229, 232);
-  border: none;
-  border-radius: 5px;
-  color: rgb(0,0,0);
-  width: 456px;
-  height: 45px;
+
+.project-edit-form input {
+    background-color: rgb(227, 229, 232);
+    border: none;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    width: 445px;
+    height: 40px;
 }
 
-.project-d-input input{
-    height: 80px;
+.project-d-input input {
+    height: 75px;
     word-wrap: break-word;
 
 }
-.edit-project-button button{
+
+.edit-project-button button {
     background-color: rgb(240, 106, 106);
-    color:black;
+    color: black;
     border-radius: 8px;
-    width: 160px;
+    width: 130px;
     height: 40px;
     font-size: 16px;
 }
 
-.edit-project-button:hover button{
-    width: 170px;
+.edit-project-button:hover button {
+    width: 150px;
     font-size: 18px;
 }
-.edit-project-button{
-    margin-top: 30px;
+
+.edit-project-button {
+    margin-top: 19px;
     /* margin-left: 175px; */
 }

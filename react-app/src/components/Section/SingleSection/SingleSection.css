@@ -23,7 +23,7 @@
 
 
 #edit-section-input {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     min-width: fit-content;
     min-height: 50px;
@@ -33,12 +33,12 @@
 
 }
 #edit-section-input2{
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     min-width: fit-content;
     min-height: 50px;
     border: none;
-    width: 25%;
+    width: 23%;
     margin-top: 30px;
 }
 
@@ -53,7 +53,7 @@
 
 }
 #edit-section-input:focus {
-    border: 3px solid rgb(81, 135, 248);
+    border: 2px solid rgb(81, 135, 248);
     border-radius: 10px;
     width: 20%;
 
@@ -62,9 +62,9 @@
 
 }
 #edit-section-input2:focus {
-    border: 3px solid rgb(81, 135, 248);
+    border: 2px solid rgb(81, 135, 248);
     border-radius: 10px;
-    width: 25%;
+    width: 23%;
 
 
 }
@@ -75,14 +75,14 @@
     flex-direction: row;
      margin-left: 26%;
      gap: 10px;
-    font-size: 20px;
+    font-size: 18px;
     min-width: fit-content;
     margin-left: 19.5%;
     width: 80%;
     height:100px;
     padding:30px;
-    cursor: grab;
-    opacity: 0;
+    /* cursor: grab; */
+    /* opacity: 0; */
     margin-top: -75px;
     /* background-color: black; */
 }
@@ -112,9 +112,9 @@
  .setting-add-task2 {
     display: flex;
     flex-direction: row;
-    margin-left: 25.9%;
+    margin-left: 24.2%;
     gap: 10px;
-    font-size: 20px;
+    font-size: 18px;
     min-width: fit-content;
     width: 75%;
     height: 98px;
@@ -127,14 +127,14 @@
 
 }
 /* .setting-add-task2 > #edit-section-input:focus {
-    border: 3px solid rgb(81, 135, 248);
     border-radius: 10px;
     width: 30%;
 } */
 .add-task-in-section-icon {
     width: 35px;
     height: 30px;
-    padding-top: 5px;
+    line-height: 30px;
+    /* padding-top: 5px; */
     border-radius: 5px;
     text-align: center;
 
@@ -154,7 +154,7 @@
 .open-section-setting {
     width: 35px;
     height: 30px;
-    padding-top: 5px;
+    line-height: 30px;
     border-radius: 5px;
     text-align: center;
 
@@ -196,7 +196,7 @@
     min-width: 160px;
     z-index: 99;
     margin-top: -50px;
-    margin-left: 29.9%;
+    margin-left: 30%;
     width: 210px;
     height: 40px;
     border-radius: 8px;
@@ -232,7 +232,7 @@
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    font-size: 17px;
+    font-size: 16px;
     padding-left: 10px;
     padding-right: 10px;
     margin-top: -2px;
@@ -253,7 +253,7 @@
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    font-size: 17px;
+    font-size: 16px;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -289,7 +289,7 @@
     position: absolute;
     /* top:150%;
    left:50%; */
-    margin-top: -45px;
+    margin-top: -35px;
     margin-left: -96px;
 
     text-decoration: none
@@ -335,7 +335,7 @@
     position: absolute;
     /* top:150%;
        left:50%; */
-    margin-top: -45px;
+    margin-top: -35px;
     margin-left: -62px;
     /* margin-left:-96px; */
 
@@ -368,7 +368,7 @@
     border-top: 0.5px solid rgb(242, 242, 242);
 }
 .read-section-input input{
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     min-width: fit-content;
     min-height: 50px;

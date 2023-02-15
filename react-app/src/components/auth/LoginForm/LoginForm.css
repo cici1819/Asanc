@@ -127,7 +127,7 @@ background-color: rgb(227, 229, 232);
 }
 
 .l-e-input:focus{
-    border: 3px solid rgb(81, 135, 248);
+    border: 2px solid rgb(81, 135, 248);
     border-radius: 5px;
 }
 .login-button > #home-signUp{

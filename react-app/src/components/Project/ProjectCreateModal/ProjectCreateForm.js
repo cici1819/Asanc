@@ -128,7 +128,7 @@ function ProjectCreate({ setShowModal }) {
                                 <input
                                     id="c-p-input"
                                     type="text"
-
+                                    placeholder="e.g. : https://example.png"
                                     value={icon}
                                     onChange={(e) => setIcon(e.target.value)}
                                 />

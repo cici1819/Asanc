@@ -17,11 +17,11 @@
 .mainPage-open{
     min-height: 100vh;
     height: 100%;
-    min-width: 1800px;
+    min-width: 1400px;
     width:100%;
     position: absolute;
     top:66px;
-    left:280px;
+    left:255px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -43,7 +43,7 @@
     position: absolute;
     padding-top:10px;
     padding-bottom: 10px;
-    padding-left: 35px;
+    padding-left: 49px;
     top:66px;
     display: flex;
     flex-direction: column;
@@ -93,7 +93,7 @@
 .mian-page-sectionList{
     /* display: flex;
     flex-direction: column; */
-   
+
     /* height: 80px; */
     width:90vw;
     /* border-top:1px solid rgb(242,242,242);

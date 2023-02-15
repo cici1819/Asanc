@@ -36,7 +36,7 @@ function CommentListInTask({ taskId, users, show }) {
     const [commentList, setCommentList] = useState([]);
     const onAddBtnClick = event => {
         setCommentList(commentList.concat(
-            <div className="comment-create-div ref">
+            <div className="comment-create-div ref" id="create-comment2">
                 <CommentCreate show={show} task={task} setCommentList={setCommentList} />
             </div >));
     };
@@ -47,7 +47,7 @@ function CommentListInTask({ taskId, users, show }) {
     return (
         <div className="ref comment-list-task" >
             <div className={`${commentClass} ref`}>
-                <div className="comment-c-container ref">
+                <div className="comment-c-container ref" id="comment-c-container-r">
                     <span className="title-comment ref">Comments:</span>
                     <span onClick={onAddBtnClick} className="addComment-main-container ref">
                         <i className="fa-solid fa-plus ref" id="create-comment-plus"></i>
@@ -58,15 +58,15 @@ function CommentListInTask({ taskId, users, show }) {
 
                 <div className="comment-list-new ref">{commentList}</div>
                 <div className="single-comment-in-task ">
-                {commentArr.length > 0 && commentArr.map((comment) => (
-                    <div className="ref comment-list-div" key={comment.id}>
-                        <div className="single-comment-in-task-detail ref">
+                    {commentArr.length > 0 && commentArr.map((comment) => (
+                        <div className="ref comment-list-div" key={comment.id}>
+
                             <div className="single-comment-in-task-title ref">
                                 <SingleComment show={show} commentId={comment.id} comment={comment} users={users} />
                             </div>
+
                         </div>
-                    </div>
-                ))}
+                    ))}
                 </div>
 
 

@@ -12,7 +12,7 @@
     /* width: 100%; */
     min-height:fit-content;
     height:100%;
-    font-size:18px;
+    font-size:16px;
     opacity: 0;
     /* margin-left: 58%; */
     width: 100%;
@@ -41,8 +41,8 @@
     align-items: center;
     border-right:1px solid rgb(242,242,242);
     /* border-top:0.5px solid rgb(242,242,242) ; */
-    font-size: 18px;
-    /* background-color: aqua; */
+    font-size: 16px;
+
 }
 .task-first-column:hover{
     opacity: 1;
@@ -54,14 +54,14 @@
 
 .edit-task-title:focus{
     border:3px solid rgb(81, 135, 248);
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
 
     /* font-size: 18px; */
 
 }
 .task-input-title input{
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
 
 
@@ -69,7 +69,7 @@
 
 .task-detail-content{
     /* padding:5px; */
-    font-size: 18px;
+    font-size: 16px;
     height: 60px;
     min-width: 90vw;
     width: 100%;
@@ -171,6 +171,7 @@ display: none;
     width:10vw;
     font-size: 16px;
     border-radius: 8px;
+
 }
 
 
@@ -253,6 +254,7 @@ display: none;
 
 
 .task-detail-priority{
+    font-size: 16px;
     margin-top: -60px;
     margin-left: 63%;
     width: 13%;
@@ -276,7 +278,7 @@ display: none;
     height: 30px;
     border-radius: 8px;
     text-align: center;
-
+    font-size: 16px;
 }
 #mySelect:focus{
     border: 1px solid rgb(37,38,40);
@@ -289,20 +291,6 @@ display: none;
 #mySelect:hover option {
     cursor: pointer;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -337,19 +325,23 @@ display: none;
 .p-1{
    background-color:white;
    cursor: pointer;
+   font-size: 16px;
 }
 .p-2{
     background-color: rgb(158,231,227);
     cursor: pointer;
+    font-size: 16px;
 }
 .p-3{
     background-color: rgb(241,189,108);
     cursor: pointer;
+    font-size: 16px;
 }
 
 .p-4{
     background-color:rgb(179,107,212) ;
     cursor: pointer;
+    font-size: 16px;
 }
 
 
@@ -359,6 +351,7 @@ display: none;
 
 
 .task-detail-status{
+    font-size: 16px;
     margin-top: -60px;
     margin-left: 76%;
     width: 13%;
@@ -486,20 +479,24 @@ display: none;
 .s-1{
     background-color:white;
     cursor: pointer;
+    font-size: 16px;
 }
 .s-2{
     background-color: rgb(78,203,196);
     cursor: pointer;
+    font-size: 16px;
 }
 
 .s-3{
     background-color: rgb(248,223,114);
     cursor: pointer;
+    font-size: 16px;
 }
 
 .s-4{
     background-color: rgb(240,106,106);
     cursor: pointer;
+    font-size: 16px;
 }
 
 .task-delete-closed{
@@ -622,7 +619,7 @@ display: none;
 }
 .read-task-input{
 
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     border: none;
     margin-left: 10px;
@@ -715,7 +712,7 @@ display: none;
     border-right:1px solid rgb(242,242,242);
 }
 .read-dueDate{
-    margin-left: -50px;
+    /* margin-left: -50px; */
 }
 
 #read-priority{

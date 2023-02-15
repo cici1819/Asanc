@@ -47,7 +47,8 @@ body {
     box-sizing: border-box;
     margin: 0;
     word-wrap: break-word;
-    font-size: 18px;
+    word-break: break-word;
+    font-size: 16px;
     min-height: 100vh;
     min-width: 100vw;
     color: black;
@@ -95,10 +96,16 @@ button:hover {
     filter: brightness(90%)
 }
 
-input {
+input,textarea {
     font-size: 16px;
+    border-radius: 5px;
+    font-family: "Proxima Nova";
+    word-wrap: break-word;
 }
 
 input:focus{
-    border: 3px solid rgb(81, 135, 248);
+    border: 2px solid rgb(81, 135, 248);
+}
+textarea:focus {
+    border: 2px solid rgb(81, 135, 248);
 }

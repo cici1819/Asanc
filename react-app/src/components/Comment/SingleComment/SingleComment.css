@@ -41,6 +41,12 @@
     /* margin-bottom: 10px; */
 
 }
+.read-commentsList .comment-edit-input #comment-part-input{
+    min-width:82%;
+}
+.read-commentsList .comment-edit-input-closed #comment-part-input{
+    min-width: 58%;
+}
 .comment-delete-icon{
     width: 30px;
     height: 25px;
@@ -52,7 +58,13 @@
     margin-left: 103%;
     margin-top: -40px;
 }
-
+.read-commentsList .comment-delete-icon{
+    margin-left: 86%;
+}
+.read-commentsList .commen-delete-icon-closed{
+    /* margin-left: -86%; */
+    margin-left: 60%;
+}
 .comment-delete-icon:hover {
     cursor: pointer;
     opacity: 1;

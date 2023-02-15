@@ -19,7 +19,7 @@
 
 .creat-project-title h1 {
     color: rgb(57, 57, 59);
-    font-size: 22px;
+    font-size: 25px;
 }
 
 .creat-project-content {
@@ -35,15 +35,18 @@
     height: 20px;
     border-radius: 50%;
 }
-.mark-logo2{
+
+.mark-logo2 {
     margin-left: 420px;
     margin-top: -40px;
 }
+
 .close-x-img2:hover {
     cursor: pointer;
     background-color: rgb(227, 229, 232);
-  }
-#errors3-list{
+}
+
+#errors3-list {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -56,52 +59,56 @@
     /* margin-bottom: 50px; */
 
 }
-.creat-project-input{
+
+.creat-project-input {
     margin-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
 }
+
 .p-input-title,
 .s-input-title2,
 .s-input-title3 {
-    color: rgb(56,57,58);
+    color: rgb(56, 57, 58);
     font-size: 18px
 }
 
-.creat-project-input input{
-background-color: rgb(227, 229, 232);
-  border: none;
-  border-radius: 5px;
-  color: rgb(0,0,0);
-  width: 450px;
-  height: 40px;
+.creat-project-input input {
+    background-color: rgb(227, 229, 232);
+    border: none;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    width: 450px;
+    height: 40px;
 }
 
-.c-p-b-homePage{
+.c-p-b-homePage {
     background-color: rgb(240, 106, 106);
-    color:black;
+    color: black;
     border-radius: 8px;
     width: 130px;
     height: 40px;
     font-size: 15px;
 }
-.c-p-b-homePage:hover{
+
+.c-p-b-homePage:hover {
     width: 150px;
     font-size: 18px;
 }
+
 .create-project-button {
     margin-top: 20px;
     margin-left: 165px;
     margin-bottom: 20px;
 }
 
-#create-server-plus:hover{
- cursor: pointer;
+#create-server-plus:hover {
+    cursor: pointer;
 }
 
-#c-p-input:focus{
-    border: 3px solid rgb(81, 135, 248);
+#c-p-input:focus {
+    border: 2px solid rgb(81, 135, 248);
     border-radius: 5px;
 }

@@ -1,13 +1,13 @@
 .title-open {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
     align-items: center;
 
     font-size: 22px;
     font-weight: 600;
-    margin-top: 50px;
-    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     margin-left: 35vw;
 
 
@@ -53,12 +53,12 @@
 .title-closed {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
     align-items: center;
     font-size: 22px;
     font-weight: 600;
-    margin-top: 50px;
-    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 
 
 }
@@ -70,7 +70,7 @@
      /* background-color: aqua; */
     width: 180px;
     height: 50px;
-    margin-top: 35px;
+    margin-top: 42px;
     gap:10px;
     font-size: 18px;
     align-items: center;

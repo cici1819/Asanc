@@ -53,11 +53,7 @@ const SingleComment = ({ commentId, comment, users,show }) => {
 
         }
     }
-    // useEffect(() => {
 
-    //     dispatch(commentActions.thunkLoadTaskComments(taskId))
-
-    // }, [dispatch, taskId,comment,comments]);
 
     const handleChange = (e) => {
         e.preventDefault();

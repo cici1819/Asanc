@@ -55,7 +55,8 @@ function ProjectDelete({ setShowProjectDeleteModal, currentProject }) {
                         </div>
                         <div className="p-delete-warning">
                             <span className="d-p-1">Are you sure you want to delete </span>
-                            <span className="d-p-2">{currentProject?.title}?</span>
+                            <span className="d-p-2">{currentProject?.title}</span>
+                            <span className="d-p-2" id="d-p">? </span>
                             <span className="d-p-3">
                                 This cannot be undone.
                             </span>
