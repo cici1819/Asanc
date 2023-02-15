@@ -1,4 +1,4 @@
-.nav-bar-section{
+.nav-bar-section {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -7,26 +7,28 @@
     position: fixed;
     top: 0;
     z-index: 999;
-    width:100%;
+    width: 100%;
     height: 55px;
 
-    background-color:white;
-    box-shadow: 0px 5px 5px -5px rgba(111,111,111,0.3);
+    background-color: white;
+    box-shadow: 0px 5px 5px -5px rgba(111, 111, 111, 0.3);
 
 }
-.splash-page-container{
+
+.splash-page-container {
     overflow-y: auto;
 
     /* min-height: 100vh; */
     height: 100%;
     min-width: 100vw;
     width: 100%;
-    background-color: rgb(246,248,249);
+    background-color: rgb(246, 248, 249);
 }
-.nav-bar-left{
+
+.nav-bar-left {
     position: absolute;
-    left:4vw;
-     display: flex;
+    left: 4vw;
+    display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
@@ -37,15 +39,15 @@
 
 }
 
-.logo-img{
+.logo-img {
     width: 35px;
     height: 35px;
 }
 
-.nav-bar-right{
+.nav-bar-right {
     position: absolute;
-    right:4vw;
-    gap:50px;
+    right: 4vw;
+    gap: 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -60,45 +62,49 @@
 
 }
 
-#home-login-button{
+#home-login-button {
     display: block;
-    color:rgb(119,111,121);
+    color: rgb(119, 111, 121);
     width: 80px;
     height: 25px;
     line-height: 25px;
-    padding:5px;
+    padding: 5px;
     border-radius: 5px;
     text-align: center;
 }
+
 #home-login-button:hover {
-   color: rgb(53,54,55);
-   background-color: rgb(240,106,106);
+    color: rgb(53, 54, 55);
+    background-color: rgb(240, 106, 106);
 }
 
-#home-signUp{
+#home-signUp {
     border-radius: 5px;
     font-size: 18px;
-    color:rgb(255,255,255);
-    padding:5px;
+    color: rgb(255, 255, 255);
+    padding: 5px;
     width: 120px;
     height: 35px;
-    background-color:rgb(53,54,55);
+    background-color: rgb(53, 54, 55);
 }
-#home-signUp:hover{
-    background-color: rgb(240,106,106);
-    color: rgb(53,54,55);
+
+#home-signUp:hover {
+    background-color: rgb(240, 106, 106);
+    color: rgb(53, 54, 55);
     filter: brightness(100%);
 }
-.main-content{
+
+.main-content {
     position: absolute;
-    top:68px;
+    top: 68px;
     min-width: 100vw;
     width: 100%;
     min-height: 100vh;
     height: 100%;
     /* background-color: aqua; */
 }
-.main-pic-container{
+
+.main-pic-container {
     display: flex;
     flex-direction: row;
     /* background-color: aquamarine; */
@@ -106,33 +112,35 @@
 
     min-width: 100vw;
     width: 100%;
-    min-height:600px ;
+    min-height: 600px;
     height: fit-content;
 }
-.main-title-left{
-    height:fit-content;
+
+.main-title-left {
+    height: fit-content;
     min-height: 600px;
     width: 35%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-left: 4vw;;
-    color:rgb(13,14,16);
-    gap:10px;
+    padding-left: 4vw;
+    ;
+    color: rgb(13, 14, 16);
+    gap: 10px;
     background-color: white;
 }
 
 .main-img-right {
     height: fit-content;
     min-height: 600px;
-    width:65%;
+    width: 65%;
 }
 
-.main-img-right img{
+.main-img-right img {
     position: absolute;
-    top:85px;
+    top: 85px;
     width: 59%;
-    object-fit:cover;
+    object-fit: cover;
     height: 532px;
 }
 
@@ -141,165 +149,187 @@
     font-weight: 400;
 }
 
-.h-t-1{
+.h-t-1 {
     margin-top: 80px;
 }
-.h-t-2{
+
+.h-t-2 {
     margin-top: -40px;
 }
-.h-t-3{
+
+.h-t-3 {
     margin-top: -40px;
     margin-bottom: 80px;
 }
-.seprate-line{
+
+.seprate-line {
     margin-top: -10px;
     margin-bottom: 20px;
 }
+
 .info-main p {
-   font-size: 22px;
-   color:rgb(53,54,55)
+    font-size: 22px;
+    color: rgb(53, 54, 55)
 }
-#home-signUp2{
+
+#home-signUp2 {
 
     border-radius: 5px;
     font-size: 20px;
-    color:rgb(255,255,255);
+    color: rgb(255, 255, 255);
     width: 180px;
     height: 50px;
-    padding:10px;
-    background-color:rgb(53,54,55);
+    padding: 10px;
+    background-color: rgb(53, 54, 55);
 }
 
-#home-signUp2:hover{
-    background-color: rgb(240,106,106);
-    color: rgb(53,54,55);
+#home-signUp2:hover {
+    background-color: rgb(240, 106, 106);
+    color: rgb(53, 54, 55);
     filter: brightness(100%);
 }
 
-.main-img-right2{
+.main-img-right2 {
     width: 77%;
-     object-fit:cover;
-      height: 520px;
+    object-fit: cover;
+    height: 520px;
 }
-.main-content-section2{
+
+.main-content-section2 {
     margin-top: 16vh;
     display: flex;
     flex-direction: row;
     min-width: 100vw;
     width: 100%;
-    min-height:700px ;
+    min-height: 700px;
     height: fit-content;
-     background-color: rgb(246,248,249);
+    background-color: rgb(246, 248, 249);
 }
-.main-section2-left{
+
+.main-section2-left {
     /* margin-top:-40px; */
     margin-top: 50px;
-    gap:13px;
-    height:fit-content;
+    gap: 13px;
+    height: fit-content;
     min-height: 650px;
     width: 23%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding-left: 5vw;
-    color:rgb(13,14,16);
+    color: rgb(13, 14, 16);
     /* background-color: rgb(246,248,249); */
 }
 
-.main-img-right2 img{
+.main-img-right2 img {
 
-    padding-left:160px;
+    padding-left: 160px;
 
     margin-top: 80px;
     min-width: 750px;
 
     /* width: %; */
     width: 78%;
-    object-fit:cover;
+    object-fit: cover;
     height: 490px;
 
 }
-.main-section2-left h1{
+
+.main-section2-left h1 {
     font-size: 48px;
     font-weight: 400;
 }
-.p-m-title1{
+
+.p-m-title1 {
     margin-top: -10px;
 }
 
-.p-m-title2{
+.p-m-title2 {
     margin-top: -40px;
 }
 
-.main-section2-left h4{
+.main-section2-left h4 {
     margin-top: -80px;
 }
-.main-section2-left p{
-  color:rgb(125,125,143);
-  font-size: 22px;
-  margin-top: -10px;
+
+.main-section2-left p {
+    color: rgb(125, 125, 143);
+    font-size: 22px;
+    margin-top: -10px;
 }
 
-.section3{
-    margin-top:18vh;
+.section3 {
+    margin-top: 18vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 600px;
     width: 100%;
-    background-color: rgb(13,14,16);
+    background-color: rgb(13, 14, 16);
 }
-.logo-img2{
+
+.logo-img2 {
     margin-top: 30px;
-     width:50px;
-     height:50px;
+    width: 50px;
+    height: 50px;
 }
-.section3 h1{
-    color:rgb(246,248,249);
+
+.section3 h1 {
+    color: rgb(246, 248, 249);
     font-size: 48px;
 }
-.l-h1-1{
+
+.l-h1-1 {
     margin-top: 20px;
 }
-.l-h1-2{
+
+.l-h1-2 {
     margin-top: -20px;
 }
 
-#home-signUp3{
+#home-signUp3 {
     margin-top: 20px;
     border-radius: 5px;
     font-size: 22px;
     font-weight: 600;
-    color:rgb(53,54,55);
+    color: rgb(53, 54, 55);
     width: 180px;
     height: 60px;
-    padding:10px;
-    background-color:rgb(246,248,249)
+    padding: 10px;
+    background-color: rgb(246, 248, 249)
 }
-#home-signUp3:hover{
-    background-color: rgb(240,106,106);
-    color: rgb(53,54,55);
+
+#home-signUp3:hover {
+    background-color: rgb(240, 106, 106);
+    color: rgb(53, 54, 55);
     filter: brightness(100%);
 }
-.seprate-line2{
+
+.seprate-line2 {
 
     margin-top: 90px;
     height: 20px;
     width: 90vw;
-    border-bottom:0.2px solid rgb(242,242,242);
-}
-.about-link-splash{
-    display: flex;
-    flex-direction: column;
-    gap:10px;
+    border-bottom: 0.2px solid rgb(242, 242, 242);
 }
 
-.about-link-splash span{
-    margin-top: 45px;
-    color:rgb(242,242,242);
-    font-size:20px;
+.about-link-splash {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
-.linkedin-link{
+
+.about-link-splash span {
+    margin-top: 45px;
+    color: rgb(242, 242, 242);
+    font-size: 20px;
+}
+
+.linkedin-link {
     margin-top: -60px;
+}
+
+.about-link-splash .linkedin-link {
+    margin-top: -55px
 }
