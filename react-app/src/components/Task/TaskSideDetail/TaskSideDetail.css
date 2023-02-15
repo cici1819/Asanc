@@ -15,8 +15,10 @@
     z-index: 10;
     background-color: white;
     box-shadow: rgba(0, 0, 0, .3) 0px 0px 15px;
-
+    height: 100%;
 }
+
+
 
 .taskSide-detail::-webkit-scrollbar-track {
     background: white;
@@ -53,6 +55,7 @@
     /* min-height :2500px; */
     /* max-height: 800px; */
     min-height: 88vh;
+    height: 100%;
     /* height: 2500px; */
     padding-top: 30px;
     padding-left: 20px;
@@ -63,6 +66,7 @@
     background-color: white;
     box-shadow: rgba(0, 0, 0, .3) 0px 0px 15px;
 }
+
 
 .readSide-detail-closed {
     position: fixed;
@@ -643,9 +647,11 @@
     border-radius: 5px;
 
 }
-.readSide-detail-closed #r-side-p{
-   margin-left: 35px;
+
+.readSide-detail-closed #r-side-p {
+    margin-left: 2.5vw;
 }
+
 #r-side-p:hover {
     cursor: default;
 }
@@ -659,9 +665,11 @@
     border-radius: 5px;
     cursor: default;
 }
-.readSide-detail-closed #r-side-s{
-    margin-left: 38px;
+
+.readSide-detail-closed #r-side-s {
+    margin-left: 3vw;
 }
+
 .t-s-d {
     display: flex;
     flex-direction: column;
@@ -689,9 +697,11 @@
     border: 1px solid rgba(37, 38, 40, 0.5);
     margin-bottom: 50px;
 }
-.readSide-detail-closed .t-s-d-c{
-    padding-right: 18px;
+
+.readSide-detail-closed .t-s-d-c {
+    padding-right: 2vw;
 }
+
 .edit-s-discription {
     resize: none;
     margin-bottom: 50px;
@@ -715,4 +725,38 @@
     font-size: 16px;
     color: black;
     margin-top: 10px;
+}
+
+
+@media only screen and (min-width: 1600px) and (min-height: 901px) {
+    /* Your CSS rules for screens larger than 1400x900 go here */
+
+    .taskSide-detail {
+
+        min-width: 22.5vw;
+        width: 22.5%;
+    }
+
+    .close-s-div {
+
+        margin-left: 20vw;
+
+
+    }
+
+    .taskSide-detail-closed {
+
+        min-width: 34vw;
+        width: 34%;
+
+
+
+    }
+
+    .readSide-detail-closed {
+        min-width: 36vw;
+        width: 36%;
+        overflow-x: hidden;
+    }
+
 }
