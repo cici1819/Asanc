@@ -9,7 +9,7 @@
     align-items: flex-start;
 
     /* background-color: aqua; */
-    width:80vw;
+    width:75vw;
     height:35vh ;
     /* overflow: auto; */
     position: relative;
@@ -25,10 +25,6 @@
     border: 1px solid rgba(175,171,172,1);
     box-shadow: 0px 0px 10px rgba(175, 171, 172,0.5);
 }
-
-x
-
-
 
 
 
@@ -64,22 +60,9 @@ x
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .c-p-l-title{
-    font-size: 25px;
+
+    font-size: 20px;
     font-weight: 600;
 
 }
@@ -88,27 +71,30 @@ x
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap:20px;
+    gap:10px;
     /* background-color: aqua; */
     margin-top: 20px;
 }
 .homePage-create{
+    /* margin-bottom: 50px;
+    background-color: aqua; */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 60px;
-    height: 60px;
+    width: 45px;
+    height: 45px;
     border: 1px dotted rgb(175,171,172) ;
     border-radius: 10px;
     /* color: rgb(116,117,117); */
 }
 
 .single-project-icon{
-    width: 60px;
-    height: 60px;
+    width: 45px;
+    height: 45px;
     border-radius: 10px;
     object-fit: cover;
+
     /* color:rgb(116,117,117); */
 
 }
@@ -116,9 +102,9 @@ x
 .single-project-title2 {
 
     color:black;
-    margin-left: 70px;
+    margin-left: 30px;
     position: relative;
-    margin-top: -50px;
+    font-size: 18px;
 
     /* margin-left: 10px; */
 }
@@ -129,15 +115,12 @@ x
 .sigle-project-homepage-div{
     display: flex;
     flex-direction: row;
-    /* background-color: aqua; */
-    width: 280px;
-    height: 80px;
-    /* margin-top: 40px; */
-    /* gap:10px; */
+    width: 180px;
+    height: 50px;
     font-size: 20px;
-    align-items: center;
-     padding-bottom:20px;
-     padding-left: 10px;
+     align-items: center;
+     padding:10px;
+
 }
 
 .sigle-project-homepage-div:hover{

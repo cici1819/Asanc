@@ -1,43 +1,36 @@
 .h-users-logo {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
 }
 
-.home-page-members-container {
-
-
+.collaborator-div{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     flex-wrap: wrap;
     padding-top: 10px;
     padding-left: 30px;
-    gap: 30px;
-    overflow-x: hidden;
+    gap: 20px;
+    /* overflow-x: hidden; */
     align-items: flex-start;
-    width: 80vw;
+    width: 75vw;
     height: 35vh;
     overflow-y: auto;
     border: 2px solid rgba(237, 234, 233, 0.8);
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(237, 234, 233, 0.5);
 
-
 }
 
-.home-page-members-container:hover {
+.collaborator-div:hover {
     /* cursor: grab; */
     border: 1px solid rgba(175, 171, 172, 1);
     box-shadow: 0px 0px 10px rgba(175, 171, 172),
 
     }
 
-
-
-
-
-.home-page-members-container::-webkit-scrollbar-thumb {
+.collaborator-div::-webkit-scrollbar-thumb {
     /* Foreground */
 
     background:rgba(248,234,234,0.3);
@@ -49,7 +42,7 @@
 
 }
 
-.home-page-members-container::-webkit-scrollbar-track {
+.collaborator-div::-webkit-scrollbar-track {
     /* Background */
     background:white;
 
@@ -57,13 +50,13 @@
     border-top: 1px solid rgb(30,31,33,);
 }
 
-.home-page-members-container::-webkit-scrollbar{
+.collaborator-div::-webkit-scrollbar{
     width: 1px;
     size:1px;
     height:1px;
     background-color: rgba(30,31,33, 0.3);
   }
-.home-page-members-container::-webkit-scrollbar-thumb:hover {
+.collaborator-div::-webkit-scrollbar-thumb:hover {
     background: rgba(30,31,33, 0.3);
     border-radius: 10px;
   }
@@ -72,14 +65,16 @@
     .h-users-title {
         display: flex;
         flex-direction: row;
+        justify-content: flex-start;
         gap:10px;
         margin-top: 10px;
         margin-bottom: 10px;
-        justify-content: center;
+        align-items: center;
+        /* justify-content: center; */
     }
 
     .h-u-s1 {
-        font-size: 25px;
+        font-size: 20px;
         font-weight: 600;
     }
 
@@ -87,26 +82,25 @@
         padding-left: 10px;
         color: rgb(88, 88, 89);
         font-size: 15px;
-
-        /* background-color: antiquewhite; */
-        margin-top: 7px;
     }
 
     .members-list-card {
         display: flex;
         flex-direction: row;
+        align-items: flex-start;
         flex-wrap: wrap;
-        gap:25px;
+        gap:20px;
+        margin-top: 30px;
 
-        /* margin-top: -70px; */
+
 
     }
 
     .h-user-s-card {
         /* position:absolte;
         top:100px; */
-        width: 180px;
-        height: 200px;
+        width: 130px;
+        height: 150px;
         border: 1px dashed rgba(215, 213, 213, 1);
         border-radius: 10px;
         display: flex;

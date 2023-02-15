@@ -40,9 +40,9 @@ function CurrentUserProject() {
 
                         return (
 
-                            <div className="sigle-project-homepage-div" key={project?.id}>
+                            <div  key={project?.id}>
 
-                                <div onClick={()=>history.push(`/home/${project?.id}/list`)}>
+                                <div onClick={()=>history.push(`/home/${project?.id}/list`)} className="sigle-project-homepage-div">
                                     <div className="s-p-i-homePage">
                                         <img className={`single-project-icon`} src={project?.icon} style={{ backgroundColor: project?.color }} alt='single-project-icon' onError={e =>{e.currentTarget.src = "https://mingprojectawsbucket.s3.amazonaws.com/cici/ciciicon.png"}} />
                                     </div>

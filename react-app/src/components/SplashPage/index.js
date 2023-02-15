@@ -92,7 +92,7 @@ function SplashPage() {
                             target="_blank"
                         >
                             <div className="logo-gitHub">
-                                <BsGithub size="3em" />
+                                <BsGithub size="2.5em" />
                             </div>
                         </NavLink>
                         <NavLink
@@ -102,7 +102,7 @@ function SplashPage() {
                             target="_blank"
                         >
                             <div className="linkedin-link">
-                                <BsLinkedin size="3em" />
+                                <BsLinkedin size="2.5em" />
                             </div>
                         </NavLink>
                     </div>

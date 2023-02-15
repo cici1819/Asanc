@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, NavLink } from 'react-router-dom';
 import { signUp } from '../../../store/session';
 import asancLogo from "../../../img/asanc-logo.png"
-import signUpImg from"../../../img/signUp-img.png"
+import signUpImg from "../../../img/signUp-img.png"
+import DemoUserLogin from '../DemoUser';
 import "../SignupForm/SignupForm.css"
 
 const SignUpForm = () => {
@@ -20,7 +21,7 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(firstName, lastName, username,email, password));
+      const data = await dispatch(signUp(firstName, lastName, username, email, password));
       if (data) {
         setErrors(data)
       }
@@ -28,7 +29,7 @@ const SignUpForm = () => {
     else if (password !== repeatPassword) {
       return setErrors(['Confirm Password field must be the same as the Password field']);
     }
-    else if (firstName.length > 30 || lastName.length>30) {
+    else if (firstName.length > 30 || lastName.length > 30) {
       return setErrors(['FirstName and lastName should less than 30 characters'])
     }
     else if (username.length > 30) {
@@ -146,7 +147,7 @@ const SignUpForm = () => {
               value={password}
             ></input>
           </div>
-          <div className='signUp-input'>
+          <div className='signUp-input' id="c-signUp-input">
             <div className='s-u-font'>
               <label>Confirm Password</label>
             </div>
@@ -156,16 +157,20 @@ const SignUpForm = () => {
               name='repeat_password'
               onChange={updateRepeatPassword}
               value={repeatPassword}
-              // required={true}
+            // required={true}
             ></input>
           </div>
+
           <div className='signup-button'>
-            <button id="signup-button2"type='submit'>Sign Up</button>
-          </div>
-          <div className='link-login'>
-            <NavLink className="logIn-link"to={"/login"}>Already have an account?</NavLink>
+            <button id="signup-button2" type='submit'>Sign Up</button>
           </div>
         </form>
+        <div className='Demo-button' id='signUp'>
+          <DemoUserLogin />
+        </div>
+        <div className='link-login'>
+          <NavLink className="logIn-link" to={"/login"}>Already have an account?</NavLink>
+        </div>
 
       </div>
 

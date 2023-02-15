@@ -1,15 +1,15 @@
 .creat-project-container {
     display: flex;
     flex-direction: column;
-    width: 500px;
-    height: 580px;
+    width: 480px;
+    height: 470px;
     border-radius: 8px;
     background-color: rgb(242, 243, 245);
 }
 
 .creat-project-form {
     width: 100%;
-    height: 85%;
+    height: 90%;
     outline: none;
     overflow: hidden;
     background-color: white;
@@ -19,24 +19,25 @@
 
 .creat-project-title h1 {
     color: rgb(57, 57, 59);
+    font-size: 22px;
 }
 
 .creat-project-content {
     display: flex;
     flex-direction: column;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 15px;
+    padding-right: 10px;
     text-align: center;
 }
 
 .close-x-img2 {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
 }
 .mark-logo2{
-    margin-left: 440px;
-    margin-top: -55px;
+    margin-left: 420px;
+    margin-top: -40px;
 }
 .close-x-img2:hover {
     cursor: pointer;
@@ -51,7 +52,7 @@
     font-size: 10px;
     color: rgb(240, 106, 106);
     font-weight: 500;
-    /* margin-top: -10px; */
+    margin-top: 10px;
     /* margin-bottom: 50px; */
 
 }
@@ -60,13 +61,13 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 25px;
+    gap: 15px;
 }
 .p-input-title,
 .s-input-title2,
 .s-input-title3 {
     color: rgb(56,57,58);
-    font-size: 20px
+    font-size: 18px
 }
 
 .creat-project-input input{
@@ -74,25 +75,26 @@ background-color: rgb(227, 229, 232);
   border: none;
   border-radius: 5px;
   color: rgb(0,0,0);
-  width: 456px;
-  height: 45px;
+  width: 450px;
+  height: 40px;
 }
 
 .c-p-b-homePage{
     background-color: rgb(240, 106, 106);
     color:black;
     border-radius: 8px;
-    width: 160px;
+    width: 130px;
     height: 40px;
     font-size: 15px;
 }
 .c-p-b-homePage:hover{
-    width: 170px;
+    width: 150px;
     font-size: 18px;
 }
 .create-project-button {
-    margin-top: 25px;
-    margin-left: 175px;
+    margin-top: 20px;
+    margin-left: 165px;
+    margin-bottom: 20px;
 }
 
 #create-server-plus:hover{
