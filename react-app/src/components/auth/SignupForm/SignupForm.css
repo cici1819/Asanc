@@ -1,18 +1,16 @@
 .signup-page{
-    /* position: fixed; */
+    position: fixed;
     overflow-y: auto;
-    margin: 0;
-    min-height:900px;
     height: 100vh;
-    min-width: 100vw;
     width: 100%;
     display:flex;
     flex-direction:row;
+    align-items: center;
     /* padding-left: 5vw;
     padding-right: 5vw; */
     padding-left: 1vw;
     padding-right:1vw;
-    align-items:center;
+    /* align-items:center; */
     /* overflow-y: auto; */
 
     background-color: rgb(247,248,248);
@@ -25,10 +23,10 @@
      box-shadow: rgba(0,0,0,.2) 0px 0px 15px;
 }
 .left-img2{
-    top:7vh;
-    position: absolute;
+
+   position: absolute;
     height: fit-content;
-    min-height: 650px;
+    min-height: 630px;
     width: 49%;
     margin-left: 2vw;
 }
@@ -37,14 +35,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: -16vh;
+    position: absolute;
     padding-top:10px;
     padding-bottom:25px;
     padding-left:20px;
     padding-right:20px;
     /* overflow-y: auto; */
     margin-left:58vw;
-    position: absolute;
+    margin-top: -0.5vh;
+
     /* right:10vw; */
     /* top:5vh; */
     height: fit-content;
@@ -60,7 +59,7 @@
     margin-left:54.5vw;
     position: absolute;
     /* right:10vw; */
-    top:8vh;
+
     width: 1px;
     height: 650px;
     background-color: rgba(111,111,111,0.2);
