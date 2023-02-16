@@ -23,7 +23,7 @@
 
 
 #edit-section-input {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
     min-width: fit-content;
     min-height: 50px;
@@ -33,7 +33,7 @@
 
 }
 #edit-section-input2{
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
     min-width: fit-content;
     min-height: 50px;
@@ -360,6 +360,7 @@
 
 }
 .read-section-input{
+    font-size: 20px;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -368,7 +369,7 @@
     border-top: 0.5px solid rgb(242, 242, 242);
 }
 .read-section-input input{
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
     min-width: fit-content;
     min-height: 50px;

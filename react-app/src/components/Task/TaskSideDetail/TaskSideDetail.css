@@ -81,6 +81,10 @@
     box-shadow: rgba(0, 0, 0, .3) 0px 0px 15px;
 }
 
+.readSide-detail-closed .close-s-div {
+    margin-left: 27.5vw;
+}
+
 .readSide-deatil {
     position: fixed;
     right: 0;
@@ -155,7 +159,7 @@
     height: fit-content;
     position: absolute;
     font-size: 18px;
-    margin-left: 26vw;
+    margin-left: 25.5vw;
     top: 100px;
 
 }
@@ -731,9 +735,13 @@
 
     .close-s-div {
 
-        margin-left: 20vw;
+        margin-left: 19.5vw;
 
 
+    }
+
+    .readSide-detail-closed .close-s-div {
+        margin-left: 20.5vw;
     }
 
     .taskSide-detail-closed {
@@ -745,12 +753,14 @@
     }
 
     .readSide-detail-closed {
-
-        width: 37%;
+        min-width: 35vw;
+        width: 35%;
         overflow-x: hidden;
 
     }
 
-
-
+    .readSide-deatil {
+        min-width: 24vw;
+        width: 24%;
+    }
 }

@@ -21,7 +21,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 30px;
-    margin-left: 30px;
+    left: 2vw;
     width: 214px;
 }
 
@@ -34,13 +34,14 @@
 }
 
 .sideBar-profile-logo-r {
+    position: absolute;
     display: flex;
     position: absolute;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
     gap: 30px;
-    margin-left: 82vw;
+    right:2vw;
     width: 214px;
 }
 
