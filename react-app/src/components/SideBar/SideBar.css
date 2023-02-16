@@ -1,15 +1,11 @@
 .sideBar-top-container {
     background-color: rgb(37, 38, 40);
-    ;
     height: 65px;
     min-width: 100vw;
     width: 100%;
-   /* width: 2400px; */
-    /* min-width:2800px; */
-    /* min-width: 2400px; */
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     gap: 30px;
     position: fixed;
@@ -26,6 +22,25 @@
     align-items: center;
     gap: 30px;
     margin-left: 30px;
+    width: 214px;
+}
+
+.profile-logo {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    margin-top: -1px;
+
+}
+
+.sideBar-profile-logo-r {
+    display: flex;
+    position: absolute;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 30px;
+    margin-left: 82vw;
     width: 214px;
 }
 
@@ -58,14 +73,6 @@
     border-radius: 50%;
 }
 
-.currentUser-profile {
-    /* position: absolute;
-    right: 40px; */
-    position: relative;
-    margin-left: 95%;
-
-}
-
 
 .sidebar-open {
 
@@ -73,12 +80,12 @@
     position: fixed;
     /* top:0; */
     display: flex;
-    z-index:1000;
+    z-index: 1000;
     /* flex: 0 0 auto; */
     padding-left: 10px;
     padding-right: 10px;
     flex-direction: column;
-     /* justify-content: space-between;  */
+    /* justify-content: space-between;  */
     background-color: rgb(30, 31, 33);
     color: white;
     transition: margin-left 250ms ease-out, transform 250ms ease-out;
@@ -87,6 +94,7 @@
     height: 100%;
     /* overflow-y: auto; */
 }
+
 /* .sidebar-open::-webkit-scrollbar {
     width: 0.4px;
     size: 0.4px;
@@ -94,13 +102,13 @@
 
 .sidebar-open::-webkit-scrollbar-thumb {
     /* Foreground */
-    /* background: rgb(32, 34, 37);
+/* background: rgb(32, 34, 37);
     border-radius: 8px; */
 /* } */
 
 /* .sidebar-open::-webkit-scrollbar-track {
     /* Background */
-    /* background: rgb(46, 51, 56);
+/* background: rgb(46, 51, 56);
     border-radius: 8px;
     margin-block: 3px;
     border-bottom: 2px solid rgb(54, 57, 63); */
@@ -132,10 +140,11 @@
     flex-direction: column;
     align-items: flex-start;
     /* padding-left: 10px; */
-    height:200px;
+    height: 200px;
     padding-top: 20px;
     gap: 10px;
 }
+
 .c-project-list::-webkit-scrollbar {
     width: 0.4px;
     size: 0.4px;
@@ -155,7 +164,7 @@
     border-bottom: 2px solid rgb(54, 57, 63);
 }
 
-.sideBar-bottom{
+.sideBar-bottom {
     height: 150px;
     /* margin-top:-5vh; */
 }
@@ -205,31 +214,33 @@
     width: 220px;
     height: 50px;
     padding-left: 10px;
-    gap:30px;
+    gap: 30px;
     align-items: center;
 }
-.create-project:hover{
+
+.create-project:hover {
     background-color: rgb(43, 44, 46);
     border-radius: 8px;
 }
+
 .c-project-list {
     margin-top: -15px;
-    padding-top:15px;
-    padding-bottom:15px;
-    width:240px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 240px;
     display: flex;
     flex-direction: column;
     gap: 15px;
     overflow-y: auto;
     overflow-x: hidden;
 
-    height:calc(100vh - 465px);
+    height: calc(100vh - 465px);
     /* height: 50%;
     top:240px;
     position:absolute; */
     margin-bottom: 20px;
-    border-bottom:0.3px solid rgb(245,248,248);
-    border-top:0.3px solid rgb(245,248,248);
+    border-bottom: 0.3px solid rgb(245, 248, 248);
+    border-top: 0.3px solid rgb(245, 248, 248);
 
 }
 
@@ -247,8 +258,8 @@
     height: fit-content;
     padding-left: 10px;
     align-items: center;
-    margin-top:10px;
-    margin-bottom:10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 
 
 }
@@ -264,51 +275,57 @@
     border-radius: 8px;
 }
 
-.log-out-button{
-   border: none;
-   outline:none;
-   font-size: 18px;
-   background-color: rgb(240, 106, 106);
-   color:black;
-   border-radius: 5px;
-   width: 120px;
-   height: 40px;
-}
-.log-out-button:hover{
-   width: 140px;
-   font-size: 20px;
-}
-.sideBar-button{
-/* position: absolute;
-bottom:18vh; */
-margin-left: 10px;
-margin-bottom: 20px;
+.log-out-button {
+    border: none;
+    outline: none;
+    font-size: 18px;
+    background-color: rgb(240, 106, 106);
+    color: black;
+    border-radius: 5px;
+    width: 120px;
+    height: 40px;
 }
 
-.about-links{
+.log-out-button:hover {
+    width: 140px;
+    font-size: 20px;
+}
+
+.sideBar-button {
+    /* position: absolute;
+bottom:18vh; */
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
+.about-links {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     /* position: absolute;
     bottom:10vh; */
-    gap:5px;
+    gap: 5px;
     margin-left: 10px;
     margin-bottom: 10px;
 
 }
-.about-title{
+
+.about-title {
     font-size: 18px;
 
 }
-.logo-gitHub{
+
+.logo-gitHub {
     margin-top: 10px;
 }
-.linkedin-link{
+
+.linkedin-link {
     /* margin-left: 200px; */
     margin-left: 140px;
     margin-top: -40px;
 }
-.linkedin-link2{
+
+.linkedin-link2 {
     /* margin-left: 200px; */
     margin-left: 140px;
     margin-top: -41px;

@@ -5,8 +5,8 @@
     flex-direction: column;
     color: black;
     right: -200px;
-    top: 66px;
-    min-height: 88vh;
+    top: 0;
+    height: 100%;
     padding-top: 30px;
     padding-left: 20px;
     min-width: 46vw;
@@ -15,10 +15,8 @@
     z-index: 10;
     background-color: white;
     box-shadow: rgba(0, 0, 0, .3) 0px 0px 15px;
-    height: 100%;
+
 }
-
-
 
 .taskSide-detail::-webkit-scrollbar-track {
     background: white;
@@ -38,25 +36,15 @@
 }
 
 .taskSide-detail {
-    /* position:absolute; */
+
     position: fixed;
-    /* top: -380px; */
-    top: 66px;
+    top: 0;
     right: 0;
-    /* height: 2500px; */
     overflow-y: auto;
     overflow-x: hidden;
-    /* margin-left: 55vw;
-    margin-top: -17.3vw; */
-    /* right: 5vw;
-    top: -17.2vw; */
     color: black;
     gap: 5px;
-    /* min-height :2500px; */
-    /* max-height: 800px; */
-    min-height: 88vh;
     height: 100%;
-    /* height: 2500px; */
     padding-top: 30px;
     padding-left: 20px;
     padding-right: 20px;
@@ -78,8 +66,8 @@
     /* position: fixed; */
     color: black;
     right: -200px;
-    top: 66px;
-    max-height: 90vh;
+    top: 0;
+    height: 100%;
     /* height: 1200px; */
 
     /* height:100vh; */
@@ -95,14 +83,11 @@
 
 .readSide-deatil {
     position: fixed;
-    top: 66px;
     right: 0;
     overflow-y: auto;
     color: black;
-    /* right: 5vw;
-    top: -17.2vw; */
-    max-height: 90vh;
-    height: 120vh;
+    top: 0;
+    height: 100%;
     padding-top: 30px;
     padding-left: 20px;
     min-width: 31vw;
@@ -171,7 +156,7 @@
     position: absolute;
     font-size: 18px;
     margin-left: 26vw;
-    top: 30px;
+    top: 100px;
 
 }
 
@@ -237,6 +222,10 @@
 
 .s-complete-button-completed {
     color: green;
+}
+
+.s-complete {
+    margin-top: 70px;
 }
 
 .s-task-title {
@@ -560,6 +549,10 @@
     outline: none
 }
 
+.s-completed-2 {
+    margin-top: 75px;
+}
+
 .s-completed-2 span {
     display: flex;
     flex-direction: row;
@@ -728,13 +721,12 @@
 }
 
 
-@media only screen and (min-width: 1600px) and (min-height: 901px) {
-    /* Your CSS rules for screens larger than 1400x900 go here */
+@media only screen and (min-width: 1500px) and (min-height: 950px) {
+
 
     .taskSide-detail {
-
-        min-width: 22.5vw;
-        width: 22.5%;
+        width: 24%;
+        min-width: 24vw;
     }
 
     .close-s-div {
@@ -746,17 +738,19 @@
 
     .taskSide-detail-closed {
 
-        min-width: 34vw;
-        width: 34%;
-
+        min-width: 35vw;
+        width: 35%;
 
 
     }
 
     .readSide-detail-closed {
-        min-width: 36vw;
-        width: 36%;
+
+        width: 37%;
         overflow-x: hidden;
+
     }
+
+
 
 }

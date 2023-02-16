@@ -137,7 +137,7 @@ const UploadAttachment = ({ users, taskId }) => {
     //     )
     // }
         return (
-            <div>
+            <div className="attachments-div ref">
                 <div className="attachment-errors ref">
                     {showAttachmentsErrors && urlErrors.map((error, idx) => (
                         <li key={idx} className='form-errors'>{error}</li>

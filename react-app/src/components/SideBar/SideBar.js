@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrUserProjects } from "../../store/projectReducer";
-import {getSideBarProjects} from "../../store/sideBarProjectReducer"
+import { getSideBarProjects } from "../../store/sideBarProjectReducer"
 import LogoutButton from "../auth/LogoutButton";
 import { BsLinkedin, BsGithub } from "react-icons/bs";
 import logo from "../../img/asanc-logo.png"
+import profileLogo from "../../img/portfolio-cici.png"
 import "./SideBar.css"
 import ProjectCreateModal from "../Project/ProjectCreateModal";
 import { NavLink, Link } from "react-router-dom";
@@ -19,16 +20,6 @@ const SideBar = ({ show, toggle }) => {
     const sidebarClass = show ? "sidebar-open" : "sidebar-closed"
     const projects = useSelector(state => state.sideBar);
     const projectsArr = Object.values(projects);
-    // const [openMiddleSidebar, setOpenMilddleSideBar] = useState(true)
-
-    // const openSidebar = () => {
-    //     if (openMiddleSidebar) return;
-    //     else setOpenMilddleSideBar(false);
-    // }
-    // const closeSideBar = () => {
-    //     if (!openMiddleSidebar) return;
-    //     setOpenMilddleSideBar(false);
-    // };
 
 
 
@@ -42,6 +33,7 @@ const SideBar = ({ show, toggle }) => {
     return (
         <>
             <div className="sideBar-top-container">
+
                 <div className="sideBar-top-left">
                     <div className="sideBar-open-icon ref" onClick={toggle}>
                         <i className="fa-solid fa-bars ref"></i>
@@ -51,11 +43,15 @@ const SideBar = ({ show, toggle }) => {
                         <span className="home-title">Asanc</span>
                     </NavLink>
                 </div>
-                <div className="currentUser-profile">
-                    <CurrentUserInfo currentUser={currentUser} />
+
+                <div className="sideBar-profile-logo-r">
+                    <div className="currentUser-profile">
+                        <CurrentUserInfo currentUser={currentUser} />
+                    </div>
+                    <a className="profile-logo" href="https://cici1819.github.io/">
+                        <img src={profileLogo} className="profile-logo" />
+                    </a>
                 </div>
-
-
             </div>
 
             <>
@@ -89,23 +85,23 @@ const SideBar = ({ show, toggle }) => {
 
                     <div className="sideBar-user-project">
                         <div className="c-project-list">
-                                {projectsArr?.map((project) => {
-                                    return (
+                            {projectsArr?.map((project) => {
+                                return (
 
-                                        <NavLink className="sideBar-myproject" to={`/home/${project?.id}/list`} key={project?.id}>
-                                            {/* <i className="fa-solid fa-square" style={{backgroundColor: project?.color}} id="p-c-sideBar"></i> */}
-                                            <div style={{ backgroundColor: project?.color }} className="p-c-sideBar">
+                                    <NavLink className="sideBar-myproject" to={`/home/${project?.id}/list`} key={project?.id}>
+                                        {/* <i className="fa-solid fa-square" style={{backgroundColor: project?.color}} id="p-c-sideBar"></i> */}
+                                        <div style={{ backgroundColor: project?.color }} className="p-c-sideBar">
 
-                                            </div>
-                                            <span className="p-title-sideBar">
-                                                {project.title}
-                                            </span>
-                                        </NavLink>
+                                        </div>
+                                        <span className="p-title-sideBar">
+                                            {project.title}
+                                        </span>
+                                    </NavLink>
 
 
-                                    )
+                                )
 
-                                })}
+                            })}
                         </div>
                         {/* </div> */}
 

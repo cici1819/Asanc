@@ -67,8 +67,8 @@
 
     text-decoration: none
 }
-.download-icon {
-
+.download-a-div {
+    margin-top: -40px;
 }
 .delete-attachment:hover #tip-text {
 
