@@ -41,7 +41,7 @@ class Task(db.Model):
         "Project",back_populates = "task_p"
     )
     comment_t = db.relationship (
-        "Comment",back_populates = "task_c"
+        "Comment",back_populates = "task_c",cascade='all, delete'
     )
 
     def to_dict(self):

@@ -59,8 +59,7 @@ function CommentListInTask({ taskId, users, show }) {
                 <div className="comment-list-new ref">{commentList}</div>
                 <div className="single-comment-in-task ">
                     {commentArr.length > 0 && commentArr.map((comment) => (
-                        <div className="ref comment-list-div" key={comment.id}>
-
+                        <div key={comment.id} className="ref comment-list-div" >
                             <div className="single-comment-in-task-title ref">
                                 <SingleComment show={show} commentId={comment.id} comment={comment} users={users} />
                             </div>

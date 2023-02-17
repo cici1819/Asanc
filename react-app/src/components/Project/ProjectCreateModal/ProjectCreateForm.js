@@ -103,7 +103,7 @@ function ProjectCreate({ setShowModal }) {
                             {hasSubmitted && !!validationErrors.length && (
                                 <div id='errors3-list'>
                                     <ul className='error4-list'>
-                                        {validationErrors.map((error) => <li id='errors' key={error}>{error}</li>)}
+                                        {validationErrors.map((error,idx) => <li id='errors' key={idx}>{error}</li>)}
                                     </ul>
                                 </div>
                             )}
