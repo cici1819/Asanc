@@ -84,7 +84,7 @@ function SplashPage() {
                     </div>
                     <div className="seprate-line2"></div>
                     <div className="about-link-splash">
-                        <span>Create by Cici Cheng </span>
+                        <span>Created by Cici Cheng </span>
                         <NavLink className="github-link"
                             to={{
                                 pathname: "https://github.com/cici1819",

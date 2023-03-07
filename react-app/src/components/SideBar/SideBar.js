@@ -48,7 +48,7 @@ const SideBar = ({ show, toggle }) => {
                     <div className="currentUser-profile">
                         <CurrentUserInfo currentUser={currentUser} />
                     </div>
-                    <a className="profile-logo" href="https://cici1819.github.io/">
+                    <a className="profile-logo" href="https://cici1819.github.io/" target="_blank">
                         <img src={profileLogo} className="profile-logo" />
                     </a>
                 </div>
