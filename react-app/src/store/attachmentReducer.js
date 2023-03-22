@@ -108,7 +108,7 @@ export const thunkUpdatedAttachment = (data) => async (dispatch) => {
 };
 
 export const thunkDeleteAttachment = (attachmentId) => async (dispatch) => {
-    console.log("@@@@@@@@@@@@@@@@@@Delete thunk", attachmentId)
+    // console.log("@@@@@@@@@@@@@@@@@@Delete thunk", attachmentId)
     const response = await fetch(`/api/attachments/${attachmentId}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' }

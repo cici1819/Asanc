@@ -605,8 +605,19 @@
     width: 96%;
     height: 50px;
     font-size: 16px;
+    cursor: default;
 }
 
+.assignee-s-d-r input {
+    display: none;
+    cursor:default;
+}
+.assignee-s-d-r .css-tj5bde-Svg {
+    cursor:default;
+}
+.assignee-s-d-r .css-1fdsijx-ValueContainer {
+    cursor: default;
+}
 .s-r-select {
     cursor: default;
 }

@@ -70,9 +70,9 @@ export const thunkLoadOneComment = (commentId) => async (dispatch) => {
 
 
 export const thunkLoadTaskComments = (taskId) => async (dispatch) => {
-    console.log("RunningthunkLoad loadTaskComments")
+    // console.log("RunningthunkLoad loadTaskComments")
     const response = await fetch(`/api/comments/tasks/${taskId}`)
-    console.log("response!!!!!!!!!!!!", response)
+    // console.log("response!!!!!!!!!!!!", response)
     if (response.ok) {
         const comments = await response.json();
         dispatch(loadTaskComments(comments))
@@ -82,7 +82,7 @@ export const thunkLoadTaskComments = (taskId) => async (dispatch) => {
 
 export const thunkUpdatedComment = (data) => async (dispatch) => {
     const { content, taskId, commentId, } = data;
-    console.log(`........printing comment input....: ${content}`);
+    // console.log(`........printing comment input....: ${content}`);
     const response = await fetch(`/api/comments/${commentId}`, {
         method: "PUT",
         headers: { 'Content-Type': 'application/json' },

@@ -49,7 +49,7 @@ function TaskInSection({ section, project, sessionUser, show, showNewTask, setSh
         // if (target.className && typeof target.className.includes !== 'undefined' &&(target.className.includes('kpxc') || target.className.includes('ui-helper')))
         if (taskCreateRef?.current?.contains(e.target)) {
             return;
-        } else if (e && e.target && e.target.className.includes !== 'undefined' && (e.target?.className.includes("css"))) {
+        } else if (e && e.target && e.target?.className?.includes !== 'undefined' && (e.target?.className?.includes("css"))) {
             return;
         }
         // else if (e && e.path && e.path[1] && e.path[1]?.className && e.path[1]?.className.includes !== 'undefined' && (e.path[1]?.className.includes("css"))) {

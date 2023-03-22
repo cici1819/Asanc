@@ -37,7 +37,7 @@ const CommentCreate = ({ show, task, setCommentList }) => {
     const handleInputBlur = async (e) => {
         e.preventDefault()
         let content = e.target.value;
-        console.log("taskid$$$$$$$$$$$$$$$", task.id)
+        // console.log("taskid$$$$$$$$$$$$$$$", task.id)
         const payload = {
             content: content, taskId: task.id
         };

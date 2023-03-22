@@ -350,20 +350,22 @@ const SingleTask = ({ show, task, users, section, sessionUser, projectId }) => {
 
 
     const handleClickTask = e => {
-         console.log("#####################,TaskDetail e", e)
-        if (e && e.target && e.target?.className && typeof e.target?.className?.includes!=='undefined' &&(e.target?.className?.includes('ref'))) {
+        //  console.log("#####################,TaskDetail e", e)
+        if (e && e.target && e.target?.className  && typeof e.target?.className === 'string' && typeof e.target?.className?.includes!=='undefined'  &&(e.target?.className?.includes('ref'))) {
             return;
-        } else if (e && e.target && e.target.className.includes("css")) {
+        } else if (e && e.target && typeof e.target?.className === 'string' && e.target?.className?.includes("css"||"css-1xc3v61-indicatorContainer")) {
             return
-        } else if (e && e.target && e.target.className.includes("react-calendar")) {
+        } else if (e && e.target && typeof e.target?.className === 'string' && e.target?.className?.includes("react-calendar")) {
             return
-        } else if (e && e.target && e.target.className.includes("abbr")) {
+        } else if (e && e.target && typeof e.target?.className === 'string' && e.target?.className?.includes("abbr")) {
             return
-        } else if (e && e.target && e.target.type === "abbr") {
+        } else if (e && e.target && e.target?.type === "abbr") {
             return
-        } else if (e && e.target && e.target.localName === "abbr") {
+        } else if (e && e.target && e.target?.localName === "abbr") {
             return
         } else if (e && e.target && e.target?.offsetParent?.className.includes("ref")) {
+            return
+        } else if (e && e.target && e.target?.localName === "svg") {
             return
         }
 
