@@ -156,18 +156,22 @@
     border-right:1px solid rgb(242,242,242);
 
 }
-.css-1fdsijx-ValueContainer{
+.task-assignee-column .css-13cymwt-control{
     cursor: pointer;
 }
-.assignee-select-disable .css-1fdsijx-ValueContainer {
+.task-assignee-column .css-13cymwt-control:hover{
+    cursor: pointer;
+}
+.assignee-s-d-r .css-13cymwt-control {
     cursor:default;
 }
-.css-tj5bde-Svg {
+.assignee-s-d .css-13cymwt-control{
     cursor: pointer;
 }
-.assignee-select-disable .css-tj5bde-Svg {
+.assignee-s-d-r .css-13cymwt-control .css-tj5bde-Svg {
     cursor: default;
 }
-.assignee-select-disable input {
+.assignee-s-d-r input {
+
     display: none;
 }
