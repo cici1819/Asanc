@@ -126,15 +126,9 @@ const commentReducer = (state = {}, action) => {
             // console.log('!!!action', action)
             newState = { ...state }
             newState.comments[action.comment.id] = action.comment
-            // newState.comments.comments.push(action.comment);
             return newState;
 
         case LOAD_TASK_COMMENTS:
-            // newState = {}
-            // console.log("task-comment####### running")
-            // action.comments.Comments.forEach(comment => {
-            //     newState[comment.id] = comment
-            // })
             return { ...state, ...newState, comments: [...action.comments.comments] };
 
         case EDIT_COMMENT:

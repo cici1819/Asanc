@@ -57,10 +57,8 @@ export const thunkAddAttachmentToTask = (data) => async (dispatch) => {
     // console.log("running^^^^^^^^^^ createOneComment thunk")
     const { taskId, attachment,name } = data
     const formData = new FormData();
-    // formData.append("ownerId", ownerId);
     formData.append("taskId", taskId);
     formData.append("name", name);
-    // formData.append("private", priv);
     formData.append("attachment", attachment);
     const response = await fetch("/api/attachments/new", {
         method: "POST",
@@ -86,7 +84,6 @@ export const thunkUpdatedAttachment = (data) => async (dispatch) => {
     // console.log(`........thunkUpdatedAttachment....: ${sectionTitle}`);
     const formData = new FormData();
     formData.append("taskId", taskId);
-    // formData.append("private", priv);
     formData.append("name",name)
     formData.append("attachment", newAttachment);
     const response = await fetch(`/api/attachments/${attachmentId}`, {
@@ -131,7 +128,6 @@ const attachmentReducer = (state = {}, action) => {
         case ADD_ATTACHMENT_TO_TASK:
             newState = {...state}
             newState.attachments[action.attachment.id]= action.attachment
-            // newState.attachments.push(action.attachment);
             return newState;
 
         case EDIT_ATTACHMENT:
