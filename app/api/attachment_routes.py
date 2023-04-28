@@ -92,7 +92,7 @@ def edit_attachment(attachment_id):
                 upload = upload_file_to_s3(new_attachment)
                 if "url" not in upload:
                     return upload, 400
-                deleted = delete_file_from_s3(attachment.url.split(".com/")[1])
+                # deleted = delete_file_from_s3(attachment.url.split(".com/")[1])
                 url = upload["url"]
             attachment.task_id = form.data['taskId']
             attachment.name = form.data['name']

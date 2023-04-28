@@ -11,7 +11,7 @@ const SingleComment = ({ commentId, comment, users,show }) => {
     const [content, setContet] = useState(comment?.content);
     const [errors, setErrors] = useState([]);
     const task = useSelector(state => state.tasks?.singleTask);
-    const comments = useSelector(state => state?.comments?.comments)
+    // const comments = useSelector(state => state?.comments?.comments)
     const sessionUser = useSelector((state) => state.session.user);
     const ref = useRef(null)
     let taskId = task.id
@@ -82,7 +82,7 @@ const SingleComment = ({ commentId, comment, users,show }) => {
             <div className='comment-owner-info ref'>
                 <span className='c-o-logo ref'> <img className='c-o-i ref' src={userLogo} style={{ height: '25px', width: '25px', borderRadius: '50%', backgroundColor: commentOwnerObj?.avatar_color }} /> </span>
                 <span className='c-o-name ref'>{commentOwnerObj?.firstName} {commentOwnerObj?.lastName}</span>
-                <span className="comment-date">{comment?.updated_at.substring(0, 16)}</span>
+                <span className="comment-date">{comment?.updated_at.substring(0,16)}</span>
             </div>
             {sessionUserIsOwner ?
                 (<>

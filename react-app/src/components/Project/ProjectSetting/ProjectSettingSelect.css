@@ -1,16 +1,17 @@
-.select-setting{
+.select-setting {
     display: flex;
     flex-direction: row;
-    gap:10px;
+    gap: 10px;
     align-items: center;
-    margin-bottom:20px;
+    margin-bottom: 20px;
     margin-top: 10px;
 }
 
-.project-title{
+.project-title {
     font-size: 22px;
     font-weight: 600;
 }
+
 .arrow-icon {
     /* cursor: pointer; */
     display: flex;
@@ -25,26 +26,30 @@
     /* background-color: aqua; */
 
 }
- .arrow-icon i {
-    position:relative;
+
+.arrow-icon i {
+    position: relative;
     margin-top: -150px;
     /* top:46px;
     left:280px; */
     /* color: brown; */
- }
-.arrow-icon:hover i{
-   margin-top: 10px;
-}
-.arrow-icon:hover{
-    cursor:pointer;
-    background-color: rgb(245,243,243);
-
-}
-.arrow-icon span{
- visibility: hidden;
 }
 
-.arrow-icon:hover span{
+.arrow-icon:hover i {
+    margin-top: 10px;
+}
+
+.arrow-icon:hover {
+    cursor: pointer;
+    background-color: rgb(245, 243, 243);
+
+}
+
+.arrow-icon span {
+    visibility: hidden;
+}
+
+.arrow-icon:hover span {
     visibility: visible;
     opacity: 1;
     z-index: 100;
@@ -52,7 +57,7 @@
     color: white;
     text-align: center;
     padding: 3px;
-    line-height: 1.2;
+    line-height: 1.5;
     border-radius: 6px;
     font-size: 0.75em;
     word-break: break-all;
@@ -62,12 +67,12 @@
     /* top:150%;
    left:50%; */
     margin-top: -28px;
-    margin-left: -5px;
+    margin-left: -2px;
 
     text-decoration: none
 }
 
-#project-setting-title::after{
+#project-setting-title::after {
     content: "";
     display: block;
     overflow: hidden;
@@ -83,13 +88,14 @@
     top: 100%;
     left: 50%;
 }
-.project-setting-dropMenu{
+
+.project-setting-dropMenu {
     display: flex;
     flex-direction: column;
     /* align-items: center; */
-    padding:5px;
+    padding: 5px;
     position: absolute;
-    background-color:white;
+    background-color: white;
     min-width: 160px;
     z-index: 1;
     top: 80px;
@@ -101,7 +107,8 @@
     box-shadow: 0px 0px 16px rgba(183, 183, 183, 0.5);
 
 }
-.project-edit-div{
+
+.project-edit-div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -115,9 +122,9 @@
 
 }
 
-.project-edit-div:hover{
+.project-edit-div:hover {
     cursor: pointer;
-    background-color: rgb(245,243,243);
+    background-color: rgb(245, 243, 243);
     /* background-color: rgba(240, 106, 106,0.2); */
     border-radius: 5px;
 
@@ -130,6 +137,7 @@
     border-bottom: 1px solid rgb(219, 223, 230);
 
 }
+
 .project-delete-div {
     display: flex;
     flex-direction: row;
@@ -140,9 +148,10 @@
     padding-left: 10px;
     padding-right: 10px;
 }
-.project-delete-div:hover{
+
+.project-delete-div:hover {
     cursor: pointer;
-    background-color: rgb(245,243,243);
+    background-color: rgb(245, 243, 243);
     /* background-color: rgba(240, 106, 106,0.2); */
     border-radius: 5px;
 

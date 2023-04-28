@@ -6,7 +6,7 @@ import { thunkGetOneTask } from "../../../store/taskReducer";
 import './CommentListInTask.css'
 import SingleComment from "../SingleComment";
 import CommentCreate from "../commentCreate";
-import { compose } from "redux";
+// import { compose } from "redux";
 
 
 function CommentListInTask({ taskId, users, show }) {
@@ -18,7 +18,7 @@ function CommentListInTask({ taskId, users, show }) {
     // const sessionUser = useSelector((state) => state.session.user);
     const task = useSelector(state => state.tasks?.singleTask);
     const commentClass = show ? "comment-in-task-container" : "comment-in-task-container-closed"
-    const ref = useRef(null)
+    // const ref = useRef(null)
 
     useEffect(() => {
         dispatch(thunkGetOneTask(taskId))
