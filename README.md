@@ -1,8 +1,8 @@
-## Project 
+## Project
 
 #### [Asanc](https://cc-asanc.onrender.com) is a project management application that inspiration from Asana. Users can create projects, sections and tasks and organize work in one place for seamless collaboration.
 
-## Wiki 
+## Wiki
 
 ## [Database Schema](https://github.com/cici1819/Asanc/blob/main/png/asanc-dataSchema.png)
 ## [Feature List](https://github.com/cici1819/Asanc/wiki/Features-list)
@@ -10,7 +10,6 @@
 
 # 💻 Technologies
 ### Frameworks, Platforms, Libraries:
-![Skills](https://skillicons.dev/icons?i=py,flask,js,react,redux,postgres,sqlite,css,html,render)
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
@@ -35,7 +34,7 @@
 ### Sign Up Page
 <img src="https://github.com/cici1819/Asanc/blob/dev/react-app/src/img/signUp-page.png" alt="signup page">
 
-### Home Page (click the Hamburger icon to toggle the  sideBar open or close) 
+### Home Page (click the Hamburger icon to toggle the  sideBar open or close)
 #### Home Page (sideBar open)
 <img src="https://github.com/cici1819/Asanc/blob/dev/react-app/src/img/homePage.png" alt="homePage page">
 
@@ -50,7 +49,7 @@
 ### Project Setting (click the arrow icon near by the project name will open the project seeting menu)
 <img src="https://github.com/cici1819/Asanc/blob/dev/react-app/src/img/projectSetting.png" alt=" project setting page">
 
-#### Project edit 
+#### Project edit
 <img src="https://github.com/cici1819/Asanc/blob/dev/react-app/src/img/project-edit.png" alt=" project edit Modal">
 
 #### Project delete
@@ -80,7 +79,7 @@
 
  ## Features in Progress(will do later)
 * Project owner is able to assign team members to projects.
-* File Attachments Users will be able to attached files to tasks they own or are assigned to via the task detail view. These files will be able to be downloaded or removed.
-*Search Users will be able to search for tasks and projects from the search bar located in the permanent navigation bar.
+* File Attachments Users will be able to attached files to tasks they own or are assigned to via the task detail view. These files will be able to be downloaded (Done).
+* Search Users will be able to search for tasks and projects from the search bar located in the permanent navigation bar(Done).
 
 ***
